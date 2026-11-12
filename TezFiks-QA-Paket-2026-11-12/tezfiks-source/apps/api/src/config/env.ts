@@ -39,7 +39,7 @@ export const EnvSchema = z.object({
   JWT_ACCESS_TTL_SEC: z.coerce.number().int().min(60).default(900),
   JWT_REFRESH_TTL_DAYS: z.coerce.number().int().min(1).default(30),
   FILE_URL_SECRET: optStr,
-  FILE_URL_TTL_SEC: z.coerce.number().int().min(60).default(3600),
+  FILE_URL_TTL_SEC: z.coerce.number().int().min(60).default(600),
   STORAGE_DRIVER: z.enum(['local', 's3']).default('local'),
   STORAGE_LOCAL_DIR: z.string().default('./uploads'),
   S3_ENDPOINT: optStr,

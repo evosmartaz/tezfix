@@ -335,7 +335,10 @@ export class DispatchService implements OnModuleInit {
         where: { cell7: r.cell7 },
         select: { handymanId: true },
       });
-      const known = new Set(entries.map((e) => e.handymanId));
+      // BUG-004: only providers already evaluated in THIS step are skipped. Solo providers that are online inside the
+      // disk but outside the new ring (e.g. they went online after an inner step ran) were never evaluated, so the
+      // service-area pass must still consider them. Providers offered earlier are skipped by sendOffers.
+      const known = new Set([...soloEntries, ...workerEntries].map((e) => e.handymanId));
       const area = (
         await this.eligibility.freshPresence(covering.map((c) => c.handymanId).filter((id) => !known.has(id)))
       ).filter((e) => !e.companyId);

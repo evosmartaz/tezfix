@@ -22,7 +22,8 @@ describe('customer login flow (router level)', () => {
     ]);
 
     const r = await renderRouter(APP_DIR, { initialUrl: '/' });
-    await waitFor(() => expect(screen.getByTestId('phone-screen')).toBeTruthy());
+    // The first full router render is slow under parallel jest workers (BUG-001), so it gets a longer wait.
+    await waitFor(() => expect(screen.getByTestId('phone-screen')).toBeTruthy(), { timeout: 10_000 });
     expect(r.getPathname()).toBe('/phone');
     expect(screen.getByText('Telefon nömrəsi ilə daxil olun')).toBeTruthy();
 
@@ -53,5 +54,5 @@ describe('customer login flow (router level)', () => {
     await waitFor(() => expect(screen.getByTestId('phone-screen')).toBeTruthy());
     expect(secureStore().has('tf.refreshToken')).toBe(false);
     expect(calls.some((c) => c.path === '/auth/logout')).toBe(true);
-  });
+  }, 30_000);
 });

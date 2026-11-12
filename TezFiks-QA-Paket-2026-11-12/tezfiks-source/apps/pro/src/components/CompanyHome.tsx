@@ -202,17 +202,17 @@ export function CompanyOfferCard({
       {workers.map((w) => (
         <WorkerRow key={w.handymanId} w={w} selected={selected.includes(w.handymanId)} onPress={() => setSelected((s) => toggleWorker(s, w, max))} />
       ))}
-      <View style={[styles.head, styles.line]}>
-        <Button variant="outline" title={t('company.decline')} onPress={onDecline} disabled={busy} fullWidth={false} style={styles.action} testID={`company-offer-decline-${offer.id}`} />
+      {/* BUG-006: stacked and full width, so the long "Qəbul et və göndər" label is no longer cut off next to Decline. */}
+      <View style={[styles.actions, styles.line]}>
         <Button
           title={t('company.acceptSend')}
           onPress={() => onAccept(selected)}
           loading={busy}
           disabled={!selected.length}
-          fullWidth={false}
-          style={styles.action}
+          style={styles.stackedAction}
           testID={`company-offer-accept-${offer.id}`}
         />
+        <Button variant="outline" title={t('company.decline')} onPress={onDecline} disabled={busy} style={styles.stackedAction} testID={`company-offer-decline-${offer.id}`} />
       </View>
     </Card>
   );
@@ -263,5 +263,6 @@ const styles = StyleSheet.create({
   workerOn: { borderColor: colors.primary, borderWidth: 2 },
   workerOff: { opacity: 0.6 },
   workerText: { flex: 1, marginLeft: spacing.md },
-  action: { flex: 1, marginHorizontal: spacing.xs },
+  actions: { gap: spacing.sm },
+  stackedAction: { alignSelf: 'stretch' },
 });

@@ -101,6 +101,19 @@ describe('A1 hardening', () => {
       expect((await files.ref(ref.id)).url).toBe(ref.url);
     });
 
+    it('BUG-002: the default TTL is 600 s (spec: 10 minutes); a normal URL works before and is rejected after expiry; a tampered signature is rejected', async () => {
+      expect(loadEnv().FILE_URL_TTL_SEC).toBe(600);
+      const u = await user();
+      const ref = await upload(t, u.token, 'REQUEST_PHOTO');
+      expect((await fetch(localUrl(t, ref.url))).status).toBe(200);
+      const tampered = new URL(ref.url);
+      const sig = tampered.searchParams.get('sig') ?? '';
+      tampered.searchParams.set('sig', (sig[0] === 'a' ? 'b' : 'a') + sig.slice(1));
+      expect((await fetch(localUrl(t, tampered.toString()))).status).toBe(403);
+      t.clock.advance((loadEnv().FILE_URL_TTL_SEC + 2) * 1000);
+      expect((await fetch(localUrl(t, ref.url))).status).toBe(403);
+    });
+
     it('KYC admin URLs last at most 10 minutes', async () => {
       const u = await user();
       const ref = await upload(t, u.token, 'KYC_SELFIE');

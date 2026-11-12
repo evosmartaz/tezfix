@@ -1,6 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@tezfiks/shared';
-import { useApi, useAuth, useRuntime, useSocketEvent } from '@tezfiks/mobile';
+import { useApi, useAuth, useRuntime, useSocketEvent, useT } from '@tezfiks/mobile';
 
 export type JobScope = 'active' | 'history';
 
@@ -138,4 +139,22 @@ export function useUnreadCount() {
   const client = useApi();
   const signedIn = useAuth((s) => s.status === 'signedIn');
   return useQuery({ queryKey: qk.unread, queryFn: () => client.call(api.notifications.unreadCount), enabled: signedIn, refetchInterval: 60_000 });
+}
+
+/**
+ * BUG-005: the API answers in the language of the Accept-Language header (trade and category names, job titles), and
+ * the query keys do not carry the language, so after a language change the cache kept the old texts. On a change of the
+ * UI language this refetches only the queries whose data is localized by the server (not wallet, chat, etc.).
+ */
+export function useLocaleRefetch(): void {
+  const queryClient = useQueryClient();
+  const { locale } = useT();
+  const last = useRef(locale);
+  useEffect(() => {
+    if (last.current === locale) return;
+    last.current = locale;
+    for (const queryKey of [qk.profile, qk.categories, ['pro', 'assignment'], ['pro', 'assignments'], ['pro', 'offers'], ['company'], ['projects'], qk.notifications]) {
+      void queryClient.invalidateQueries({ queryKey });
+    }
+  }, [locale, queryClient]);
 }

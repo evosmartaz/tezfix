@@ -231,6 +231,47 @@ describe('B1 dispatch engine (H3 rings)', () => {
     expect(last.cells.length).toBe(gridDisk(cell7(center), 5).length);
   });
 
+  it('BUG-004: a pro who goes online at the request address after step 0 gets the offer at the wide step', async () => {
+    const c = await createCustomer(t);
+    const late = await createSoloHandyman(t, { balance: 2000, base: center, radiusKm: 10 });
+    const req = await createRequest(t, c);
+    expect(await offersOf(t, req.id)).toHaveLength(0);
+    await goOnline(t, late.handymanId, center);
+    for (let step = 1; step <= 4; step++) {
+      await advance(t, 30_000);
+      await touch(t, late.handymanId);
+    }
+    expect(await offersOf(t, req.id)).toHaveLength(0);
+    await advance(t, 30_000);
+    const offers = await offersOf(t, req.id);
+    expect(offers.map((o) => [o.handymanId, o.step, o.status])).toEqual([[late.handymanId, 5, 'SENT']]);
+  });
+
+  it('BUG-004: a pro already offered earlier is not offered again at the wide step, and offline pros never get offers', async () => {
+    const c = await createCustomer(t);
+    const early = await createSoloHandyman(t, { balance: 2000, base: center, radiusKm: 10 });
+    const offline = await createSoloHandyman(t, { balance: 2000, base: center, radiusKm: 10 });
+    await goOnline(t, early.handymanId, center);
+    const req = await createRequest(t, c);
+    expect((await offersOf(t, req.id)).map((o) => o.handymanId)).toEqual([early.handymanId]);
+    for (let step = 1; step <= 5; step++) {
+      await advance(t, 30_000);
+      await touch(t, early.handymanId);
+    }
+    const offers = await offersOf(t, req.id);
+    expect(offers.map((o) => o.handymanId)).toEqual([early.handymanId]);
+    expect(offers.find((o) => o.handymanId === offline.handymanId)).toBeUndefined();
+  });
+
+  it('BUG-004: a request with no eligible pro still expires normally', async () => {
+    const c = await createCustomer(t);
+    const req = await createRequest(t, c);
+    for (let i = 0; i < 12; i++) await advance(t, 20_000);
+    const r = await t.prisma.serviceRequest.findUniqueOrThrow({ where: { id: req.id } });
+    expect(r).toMatchObject({ status: 'EXPIRED', isSearching: false });
+    expect(await offersOf(t, req.id)).toHaveLength(0);
+  });
+
   it('search end: SENT offers closed, OPEN slots UNFILLED, emergency holds released, request EXPIRED + REQUEST_EXPIRED', async () => {
     const c = await createCustomer(t, { balance: 1000 });
     const req = await createRequest(t, c, { timing: 'EMERGENCY', slots: 2 });

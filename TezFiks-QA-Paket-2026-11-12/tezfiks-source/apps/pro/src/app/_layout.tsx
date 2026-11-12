@@ -11,7 +11,7 @@ import { hydratePendingInvite } from '../lib/invite';
 import { hydrateMode, resetMode } from '../lib/mode';
 import { installNotificationHandler } from '../online/alert';
 import { stopOnlineTracking } from '../online/tracking';
-import { useJobsRealtime, useProfileRealtime } from '../hooks/queries';
+import { useJobsRealtime, useLocaleRefetch, useProfileRealtime } from '../hooks/queries';
 import { useRouteTrackingGuard } from '../hooks/useRouteTracking';
 import { useTrackingGuard } from '../hooks/useOnlineSession';
 
@@ -36,6 +36,7 @@ function Root() {
   usePushRegistration({ offers: t('notifications.channelOffers'), default: t('notifications.channelDefault') });
   // Pushes are written in Me.locale: keep it equal to the language the app shows.
   useServerLocaleSync();
+  useLocaleRefetch();
   useProfileRealtime();
   useJobsRealtime();
   useTrackingGuard();

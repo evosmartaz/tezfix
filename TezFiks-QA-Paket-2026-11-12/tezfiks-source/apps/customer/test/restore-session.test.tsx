@@ -17,7 +17,8 @@ describe('customer session restore (router level)', () => {
     ]);
 
     const r = await renderRouter(APP_DIR, { initialUrl: '/' });
-    await waitFor(() => expect(screen.getByText('Salam, Nizami')).toBeTruthy());
+    // The first full router render is slow under parallel jest workers (BUG-001), so it gets a longer wait.
+    await waitFor(() => expect(screen.getByText('Salam, Nizami')).toBeTruthy(), { timeout: 10_000 });
     expect(r.getPathname()).toBe('/');
     expect(secureStore().get('tf.refreshToken')).toBe('refresh-new');
     for (const label of ['Əsas', 'Sifarişlər', 'Pul kisəsi', 'Profil']) expect(screen.getAllByText(label).length).toBeGreaterThan(0);
@@ -26,5 +27,5 @@ describe('customer session restore (router level)', () => {
     await waitFor(() => expect(screen.getByTestId('account-summary')).toBeTruthy());
     expect(screen.getByText('Nizami Tağızadə')).toBeTruthy();
     expect(screen.getByText('+994 50 123 45 67')).toBeTruthy();
-  });
+  }, 30_000);
 });
