@@ -1,0 +1,20 @@
+appId: az.tezfiks.usta
+name: AU-O05b Rauf şirkət təklifini qəbul edir (tək onlayn işçi Kamran avtomatik seçilir)
+# Qarşı tərəf: node mobile-driver.mts company. Təklif TTL 15 s, ona görə addımlar minimumdur.
+---
+- extendedWaitUntil:
+    visible:
+      id: "home-company-mode"
+    timeout: 20000
+- extendedWaitUntil:
+    visible:
+      id: "company-offer-accept-.*"
+    timeout: 150000
+- tapOn:
+    id: "company-offer-accept-.*"
+- extendedWaitUntil:
+    visible: "Aktiv"
+    timeout: 15000
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: o05-03-accepted

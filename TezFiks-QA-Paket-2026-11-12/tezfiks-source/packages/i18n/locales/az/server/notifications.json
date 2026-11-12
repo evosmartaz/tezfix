@@ -1,0 +1,143 @@
+{
+  "appName": "TezFiks",
+  "OFFER_NEW": {
+    "title": "Yeni sifariş: {{category}}",
+    "body": "Sifariş №{{number}}, {{distance}} uzaqlıqda. Tez baxın və qəbul edin."
+  },
+  "OFFER_CLOSED": {
+    "title": "Sifariş artıq aktual deyil",
+    "body": "Sifariş №{{number}} başqa usta tərəfindən götürüldü və ya ləğv edildi."
+  },
+  "REQUEST_ASSIGNED": {
+    "title": "Usta tapıldı",
+    "body": "{{name}} sifariş №{{number}} üzrə işi qəbul etdi."
+  },
+  "REQUEST_EXPIRED": {
+    "title": "Usta tapılmadı",
+    "body": "Sifariş №{{number}} üçün hazırda boş usta yoxdur. Bir az sonra yenidən cəhd edin."
+  },
+  "REQUEST_CANCELLED": {
+    "title": "Sifariş ləğv edildi",
+    "body": "Sifariş №{{number}} ləğv edildi."
+  },
+  "ASSIGNMENT_EN_ROUTE": {
+    "title": "Usta yoldadır",
+    "body": "{{name}} yola çıxdı. Təxmini gəliş: {{minutes}} dəq."
+  },
+  "ASSIGNMENT_NEAR": {
+    "title": "Usta yaxındadır",
+    "body": "{{name}} təxminən {{minutes}} dəqiqəyə çatacaq. Əlaqə məlumatları açıldı."
+  },
+  "ASSIGNMENT_ARRIVED": {
+    "title": "Usta gəldi",
+    "body": "{{name}} ünvana çatdı."
+  },
+  "ASSIGNMENT_CANCELLED": {
+    "title": "İş ləğv edildi",
+    "body": "Sifariş №{{number}} üzrə iş ləğv edildi."
+  },
+  "PRICE_PROPOSED": {
+    "title": "Yekun qiymət təklif olundu",
+    "body": "{{name}} işin qiymətini {{amount}} təklif etdi. Təsdiq edin və ya etiraz edin."
+  },
+  "ASSIGNMENT_COMPLETED": {
+    "title": "İş tamamlandı",
+    "body": "Sifariş №{{number}} tamamlandı. Təşəkkür edirik!"
+  },
+  "PAYMENT_SUCCEEDED": {
+    "title": "Ödəniş uğurludur",
+    "body": "{{amount}} məbləğində ödəniş qəbul edildi."
+  },
+  "TIP_RECEIVED": {
+    "title": "Bəxşiş aldınız",
+    "body": "Müştəri sizə {{amount}} bəxşiş verdi."
+  },
+  "RATING_RECEIVED": {
+    "title": "Yeni qiymətləndirmə",
+    "body": "Sifariş №{{number}} üzrə işiniz qiymətləndirildi."
+  },
+  "CHAT_MESSAGE": {
+    "title": "Yeni mesaj",
+    "body": "{{name}} sizə mesaj göndərdi."
+  },
+  "WORKER_ASSIGNED": {
+    "title": "Sizə iş təyin edildi",
+    "body": "Sifariş №{{number}}: {{category}}. Detallara baxın."
+  },
+  "KYC_APPROVED": {
+    "title": "Profiliniz təsdiqləndi",
+    "body": "Artıq sifariş qəbul edə bilərsiniz. Onlayn olun!"
+  },
+  "KYC_REJECTED": {
+    "title": "Profil təsdiqlənmədi",
+    "body": "Səbəb: {{reason}}. Məlumatları düzəldib yenidən göndərin."
+  },
+  "COMPANY_APPROVED": {
+    "title": "Şirkət təsdiqləndi",
+    "body": "{{company}} şirkəti təsdiqləndi. İşçiləri dəvət edə bilərsiniz."
+  },
+  "COMPANY_REJECTED": {
+    "title": "Şirkət təsdiqlənmədi",
+    "body": "{{company}}: {{reason}}. Məlumatları düzəldib yenidən göndərin."
+  },
+  "ACCOUNT_BLOCKED": {
+    "title": "Hesabınız bloklandı",
+    "body": "Səbəb: {{reason}}. Dəstək xidməti ilə əlaqə saxlayın."
+  },
+  "SCHEDULED_REMINDER": {
+    "title": "Planlı sifariş xatırlatması",
+    "body": "Sifariş №{{number}}: {{date}}."
+  },
+  "SCHEDULED_UNFILLED": {
+    "title": "Planlı sifariş üçün usta tapılmadı",
+    "body": "Sifariş №{{number}} ({{date}}) üçün usta tapılmadı. Yeni vaxt seçin."
+  },
+  "WALLET_LOW": {
+    "title": "Balansınız azdır",
+    "body": "Balans: {{amount}}. Sifariş almağa davam etmək üçün balansı artırın."
+  },
+  "WALLET_TOPUP": {
+    "title": "Balans artırıldı",
+    "body": "Balansınıza {{amount}} əlavə olundu."
+  },
+  "PAYOUT_PAID": {
+    "title": "Qazancınız köçürüldü",
+    "body": "{{amount}} ödəniş üsulunuza köçürüldü."
+  },
+  "PROJECT_NEW": {
+    "title": "Yeni layihə sorğusu",
+    "body": "Layihə №{{number}}: {{category}}. Qiymət təklifi göndərin."
+  },
+  "QUOTE_RECEIVED": {
+    "title": "Yeni qiymət təklifi",
+    "body": "{{company}} layihə №{{number}} üçün {{amount}} təklif etdi."
+  },
+  "QUOTE_ACCEPTED": {
+    "title": "Təklifiniz qəbul edildi",
+    "body": "Layihə №{{number}} üzrə təklifiniz qəbul edildi."
+  },
+  "QUOTE_REJECTED": {
+    "title": "Təklifiniz qəbul edilmədi",
+    "body": "Layihə №{{number}} üzrə təklifiniz qəbul edilmədi."
+  },
+  "PROJECT_REPORT": {
+    "title": "Yeni hesabat",
+    "body": "{{company}} layihə №{{number}} üzrə hesabat göndərdi."
+  },
+  "INVOICE_ISSUED": {
+    "title": "Yeni hesab-faktura",
+    "body": "Hesab-faktura №{{number}}: {{amount}}."
+  },
+  "INVOICE_PAID": {
+    "title": "Hesab-faktura ödənildi",
+    "body": "Hesab-faktura №{{number}} ({{amount}}) ödənildi."
+  },
+  "CASE_UPDATED": {
+    "title": "Müraciətiniz yeniləndi",
+    "body": "Müraciət №{{number}} üzrə yenilik var."
+  },
+  "GENERIC": {
+    "title": "{{title}}",
+    "body": "{{body}}"
+  }
+}

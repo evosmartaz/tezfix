@@ -1,0 +1,22 @@
+{
+  "name": "@tezfiks/i18n",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TezFiks translations (az, ru, en). App namespaces are bundled statically; server namespaces are merged from locales/<lng>/server/*.json",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./server": {
+      "types": "./server.d.ts",
+      "default": "./server.js"
+    },
+    "./locales/*": "./locales/*"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

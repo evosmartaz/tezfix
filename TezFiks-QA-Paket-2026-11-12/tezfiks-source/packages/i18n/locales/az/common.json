@@ -1,0 +1,288 @@
+{
+  "brand": {
+    "name": "TezFiks",
+    "tagline": "Lazım olan anda usta — ev və avto üçün"
+  },
+  "login": {
+    "codeViaWhatsApp": "Təsdiq kodunu WhatsApp-a göndərəcəyik"
+  },
+  "languages": {
+    "az": "Azərbaycanca",
+    "ru": "Русский",
+    "en": "English"
+  },
+  "actions": {
+    "continue": "Davam et",
+    "save": "Yadda saxla",
+    "cancel": "Ləğv et",
+    "confirm": "Təsdiqlə",
+    "close": "Bağla",
+    "back": "Geri",
+    "retry": "Yenidən cəhd et",
+    "edit": "Redaktə et",
+    "delete": "Sil",
+    "search": "Axtar",
+    "send": "Göndər",
+    "accept": "Qəbul et",
+    "decline": "İmtina et",
+    "approve": "Təsdiqlə",
+    "reject": "Rədd et",
+    "block": "Blokla",
+    "unblock": "Blokdan çıxar",
+    "view": "Bax",
+    "share": "Paylaş",
+    "call": "Zəng et",
+    "message": "Mesaj yaz",
+    "logout": "Çıxış",
+    "done": "Hazırdır",
+    "next": "Növbəti",
+    "skip": "Keç",
+    "add": "Əlavə et",
+    "upload": "Yüklə",
+    "takePhoto": "Şəkil çək",
+    "chooseFromGallery": "Qalereyadan seç",
+    "refresh": "Yenilə",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "topUp": "Balansı artır",
+    "openSettings": "Ayarları aç"
+  },
+  "states": {
+    "loading": "Yüklənir...",
+    "empty": "Hələ heç nə yoxdur",
+    "error": "Xəta baş verdi",
+    "offline": "İnternet bağlantısı yoxdur",
+    "reconnecting": "Bağlantı bərpa olunur...",
+    "saved": "Yadda saxlanıldı"
+  },
+  "units": {
+    "minutes_one": "{{count}} dəq",
+    "minutes_other": "{{count}} dəq",
+    "km": "{{value}} km",
+    "m": "{{value}} m",
+    "workers_one": "{{count}} usta",
+    "workers_other": "{{count}} usta",
+    "days_one": "{{count}} gün",
+    "days_other": "{{count}} gün",
+    "seconds_one": "{{count}} saniyə",
+    "seconds_other": "{{count}} saniyə"
+  },
+  "time": {
+    "justNow": "indi",
+    "today": "Bu gün",
+    "yesterday": "Dünən",
+    "tomorrow": "Sabah"
+  },
+  "fields": {
+    "phone": "Telefon nömrəsi",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "companyName": "Şirkət adı",
+    "voen": "VÖEN",
+    "legalForm": "Hüquqi forma",
+    "contactPerson": "Əlaqədar şəxs",
+    "address": "Ünvan",
+    "district": "Rayon",
+    "street": "Küçə",
+    "building": "Ev / bina",
+    "block": "Korpus",
+    "entrance": "Giriş (blok)",
+    "floor": "Mərtəbə",
+    "apartment": "Mənzil",
+    "intercom": "Domofon kodu",
+    "note": "Qeyd (orientir)",
+    "description": "Problemin təsviri",
+    "amount": "Məbləğ",
+    "labor": "İş haqqı",
+    "materials": "Material xərci",
+    "total": "Yekun məbləğ",
+    "comment": "Şərh"
+  },
+  "requestStatus": {
+    "SEARCHING": "Usta axtarılır",
+    "ASSIGNED": "Usta təyin edildi",
+    "IN_PROGRESS": "İcradadır",
+    "COMPLETED": "Tamamlandı",
+    "CANCELLED": "Ləğv edildi",
+    "EXPIRED": "Usta tapılmadı"
+  },
+  "assignmentStatus": {
+    "ACCEPTED": "Sifariş qəbul edildi",
+    "EN_ROUTE": "Usta yolda",
+    "ARRIVED": "Usta ünvana çatdı",
+    "PRICE_PROPOSED": "Qiymət təsdiq gözləyir",
+    "PRICE_DISPUTED": "Qiymət mübahisədədir",
+    "COMPLETED": "Tamamlandı",
+    "CANCELLED_FREE": "Ləğv edildi",
+    "CANCELLED_BY_PROVIDER": "Usta ləğv etdi",
+    "CANCELLED_BY_CUSTOMER": "Müştəri ləğv etdi",
+    "DECLINED_ON_ARRIVAL": "Ünvanda imtina edildi",
+    "NO_SHOW": "Usta gəlmədi"
+  },
+  "timing": {
+    "NOW": "İndi",
+    "SCHEDULED": "Planla",
+    "EMERGENCY": "Təcili"
+  },
+  "verificationStatus": {
+    "DRAFT": "Qaralama",
+    "PENDING_REVIEW": "Təsdiq gözləyir",
+    "APPROVED": "Aktiv",
+    "REJECTED": "Rədd edilib",
+    "BLOCKED": "Bloklanmış"
+  },
+  "customerType": {
+    "INDIVIDUAL": "Fərdi hesab",
+    "COMPANY": "Şirkət hesabı"
+  },
+  "providerPreference": {
+    "ANY": "Fərqi yoxdur",
+    "INDIVIDUAL": "Fərdi usta",
+    "COMPANY": "Usta şirkəti"
+  },
+  "legalForm": {
+    "MMC": "MMC",
+    "ASC": "ASC",
+    "QSC": "QSC",
+    "FS": "Fərdi sahibkar",
+    "OTHER": "Digər"
+  },
+  "companyRole": {
+    "MANAGER": "İdarəedici",
+    "WORKER": "Usta"
+  },
+  "finalPriceEntry": {
+    "WORKER": "Usta özü daxil edir",
+    "MANAGER": "İdarəedici daxil edir"
+  },
+  "paymentMethod": {
+    "CASH": "Nağd — qapıda ödəmə",
+    "CARD": "Kartla ödəmə"
+  },
+  "paymentStatus": {
+    "CREATED": "Gözləyir",
+    "SUCCEEDED": "Ödənildi",
+    "FAILED": "Uğursuz",
+    "CANCELLED": "Ləğv edildi"
+  },
+  "payoutStatus": {
+    "PENDING": "Gözləyir",
+    "PAID": "Ödənildi",
+    "FAILED": "Uğursuz"
+  },
+  "ledgerTxKind": {
+    "TOPUP": "Balans artırma",
+    "ADMIN_ADJUSTMENT": "Admin düzəlişi",
+    "REQUEST_FEE_CAPTURE": "Platforma haqqı",
+    "REQUEST_FEE_REFUND": "Platforma haqqının qaytarılması",
+    "EMERGENCY_FEE_CAPTURE": "Təcili sifariş haqqı",
+    "EMERGENCY_FEE_REFUND": "Təcili haqqın qaytarılması",
+    "CANCEL_PENALTY": "Ləğv cəriməsi",
+    "PENALTY_COMPENSATION": "Ləğv kompensasiyası",
+    "JOB_PAYMENT": "İş üçün ödəniş",
+    "TIP": "Bəxşiş",
+    "B2B_FEE_CAPTURE": "Korporativ sifariş haqqı",
+    "INVOICE_PAYMENT": "Hesab-faktura ödənişi",
+    "PAYOUT_CREATED": "Ödəniş çıxarışı",
+    "PAYOUT_PAID": "Ödəniş köçürüldü",
+    "PAYOUT_FAILED": "Ödəniş qaytarıldı"
+  },
+  "caseType": {
+    "GUARANTEE": "TezFiks Zəmanəti",
+    "PRICE_DISPUTE": "Qiymət mübahisəsi",
+    "REPORT": "Şikayət"
+  },
+  "caseStatus": {
+    "OPEN": "Açıq",
+    "IN_REVIEW": "Baxılır",
+    "REDISPATCHED": "Usta yönləndirildi",
+    "RESOLVED": "Həll edildi",
+    "REJECTED": "Rədd edildi"
+  },
+  "projectStatus": {
+    "OPEN": "Təkliflər toplanır",
+    "AWARDED": "İcraçı seçildi",
+    "IN_PROGRESS": "İcra",
+    "COMPLETED": "Tamamlandı",
+    "INVOICED": "Hesab-faktura göndərildi",
+    "PAID": "Ödənildi",
+    "CANCELLED": "Ləğv edildi",
+    "EXPIRED": "Təklif gəlmədi"
+  },
+  "quoteStatus": {
+    "SUBMITTED": "Göndərildi",
+    "ACCEPTED": "Qəbul edildi",
+    "REJECTED": "Rədd edildi",
+    "WITHDRAWN": "Geri çəkildi",
+    "EXPIRED": "Vaxtı bitdi"
+  },
+  "invoiceStatus": {
+    "ISSUED": "Göndərildi",
+    "PAID": "Ödənildi",
+    "VOID": "Ləğv edildi"
+  },
+  "vertical": {
+    "HOME": "Ev ustaları",
+    "AUTO": "Avto ustaları"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Məlumatları yoxlayın",
+    "UNAUTHORIZED": "Yenidən daxil olun",
+    "FORBIDDEN": "Bu əməliyyata icazəniz yoxdur",
+    "NOT_FOUND": "Tapılmadı",
+    "CONFLICT": "Məlumat artıq dəyişib, yeniləyin",
+    "RATE_LIMITED": "Çox sayda cəhd. Bir az sonra yenidən yoxlayın",
+    "INTERNAL": "Gözlənilməz xəta baş verdi",
+    "OTP_INVALID": "Kod yanlışdır",
+    "OTP_EXPIRED": "Kodun vaxtı bitib, yenisini istəyin",
+    "OTP_TOO_MANY_ATTEMPTS": "Çox sayda yanlış cəhd. Yeni kod istəyin",
+    "OTP_COOLDOWN": "Yeni kod üçün bir az gözləyin",
+    "PHONE_INVALID": "Düzgün mobil nömrə daxil edin",
+    "SESSION_REVOKED": "Sessiya bağlanıb, yenidən daxil olun",
+    "REFRESH_INVALID": "Sessiyanın vaxtı bitib, yenidən daxil olun",
+    "INVALID_CREDENTIALS": "E-poçt və ya şifrə yanlışdır",
+    "USER_BLOCKED": "Hesabınız bloklanıb",
+    "PROFILE_INCOMPLETE": "Profili tamamlayın",
+    "CUSTOMER_ACCOUNT_REQUIRED": "Əvvəlcə hesab tipini seçin",
+    "INSUFFICIENT_BALANCE": "Balans kifayət etmir",
+    "CUSTOMER_IN_DEBT": "Balansınızda borc var. Yeni sifariş üçün balansı artırın",
+    "IDEMPOTENCY_CONFLICT": "Bu sorğu artıq fərqli məlumatla göndərilib",
+    "OFFER_UNAVAILABLE": "Sifariş artıq başqa ustaya keçib",
+    "OFFER_EXPIRED": "Təklifin vaxtı bitib",
+    "NOT_ELIGIBLE": "Bu sifariş üçün uyğun deyilsiniz",
+    "INVALID_STATE": "Bu əməliyyat indiki mərhələdə mümkün deyil",
+    "CANCEL_NOT_ALLOWED": "Bu mərhələdə ləğv etmək mümkün deyil",
+    "TOO_EARLY": "Hələ tezdir",
+    "HANDYMAN_NOT_APPROVED": "Profiliniz hələ təsdiqlənməyib",
+    "COMPANY_NOT_APPROVED": "Şirkət hələ təsdiqlənməyib",
+    "NOT_COMPANY_MANAGER": "Bu əməliyyat yalnız şirkət idarəedicisi üçündür",
+    "ALREADY_IN_COMPANY": "Siz artıq şirkətin üzvüsünüz",
+    "ALREADY_HANDYMAN": "Usta profiliniz artıq var",
+    "INVITE_INVALID": "Dəvət linki etibarsızdır",
+    "WORKER_UNAVAILABLE": "Seçilmiş usta hazırda əlçatan deyil",
+    "CONTACT_LOCKED": "Əlaqə usta yaxınlaşanda açılacaq",
+    "CHAT_LOCKED": "Mesajlaşma usta yaxınlaşanda açılacaq",
+    "CATEGORY_INACTIVE": "Bu xidmət hazırda aktiv deyil",
+    "CATEGORY_REQUIRES_QUOTE": "Bu xidmət üçün qiymət təklifi sorğusu yaradın",
+    "CATEGORY_NOT_INSTANT": "Bu xidmət ani sifariş üçün deyil",
+    "EMERGENCY_NOT_ALLOWED": "Bu xidmət üçün təcili sifariş mümkün deyil",
+    "SCHEDULE_TOO_SOON": "Seçilmiş vaxt çox yaxındır",
+    "SCHEDULE_TOO_FAR": "Seçilmiş vaxt çox uzaqdır",
+    "GUARANTEE_NOT_AVAILABLE": "Zəmanət yalnız kartla ödənilmiş işlərə şamil olunur",
+    "ALREADY_RATED": "Artıq qiymətləndirmisiniz",
+    "FILE_TOO_LARGE": "Fayl çox böyükdür",
+    "FILE_TYPE_NOT_ALLOWED": "Bu fayl növü dəstəklənmir",
+    "FILE_NOT_OWNED": "Bu fayldan istifadə etmək olmaz",
+    "KYC_RESUBMIT_LIMIT": "Bu gün üçün cəhdlər bitib, sabah yenidən yoxlayın",
+    "KYC_ALREADY_PENDING": "Sənədləriniz artıq yoxlanılır",
+    "PAYMENT_DECLINED": "Ödəniş rədd edildi",
+    "PAYMENT_NOT_PENDING": "Bu ödəniş artıq tamamlanıb",
+    "QUOTE_WINDOW_CLOSED": "Təklif qəbulu bitib",
+    "AI_UNAVAILABLE": "Avtomatik seçim hazırda mümkün deyil, kateqoriyanı özünüz seçin",
+    "DEMO_DISABLED": "Demo rejimi aktiv deyil",
+    "NOT_NEAR_ADDRESS": "Ünvana yaxın deyilsiniz: ünvana çatanda yenidən cəhd edin",
+    "PAYMENTS_UNAVAILABLE": "Kartla ödəniş hazırda mümkün deyil",
+    "NETWORK": "Serverə qoşulmaq mümkün olmadı",
+    "TIMEOUT": "Server cavab vermədi"
+  }
+}

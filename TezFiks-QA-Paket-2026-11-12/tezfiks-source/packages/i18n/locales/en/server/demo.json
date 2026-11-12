@@ -1,0 +1,21 @@
+{
+  "botRemoved": "The demo handyman was removed; the order goes to another handyman",
+  "requestDescription": "Demo order: created for testing",
+  "seedBlockReason": "Customer complaints (demo)",
+  "seed": {
+    "leakingTap": "The kitchen tap is dripping and water leaks underneath",
+    "sockets": "Two living-room sockets do not work and the switch sparks",
+    "toilet": "The toilet cistern does not fill; the valve needs replacing",
+    "boiler": "The boiler does not start and shows an error code",
+    "refrigeration": "The refrigerated display case in the shop does not cool",
+    "lights": "The hallway light flickers; the switch needs replacing",
+    "ratingComment": "Arrived on time and did a tidy job",
+    "cancelReason": "My plans changed",
+    "projectTitle": "Office renovation",
+    "projectScope": "≈ 450 m² (3 floors, 12 rooms)",
+    "projectDescription": "Full cosmetic renovation of the office: wall painting, flooring, suspended ceiling and new electrical wiring",
+    "quoteFixpro": "3 workers, 5 working days, materials included",
+    "quoteElvin": "Plumbing and tiling included",
+    "guaranteeClaim": "After the repair one of the sockets stopped working again"
+  }
+}

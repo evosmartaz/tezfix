@@ -1,0 +1,15 @@
+appId: az.tezfiks.usta
+name: sub - usta iş ekranında ${TARGET} görünənə qədər sürüşdür
+---
+- repeat:
+    while:
+      notVisible:
+        id: ${TARGET}
+    times: 6
+    commands:
+      - swipe:
+          start: 50%, 85%
+          end: 50%, 30%
+          duration: 600
+- waitForAnimationToEnd:
+    timeout: 3000

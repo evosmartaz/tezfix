@@ -1,0 +1,150 @@
+# DİQQƏT: checkout-da Google Pay avto-doldurma pəncərəsi telefon sahibinin REAL kartını təklif edir. Həmişə "back" ilə bağlanır, heç vaxt seçilmir.
+appId: az.tezfiks.app
+name: AU-O02c Customer - test kartı ilə ödəniş, bəxşiş, reytinq
+---
+# Checkout səhifəsi (Chrome Custom Tab)
+- extendedWaitUntil:
+    visible: "Kart nömrəsi"
+    timeout: 20000
+- tapOn:
+    id: "card"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "4242424242424242"
+- hideKeyboard
+- tapOn:
+    id: "exp"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "1230"
+- hideKeyboard
+- tapOn:
+    id: "cvc"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "123"
+- hideKeyboard
+- tapOn:
+    id: "name"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "QA TEST"
+- hideKeyboard
+- takeScreenshot: o02-08-checkout-filled
+- tapOn: ".*ödə"
+- extendedWaitUntil:
+    visible:
+      id: "(tip-screen|rate-screen|tracking-screen)"
+    timeout: 40000
+- takeScreenshot: o02-09-after-payment
+- runFlow:
+    when:
+      visible:
+        id: "tracking-screen"
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "tracking-tip"
+      - tapOn:
+          id: "tracking-tip"
+- extendedWaitUntil:
+    visible:
+      id: "tip-screen"
+    timeout: 20000
+- tapOn:
+    id: "tip-amount-preset-500"
+- takeScreenshot: o02-10-tip
+- tapOn:
+    id: "tip-send"
+# Bəxşiş də kartla: ikinci checkout
+- extendedWaitUntil:
+    visible: "Kart nömrəsi"
+    timeout: 20000
+- tapOn:
+    id: "card"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "4242424242424242"
+- hideKeyboard
+- tapOn:
+    id: "exp"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "1230"
+- hideKeyboard
+- tapOn:
+    id: "cvc"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "123"
+- hideKeyboard
+- tapOn:
+    id: "name"
+- runFlow:
+    when:
+      visible: "Avto doldurma.*"
+    commands:
+      - back
+- eraseText: 30
+- inputText: "QA TEST"
+- hideKeyboard
+- tapOn: ".*ödə"
+- extendedWaitUntil:
+    visible:
+      id: "(rate-screen|tracking-screen)"
+    timeout: 40000
+- takeScreenshot: o02-11-after-tip
+- runFlow:
+    when:
+      visible:
+        id: "tracking-screen"
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "tracking-rate"
+      - tapOn:
+          id: "tracking-rate"
+- extendedWaitUntil:
+    visible:
+      id: "rate-form-stars"
+    timeout: 20000
+- tapOn:
+    id: "rate-form-stars-5"
+- tapOn:
+    id: "rate-form-comment"
+- inputText: "QA Maestro: ela"
+- hideKeyboard
+- takeScreenshot: o02-12-rate
+- tapOn:
+    id: "rate-form-submit"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: o02-13-done

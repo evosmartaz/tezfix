@@ -1,0 +1,39 @@
+appId: az.tezfiks.app
+name: Customer login (Demo Müştəri)
+env:
+  PHONE: "552000024"
+  CODE: "123456"
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: "(While using the app|Tətbiqdən istifadə edərkən|Только при использовании приложения|При использовании приложения)"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: "phone-screen"
+    timeout: 30000
+- tapOn:
+    id: "language-picker-az"
+- takeScreenshot: ${SIZE}-customer-01-login
+- tapOn:
+    id: "phone-input"
+- inputText: ${PHONE}
+# Submit with the keyboard (on small phones the keyboard can cover the Continue button).
+- pressKey: Enter
+- extendedWaitUntil:
+    visible:
+      id: "otp-screen"
+    timeout: 20000
+- takeScreenshot: ${SIZE}-customer-02-otp
+- inputText: ${CODE}
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 30000
+- tapOn:
+    text: "(Allow|İcazə verin|Разрешить)"
+    optional: true
+- tapOn:
+    text: "(While using the app|Tətbiqdən istifadə edərkən|Только при использовании приложения|При использовании приложения)"
+    optional: true

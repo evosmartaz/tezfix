@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<title>TezFiks QA hesabatı №1 (yenilənib)</title>
+<style>
+  @page { size: A4; margin: 15mm 14mm; }
+  :root { --primary:#00A971; --dark:#0B1B2B; --accent:#F59E0B; --bg:#F6F8FA; --danger:#E5484D; --muted:#5B6B7B; }
+  body { font-family: Inter, "Segoe UI", Arial, sans-serif; color: var(--dark); font-size: 10pt; line-height: 1.45; margin: 0; background:#fff; }
+  h1 { font-size: 22pt; margin: 0 0 4px; }
+  h2 { font-size: 13.5pt; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--primary); page-break-after: avoid; }
+  h3 { font-size: 11pt; margin: 14px 0 6px; page-break-after: avoid; }
+  .sub { color: var(--muted); margin: 0 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 12px; }
+  tr { page-break-inside: avoid; }
+  th, td { border: 1px solid #D8DEE4; padding: 4px 7px; text-align: left; vertical-align: top; }
+  th { background: var(--bg); font-weight: 600; }
+  td.n { white-space: nowrap; }
+  .ok { color: var(--primary); font-weight: 600; }
+  .bad { color: var(--danger); font-weight: 600; }
+  .warn { color: #B45309; font-weight: 600; }
+  .kpis { display: flex; gap: 10px; margin: 10px 0 6px; }
+  .kpi { flex: 1; background: var(--bg); border-radius: 8px; padding: 9px 12px; }
+  .kpi b { display: block; font-size: 16pt; }
+  .kpi span { color: var(--muted); font-size: 8.5pt; }
+  .box { background: var(--bg); border-left: 4px solid var(--primary); padding: 8px 12px; margin: 8px 0; }
+  .box.amber { border-color: var(--accent); }
+  .box.red { border-color: var(--danger); }
+  code { font-family: Consolas, monospace; font-size: 8.5pt; background: #EEF1F4; padding: 0 3px; border-radius: 3px; }
+  pre { font-family: Consolas, monospace; font-size: 7.8pt; background: #EEF1F4; padding: 6px 8px; border-radius: 4px; white-space: pre-wrap; margin: 4px 0; }
+  .bug { page-break-inside: avoid; border: 1px solid #D8DEE4; border-radius: 8px; padding: 8px 12px; margin: 8px 0; }
+  .bug h3 { margin-top: 2px; }
+  .shots { display: flex; gap: 10px; margin: 6px 0; }
+  .shots figure { margin: 0; text-align: center; font-size: 8pt; color: var(--muted); }
+  .shots img { width: 118px; border: 1px solid #D8DEE4; border-radius: 6px; display: block; margin-bottom: 3px; }
+  ul, ol { margin: 4px 0 8px; padding-left: 20px; }
+  li { margin: 2px 0; }
+  .new { background: #E7F7F0; color: #007A52; font-size: 7.5pt; font-weight: 700; padding: 1px 5px; border-radius: 4px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<h1>TezFiks — QA hesabatı №1 <span style="font-size:12pt;color:var(--muted)">(yenilənib)</span></h1>
+<p class="sub">Tarix: 9–10 noyabr 2026 · Mühit: canlı demo (<code>https://evosmart.az/tezfix/api</code>, panel <code>https://tezfiks.evosmart.az/tezfix</code>, DEMO_MODE=true) · Kod: commit <code>00368ff</code> · APK-lar: <code>/download/</code> (25.10.2026, v0.1.0) · Cihaz: Samsung Galaxy A24 (SM-A245F), Android 16 · QA: manual (istifadəçi) + automation (Claude)</p>
+<p class="sub"><span class="new">YENİ</span> 10.11: mobil E2E (Maestro, real telefon) — 7/7 ssenari; AU-F24 "məşğul işçi" tam yoxlandı; 4 yeni bag (BUG-003…BUG-006) və 1 yeni sual (Q-03).</p>
+
+<h2>1. Xülasə</h2>
+<div class="kpis">
+  <div class="kpi"><b>1268/1268</b><span>repo testləri (flaky düzəldildi)</span></div>
+  <div class="kpi"><b>117/118</b><span>canlı API / panel automation</span></div>
+  <div class="kpi"><b>7/7</b><span>mobil E2E (Maestro, real telefon)</span></div>
+  <div class="kpi"><b>103/128</b><span>automation planının əhatəsi (80%)</span></div>
+  <div class="kpi"><b>6 + 3</b><span>bag (1 Yüksək, 1 Orta, 4 Aşağı) + developerə sual</span></div>
+</div>
+<div class="box">
+  <b>Nəticə:</b> pul axınları, ləğv və cərimə qaydaları, məxfilik, icazələr, B2B və şirkət paneli spesifikasiyaya uyğun işləyir. Hər iki mobil tətbiqin əsas axınları real telefonda sonadək keçdi.
+  Kritik bag tapılmadı. Ən vacibləri:
+  <b>BUG-003 (Yüksək)</b> — hər iki tətbiqdə xəritələr yüklənmir (Google Maps açarı APK-nın imzasına icazə vermir; APK-lar açıq debug keystore ilə imzalanıb);
+  <b>BUG-004 (Orta)</b> — axtarış başlayandan sonra müştərinin yanında onlayn olan usta təklifi heç vaxt almır.
+  Admin funksiyaları QA admin hesabı olmadığı üçün hələ yoxlanmayıb.
+</div>
+
+<h2>2. Repo testləri (lokal)</h2>
+<table>
+  <tr><th>Dəst</th><th>Nəticə</th><th>Qeyd</th></tr>
+  <tr><td>shared</td><td class="ok">34/34</td><td></td></tr>
+  <tr><td>i18n</td><td class="ok">5/5</td><td>az / ru / en açarları eynidir</td></tr>
+  <tr><td>mobile</td><td class="ok">201/201</td><td></td></tr>
+  <tr><td>customer</td><td class="ok">383/383</td><td>BUG-001 (flaky) düzəldildi; 2 ardıcıl tam run-da təsdiqləndi</td></tr>
+  <tr><td>pro</td><td class="ok">222/222</td><td></td></tr>
+  <tr><td>panel</td><td class="ok">423/423</td><td><code>next build</code> da uğurludur</td></tr>
+  <tr><td>API typecheck</td><td class="ok">0 xəta</td><td></td></tr>
+  <tr><td>API inteqrasiya (692)</td><td class="warn">işə salınmadı</td><td>QA kompüterində Docker yoxdur (Postgres + Redis lazımdır)</td></tr>
+</table>
+
+<h2>3. Canlı API və panel automation (<code>qa/automation</code>)</h2>
+<p>Node test runner + <code>@tezfiks/shared</code> klienti. Hər API cavabı zod kontraktına qarşı yoxlanır. Biznes axınları real demo hesabları ilə işlədilir. Panel testləri brauzerdə işləyir (Playwright + Chrome).</p>
+<table>
+  <tr><th>Fayl</th><th>Nə yoxlanılıb</th><th>Nəticə</th></tr>
+  <tr><td>01-smoke-auth</td><td>Health, public config, APK səhifəsi, OTP girişi, refresh rotasiyası, logout, təhlükəsizlik başlıqları, CORS, stack trace sızmaması</td><td class="ok n">18/18</td></tr>
+  <tr><td>02-contract-sweep</td><td>10 rol × 22 GET endpoint: kontrakt uyğunluğu, cavablarda telefon nömrəsi yoxdur</td><td class="ok n">11/11</td></tr>
+  <tr><td>03-happy-path</td><td>Sorğu → təklif → qəbul (10 AZN hold, idempotent) → 5 dəq qalanda əlaqənin açılması → qiymət → kart 4242 → 14 günlük zəmanət → bəxşiş → reytinq; ledger</td><td class="ok n">13/13</td></tr>
+  <tr><td>04-cancellations</td><td>Pulsuz ləğv, gəldikdə imtina (−15 / +10), haqqın tutulması, gec ləğv, no-show, strike, slotun yenidən göndərilməsi</td><td class="ok n">7/7</td></tr>
+  <tr><td>05-authz</td><td>IDOR, işçi və idarəedici rolları, başqa şirkət, admin endpoint-ləri, bloklanmış və gözləyən usta, işçi görünüşü, KYC faylları</td><td class="ok n">10/10</td></tr>
+  <tr><td>06-validation</td><td>Validasiya, XSS, SQL simvolları, fayl yükləmə (8 MB, tip, EXIF), imzalı URL</td><td class="warn n">8/9 · BUG-002</td></tr>
+  <tr><td>07-b2b</td><td>Layihə → təklif → geri çəkmə → qəbul → gündəlik hesabat → hesab-faktura (ƏDV) → reytinq</td><td class="ok n">8/8</td></tr>
+  <tr><td>08-misc</td><td>TLS, Socket.IO, Accept-Language, səhifələmə, idempotentlik, rədd olunan kart, dəvət linkləri, gecikmə (p95 ≈ 170–190 ms)</td><td class="ok n">9/9</td></tr>
+  <tr><td>09-dispatch</td><td>Provider seçimi, şirkət qəbulu, finalPriceEntry, nağd, eyni anda qəbul, 2 slot, təcili, EXPIRED</td><td class="ok n">11/11</td></tr>
+  <tr><td>10-company-panel</td><td>Brauzerdə giriş, cookie-lər, bütün səhifələr, real vaxt, 404, az / ru / en, 390 px, socket bileti, yüklənmə</td><td class="ok n">10/10</td></tr>
+  <tr><td>11-extra</td><td>Planlı sorğu, nağd avtomatik tamamlanma (10.1 dəq), köhnə işdə çat, payout kartı (maska, Luhn)</td><td class="ok n">6/6</td></tr>
+  <tr><td>12-b2b-expiry</td><td>Təklifsiz layihə 6 dəq sonra EXPIRED</td><td class="ok n">1/1</td></tr>
+  <tr><td>13-busy-worker <span class="new">YENİ</span></td><td>AU-F24 tam: məşğul işçi (Kamran) namizəd siyahısında <code>busy: true</code>, onunla qəbul → <code>409 WORKER_UNAVAILABLE</code>, şirkətin hold-u dəyişmir; boş işçi (Tural) ilə qəbul → +10 AZN hold. Əlavə: oflayn işçi ilə qəbul (Q-03)</td><td class="ok n">5/5</td></tr>
+  <tr><th colspan="2">Cəmi</th><th class="n">117/118</th></tr>
+</table>
+
+<h2>4. Mobil E2E — Maestro, real telefon <span class="new">YENİ</span></h2>
+<p>Saytdakı APK-lar (<code>tezfiks.apk</code>, <code>tezfiks-usta.apk</code>) Samsung Galaxy A24-ə quraşdırıldı, Maestro 2.12.1 Wi-Fi debugging ilə işlədi. Telefon tətbiqin bir tərəfini, API driver-i (<code>qa/automation/mobile-driver.mts</code>) qarşı tərəfi oynadı. Hər ssenaridən sonra nəticə API ilə də yoxlandı. Ssenarilər: <code>qa/maestro/</code>, ekran görüntüləri: <code>qa/maestro/shots/</code>.</p>
+<table>
+  <tr><th>ID</th><th>Ssenari</th><th>Nə yoxlanılıb</th><th>Nəticə</th></tr>
+  <tr><td>O01</td><td>Mövcud 4 ssenari (<code>e2e/maestro</code>) × 5 ekran ölçüsü</td><td>small 720×1280, standard, böyük şrift 1.3×, tall-hd 1440×3120, short-wide 1080×1920 + telefonun öz ekranı. Yerləşmə problemi görünmədi.</td><td class="ok n">12/12 run</td></tr>
+  <tr><td>O02</td><td>Customer: tam axın</td><td>Sorğu → usta qəbul edir → izləmə → qiymət 35 + 10 → ödəniş ekranı 45 ₼ → checkout (test kartı 4242) → 5 ₼ bəxşiş (ikinci checkout) → 5 ulduz. API: <code>COMPLETED</code>, ödəniş <code>SUCCEEDED</code>, bəxşiş 5 ₼, zəmanət 14 gün, haqq tutulub.</td><td class="ok n">✓</td></tr>
+  <tr><td>O03</td><td>Customer: ləğvlər</td><td>Pulsuz ləğv: "Ləğv pulsuzdur", geri sayım, <code>CANCELLED_FREE</code>, heç nə tutulmur. Gec ləğv: "15,00 ₼ cərimə tutulacaq", müştəri −15, usta haqqı geri + 10 kompensasiya.</td><td class="ok n">✓</td></tr>
+  <tr><td>O04</td><td>Pro (Elvin): tam axın</td><td>Onlayn → təklif pəncərəsi → qəbul → "Yola çıxdım" → "Gəldim" (təsdiq) → klaviatura ilə 35 + 10 → təsdiq → müştəri nağd → "Tamamlandı", vaxt xətti, 45 ₼, haqq 10 ₼. "Bu gün" kartı: 2 sifariş, 90 ₼, −20 ₼ (doğru).</td><td class="ok n">✓</td></tr>
+  <tr><td>O05</td><td>Pro (Rauf, şirkət rejimi)</td><td>FixPro idarəedici ekranı, təklif kartı (15 s, haqq xəbərdarlığı), işçi siyahısı, tək onlayn işçi avtomatik seçilir, "Qəbul et" → iş Kamrana təyin olunur.</td><td class="ok n">✓</td></tr>
+  <tr><td>O06</td><td>Pro (Kamran, işçi)</td><td>Məhdud görünüş: ünvan, kateqoriya, şirkət, müştəri adı var; problemin təsviri, qiymət və məbləğ yoxdur.</td><td class="ok n">✓</td></tr>
+  <tr><td>O07</td><td>Pro: dil və statuslar</td><td>Dil keçidi RU / EN / AZ (BUG-005); Samir — "Yoxlama prosesi", onlayn düyməsi yoxdur; Vüqar — "Hesab bloklanıb", onlayn düyməsi yoxdur.</td><td class="ok n">✓ (BUG-005)</td></tr>
+</table>
+<div class="shots">
+  <figure><img src="../maestro/shots/o02/o02-13-done.png">O02: tamamlandı</figure>
+  <figure><img src="../maestro/shots/o05/o05-02-offer.png">O05: şirkət təklifi</figure>
+  <figure><img src="../maestro/shots/o06/o06-02-limited-top.png">O06: işçi görünüşü</figure>
+  <figure><img src="../maestro/shots/o07/o07-01-ru.png">O07: RU (BUG-005)</figure>
+</div>
+
+<h2>5. Baglar</h2>
+
+<div class="bug">
+<h3>BUG-003: [pro + customer app] Xəritələr yüklənmir: Google Maps "Authorization failure" <span class="new">YENİ</span></h3>
+<table>
+  <tr><th style="width:24%">Ciddilik / Prioritet</th><td><span class="bad">Yüksək</span> / P2</td></tr>
+  <tr><th>Təkrarlanma</th><td>Həmişə (bütün açılışlarda)</td></tr>
+  <tr><th>Komponent</th><td>pro app (ana ekran, iş ekranı) və customer app (axtarış, izləmə ekranları)</td></tr>
+  <tr><th>Mühit</th><td><code>tezfiks-usta.apk</code> / <code>tezfiks.apk</code> (<code>/download/</code>, 25.10.2026), Samsung A24, Android 16</td></tr>
+  <tr><th>Addımlar</th><td>1. APK-nı saytdan quraşdırın. 2. Elvin ilə daxil olun. 3. Ana ekranda xəritəyə baxın, 20 s gözləyin. (Customer: sifariş verin → "Yaxınlıqdakı ustalar axtarılır".)</td></tr>
+  <tr><th>Gözlənilən</th><td>Xəritə görünür.</td></tr>
+  <tr><th>Faktiki</th><td>Xəritə qara qalır, yalnız "Google" loqosu görünür. <code>adb logcat</code>:
+<pre>E Google Android Maps SDK: Authorization failure.
+E Google Android Maps SDK: Ensure that the "Maps SDK for Android" is enabled.
+E Google Android Maps SDK:   API Key: AIzaSyC7…vrjEg
+E Google Android Maps SDK:   Android Application (&lt;cert_fingerprint&gt;;&lt;package_name&gt;):
+  5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25;az.tezfiks.usta</pre></td></tr>
+  <tr><th>Səbəb</th><td>SHA1 <code>5E:8F:…:F6:25</code> React Native şablonundakı açıq <code>debug.keystore</code>-a məxsusdur. <code>build.gradle</code>-də release build da <code>signingConfigs.debug</code> ilə imzalanır (sətir 115). Maps açarı bu imzaya icazə vermir və ya "Maps SDK for Android" aktiv deyil.</td></tr>
+  <tr><th>Təklif</th><td>Tez: Cloud Console-da açarın Android məhdudiyyətinə <code>5E:8F:…:F6:25;az.tezfiks.usta</code> və <code>…;az.tezfiks.app</code> əlavə edin. Düzgün (Play-dən əvvəl): öz release keystore-u ilə imzalayın və onun SHA1-ini açara əlavə edin. Açıq debug keystore ilə imzalanmış APK-nın üzərinə istənilən kəs eyni paket adı ilə "yeniləmə" quraşdıra bilər.</td></tr>
+</table>
+<div class="shots">
+  <figure><img src="../maestro/shots/phone/phone-pro-02-home.png">pro: ana ekran</figure>
+  <figure><img src="../maestro/shots/o02/o02-02-searching.png">customer: axtarış</figure>
+</div>
+</div>
+
+<div class="bug">
+<h3>BUG-004: [API] Axtarış başlayandan sonra müştərinin yanında onlayn olan usta təklifi heç vaxt almır <span class="new">YENİ</span></h3>
+<table>
+  <tr><th style="width:24%">Ciddilik / Prioritet</th><td><span class="warn">Orta</span> / P2</td></tr>
+  <tr><th>Təkrarlanma</th><td>Həmişə: 4 cəhddən 4 (telefonda 2, API ilə 2). Kontrol: usta əvvəlcədən onlayn olanda 2/2 təklif gəlir.</td></tr>
+  <tr><th>Komponent</th><td>API: dispatch (<code>apps/api/src/modules/requests/dispatch/dispatch.service.ts</code>)</td></tr>
+  <tr><th>Hesablar</th><td>Müştəri +994 55 200 00 24 (Demo Müştəri), usta +994 50 200 00 01 (Elvin, santexnik, radius 10 km). Sorğular: #1048, <code>01a1c45d-7cd4-…</code>, <code>01a1c469-57a0-…</code></td></tr>
+  <tr><th>Addımlar</th><td>1. Elvin oflayn. 2. Demo Müştəri "İndi" santexnik sorğusu yaradır. 3. 2–5 s sonra Elvin <b>sorğunun ünvanında</b> onlayn olur. 4. 100 s gözləyin. Skript: <code>qa/automation/diag-late-online.mts</code>.</td></tr>
+  <tr><th>Gözlənilən</th><td>Spesifikasiya: son "wide" addımı = "k5 plus providers whose declared service area covers the request cell". Elvin ünvandadır və ərazisi ünvanı əhatə edir — təklifi almalıdır.</td></tr>
+  <tr><th>Faktiki</th><td>Təklif gəlmir, sorğu <code>EXPIRED</code>. Müştəri "usta tapılmadı" görür, halbuki usta yanındadır. Mobil tətbiqdə də təkrarlanır: usta "Onlayn" basan kimi yaradılan sorğu ona çatmır (ilk yer yeniləməsi gec gəlir).</td></tr>
+  <tr><th>Səbəb / təklif</th><td>Hər addım yalnız yeni halqaya göndərir. <code>wide</code> addımında (sətir 333–346) xidmət ərazisi namizədləri <code>known</code> ilə süzülür: <code>known</code> = diskdəki <b>bütün</b> onlayn ustalar, o cümlədən heç vaxt təklif almamışlar. Təklif: <code>known</code> yalnız bu sorğuya artıq təklif almış ustalar olsun (təkrar təklif onsuz da qadağandır). Production taymerlərində (ring 30 s) pəncərə daha böyükdür.</td></tr>
+</table>
+</div>
+
+<div class="bug">
+<h3>BUG-005: [pro app] Dil dəyişəndə ixtisas adları köhnə dildə qalır <span class="new">YENİ</span></h3>
+<table>
+  <tr><th style="width:24%">Ciddilik / Prioritet</th><td>Aşağı / P3</td></tr>
+  <tr><th>Təkrarlanma</th><td>Həmişə (RU və EN)</td></tr>
+  <tr><th>Addımlar</th><td>1. Elvin ilə daxil olun (AZ). 2. Profil → Dil → Русский, sonra English. 3. "İş profili" kartına baxın.</td></tr>
+  <tr><th>Gözlənilən</th><td>RU: "Сантехник, Котлы и отопление, Ремонтная бригада"; EN: "Plumber, Boilers &amp; heating, Renovation crew". API bunları düzgün qaytarır (<code>GET /pro/profile</code> + <code>Accept-Language</code>).</td></tr>
+  <tr><th>Faktiki</th><td>Başlıqlar tərcümə olunur ("Специальности:", "Trades:"), adlar AZ-da qalır: "Santexnik, Kombi / istilik, …". Tab dəyişəndə də yenilənmir.</td></tr>
+  <tr><th>Təklif</th><td>Dil dəyişəndə serverdən gələn lokallaşdırılmış sorğuları yenidən yükləyin (<code>invalidateQueries</code> və ya query key-ə <code>locale</code>). Customer app ayrıca yoxlanmayıb.</td></tr>
+</table>
+</div>
+
+<div class="bug">
+<h3>BUG-006: [pro app] Şirkət təklif kartında "Qəbul et və…" düyməsinin mətni kəsilir <span class="new">YENİ</span></h3>
+<table>
+  <tr><th style="width:24%">Ciddilik / Prioritet</th><td>Aşağı / P3</td></tr>
+  <tr><th>Təkrarlanma</th><td>Həmişə (2/2)</td></tr>
+  <tr><th>Komponent</th><td>pro app: <code>components/CompanyHome.tsx</code>, düymə <code>company-offer-accept-&lt;id&gt;</code></td></tr>
+  <tr><th>Mühit / hesab</th><td>Samsung A24 (1080×2340, 450 dpi, şrift 1.0) · Rauf +994 50 200 00 11 (FixPro idarəedici)</td></tr>
+  <tr><th>Addımlar</th><td>1. Rauf ilə daxil olun, şirkət rejimi. 2. FixPro-ya şirkət sifarişi gəlsin (Leyla, <code>providerPreference: COMPANY</code>). 3. Təklif kartının altındakı düymələrə baxın.</td></tr>
+  <tr><th>Gözlənilən</th><td>Düymənin mətni tam oxunur.</td></tr>
+  <tr><th>Faktiki</th><td>"İmtina et" yanındakı yaşıl düymədə "✓ Qəbul et və.." görünür, mətnin sonu kəsilib.</td></tr>
+  <tr><th>Təklif</th><td>Mətni qısaltmaq ("Qəbul et"), düymələri alt-alta qoymaq və ya <code>adjustsFontSizeToFit</code>. Böyük şriftdə (1.3×) daha pis ola bilər.</td></tr>
+</table>
+<div class="shots">
+  <figure><img src="../maestro/shots/o05/o05-02-offer.png">kəsilmiş düymə</figure>
+</div>
+</div>
+
+<div class="bug">
+<h3>BUG-002: [API] İmzalı fayl linkləri 10 dəqiqə əvəzinə ~1 saat etibarlıdır</h3>
+<table>
+  <tr><th style="width:24%">Ciddilik / Prioritet</th><td>Aşağı / P3</td></tr>
+  <tr><th>Təkrarlanma</th><td>Həmişə</td></tr>
+  <tr><th>Komponent</th><td>API: files (<code>apps/api/src/modules/files/files.service.ts</code>), AU-D08b</td></tr>
+  <tr><th>Addımlar</th><td>1. <code>POST /files</code> ilə <code>REQUEST_PHOTO</code> yükləyin (və ya <code>GET /me</code>). 2. <code>url</code>-də <code>exp</code> parametrinə baxın.</td></tr>
+  <tr><th>Gözlənilən</th><td>Spesifikasiya §12: "Signed URLs (HMAC, 10 minutes)" (keş bucket-i ilə ~10–15 dəq).</td></tr>
+  <tr><th>Faktiki</th><td><code>exp</code> ≈ 57 dəq sonradır. <code>FILE_URL_TTL_SEC</code> standart dəyəri 3600-dür (<code>apps/api/src/config/env.ts:42</code>).</td></tr>
+  <tr><th>Təklif</th><td><code>FILE_URL_TTL_SEC=600</code>, ya da 1 saat qəsdəndirsə spesifikasiyanı yeniləyin.</td></tr>
+</table>
+</div>
+
+<div class="bug">
+<h3>BUG-001: [customer tests] İki router testi tam run-da 5 s timeout-a düşür (flaky) — <span class="ok">düzəldildi (lokal)</span></h3>
+<table>
+  <tr><th style="width:24%">Ciddilik / Prioritet</th><td>Aşağı / P3</td></tr>
+  <tr><th>Fayllar</th><td><code>apps/customer/test/login-flow.test.tsx</code>, <code>apps/customer/test/restore-session.test.tsx</code></td></tr>
+  <tr><th>Düzəliş</th><td>İlk <code>waitFor</code>-a <code>{ timeout: 10_000 }</code>, test limiti 30 s. Assertion-lar dəyişdirilmədi. 2 ardıcıl run-da 383/383. Commit olunmayıb, developerin təsdiqini gözləyir.</td></tr>
+</table>
+</div>
+
+<h2>6. Developerə suallar (bag deyil, spesifikasiya aydın deyil)</h2>
+<table>
+  <tr><th style="width:9%">№</th><th>Sual</th></tr>
+  <tr><td>Q-01</td><td><b>Azərbaycandan kənar ünvanla sorğu qəbul olunur.</b> London koordinatları ilə <code>POST /requests</code> 201 qaytarır və sonda <code>EXPIRED</code> olur. Xidmət zonası yoxlaması lazımdırmı? (AU-K01b)</td></tr>
+  <tr><td>Q-02</td><td><b>"Gəldikdən sonra imtina" 5 dəqiqəlik pulsuz pəncərədə də 15 AZN cərimə tutur</b> (<code>policy.ts → cancellationOutcome</code>). Usta 5 dəqiqədən tez gəlsə, cərimə nəzərdə tutulubmu? (AU-F07)</td></tr>
+  <tr><td>Q-03 <span class="new">YENİ</span></td><td><b>Şirkət oflayn işçini sifarişə təyin edə bilir.</b> Şirkət təklifinin işçi siyahısında oflayn Tural <code>online: false, busy: false</code> ilə görünür ("Oflayn · Boşdur"), <code>company.acceptOffer</code> <code>{ workerIds: [Tural] }</code> ilə qəbul uğurludur. Qəbul yoxlaması (<code>offers.service.ts:378–386</code>) üzvlük, status, ixtisas və məşğulluğu yoxlayır, onlayn olmanı yoxlamır. Spesifikasiya şirkətin təklif alması üçün "ən azı bir onlayn və boş işçi" tələb edir, seçim barədə susur. Qəsdəndirmi (menecer zəng edib çağırır), yoxsa qadağan olmalı / xəbərdarlıq göstərilməlidir? (<code>13-busy-worker.test.mts</code>)</td></tr>
+</table>
+
+<h2>7. Müşahidələr və tövsiyələr</h2>
+<ul>
+  <li><b>OTP limitləri kodda sabitdir</b> (telefona 5/saat, IP-yə 20/saat; <code>otp.service.ts:18-19</code>). Tövsiyə: <code>.env</code> ayarına çevirin və ya demo serverdə QA IP-sini azad edin.</li>
+  <li><span class="new">YENİ</span> <b>Customer ünvanı koordinat kimi görünür</b> ("40.44325, 49.86070") — <code>GOOGLE_MAPS_SERVER_KEY</code> olmayanda spesifikasiyaya uyğundur; real buraxılışdan əvvəl açar lazımdır.</li>
+  <li><span class="new">YENİ</span> <b>Checkout səhifəsində</b> Chrome / Google Pay avto-doldurma telefon sahibinin real kartını təklif edir. Bu, brauzerin davranışıdır, TezFiks bagı deyil; test rejimində <code>autocomplete="off"</code> düşünülə bilər.</li>
+  <li><b>Demo məlumatlarına təsir:</b> Elvində testlərdən 3 strike var (admin hesabı gələndə sıfırlanacaq). Testlər açıq sorğu və iş saxlamır.</li>
+  <li><b>Provider seçimi</b> yalnız şirkət müştəriləri üçündür (spesifikasiyaya uyğun). Refresh token "grace" (60 s) qəsdəndir.</li>
+</ul>
+
+<h2>8. Yoxlanılmayanlar (automation-u tam bitirmək üçün qalanlar)</h2>
+<table>
+  <tr><th>Sahə</th><th>Testlər</th><th>Nə lazımdır</th></tr>
+  <tr><td>Admin API və admin panel: KYC, blok, strike, audit, tənzimləmələr, demo botları, balans düzəlişi, aşağı balans/borc, qiymət mübahisəsi, zəmanət, hesab-faktura ödənişi, payout, KYC fayl keşi, admin panel UI</td><td>~22</td><td>QA admin hesabı (<code>qa/admin-pending.md</code>)</td></tr>
+  <tr><td>Rate-limit (OTP, admin login brute-force)</td><td>2</td><td>Developerin icazəsi (demo telefonlarını ~1 saat bloklayır)</td></tr>
+  <tr><td>API inteqrasiya dəsti (692)</td><td>1</td><td>Docker olan kompüter</td></tr>
+  <tr><td>Retest (BUG-002…006 düzələndən sonra)</td><td>—</td><td>Developerin düzəlişləri</td></tr>
+  <tr><td>Manual test (~85 yoxlama)</td><td>—</td><td>Davam edir; nəticələr Hesabat №2-də</td></tr>
+</table>
+
+<h2>9. Növbəti addımlar</h2>
+<ol>
+  <li>Developer: BUG-003 (Maps açarı / imza) və BUG-004 (dispatch) — ən vaciblər. Ardınca BUG-005, BUG-006, BUG-002, Q-01, Q-02, Q-03.</li>
+  <li>Admin hesabı gələn kimi admin testləri (~22) və Elvinin strike-larının sıfırlanması.</li>
+  <li>Düzəlişlərdən sonra retest: mobil ssenarilər (<code>qa/maestro</code>) və API dəsti yenidən işlədilir.</li>
+</ol>
+
+</body>
+</html>

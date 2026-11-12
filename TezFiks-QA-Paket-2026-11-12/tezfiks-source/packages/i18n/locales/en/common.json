@@ -1,0 +1,288 @@
+{
+  "brand": {
+    "name": "TezFiks",
+    "tagline": "A handyman when you need one — for home and car"
+  },
+  "login": {
+    "codeViaWhatsApp": "We'll send the confirmation code to your WhatsApp"
+  },
+  "languages": {
+    "az": "Azərbaycanca",
+    "ru": "Русский",
+    "en": "English"
+  },
+  "actions": {
+    "continue": "Continue",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "retry": "Try again",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "send": "Send",
+    "accept": "Accept",
+    "decline": "Decline",
+    "approve": "Approve",
+    "reject": "Reject",
+    "block": "Block",
+    "unblock": "Unblock",
+    "view": "View",
+    "share": "Share",
+    "call": "Call",
+    "message": "Message",
+    "logout": "Log out",
+    "done": "Done",
+    "next": "Next",
+    "skip": "Skip",
+    "add": "Add",
+    "upload": "Upload",
+    "takePhoto": "Take photo",
+    "chooseFromGallery": "Choose from gallery",
+    "refresh": "Refresh",
+    "copy": "Copy",
+    "copied": "Copied",
+    "topUp": "Top up balance",
+    "openSettings": "Open settings"
+  },
+  "states": {
+    "loading": "Loading...",
+    "empty": "Nothing here yet",
+    "error": "Something went wrong",
+    "offline": "No internet connection",
+    "reconnecting": "Reconnecting...",
+    "saved": "Saved"
+  },
+  "units": {
+    "minutes_one": "{{count}} min",
+    "minutes_other": "{{count}} min",
+    "km": "{{value}} km",
+    "m": "{{value}} m",
+    "workers_one": "{{count}} handyman",
+    "workers_other": "{{count}} handymen",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "seconds_one": "{{count}} second",
+    "seconds_other": "{{count}} seconds"
+  },
+  "time": {
+    "justNow": "just now",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow"
+  },
+  "fields": {
+    "phone": "Phone number",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "companyName": "Company name",
+    "voen": "Tax ID (VÖEN)",
+    "legalForm": "Legal form",
+    "contactPerson": "Contact person",
+    "address": "Address",
+    "district": "District",
+    "street": "Street",
+    "building": "Building",
+    "block": "Block",
+    "entrance": "Entrance",
+    "floor": "Floor",
+    "apartment": "Apartment",
+    "intercom": "Intercom code",
+    "note": "Note (landmark)",
+    "description": "Describe the problem",
+    "amount": "Amount",
+    "labor": "Labour",
+    "materials": "Materials",
+    "total": "Total",
+    "comment": "Comment"
+  },
+  "requestStatus": {
+    "SEARCHING": "Looking for a handyman",
+    "ASSIGNED": "Handyman assigned",
+    "IN_PROGRESS": "In progress",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled",
+    "EXPIRED": "No handyman found"
+  },
+  "assignmentStatus": {
+    "ACCEPTED": "Order accepted",
+    "EN_ROUTE": "Handyman on the way",
+    "ARRIVED": "Handyman arrived",
+    "PRICE_PROPOSED": "Price awaiting confirmation",
+    "PRICE_DISPUTED": "Price disputed",
+    "COMPLETED": "Completed",
+    "CANCELLED_FREE": "Cancelled",
+    "CANCELLED_BY_PROVIDER": "Cancelled by handyman",
+    "CANCELLED_BY_CUSTOMER": "Cancelled by customer",
+    "DECLINED_ON_ARRIVAL": "Declined on arrival",
+    "NO_SHOW": "Handyman did not come"
+  },
+  "timing": {
+    "NOW": "Now",
+    "SCHEDULED": "Schedule",
+    "EMERGENCY": "Emergency"
+  },
+  "verificationStatus": {
+    "DRAFT": "Draft",
+    "PENDING_REVIEW": "Pending review",
+    "APPROVED": "Active",
+    "REJECTED": "Rejected",
+    "BLOCKED": "Blocked"
+  },
+  "customerType": {
+    "INDIVIDUAL": "Personal account",
+    "COMPANY": "Company account"
+  },
+  "providerPreference": {
+    "ANY": "No preference",
+    "INDIVIDUAL": "Independent handyman",
+    "COMPANY": "Service company"
+  },
+  "legalForm": {
+    "MMC": "LLC (MMC)",
+    "ASC": "OJSC (ASC)",
+    "QSC": "CJSC (QSC)",
+    "FS": "Sole proprietor",
+    "OTHER": "Other"
+  },
+  "companyRole": {
+    "MANAGER": "Manager",
+    "WORKER": "Handyman"
+  },
+  "finalPriceEntry": {
+    "WORKER": "The handyman enters it",
+    "MANAGER": "The manager enters it"
+  },
+  "paymentMethod": {
+    "CASH": "Cash at the door",
+    "CARD": "Pay by card"
+  },
+  "paymentStatus": {
+    "CREATED": "Pending",
+    "SUCCEEDED": "Paid",
+    "FAILED": "Failed",
+    "CANCELLED": "Cancelled"
+  },
+  "payoutStatus": {
+    "PENDING": "Pending",
+    "PAID": "Paid",
+    "FAILED": "Failed"
+  },
+  "ledgerTxKind": {
+    "TOPUP": "Balance top-up",
+    "ADMIN_ADJUSTMENT": "Admin adjustment",
+    "REQUEST_FEE_CAPTURE": "Platform fee",
+    "REQUEST_FEE_REFUND": "Platform fee refund",
+    "EMERGENCY_FEE_CAPTURE": "Emergency request fee",
+    "EMERGENCY_FEE_REFUND": "Emergency fee refund",
+    "CANCEL_PENALTY": "Cancellation fee",
+    "PENALTY_COMPENSATION": "Cancellation compensation",
+    "JOB_PAYMENT": "Payment for the job",
+    "TIP": "Tip",
+    "B2B_FEE_CAPTURE": "Business order fee",
+    "INVOICE_PAYMENT": "Invoice payment",
+    "PAYOUT_CREATED": "Payout",
+    "PAYOUT_PAID": "Payout transferred",
+    "PAYOUT_FAILED": "Payout returned"
+  },
+  "caseType": {
+    "GUARANTEE": "TezFiks Guarantee",
+    "PRICE_DISPUTE": "Price dispute",
+    "REPORT": "Report"
+  },
+  "caseStatus": {
+    "OPEN": "Open",
+    "IN_REVIEW": "In review",
+    "REDISPATCHED": "Handyman sent",
+    "RESOLVED": "Resolved",
+    "REJECTED": "Rejected"
+  },
+  "projectStatus": {
+    "OPEN": "Collecting quotes",
+    "AWARDED": "Contractor selected",
+    "IN_PROGRESS": "In progress",
+    "COMPLETED": "Completed",
+    "INVOICED": "Invoiced",
+    "PAID": "Paid",
+    "CANCELLED": "Cancelled",
+    "EXPIRED": "No quotes received"
+  },
+  "quoteStatus": {
+    "SUBMITTED": "Submitted",
+    "ACCEPTED": "Accepted",
+    "REJECTED": "Rejected",
+    "WITHDRAWN": "Withdrawn",
+    "EXPIRED": "Expired"
+  },
+  "invoiceStatus": {
+    "ISSUED": "Issued",
+    "PAID": "Paid",
+    "VOID": "Void"
+  },
+  "vertical": {
+    "HOME": "Home services",
+    "AUTO": "Car services"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Please check the entered data",
+    "UNAUTHORIZED": "Please sign in again",
+    "FORBIDDEN": "You are not allowed to do this",
+    "NOT_FOUND": "Not found",
+    "CONFLICT": "The data has changed, please refresh",
+    "RATE_LIMITED": "Too many attempts. Please try again later",
+    "INTERNAL": "An unexpected error occurred",
+    "OTP_INVALID": "Wrong code",
+    "OTP_EXPIRED": "The code has expired, request a new one",
+    "OTP_TOO_MANY_ATTEMPTS": "Too many wrong attempts. Request a new code",
+    "OTP_COOLDOWN": "Please wait a moment before requesting a new code",
+    "PHONE_INVALID": "Enter a valid mobile number",
+    "SESSION_REVOKED": "Your session was closed, please sign in again",
+    "REFRESH_INVALID": "Your session expired, please sign in again",
+    "INVALID_CREDENTIALS": "Wrong e-mail or password",
+    "USER_BLOCKED": "Your account is blocked",
+    "PROFILE_INCOMPLETE": "Please complete your profile",
+    "CUSTOMER_ACCOUNT_REQUIRED": "Choose an account type first",
+    "INSUFFICIENT_BALANCE": "Insufficient balance",
+    "CUSTOMER_IN_DEBT": "Your balance is in debt. Top up to create a new request",
+    "IDEMPOTENCY_CONFLICT": "This request was already sent with different data",
+    "OFFER_UNAVAILABLE": "Another handyman has already taken this request",
+    "OFFER_EXPIRED": "The offer has expired",
+    "NOT_ELIGIBLE": "You are not eligible for this request",
+    "INVALID_STATE": "This action is not possible at this stage",
+    "CANCEL_NOT_ALLOWED": "Cancellation is not possible at this stage",
+    "TOO_EARLY": "It is too early",
+    "HANDYMAN_NOT_APPROVED": "Your profile is not approved yet",
+    "COMPANY_NOT_APPROVED": "The company is not approved yet",
+    "NOT_COMPANY_MANAGER": "Only the company manager can do this",
+    "ALREADY_IN_COMPANY": "You are already a member of a company",
+    "ALREADY_HANDYMAN": "You already have a handyman profile",
+    "INVITE_INVALID": "This invite link is not valid",
+    "WORKER_UNAVAILABLE": "The selected handyman is not available right now",
+    "CONTACT_LOCKED": "Contact details open when the handyman is close",
+    "CHAT_LOCKED": "Messaging opens when the handyman is close",
+    "CATEGORY_INACTIVE": "This service is not available right now",
+    "CATEGORY_REQUIRES_QUOTE": "Create a quote request for this service",
+    "CATEGORY_NOT_INSTANT": "This service cannot be ordered instantly",
+    "EMERGENCY_NOT_ALLOWED": "Emergency requests are not available for this service",
+    "SCHEDULE_TOO_SOON": "The selected time is too soon",
+    "SCHEDULE_TOO_FAR": "The selected time is too far ahead",
+    "GUARANTEE_NOT_AVAILABLE": "The guarantee covers only jobs paid by card",
+    "ALREADY_RATED": "You have already rated this",
+    "FILE_TOO_LARGE": "The file is too large",
+    "FILE_TYPE_NOT_ALLOWED": "This file type is not supported",
+    "FILE_NOT_OWNED": "This file cannot be used",
+    "KYC_RESUBMIT_LIMIT": "No attempts left today, please try again tomorrow",
+    "KYC_ALREADY_PENDING": "Your documents are already under review",
+    "PAYMENT_DECLINED": "The payment was declined",
+    "PAYMENT_NOT_PENDING": "This payment is already finished",
+    "QUOTE_WINDOW_CLOSED": "Quotes are no longer accepted",
+    "AI_UNAVAILABLE": "Automatic selection is unavailable, please choose the category",
+    "DEMO_DISABLED": "Demo mode is not enabled",
+    "NOT_NEAR_ADDRESS": "You are not at the address yet: try again when you get there",
+    "PAYMENTS_UNAVAILABLE": "Card payments are not available right now",
+    "NETWORK": "Could not connect to the server",
+    "TIMEOUT": "The server did not respond"
+  }
+}

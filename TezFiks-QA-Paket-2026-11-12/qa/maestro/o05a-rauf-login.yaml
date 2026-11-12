@@ -1,0 +1,16 @@
+appId: az.tezfiks.usta
+name: AU-O05a Rauf daxil olur, FixPro şirkət rejiminə keçir
+---
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000011"
+      SIZE: "o05-rauf"
+- tapOn:
+    id: "mode-${COMPANY_ID}"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: "home-company-mode"
+    timeout: 20000
+- takeScreenshot: o05-01-company-home

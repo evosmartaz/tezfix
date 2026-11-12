@@ -1,0 +1,35 @@
+appId: az.tezfiks.usta
+name: AU-O07b Samir (KYC gözləmədə), Vüqar (bloklanıb), sonra Elvinə qayıt
+---
+# 2) Samir: KYC yoxlamada
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000002"
+      SIZE: "o07-samir"
+- extendedWaitUntil:
+    visible:
+      id: "verification-card-pending"
+    timeout: 20000
+- takeScreenshot: o07-04-samir-pending
+- assertNotVisible:
+    id: "online-toggle"
+# 3) Vüqar: bloklanıb
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000003"
+      SIZE: "o07-vuqar"
+- extendedWaitUntil:
+    visible:
+      id: "verification-card-blocked"
+    timeout: 20000
+- takeScreenshot: o07-05-vuqar-blocked
+- assertNotVisible:
+    id: "online-toggle"
+# 4) Elvinə qayıt
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000001"
+      SIZE: "o07-elvin"

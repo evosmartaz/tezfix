@@ -1,0 +1,8 @@
+node_modules
+dist
+.next
+.expo
+apps/api/src/generated
+apps/*/android
+apps/*/ios
+design

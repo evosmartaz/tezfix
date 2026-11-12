@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "lib": ["ES2023", "DOM"],
+    "rootDir": ".",
+    "outDir": "dist",
+    "types": []
+  },
+  "include": ["src", "test"]
+}

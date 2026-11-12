@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* TezFiks design tokens (design/01-brand-colors-typography.png, board 05 admin panel). */
+@theme {
+  --color-primary: #00a971;
+  --color-primary-strong: #00845a;
+  --color-primary-foreground: #ffffff;
+  --color-ink: #0b1b2b;
+  --color-ink-soft: #16293d;
+  --color-accent: #f59e0b;
+  --color-accent-strong: #b45309;
+  --color-danger: #e5484d;
+  --color-info: #2563eb;
+  --color-background: #f6f8fa;
+  --color-surface: #ffffff;
+  --color-foreground: #0b1b2b;
+  --color-border: #e3e8ee;
+  --color-input: #d5dce4;
+  --color-muted: #eef1f4;
+  --color-muted-foreground: #5b6675;
+  --color-ring: #00a971;
+
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Leaflet controls above the map tiles but below dialogs. */
+.leaflet-container {
+  z-index: 0;
+  font-family: var(--font-sans);
+}

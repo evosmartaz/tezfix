@@ -1,0 +1,25 @@
+{
+  "actor": {
+    "CUSTOMER": "Клиент",
+    "PROVIDER": "Мастер",
+    "ADMIN": "Админ",
+    "SYSTEM": "Система"
+  },
+  "timeline": {
+    "created": "{{category}}, мастеров: {{slots}}",
+    "offersSent": "Шаг {{step}}, кольцо {{ring}}: предложений — {{n}}",
+    "price": "Работа: {{labor}}, материалы: {{materials}}, итого: {{total}}",
+    "paidCash": "Оплата наличными",
+    "paidCard": "Оплата картой",
+    "payment": "{{purpose}}: {{amount}}",
+    "amount": "{{amount}}",
+    "adminCancel": "Отменено администратором: {{reason}}",
+    "guaranteeFix": "Повторный ремонт по гарантии (без комиссии)"
+  },
+  "purpose": {
+    "JOB_PAYMENT": "Оплата работы",
+    "TIP": "Чаевые",
+    "WALLET_TOPUP": "Пополнение баланса",
+    "INVOICE": "Счёт-фактура"
+  }
+}

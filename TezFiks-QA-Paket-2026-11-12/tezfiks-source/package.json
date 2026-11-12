@@ -1,0 +1,39 @@
+{
+  "name": "tezfiks",
+  "private": true,
+  "version": "0.1.0",
+  "description": "TezFiks - handyman request marketplace (monorepo)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:shared": "npm run build -w @tezfiks/shared",
+    "test:shared": "npm test -w @tezfiks/shared",
+    "test:i18n": "npm test -w @tezfiks/i18n",
+    "test:api": "npm test -w @tezfiks/api",
+    "dev:db": "docker compose -f deploy/docker-compose.dev.yml up -d",
+    "dev:db:down": "docker compose -f deploy/docker-compose.dev.yml down",
+    "format": "prettier --write ."
+  },
+  "overrides": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "allowScripts": {
+    "@firebase/util@1.15.3": true,
+    "@prisma/engines@7.10.1": true,
+    "@swc/core@1.16.20": true,
+    "esbuild@0.28.2": true,
+    "prisma@7.10.1": true,
+    "protobufjs@7.6.6": true,
+    "msgpackr-extract": false
+  }
+}

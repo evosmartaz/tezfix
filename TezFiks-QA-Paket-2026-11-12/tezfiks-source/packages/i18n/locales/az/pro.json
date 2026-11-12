@@ -1,0 +1,662 @@
+{
+  "appName": "TezFiks Usta",
+  "brand": {
+    "tagline": "Yaxınlıqdakı sifarişlər — öz qrafikinizlə"
+  },
+  "auth": {
+    "welcomeTitle": "Telefon nömrəsi ilə daxil olun",
+    "terms": "Davam etməklə istifadə şərtləri və məxfilik siyasəti ilə razılaşırsınız",
+    "otpTitle": "Təsdiq kodu",
+    "otpSubtitle": "{{phone}} nömrəsinə WhatsApp ilə göndərilən 6 rəqəmli kodu daxil edin",
+    "verify": "Təsdiqlə",
+    "resend": "Kodu yenidən göndər",
+    "resendIn": "Kodu yenidən göndər ({{time}})",
+    "codeSent": "Yeni kod göndərildi",
+    "changeNumber": "Nömrəni dəyiş",
+    "devCodeHint": "Test rejimi: kodunuz {{code}}",
+    "profileTitle": "Profilinizi tamamlayın",
+    "profileSubtitle": "Adınız və şəkliniz müştərilərə görünəcək",
+    "addPhoto": "Şəkil əlavə et",
+    "changePhoto": "Şəkli dəyiş",
+    "photoOptional": "Şəkil istəyə bağlıdır",
+    "firstNameRequired": "Adınızı daxil edin",
+    "lastNameRequired": "Soyadınızı daxil edin",
+    "photoUploadFailed": "Şəkil yüklənmədi. Sonra profildən yenidən cəhd edin",
+    "galleryDenied": "Qalereyaya giriş icazəsi verilmədi",
+    "language": "Dil"
+  },
+  "tabs": {
+    "home": "Əsas",
+    "orders": "Sifarişlər",
+    "balance": "Balans",
+    "profile": "Profil"
+  },
+  "home": {
+    "greeting": "Salam, {{name}}",
+    "online": "ONLAYN",
+    "offline": "OFLAYN",
+    "today": "Bu gün",
+    "statJobs": "Sifariş",
+    "statEarnings": "Qazanc",
+    "statFees": "Platforma haqqı",
+    "lowBalanceTitle": "Cari balans: {{balance}}",
+    "lowBalance": "Balans {{fee}}-dən az olduqda yeni sifariş qəbul edə bilməzsiniz",
+    "topUp": "+ Balansı artır",
+    "waitingOffers": "Onlaynsınız. Yaxınlıqdakı yeni sifarişlər burada görünəcək",
+    "waitingCompany": "Onlaynsınız. Şirkətiniz sizə sifariş təyin edə bilər",
+    "workerOf": "Şirkət: {{company}}",
+    "removedFromCompany": "Siz artıq heç bir şirkətin üzvü deyilsiniz. Yeni dəvət linki ilə qoşula bilərsiniz",
+    "warning": {
+      "LOW_BALANCE": "Balansınız platforma haqqı üçün kifayət deyil: sifariş təklifləri gəlməyəcək",
+      "NO_TRADES": "Profilinizdə ixtisas seçilməyib: sifariş təklifləri gəlməyəcək",
+      "COMPANY_LOW_BALANCE": "Şirkətin balansı azdır: idarəedici balansı artırana qədər sifariş təyin olunmayacaq"
+    }
+  },
+  "onboarding": {
+    "joinTitle": "Usta kimi qoşulun",
+    "joinSubtitle": "Necə işləyəcəksiniz?",
+    "soloTitle": "Fərdi usta",
+    "soloSubtitle": "Öz adınıza işləyirsiniz — sifarişləri özünüz qəbul edirsiniz",
+    "companyTitle": "Usta şirkəti",
+    "companySubtitle": "Ustalar komandasını idarə edirsiniz — sifarişləri idarəedici qəbul edib ustalara təyin edir",
+    "inviteTitle": "Dəvət linki ilə qoşul",
+    "inviteSubtitle": "Şirkətinizin göndərdiyi linklə şirkətə usta kimi qoşulun",
+    "inviteLabel": "Dəvət linki və ya kodu",
+    "invitePlaceholder": "https://evosmart.az/tezfix/join/...",
+    "inviteInvalid": "Dəvət linki düzgün deyil",
+    "reviewInfo": "Qeydiyyatdan sonra şəxsiyyət vəsiqəsi və peşə sübutları (şirkətlər üçün VÖEN) admin tərəfindən yoxlanılıb təsdiqlənir — adətən 24 saat ərzində.",
+    "soloFormSubtitle": "Müştərilər adınızı, şəklinizi və ixtisasınızı görəcək",
+    "companyFormSubtitle": "Şirkət yoxlanıldıqdan sonra ustaları dəvət linki ilə əlavə edəcəksiniz",
+    "managerSection": "İdarəedici",
+    "companySection": "Şirkət məlumatları",
+    "photoHint": "Üz aydın görünən şəkil müştərilərin etibarını artırır",
+    "trades": "İxtisaslar",
+    "tradesHint": "{{count}} / {{max}} seçilib",
+    "tradesSearch": "İxtisas axtar",
+    "radius": "Xidmət radiusu",
+    "radiusValue": "{{km}} km",
+    "radiusHint": "Bu məsafədəki sifarişləri alacaqsınız ({{min}}–{{max}} km)",
+    "base": "Əsas məkanınız",
+    "companyBase": "Şirkətin məkanı",
+    "baseAddress": "Ünvan",
+    "baseAddressPlaceholder": "Məs. Xətai r., M.Hadi küç. 12",
+    "baseHint": "Xəritəni sürüşdürüb sancağı məkanınıza qoyun",
+    "baseSelected": "Seçilən nöqtə: {{lat}}, {{lng}}",
+    "useMyLocation": "Mənim yerim",
+    "locationUnavailable": "Məkanınızı təyin etmək olmadı. Xəritədə seçin",
+    "vatPayer": "ƏDV ödəyicisiyik",
+    "voenHint": "10 rəqəm",
+    "continueToKyc": "Davam et — yoxlama",
+    "errors": {
+      "firstNameRequired": "Adınızı daxil edin",
+      "lastNameRequired": "Soyadınızı daxil edin",
+      "nameTooLong": "Ən çox 60 simvol",
+      "tradesRequired": "Ən azı bir ixtisas seçin",
+      "tradesTooMany": "Çox ixtisas seçilib",
+      "radius": "Radius düzgün deyil",
+      "baseRequired": "Xəritədə məkanı seçin",
+      "companyNameRequired": "Şirkətin adını daxil edin",
+      "companyNameTooLong": "Ən çox 120 simvol",
+      "legalForm": "Hüquqi formanı seçin",
+      "voen": "VÖEN 10 rəqəmdən ibarət olmalıdır",
+      "voenTaken": "Bu VÖEN ilə şirkət artıq qeydiyyatdadır",
+      "addressTooLong": "Ünvan çox uzundur",
+      "invalid": "Məlumatları yoxlayın",
+      "fixFields": "Formda səhv var: qırmızı ilə göstərilən xananı düzəldin"
+    }
+  },
+  "kyc": {
+    "title": "Şəxsiyyətin təsdiqi",
+    "titleCompany": "Şirkətin yoxlanılması",
+    "step": "Addım {{current}} / {{total}}",
+    "consentTitle": "Razılıq",
+    "consentText": "Mən TezFiks-ə şəxsiyyət vəsiqəmin şəkillərini, selfi şəkillərimi və peşə sənədlərimi yalnız şəxsiyyətimin və ixtisasımın yoxlanılması üçün emal etməyə razılıq verirəm. Bu şəkillər yalnız TezFiks inzibatçılarına göstərilir, hər baxış qeydə alınır və qərardan 30 gün sonra silinir.",
+    "stepsId": "Şəxsiyyət vəsiqəsinin ön və arxa üzü",
+    "stepsSelfie": "Üç qısa selfi: düz baxın, başınızı çevirin, gözünüzü qırpın",
+    "stepsReview": "Admin yoxlaması — adətən 24 saat ərzində",
+    "agree": "Razıyam, davam et",
+    "slot": {
+      "idFront": {
+        "title": "Vəsiqənin ön üzü",
+        "instruction": "Vəsiqəni çərçivənin içinə yerləşdirin. Bütün yazılar oxunaqlı olsun"
+      },
+      "idBack": {
+        "title": "Vəsiqənin arxa üzü",
+        "instruction": "Vəsiqəni çevirin və arxa üzünü çərçivəyə yerləşdirin"
+      },
+      "selfieFront": {
+        "title": "Selfi: düz baxın",
+        "instruction": "Üzünüzü ovalın içinə yerləşdirib birbaşa kameraya baxın"
+      },
+      "selfieTurn": {
+        "title": "Selfi: başınızı çevirin",
+        "instruction": "Başınızı yavaşca sağa çevirin və şəkil çəkin"
+      },
+      "selfieBlink": {
+        "title": "Selfi: gözünüzü qırpın",
+        "instruction": "Kameraya baxın, gözünüzü qırpın və şəkil çəkin"
+      }
+    },
+    "capture": "Şəkil çək",
+    "retake": "Yenidən çək",
+    "usePhoto": "Bu şəkli istifadə et",
+    "cameraDenied": "Kameraya icazə verilmədi. Yoxlama üçün kamera lazımdır",
+    "allowCamera": "Kameraya icazə ver",
+    "uploadFailed": "Şəkil yüklənmədi. Yenidən çəkin",
+    "extrasTitle": "Peşə sübutları (istəyə bağlı)",
+    "extrasTitleCompany": "Şirkət sənədləri (istəyə bağlı)",
+    "extrasHint": "Sertifikat, diplom və ya iş nümunələrinin şəkilləri yoxlamanı sürətləndirir (ən çox {{max}})",
+    "extraItem": "Sənəd {{n}}",
+    "addDocument": "Sənəd əlavə et",
+    "extrasCount_one": "{{count}} əlavə sənəd",
+    "extrasCount_other": "{{count}} əlavə sənəd",
+    "reviewTitle": "Yoxlayın və göndərin",
+    "submit": "Yoxlamaya göndər",
+    "upload": {
+      "uploading": "Yüklənir",
+      "uploaded": "Hazırdır",
+      "failed": "Yenidən çəkin"
+    }
+  },
+  "verification": {
+    "title": "Yoxlama",
+    "pendingTitle": "Yoxlama prosesi",
+    "pendingBody": "Sənədləriniz göndərildi. Admin tərəfindən yoxlanılıb təsdiqlənir — adətən 24 saat ərzində. Təsdiqdən sonra onlayn olub sifariş qəbul edə bilərsiniz.",
+    "pendingBodyCompany": "Şirkətin sənədləri göndərildi. Admin yoxlayıb təsdiqləyir — adətən 24 saat ərzində. Təsdiqdən sonra ustaları dəvət edə bilərsiniz.",
+    "rejectedTitle": "Yoxlama təsdiqlənmədi",
+    "reason": "Səbəb: {{reason}}",
+    "resubmit": "Yenidən göndər",
+    "attemptsLeft_one": "24 saat ərzində {{count}} cəhd qalıb",
+    "attemptsLeft_other": "24 saat ərzində {{count}} cəhd qalıb",
+    "limitReached": "24 saat ərzində cəhd limiti bitib. Sonra yenidən cəhd edin",
+    "blockedTitle": "Hesab bloklanıb",
+    "blockedBody": "Ətraflı məlumat üçün TezFiks dəstəyi ilə əlaqə saxlayın",
+    "draftTitle": "Şəxsiyyətinizi təsdiqləyin",
+    "draftTitleCompany": "Şirkəti yoxlamaya göndərin",
+    "draftBody": "Sifariş qəbul etmək üçün şəxsiyyət vəsiqəsi və selfi ilə yoxlamadan keçin",
+    "start": "Yoxlamaya başla",
+    "approved": "Təsdiqləndi! İndi onlayn ola bilərsiniz",
+    "toHome": "Əsas səhifəyə"
+  },
+  "offer": {
+    "newTitle": "Yeni sifariş!",
+    "number": "Sifariş #{{number}}",
+    "countdown_one": "Qəbul üçün {{count}} saniyə",
+    "countdown_other": "Qəbul üçün {{count}} saniyə",
+    "waiting_one": "daha {{count}} sifariş gözləyir",
+    "waiting_other": "daha {{count}} sifariş gözləyir",
+    "emergency": "TƏCİLİ",
+    "service": "Xidmət",
+    "address": "Ünvan",
+    "distance": "Məsafə",
+    "customer": "Müştəri",
+    "scheduledAt": "Vaxt",
+    "km": "{{km}} km",
+    "eta": "~{{min}} dəq",
+    "feeWarning": "Sifarişi qəbul etdikdə balansınızdan {{fee}} AZN platforma haqqı tutulacaq",
+    "accept": "✓ Qəbul et",
+    "decline": "İmtina et",
+    "accepted": "Sifariş qəbul edildi",
+    "taken": "Bu sifariş artıq başqa usta tərəfindən qəbul edilib",
+    "insufficientBalance": "Balansınız platforma haqqı üçün kifayət deyil"
+  },
+  "scheduled": {
+    "title": "Planlı sifarişlər",
+    "subtitle": "Gələcək vaxta planlaşdırılmış sifarişlər",
+    "empty": "Hazırda planlı sifariş yoxdur"
+  },
+  "online": {
+    "serviceTitle": "Siz onlaynsınız",
+    "serviceBody": "TezFiks Usta yeni sifarişlər üçün məkanınızı paylaşır",
+    "locationRequired": "Onlayn olmaq üçün məkan icazəsi lazımdır"
+  },
+  "device": {
+    "title": "Cihaz ayarları",
+    "subtitle": "Bildirişlər, məkan və batareya",
+    "intro": "Sifarişləri vaxtında almaq üçün bu ayarları yoxlayın",
+    "notifications": "Bildirişlər",
+    "notificationsBody": "Yeni sifariş gələndə səs və titrəmə ilə xəbərdar olun",
+    "location": "Məkan",
+    "locationBody": "Onlayn olduqda yaxınlıqdakı sifarişləri almaq üçün lazımdır (yalnız tətbiq açıq və ya onlayn bildirişi aktiv olanda)",
+    "allow": "İcazə ver",
+    "state": {
+      "granted": "Aktivdir",
+      "denied": "İcazə yoxdur",
+      "blocked": "Ayarlardan açın",
+      "unknown": "Naməlum"
+    },
+    "batteryTitle": "Batareya optimallaşdırması",
+    "batteryIntro": "{{device}} batareyaya qənaət üçün arxa planda işləyən tətbiqləri dayandıra bilər. TezFiks Usta üçün məhdudiyyəti söndürün:",
+    "thisPhone": "Bu telefon",
+    "openBattery": "Batareya ayarlarını aç",
+    "testTitle": "Test sifariş",
+    "testBody": "Yeni sifariş gələndə telefonun səs çıxarıb titrədiyini yoxlayın",
+    "testButton": "Test sifariş göndər",
+    "testAlertBody": "Bu test sifarişdir — səs və titrəmə işləyir",
+    "testSent": "Test bildirişi göndərildi. Səs və ya titrəmə olmadısa, bildiriş icazəsini və səs rejimini yoxlayın.",
+    "battery": {
+      "samsung": "Ayarlar → Batareya → Arxa plan istifadə limitləri → \"Heç vaxt yatmayan tətbiqlər\" siyahısına TezFiks Usta-nı əlavə edin.",
+      "xiaomi": "Ayarlar → Tətbiqlər → TezFiks Usta → Batareya qənaəti → \"Məhdudiyyət yoxdur\" seçin və \"Avtomatik başlatma\"nı aktiv edin.",
+      "huawei": "Ayarlar → Batareya → Tətbiqlərin işə salınması → TezFiks Usta üçün avtomatik idarəni söndürüb hər üç seçimi aktiv edin.",
+      "oppo": "Ayarlar → Batareya → TezFiks Usta → \"Arxa planda işləməyə icazə ver\" seçin və avtomatik başlatmanı aktiv edin.",
+      "vivo": "Ayarlar → Batareya → Arxa planda yüksək enerji istifadəsi → TezFiks Usta-ya icazə verin.",
+      "oneplus": "Ayarlar → Batareya → Batareya optimallaşdırması → TezFiks Usta → \"Optimallaşdırma\" seçimini söndürün.",
+      "google": "Ayarlar → Tətbiqlər → TezFiks Usta → Batareya → \"Məhdudiyyətsiz\" seçin.",
+      "generic": "Ayarlar → Batareya → Batareya optimallaşdırması bölməsində TezFiks Usta üçün optimallaşdırmanı söndürün."
+    }
+  },
+  "join": {
+    "title": "Şirkətə qoşulma",
+    "company": "Şirkət",
+    "role": "Rol: {{role}}",
+    "expires": "Link {{date}} tarixinədək etibarlıdır",
+    "workerInfo": "Qoşulduqdan sonra şirkətin idarəedicisi sizə sifariş təyin edəcək. Şirkət yoxlanılıb, ona görə dərhal işə başlaya bilərsiniz.",
+    "managerInfo": "İdarəedici kimi şirkətin sifarişlərini qəbul edib ustalara təyin edəcəksiniz.",
+    "accept": "Qoşul",
+    "joined": "{{company}} şirkətinə qoşuldunuz",
+    "reason": {
+      "EXPIRED": "Dəvət linkinin vaxtı bitib. İdarəedicidən yeni link istəyin",
+      "REVOKED": "Bu dəvət ləğv edilib",
+      "USED_UP": "Bu dəvət artıq istifadə olunub",
+      "COMPANY_NOT_APPROVED": "Şirkət hələ təsdiqlənməyib",
+      "INVALID": "Dəvət linki düzgün deyil"
+    }
+  },
+  "mode": {
+    "personal": "Şəxsi",
+    "company": "{{name}}",
+    "managerTitle": "{{name}} — İdarəedici",
+    "balanceChip": "Balans: {{amount}}",
+    "companyStats": "Ustalar: {{members}} • Onlayn: {{online}}"
+  },
+  "job": {
+    "title": "Aktiv sifariş #{{number}}",
+    "titleShort": "Aktiv sifariş",
+    "navigate": "Naviqasiyanı aç",
+    "timeline": {
+      "accepted": "Sifariş qəbul edildi",
+      "enRoute": "Yola çıxdım",
+      "arrived": "Ünvana çatdım",
+      "completed": "İş tamamlandı"
+    },
+    "startRoute": "Yola çıxdım",
+    "markArrived": "Ünvana çatdım",
+    "arrivedConfirm": {
+      "title": "Ünvana çatdınız?",
+      "body": "Müştəriyə bildiriş gedəcək.",
+      "confirm": "Bəli, çatdım",
+      "keep": "Hələ yox"
+    },
+    "complete": "✓ İşi tamamla",
+    "rateCustomer": "Müştərini qiymətləndir",
+    "openChat": "Mesaj yaz",
+    "call": "Zəng et",
+    "customerPhone": "Müştərinin telefonu",
+    "contactLocked": "Telefon və mesaj müştəriyə təxminən 5 dəqiqə qalmış açılacaq",
+    "state": {
+      "awaitingCustomer": "Müştərinin təsdiqi gözlənilir",
+      "awaitingCustomerBody": "Müştəri qiyməti təsdiqləyib ödəniş üsulunu seçəcək",
+      "awaitingManager": "Yekun qiyməti idarəedici daxil edəcək",
+      "awaitingWorker": "Yekun qiyməti usta daxil edəcək",
+      "disputed": "Müştəri qiyməti mübahisələndirib. TezFiks komandası baxır",
+      "done": "İş tamamlandı",
+      "cancelled": "Sifariş bağlanıb: {{status}}",
+      "followWorker": "Usta: {{status}}"
+    },
+    "customer": "Müştəri",
+    "description": "Problem",
+    "photos": "Şəkillər",
+    "address": "Ünvan",
+    "addressParts": {
+      "block": "Blok",
+      "entrance": "Giriş",
+      "floor": "Mərtəbə",
+      "apartment": "Mənzil",
+      "intercom": "Domofon"
+    },
+    "addressNote": "Qeyd: {{note}}",
+    "eta": "~{{min}} dəq məsafədə",
+    "scheduledAt": "Vaxt: {{time}}",
+    "emergency": "TƏCİLİ",
+    "guaranteeFix": "Zəmanət üzrə təkrar iş",
+    "price": "Yekun məbləğ",
+    "priceLine": "İş haqqı {{labor}} + material {{materials}}",
+    "paymentMethod": "Ödəniş: {{method}}",
+    "tip": "Bəxşiş: {{amount}}",
+    "guaranteeUntil": "Zəmanət: {{date}} tarixinədək",
+    "fee": "Platforma haqqı: {{amount}}",
+    "feeState": {
+      "held": "bloklanıb",
+      "captured": "tutulub",
+      "refunded": "qaytarılıb"
+    },
+    "worker": "Usta",
+    "cancel": {
+      "button": "Sifarişi ləğv et",
+      "free": "Pulsuz ləğv: {{time}} qalıb",
+      "paid": "Pulsuz ləğv müddəti bitib: platforma haqqı qaytarılmır və xəbərdarlıq (strike) yazılır",
+      "title": "Sifarişi ləğv etmək istəyirsiniz?",
+      "bodyFree": "Hələ pulsuz ləğv müddətindəsiniz: platforma haqqı geri qaytarılacaq.",
+      "bodyPaid": "Pulsuz ləğv müddəti bitib: platforma haqqı geri qaytarılmayacaq və profilinizə xəbərdarlıq (strike) yazılacaq. Sifariş başqa ustaya göndəriləcək.",
+      "reason": "Səbəb (istəyə bağlı)",
+      "confirm": "Ləğv et",
+      "keep": "Geri",
+      "done": "Sifariş ləğv edildi"
+    },
+    "nav": {
+      "google": "Google Maps",
+      "waze": "Waze",
+      "share": "Paylaş"
+    },
+    "limited": {
+      "location": "Sifariş məkanı",
+      "assignedBy": "Sifariş #{{number}} • {{company}} tərəfindən təyin edildi",
+      "note": "Bu sifariş şirkətiniz tərəfindən qəbul edilib — sizə yalnız iş məkanı göstərilir. Digər detallar üçün idarəedici ilə əlaqə saxlayın."
+    },
+    "route": {
+      "title": "Yoldasınız",
+      "acceptedTitle": "Aktiv sifariş",
+      "body": "Məkanınız müştəriyə göstərilir",
+      "permissionDenied": "Məkan icazəsi yoxdur: müştəri harada olduğunuzu görməyəcək. Ayarlarda məkan icazəsini verin."
+    },
+    "updated": "Status yeniləndi"
+  },
+  "profile": {
+    "work": "İş profili",
+    "trades": "İxtisaslar: {{trades}}",
+    "radius": "Xidmət radiusu: {{km}} km",
+    "status": "Status: {{status}}",
+    "edit": "İş profilini redaktə et",
+    "editTitle": "İş profili",
+    "saved": "Profil yeniləndi",
+    "notifications": "Bildirişlər",
+    "earnings": "Qazanc və ödənişlər",
+    "payout": "Ödəniş kartı",
+    "projects": "Layihələr",
+    "base": "Baza məkanı",
+    "delete": "Hesabı sil",
+    "deleteTitle": "Hesabı silmək istəyirsiniz?",
+    "deleteBody": "Şəxsi məlumatlarınız silinəcək və bütün cihazlardan çıxış ediləcək. Bu əməliyyat geri qaytarılmır.",
+    "deleteConfirm": "Bəli, hesabı sil"
+  },
+  "offline": {
+    "title": "Serverə qoşulmaq mümkün olmadı",
+    "message": "İnternet bağlantısını yoxlayıb yenidən cəhd edin"
+  },
+  "notifications": {
+    "channelOffers": "Yeni sifarişlər",
+    "channelDefault": "Bildirişlər"
+  },
+  "price": {
+    "title": "İşi tamamla #{{number}}",
+    "subtitle": "Sifarişi bağlamaq üçün yekun qiyməti daxil edin",
+    "labor": "İş haqqı",
+    "materials": "Material xərci",
+    "total": "Yekun məbləğ",
+    "warning": "Qiymət daxil edilmədən sifariş bağlana bilməz. Daxil etdiyiniz məbləğ müştərinin tətbiqində təsdiq üçün göstəriləcək.",
+    "submit": "✓ Qiyməti təsdiqlə və işi bitir",
+    "companyNote": "Şirkət ustasınızsa və qiyməti idarəedici daxil edirsə, bu ekran sizin üçün göstərilmir.",
+    "guaranteeFix": "Zəmanət üzrə təkrar iş: qiymət 0 ₼ ola bilər",
+    "sent": "Qiymət müştəriyə göndərildi",
+    "confirm": {
+      "title": "Qiyməti yoxlayın",
+      "body": "Müştəriyə {{total}} göndərilsin? (İş haqqı {{labor}} + material {{materials}}). Göndərildikdən sonra dəyişmək olmur.",
+      "send": "Bəli, göndər",
+      "edit": "Düzəlt"
+    },
+    "notAllowed": "Bu sifarişin yekun qiymətini siz daxil etmirsiniz",
+    "errors": {
+      "zero": "Məbləği daxil edin",
+      "tooLarge": "Məbləğ çox böyükdür"
+    }
+  },
+  "rate": {
+    "title": "Müştərini qiymətləndirin",
+    "subtitle": "{{name}} ilə iş necə keçdi?",
+    "comment": "Şərh (istəyə bağlı)",
+    "submit": "Göndər",
+    "skip": "Sonra",
+    "thanks": "Təşəkkürlər! Qiymətiniz qeydə alındı",
+    "pickStars": "Ulduz seçin"
+  },
+  "chat": {
+    "title": "Mesajlar",
+    "placeholder": "Mesaj yazın…",
+    "send": "Göndər",
+    "locked": "Söhbət müştəriyə təxminən 5 dəqiqə qalmış açılacaq",
+    "empty": "Hələ mesaj yoxdur",
+    "you": "Siz"
+  },
+  "orders": {
+    "active": "Aktiv",
+    "history": "Tarixçə",
+    "empty": "Aktiv sifariş yoxdur",
+    "emptyHistory": "Hələ sifariş yoxdur",
+    "companyTitle": "Şirkət sifarişləri",
+    "workerLine": "Usta: {{name}}",
+    "loadMore": "Daha çox"
+  },
+  "balance": {
+    "current": "Cari balans",
+    "held": "Bloklanıb: {{amount}}",
+    "topUp": "+ Balansı artır",
+    "history": "Əməliyyat tarixçəsi",
+    "empty": "Hələ əməliyyat yoxdur",
+    "earnings": "Qazanc və ödənişlər",
+    "earningsHint": "Kartla ödənişlər və bəxşişlər: {{amount}}",
+    "companyTitle": "{{name}} balansı",
+    "workerTitle": "Şirkət ustası",
+    "workerBody": "Platforma haqqını şirkətiniz ödəyir. Balans, qazanc və ödənişlər idarəedicidədir.",
+    "debt": "Balans mənfidir",
+    "tx": "{{kind}}",
+    "txRequest": "Sifariş #{{number}} — {{kind}}",
+    "txProject": "Layihə #{{number}} — {{kind}}"
+  },
+  "topup": {
+    "title": "Balansı artır",
+    "amount": "Məbləğ (AZN)",
+    "pay": "Ödənişə keç",
+    "testHint": "Test rejimi: 4242 4242 4242 4242 kartı uğurlu, 4000 0000 0000 0002 rədd edilir",
+    "waiting": "Ödəniş gözlənilir…",
+    "check": "Ödənişi yoxla",
+    "succeeded": "Balans artırıldı: {{amount}}",
+    "failed": "Ödəniş alınmadı",
+    "failedBody": "Kart rədd edildi və ya ödəniş ləğv olundu. Balans dəyişmədi — yenidən cəhd edin.",
+    "errors": {
+      "invalid": "Məbləği düzgün daxil edin",
+      "tooSmall": "Minimum 1 AZN",
+      "tooLarge": "Maksimum 1000 AZN"
+    }
+  },
+  "earnings": {
+    "title": "Qazanc və ödənişlər",
+    "balance": "Ödənilməmiş qazanc",
+    "hint": "Kartla ödənişlər və bəxşişlər hər bazar ertəsi ödəniş kartınıza köçürülür",
+    "pending": "Ödəniş prosesində: {{amount}}",
+    "thisWeek": "Bu həftə",
+    "card": "Kartla: {{count}} iş • {{amount}}",
+    "cash": "Nağd: {{count}} iş • {{amount}}",
+    "tips": "Bəxşişlər: {{amount}}",
+    "payouts": "Ödənişlər",
+    "noPayouts": "Hələ ödəniş yoxdur",
+    "period": "{{from}} – {{to}}",
+    "failure": "Səbəb: {{reason}}",
+    "method": "Ödəniş kartı",
+    "noMethod": "Ödəniş kartı əlavə edilməyib",
+    "addMethod": "Kart əlavə et",
+    "changeMethod": "Dəyiş"
+  },
+  "payout": {
+    "title": "Ödəniş kartı",
+    "subtitle": "Həftəlik ödənişlər bu karta və ya hesaba köçürülür",
+    "card": "Kart",
+    "iban": "IBAN",
+    "cardNumber": "Kart nömrəsi",
+    "ibanNumber": "IBAN (AZ…)",
+    "holder": "Sahibinin adı",
+    "hint": "Tam nömrə saxlanılmır — yalnız son 4 rəqəm görünür",
+    "current": "Hazırkı: {{masked}} • {{holder}}",
+    "save": "Yadda saxla",
+    "saved": "Ödəniş məlumatı saxlanıldı",
+    "errors": {
+      "invalidCard": "Kart nömrəsi düzgün deyil",
+      "invalidIban": "IBAN düzgün deyil (AZ + 26 simvol)",
+      "holderRequired": "Ad və soyadı daxil edin"
+    }
+  },
+  "projects": {
+    "title": "Layihələr",
+    "subtitle": "Biznes sifarişləri və qiymət təklifləri",
+    "tabOpen": "Açıq sorğular",
+    "tabMine": "Təkliflərim",
+    "empty": "Hazırda açıq sorğu yoxdur",
+    "emptyMine": "Hələ təklifiniz yoxdur",
+    "number": "Layihə #{{number}}",
+    "deadline": "Təklif müddəti: {{time}}",
+    "dates": "{{from}} – {{to}}",
+    "workers": "Lazım olan usta: {{count}}",
+    "quotes": "Təkliflər: {{count}}",
+    "scope": "Həcm",
+    "description": "Təsvir",
+    "address": "Ünvan",
+    "customer": "Müştəri",
+    "feeRate": "Platforma haqqı: {{amount}} / usta / gün",
+    "windowClosed": "Bu sorğu üçün təklif qəbul edilmir",
+    "quote": {
+      "title": "Qiymət təklifi",
+      "total": "Ümumi qiymət (AZN)",
+      "workers": "Usta sayı",
+      "days": "Gün sayı",
+      "note": "Qeyd (istəyə bağlı)",
+      "feePreview": "Təklif göndərildikdə balansınızdan {{amount}} bloklanacaq: seçilsəniz tutulacaq, seçilməsəniz geri qaytarılacaq",
+      "submit": "Təklif göndər",
+      "sent": "Təklifiniz göndərildi",
+      "errors": {
+        "required": "Bu sahəni doldurun",
+        "range": "Dəyər düzgün deyil"
+      }
+    },
+    "myQuote": "Sizin təklifiniz",
+    "quoteLine": "{{amount}} • {{workers}} usta • {{days}} gün",
+    "feeHeld": "Platforma haqqı: {{amount}} ({{state}})",
+    "feeStateHeld": "bloklanıb",
+    "feeStateCaptured": "tutulub",
+    "withdraw": "Təklifi geri götür",
+    "withdrawn": "Təklif geri götürüldü",
+    "awarded": "Layihə sizə verildi",
+    "reports": "Gündəlik hesabatlar",
+    "noReports": "Hələ hesabat yoxdur",
+    "reportLine": "{{date}} • {{percent}}% • {{author}}",
+    "addReport": "Hesabat əlavə et",
+    "report": {
+      "title": "Gündəlik hesabat",
+      "note": "Bu gün görülən iş",
+      "progress": "İrəliləyiş: {{percent}}%",
+      "photos": "Şəkillər ({{count}}/5)",
+      "addPhoto": "Şəkil əlavə et",
+      "submit": "Hesabatı göndər",
+      "sent": "Hesabat göndərildi",
+      "errors": {
+        "required": "Görülən işi yazın",
+        "range": "Dəyər düzgün deyil"
+      }
+    },
+    "complete": "İşi bitir və hesab-faktura yarat",
+    "completeTitle": "İşi bitirmək istəyirsiniz?",
+    "completeBody": "Qəbul edilmiş təklif məbləğinə hesab-faktura yaradılacaq və müştəriyə göndəriləcək.",
+    "completed": "Hesab-faktura yaradıldı",
+    "invoice": {
+      "title": "Hesab-faktura {{number}}",
+      "issuer": "Təchizatçı: {{name}}",
+      "customer": "Müştəri: {{name}}",
+      "voen": "VÖEN: {{voen}}",
+      "subtotal": "Məbləğ",
+      "vat": "ƏDV ({{rate}}%)",
+      "noVat": "ƏDV ödəyicisi deyil",
+      "total": "Yekun",
+      "issuedAt": "Tarix: {{date}}",
+      "paidAt": "Ödənilib: {{date}}"
+    }
+  },
+  "notificationsList": {
+    "title": "Bildirişlər",
+    "empty": "Bildiriş yoxdur",
+    "markAll": "Hamısını oxunmuş et"
+  },
+  "company": {
+    "incoming": "Yeni sifarişlər",
+    "noOffers": "Hazırda yeni sifariş yoxdur",
+    "offerTitle": "Yeni sifariş #{{number}}",
+    "customerLine": "{{timing}} • Müştəri: {{name}}",
+    "feeNote": "Qəbulda şirkət balansından {{fee}} AZN tutulacaq",
+    "feeNotePerWorker": "Qəbulda şirkət balansından hər usta üçün {{fee}} AZN tutulacaq",
+    "slots": "Lazım olan usta: {{open}}/{{total}}",
+    "pickWorker": "Ustanı seçin",
+    "pickWorkers": "Ustaları seçin ({{selected}}/{{max}})",
+    "free": "Boşdur",
+    "busy": "Sifarişdədir",
+    "noTrade": "İxtisas uyğun deyil",
+    "noCandidates": "Göndəriləcək uyğun usta yoxdur",
+    "decline": "İmtina et",
+    "acceptSend": "✓ Qəbul et və göndər",
+    "accepted": "Sifariş ustaya göndərildi",
+    "selectFirst": "Əvvəlcə usta seçin",
+    "workerUnavailable": "Seçilmiş usta artıq boş deyil",
+    "stats": {
+      "jobsToday": "Bu gün",
+      "activeJobs": "Aktiv",
+      "revenueToday": "Gəlir",
+      "feesToday": "Platforma haqqı"
+    },
+    "menu": {
+      "jobs": "Şirkət sifarişləri",
+      "members": "Ustalar və dəvətlər",
+      "settings": "Tənzimləmələr",
+      "balance": "Şirkət balansı",
+      "projects": "Layihələr"
+    },
+    "members": {
+      "title": "Ustalar",
+      "empty": "Hələ usta yoxdur. Dəvət linki paylaşın",
+      "online": "Onlayn",
+      "offline": "Oflayn",
+      "line": "{{role}} • ★ {{rating}} • {{jobs}} iş",
+      "remove": "Şirkətdən çıxar",
+      "removeTitle": "{{name}} şirkətdən çıxarılsın?",
+      "removed": "Usta şirkətdən çıxarıldı"
+    },
+    "invites": {
+      "title": "Dəvət linkləri",
+      "empty": "Aktiv dəvət linki yoxdur",
+      "createWorker": "Usta dəvəti yarat",
+      "createManager": "İdarəedici dəvəti yarat",
+      "created": "Dəvət linki yaradıldı",
+      "share": "Paylaş",
+      "revoke": "Ləğv et",
+      "revoked": "Dəvət ləğv edildi",
+      "usage": "{{role}} • {{used}}/{{max}} istifadə • {{date}} tarixinədək",
+      "shareMessage": "{{company}} şirkətinə TezFiks Usta tətbiqində qoşulun: {{url}}"
+    },
+    "settings": {
+      "title": "Tənzimləmələr",
+      "priceQuestion": "Yekun qiyməti kim daxil edir?",
+      "priceIntro": "İş tamamlananda sifarişin yekun qiymətinin kim tərəfindən daxil ediləcəyini seçin. Bu qayda şirkətin bütün ustalarına şamil olunur.",
+      "workerTitle": "Usta özü daxil edir",
+      "workerBody": "İş bitəndə usta telefonunda yekun qiyməti yazır — idarəediciyə bildiriş gedir",
+      "managerTitle": "İdarəedici daxil edir",
+      "managerBody": "Usta işi bitirir, qiyməti idarəedici tətbiqdə daxil edib təsdiqləyir. Ustanın ekranında qiymət daxiletmə addımı göstərilmir",
+      "howTitle": "Necə işləyir",
+      "howBody": "Hansı rejim seçilsə də, qiymət daxil edilmədən sifariş bağlanmır və məbləğ müştərinin tətbiqində təsdiq üçün göstərilir. Fərdi ustalarda isə qiyməti həmişə ustanın özü daxil edir.",
+      "save": "Yadda saxla",
+      "saved": "Tənzimləmələr saxlanıldı"
+    },
+    "job": {
+      "enterPrice": "Yekun qiyməti daxil et",
+      "reassign": "Ustanı dəyiş",
+      "reassignTitle": "Yeni usta seçin",
+      "reassigned": "Usta dəyişdirildi",
+      "noReassign": "Təyin ediləcək boş usta yoxdur",
+      "workerPhone": "Ustaya zəng et"
+    }
+  }
+}

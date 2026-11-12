@@ -1,0 +1,22 @@
+appId: az.tezfiks.usta
+name: AU-O06 (iş ekranından)
+---
+- assertVisible:
+    id: "job-limited"
+- assertNotVisible:
+    id: "job-full"
+- assertNotVisible:
+    id: "job-description"
+- assertNotVisible:
+    id: "job-price"
+- assertNotVisible:
+    id: "job-money"
+- assertNotVisible: ".*şirkət sifarişi.*"
+- takeScreenshot: o06-02-limited-top
+- swipe:
+    start: 50%, 85%
+    end: 50%, 30%
+    duration: 600
+- assertNotVisible: ".*(AZN|₼).*"
+- assertNotVisible: ".*şirkət sifarişi.*"
+- takeScreenshot: o06-03-limited-bottom

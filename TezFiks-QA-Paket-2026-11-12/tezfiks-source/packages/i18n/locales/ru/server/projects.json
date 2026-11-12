@@ -1,0 +1,17 @@
+{
+  "memo": {
+    "quoteFee": "Проект №{{number}}: комиссия платформы за предложение",
+    "invoicePayment": "Оплата счёта-фактуры {{invoice}} (проект №{{number}})"
+  },
+  "invoice": {
+    "defaultLine": "Проект №{{number}}: работы «{{category}}»"
+  },
+  "notify": {
+    "expiredTitle": "Проект №{{number}} закрыт",
+    "expiredNoQuotes": "За время приёма предложений не поступило ни одного предложения.",
+    "expiredNoAward": "Проект закрыт, так как ни одно предложение не было выбрано; предложения отменены.",
+    "ratedTitle": "Новая оценка",
+    "ratedBody": "Вашу работу по проекту №{{number}} оценили на {{stars}} из 5."
+  },
+  "areaFallback": "Баку"
+}

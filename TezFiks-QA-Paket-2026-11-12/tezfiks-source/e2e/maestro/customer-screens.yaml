@@ -1,0 +1,59 @@
+appId: az.tezfiks.app
+name: Customer - main screens (screenshots)
+---
+- launchApp
+- tapOn:
+    text: "While using the app"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-customer-03-home
+- tapOn:
+    id: "category-tile-.*"
+    index: 0
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-customer-04-category
+- back
+- tapOn:
+    id: "tab-orders"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-customer-05-orders
+- tapOn:
+    id: "request-card-.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-customer-06-order
+- tapOn:
+    id: "detail-assignment-.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd:
+    timeout: 6000
+- takeScreenshot: ${SIZE}-customer-07-tracking
+# Back to the tabs whatever screen we ended on.
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- tapOn:
+    id: "tab-wallet"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-customer-08-wallet
+- tapOn:
+    id: "tab-profile"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-customer-09-profile
+- tapOn:
+    id: "tab-home"

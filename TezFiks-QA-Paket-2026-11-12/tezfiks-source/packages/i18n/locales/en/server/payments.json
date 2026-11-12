@@ -1,0 +1,41 @@
+{
+  "checkout": {
+    "pageTitle": "TezFiks — test payment",
+    "testMode": "TEST MODE",
+    "testModeHint": "No real money is charged. Use card 4242 4242 4242 4242 for a successful payment and 4000 0000 0000 0002 for a declined one.",
+    "amount": "Amount",
+    "purpose": {
+      "WALLET_TOPUP": "Balance top-up",
+      "JOB_PAYMENT": "Payment for the job",
+      "TIP": "Tip",
+      "INVOICE": "Invoice payment"
+    },
+    "cardNumber": "Card number",
+    "expiry": "MM/YY",
+    "cvc": "CVC",
+    "holderName": "Cardholder name",
+    "pay": "Pay {{amount}}",
+    "cancel": "Cancel",
+    "secureNote": "Card details are not stored."
+  },
+  "result": {
+    "CREATED": "Payment pending",
+    "SUCCEEDED": "Payment successful",
+    "FAILED": "Payment failed",
+    "CANCELLED": "Payment cancelled",
+    "succeededBody": "{{amount}} was paid successfully.",
+    "failedBody": "The payment did not go through. You can try again.",
+    "cancelledBody": "The payment was cancelled and nothing was charged.",
+    "pendingBody": "The payment is not finished yet.",
+    "close": "You can close this page and return to the app."
+  },
+  "reason": {
+    "card_declined": "The card was declined by the bank.",
+    "unsupported_test_card": "This test card is not supported. Use 4242 4242 4242 4242.",
+    "cancelled": "The payment was cancelled by the user."
+  },
+  "invalidLink": {
+    "title": "Invalid link",
+    "body": "This payment link is not valid. Please try again from the app."
+  }
+}

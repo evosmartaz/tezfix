@@ -1,0 +1,143 @@
+{
+  "appName": "TezFiks",
+  "OFFER_NEW": {
+    "title": "New job: {{category}}",
+    "body": "Job #{{number}}, {{distance}} away. Take a look and accept it."
+  },
+  "OFFER_CLOSED": {
+    "title": "Job no longer available",
+    "body": "Job #{{number}} was taken by another pro or cancelled."
+  },
+  "REQUEST_ASSIGNED": {
+    "title": "Pro found",
+    "body": "{{name}} accepted your job #{{number}}."
+  },
+  "REQUEST_EXPIRED": {
+    "title": "No pro found",
+    "body": "No pro is available for job #{{number}} right now. Please try again a bit later."
+  },
+  "REQUEST_CANCELLED": {
+    "title": "Job cancelled",
+    "body": "Job #{{number}} was cancelled."
+  },
+  "ASSIGNMENT_EN_ROUTE": {
+    "title": "Your pro is on the way",
+    "body": "{{name}} is on the way. Estimated arrival: {{minutes}} min."
+  },
+  "ASSIGNMENT_NEAR": {
+    "title": "Your pro is nearby",
+    "body": "{{name}} will arrive in about {{minutes}} min. Contact details are now available."
+  },
+  "ASSIGNMENT_ARRIVED": {
+    "title": "Your pro has arrived",
+    "body": "{{name}} has arrived at the address."
+  },
+  "ASSIGNMENT_CANCELLED": {
+    "title": "Job cancelled",
+    "body": "The work on job #{{number}} was cancelled."
+  },
+  "PRICE_PROPOSED": {
+    "title": "Final price proposed",
+    "body": "{{name}} proposed a price of {{amount}}. Confirm or dispute it."
+  },
+  "ASSIGNMENT_COMPLETED": {
+    "title": "Job completed",
+    "body": "Job #{{number}} is complete. Thank you!"
+  },
+  "PAYMENT_SUCCEEDED": {
+    "title": "Payment successful",
+    "body": "A payment of {{amount}} was received."
+  },
+  "TIP_RECEIVED": {
+    "title": "You received a tip",
+    "body": "A customer tipped you {{amount}}."
+  },
+  "RATING_RECEIVED": {
+    "title": "New rating",
+    "body": "Your work on job #{{number}} was rated."
+  },
+  "CHAT_MESSAGE": {
+    "title": "New message",
+    "body": "{{name}} sent you a message."
+  },
+  "WORKER_ASSIGNED": {
+    "title": "A job was assigned to you",
+    "body": "Job #{{number}}: {{category}}. See the details."
+  },
+  "KYC_APPROVED": {
+    "title": "Your profile is approved",
+    "body": "You can now accept jobs. Go online!"
+  },
+  "KYC_REJECTED": {
+    "title": "Profile not approved",
+    "body": "Reason: {{reason}}. Fix the details and submit again."
+  },
+  "COMPANY_APPROVED": {
+    "title": "Company approved",
+    "body": "{{company}} is approved. You can now invite workers."
+  },
+  "COMPANY_REJECTED": {
+    "title": "Company not approved",
+    "body": "{{company}}: {{reason}}. Fix the details and submit again."
+  },
+  "ACCOUNT_BLOCKED": {
+    "title": "Your account is blocked",
+    "body": "Reason: {{reason}}. Please contact support."
+  },
+  "SCHEDULED_REMINDER": {
+    "title": "Scheduled job reminder",
+    "body": "Job #{{number}}: {{date}}."
+  },
+  "SCHEDULED_UNFILLED": {
+    "title": "No pro found for your scheduled job",
+    "body": "No pro was found for job #{{number}} ({{date}}). Please choose another time."
+  },
+  "WALLET_LOW": {
+    "title": "Low balance",
+    "body": "Balance: {{amount}}. Top up to keep receiving jobs."
+  },
+  "WALLET_TOPUP": {
+    "title": "Balance topped up",
+    "body": "{{amount}} was added to your balance."
+  },
+  "PAYOUT_PAID": {
+    "title": "Payout sent",
+    "body": "{{amount}} was sent to your payout method."
+  },
+  "PROJECT_NEW": {
+    "title": "New project request",
+    "body": "Project #{{number}}: {{category}}. Send a quote."
+  },
+  "QUOTE_RECEIVED": {
+    "title": "New quote",
+    "body": "{{company}} quoted {{amount}} for project #{{number}}."
+  },
+  "QUOTE_ACCEPTED": {
+    "title": "Your quote was accepted",
+    "body": "Your quote for project #{{number}} was accepted."
+  },
+  "QUOTE_REJECTED": {
+    "title": "Your quote was declined",
+    "body": "Your quote for project #{{number}} was declined."
+  },
+  "PROJECT_REPORT": {
+    "title": "New report",
+    "body": "{{company}} sent a report for project #{{number}}."
+  },
+  "INVOICE_ISSUED": {
+    "title": "New invoice",
+    "body": "Invoice #{{number}}: {{amount}}."
+  },
+  "INVOICE_PAID": {
+    "title": "Invoice paid",
+    "body": "Invoice #{{number}} ({{amount}}) was paid."
+  },
+  "CASE_UPDATED": {
+    "title": "Your case was updated",
+    "body": "There is an update on case #{{number}}."
+  },
+  "GENERIC": {
+    "title": "{{title}}",
+    "body": "{{body}}"
+  }
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TezFiks — tətbiqləri yüklə</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --primary: #00A971; --primary-strong: #007A52; --dark: #0B1B2B; --bg: #F6F8FA; --muted: #5B6B7B; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--dark); }
+  header { background: var(--dark); color: #fff; padding: 32px 16px 28px; }
+  .wrap { max-width: 560px; margin: 0 auto; }
+  h1 { margin: 0 0 6px; font-size: 30px; }
+  header p { margin: 0; color: var(--primary); }
+  .langs { float: right; display: flex; gap: 6px; }
+  .langs button { background: transparent; color: #fff; border: 1px solid #2A3B4C; border-radius: 999px; padding: 6px 12px; font: inherit; cursor: pointer; }
+  .langs button[aria-pressed="true"] { border-color: var(--primary); color: var(--primary); }
+  main { padding: 20px 16px 40px; }
+  .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(11, 27, 43, .08); }
+  .card h2 { margin: 0 0 6px; font-size: 20px; }
+  .card p { margin: 0 0 16px; color: var(--muted); line-height: 1.45; }
+  a.btn { display: block; text-align: center; background: var(--primary-strong); color: #fff; text-decoration: none; font-weight: 600; padding: 14px; border-radius: 12px; }
+  a.btn:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+  .note { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .note ol { padding-left: 20px; }
+  [data-l] { display: none; } [data-l].on { display: revert; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="langs" role="group" aria-label="Dil / Язык / Language">
+      <button type="button" data-set="az" aria-pressed="true">AZ</button>
+      <button type="button" data-set="ru" aria-pressed="false">RU</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+    <h1>TezFiks</h1>
+    <p data-l="az" class="on">Lazım olan anda usta — ev və avto üçün</p>
+    <p data-l="ru">Мастер, когда он нужен — для дома и авто</p>
+    <p data-l="en">A handyman when you need one — for home and car</p>
+  </div>
+</header>
+<main class="wrap">
+  <section class="card">
+    <h2>TezFiks</h2>
+    <p data-l="az" class="on">Müştərilər üçün: usta çağırın, canlı izləyin, nağd və ya kartla ödəyin.</p>
+    <p data-l="ru">Для клиентов: вызовите мастера, следите за ним на карте, платите наличными или картой.</p>
+    <p data-l="en">For customers: call a handyman, follow them live, pay in cash or by card.</p>
+    <a class="btn" href="tezfiks.apk" download><span data-l="az" class="on">Android üçün yüklə</span><span data-l="ru">Скачать для Android</span><span data-l="en">Download for Android</span></a>
+  </section>
+  <section class="card">
+    <h2>TezFiks Usta</h2>
+    <p data-l="az" class="on">Ustalar və şirkətlər üçün: sifarişləri qəbul edin, yola çıxın, qiyməti daxil edin, qazancınızı izləyin.</p>
+    <p data-l="ru">Для мастеров и компаний: принимайте заказы, выезжайте, указывайте цену, следите за заработком.</p>
+    <p data-l="en">For handymen and companies: accept jobs, head out, enter the price, track your earnings.</p>
+    <a class="btn" href="tezfiks-usta.apk" download><span data-l="az" class="on">Android üçün yüklə</span><span data-l="ru">Скачать для Android</span><span data-l="en">Download for Android</span></a>
+  </section>
+  <div class="note">
+    <div data-l="az" class="on"><ol><li>Faylı telefonda açın.</li><li>Android icazə istəsə, bu mənbədən quraşdırmağa icazə verin.</li><li>Tətbiq tezliklə Google Play-də də olacaq.</li></ol></div>
+    <div data-l="ru"><ol><li>Откройте файл на телефоне.</li><li>Если Android спросит, разрешите установку из этого источника.</li><li>Скоро приложения появятся и в Google Play.</li></ol></div>
+    <div data-l="en"><ol><li>Open the file on your phone.</li><li>If Android asks, allow installing from this source.</li><li>The apps are coming to Google Play soon.</li></ol></div>
+  </div>
+</main>
+<script>
+  (function () {
+    function set(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-l]').forEach(function (el) { el.classList.toggle('on', el.getAttribute('data-l') === lang); });
+      document.querySelectorAll('[data-set]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set') === lang)); });
+    }
+    document.querySelectorAll('[data-set]').forEach(function (b) { b.addEventListener('click', function () { set(b.getAttribute('data-set')); }); });
+    var pref = (navigator.language || 'az').slice(0, 2);
+    set(pref === 'ru' || pref === 'en' ? pref : 'az');
+  })();
+</script>
+</body>
+</html>

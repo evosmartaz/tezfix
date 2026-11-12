@@ -1,0 +1,23 @@
+appId: az.tezfiks.app
+name: AU-O03a Customer - pulsuz ləğv (5 dəqiqəlik pəncərə daxilində)
+# Qarşı tərəf: node mobile-driver.mts accept-only
+---
+- runFlow: sub-create-request.yaml
+- takeScreenshot: o03-00-tracking-top
+- runFlow: sub-scroll-to-cancel.yaml
+- assertVisible:
+    id: "tracking-free-cancel"
+- takeScreenshot: o03-01-free-window
+- tapOn:
+    id: "tracking-cancel"
+- extendedWaitUntil:
+    visible:
+      id: "tracking-cancel-sheet-message"
+    timeout: 10000
+- assertNotVisible: ".*15,00.*"
+- takeScreenshot: o03-02-free-sheet
+- tapOn:
+    id: "tracking-cancel-sheet-confirm"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: o03-03-free-cancelled

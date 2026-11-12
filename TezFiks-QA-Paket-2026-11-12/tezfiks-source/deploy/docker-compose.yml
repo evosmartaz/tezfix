@@ -1,0 +1,108 @@
+# TezFiks production stack (spec section 16).
+#
+#   cp deploy/.env.example deploy/.env      # then fill in the secrets
+#   docker compose -f deploy/docker-compose.yml up -d --build
+#
+# Every port binds to 127.0.0.1. The host's nginx (deploy/nginx/tezfiks.conf) is the only public entry point.
+# Compose reads deploy/.env both for ${...} interpolation below and as the containers' environment.
+name: tezfiks
+
+x-api-env: &api-env
+  NODE_ENV: production
+  # Defaults point at the bundled containers; set DATABASE_URL / DIRECT_URL / REDIS_URL in deploy/.env to use external ones (e.g. Supabase).
+  DATABASE_URL: ${DATABASE_URL:-postgresql://${POSTGRES_USER:-tezfiks}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-tezfiks}}
+  DIRECT_URL: ${DIRECT_URL:-}
+  REDIS_URL: ${REDIS_URL:-redis://:${REDIS_PASSWORD}@redis:6379/0}
+  STORAGE_LOCAL_DIR: /data/uploads
+
+x-api-build: &api-build
+  context: ..
+  dockerfile: apps/api/Dockerfile
+
+services:
+  postgres:
+    image: postgres:17.11-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tezfiks}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+      POSTGRES_DB: ${POSTGRES_DB:-tezfiks}
+      POSTGRES_INITDB_ARGS: --data-checksums
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '127.0.0.1:${POSTGRES_PORT:-55432}:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  redis:
+    image: redis:8-alpine
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?set REDIS_PASSWORD in deploy/.env}
+    command: ['sh', '-c', 'exec redis-server --appendonly yes --maxmemory-policy noeviction --requirepass "$${REDIS_PASSWORD}"']
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli -a "$${REDIS_PASSWORD}" --no-auth-warning ping | grep -q PONG']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  # One-shot: applies migrations and the base seed (categories, platform accounts, settings, first admin). Safe to re-run.
+  migrate:
+    image: tezfiks-api:${TEZFIKS_TAG:-latest}
+    build: *api-build
+    env_file: .env
+    environment: *api-env
+    command: ['sh', '-c', 'npx prisma migrate deploy && node dist/prisma/seed/index.js']
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: 'no'
+
+  # NestJS: REST, Socket.IO and background workers in one process (ROLE=all).
+  api:
+    image: tezfiks-api:${TEZFIKS_TAG:-latest}
+    build: *api-build
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      <<: *api-env
+      ROLE: all
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - '127.0.0.1:${API_PORT:-3000}:3000'
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  # Next.js panels (TezFiks admin, company admin, company dispatch) at /tezfix.
+  panel:
+    image: tezfiks-panel:${TEZFIKS_TAG:-latest}
+    build:
+      context: ..
+      dockerfile: apps/panel/Dockerfile
+      args:
+        NEXT_PUBLIC_SOCKET_URL: ${NEXT_PUBLIC_SOCKET_URL:-}
+        NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY: ${NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY:-}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      API_INTERNAL_URL: http://api:3000/tezfix/api
+    ports:
+      - '127.0.0.1:${PANEL_PORT:-3100}:3100'
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:

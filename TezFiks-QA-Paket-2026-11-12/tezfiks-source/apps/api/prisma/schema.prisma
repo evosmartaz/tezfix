@@ -1,0 +1,1435 @@
+// TezFiks data model. Spec: docs/superpowers/specs/2026-10-24-tezfiks-design.md (section 8).
+// Money columns are BigInt minor units (qəpik). Timestamps are timestamptz (UTC).
+// Kept free of PostGIS / h3-pg so the database can move to Supabase unchanged.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------- enums ---
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum AppKind {
+  CUSTOMER
+  PRO
+  PANEL
+  ADMIN
+}
+
+enum Locale {
+  az
+  ru
+  en
+}
+
+enum CustomerType {
+  INDIVIDUAL
+  COMPANY
+}
+
+enum Vertical {
+  HOME
+  AUTO
+}
+
+enum CategoryKind {
+  GROUP
+  SERVICE
+}
+
+enum CategoryFlow {
+  INSTANT
+  QUOTE
+}
+
+enum HandymanKind {
+  SOLO
+  COMPANY_WORKER
+}
+
+enum VerificationStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  BLOCKED
+}
+
+enum VerificationSubject {
+  HANDYMAN
+  COMPANY
+}
+
+enum CompanyRole {
+  MANAGER
+  WORKER
+}
+
+enum MemberStatus {
+  ACTIVE
+  REMOVED
+}
+
+enum FinalPriceEntry {
+  WORKER
+  MANAGER
+}
+
+enum LegalForm {
+  MMC
+  ASC
+  QSC
+  FS
+  OTHER
+}
+
+enum RequestTiming {
+  NOW
+  SCHEDULED
+  EMERGENCY
+}
+
+enum ProviderPreference {
+  ANY
+  INDIVIDUAL
+  COMPANY
+}
+
+enum RequestStatus {
+  SEARCHING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+enum SlotStatus {
+  OPEN
+  FILLED
+  DONE
+  CANCELLED
+  UNFILLED
+}
+
+enum OfferStatus {
+  SENT
+  ACCEPTED
+  DECLINED
+  EXPIRED
+  CLOSED
+}
+
+enum OfferTarget {
+  HANDYMAN
+  COMPANY
+}
+
+enum OfferCloseReason {
+  TAKEN
+  EXPIRED
+  CANCELLED
+  SEARCH_ENDED
+  DECLINED
+}
+
+enum ProviderType {
+  SOLO
+  COMPANY
+}
+
+enum AssignmentStatus {
+  ACCEPTED
+  EN_ROUTE
+  ARRIVED
+  PRICE_PROPOSED
+  PRICE_DISPUTED
+  COMPLETED
+  CANCELLED_FREE
+  CANCELLED_BY_PROVIDER
+  CANCELLED_BY_CUSTOMER
+  DECLINED_ON_ARRIVAL
+  NO_SHOW
+}
+
+enum ActorSide {
+  CUSTOMER
+  PROVIDER
+  ADMIN
+  SYSTEM
+}
+
+enum ChatSide {
+  CUSTOMER
+  PROVIDER
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+}
+
+enum RatingDirection {
+  CUSTOMER_TO_PROVIDER
+  PROVIDER_TO_CUSTOMER
+}
+
+enum CaseType {
+  GUARANTEE
+  PRICE_DISPUTE
+  REPORT
+}
+
+enum CaseStatus {
+  OPEN
+  IN_REVIEW
+  REDISPATCHED
+  RESOLVED
+  REJECTED
+}
+
+enum ProjectStatus {
+  OPEN
+  AWARDED
+  IN_PROGRESS
+  COMPLETED
+  INVOICED
+  PAID
+  CANCELLED
+  EXPIRED
+}
+
+enum QuoteStatus {
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+  EXPIRED
+}
+
+enum InvoiceStatus {
+  ISSUED
+  PAID
+  VOID
+}
+
+enum LedgerOwnerType {
+  CUSTOMER_ACCOUNT
+  HANDYMAN
+  COMPANY
+  PLATFORM
+}
+
+enum LedgerAccountKind {
+  WALLET
+  EARNINGS
+  REVENUE
+  PROMO
+  EXTERNAL
+  PAYOUTS_IN_TRANSIT
+  ADJUSTMENTS
+}
+
+enum LedgerTxKind {
+  TOPUP
+  ADMIN_ADJUSTMENT
+  REQUEST_FEE_CAPTURE
+  REQUEST_FEE_REFUND
+  EMERGENCY_FEE_CAPTURE
+  EMERGENCY_FEE_REFUND
+  CANCEL_PENALTY
+  PENALTY_COMPENSATION
+  JOB_PAYMENT
+  TIP
+  B2B_FEE_CAPTURE
+  INVOICE_PAYMENT
+  PAYOUT_CREATED
+  PAYOUT_PAID
+  PAYOUT_FAILED
+}
+
+enum HoldKind {
+  REQUEST_FEE
+  EMERGENCY_FEE
+  B2B_QUOTE_FEE
+}
+
+enum HoldStatus {
+  ACTIVE
+  CAPTURED
+  RELEASED
+}
+
+enum PaymentPurpose {
+  WALLET_TOPUP
+  JOB_PAYMENT
+  TIP
+  INVOICE
+}
+
+enum PaymentStatus {
+  CREATED
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum PayoutStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+enum PayoutOwnerType {
+  HANDYMAN
+  COMPANY
+}
+
+enum PayoutMethodType {
+  CARD
+  IBAN
+}
+
+enum FileKind {
+  PROFILE_PHOTO
+  REQUEST_PHOTO
+  KYC_ID_FRONT
+  KYC_ID_BACK
+  KYC_SELFIE
+  KYC_SELFIE_TURN
+  KYC_SELFIE_BLINK
+  KYC_TRADE_PROOF
+  COMPANY_DOC
+  REPORT_PHOTO
+  CASE_PHOTO
+}
+
+enum NotificationType {
+  OFFER_NEW
+  OFFER_CLOSED
+  REQUEST_ASSIGNED
+  REQUEST_EXPIRED
+  REQUEST_CANCELLED
+  ASSIGNMENT_EN_ROUTE
+  ASSIGNMENT_NEAR
+  ASSIGNMENT_ARRIVED
+  ASSIGNMENT_CANCELLED
+  PRICE_PROPOSED
+  ASSIGNMENT_COMPLETED
+  PAYMENT_SUCCEEDED
+  TIP_RECEIVED
+  RATING_RECEIVED
+  CHAT_MESSAGE
+  WORKER_ASSIGNED
+  KYC_APPROVED
+  KYC_REJECTED
+  COMPANY_APPROVED
+  COMPANY_REJECTED
+  ACCOUNT_BLOCKED
+  SCHEDULED_REMINDER
+  SCHEDULED_UNFILLED
+  WALLET_LOW
+  WALLET_TOPUP
+  PAYOUT_PAID
+  PROJECT_NEW
+  QUOTE_RECEIVED
+  QUOTE_ACCEPTED
+  QUOTE_REJECTED
+  PROJECT_REPORT
+  INVOICE_ISSUED
+  INVOICE_PAID
+  CASE_UPDATED
+  GENERIC
+}
+
+enum AdminRole {
+  ADMIN
+  OPERATOR
+}
+
+enum PushProvider {
+  EXPO
+  FCM
+}
+
+enum AuditActorType {
+  ADMIN
+  USER
+  SYSTEM
+}
+
+// ---------------------------------------------------------- identities ---
+
+model User {
+  id          String     @id @default(uuid(7)) @db.Uuid
+  phone       String     @unique
+  firstName   String?
+  lastName    String?
+  photoFileId String?    @db.Uuid
+  locale      Locale     @default(az)
+  status      UserStatus @default(ACTIVE)
+  blockedReason String?
+  createdAt   DateTime   @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime   @updatedAt @db.Timestamptz(3)
+  deletedAt   DateTime?  @db.Timestamptz(3)
+
+  photo            File?            @relation("UserPhoto", fields: [photoFileId], references: [id], onDelete: SetNull)
+  files            File[]           @relation("FileOwner")
+  sessions         Session[]
+  devices          Device[]
+  customerAccount  CustomerAccount?
+  handymanProfile  HandymanProfile?
+  memberships      CompanyMember[]
+  ownedCompanies   Company[]        @relation("CompanyOwner")
+  notifications    Notification[]
+
+  @@map("users")
+}
+
+model AdminUser {
+  id           String    @id @default(uuid(7)) @db.Uuid
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         AdminRole @default(OPERATOR)
+  active       Boolean   @default(true)
+  lastLoginAt  DateTime? @db.Timestamptz(3)
+  createdAt    DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime  @updatedAt @db.Timestamptz(3)
+
+  sessions Session[]
+
+  @@map("admin_users")
+}
+
+model Session {
+  id                String    @id @default(uuid(7)) @db.Uuid
+  userId            String?   @db.Uuid
+  adminId           String?   @db.Uuid
+  app               AppKind
+  deviceId          String?
+  refreshTokenHash  String    @unique
+  /// Hash of the refresh token that was rotated away; presenting it again revokes the session (reuse detection).
+  previousTokenHash String?
+  expiresAt         DateTime  @db.Timestamptz(3)
+  revokedAt         DateTime? @db.Timestamptz(3)
+  revokeReason      String?
+  lastUsedAt        DateTime  @default(now()) @db.Timestamptz(3)
+  ip                String?
+  userAgent         String?
+  createdAt         DateTime  @default(now()) @db.Timestamptz(3)
+
+  user  User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  admin AdminUser? @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([adminId])
+  @@index([previousTokenHash])
+  @@map("sessions")
+}
+
+model OtpChallenge {
+  id         String    @id @default(uuid(7)) @db.Uuid
+  phone      String
+  codeHash   String
+  app        AppKind
+  locale     Locale    @default(az)
+  channel    String
+  expiresAt  DateTime  @db.Timestamptz(3)
+  attempts   Int       @default(0)
+  consumedAt DateTime? @db.Timestamptz(3)
+  ip         String?
+  createdAt  DateTime  @default(now()) @db.Timestamptz(3)
+
+  @@index([phone, createdAt])
+  @@map("otp_challenges")
+}
+
+model Device {
+  id           String        @id @default(uuid(7)) @db.Uuid
+  userId       String        @db.Uuid
+  deviceId     String
+  app          AppKind
+  platform     String
+  pushToken    String?
+  pushProvider PushProvider?
+  appVersion   String?
+  createdAt    DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, deviceId, app])
+  @@index([pushToken])
+  @@map("devices")
+}
+
+model File {
+  id          String    @id @default(uuid(7)) @db.Uuid
+  ownerUserId String?   @db.Uuid
+  kind        FileKind
+  storageKey  String    @unique
+  contentType String
+  size        Int
+  sha256      String
+  width       Int?
+  height      Int?
+  purgeAfter  DateTime? @db.Timestamptz(3)
+  deletedAt   DateTime? @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
+
+  owner      User?  @relation("FileOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  photoOf    User[] @relation("UserPhoto")
+
+  @@index([ownerUserId])
+  @@index([purgeAfter])
+  @@map("files")
+}
+
+// ------------------------------------------------------------ customers ---
+
+model CustomerAccount {
+  id              String       @id @default(uuid(7)) @db.Uuid
+  type            CustomerType @default(INDIVIDUAL)
+  ownerUserId     String       @unique @db.Uuid
+  companyName     String?
+  voen            String?
+  legalForm       LegalForm?
+  contactPerson   String?
+  ratingSum       Int          @default(0)
+  ratingCount     Int          @default(0)
+  walletAccountId String       @unique @db.Uuid
+  createdAt       DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime     @updatedAt @db.Timestamptz(3)
+
+  owner     User             @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+  wallet    LedgerAccount    @relation("CustomerWallet", fields: [walletAccountId], references: [id])
+  addresses Address[]
+  requests  ServiceRequest[]
+  projects  Project[]
+
+  @@map("customer_accounts")
+}
+
+model Address {
+  id                String    @id @default(uuid(7)) @db.Uuid
+  customerAccountId String    @db.Uuid
+  label             String?
+  lat               Float
+  lng               Float
+  cell7             String
+  cell9             String
+  placeId           String?
+  formatted         String
+  district          String?
+  street            String?
+  building          String?
+  block             String?
+  entrance          String?
+  floor             String?
+  apartment         String?
+  intercom          String?
+  note              String?
+  isSite            Boolean   @default(false)
+  createdAt         DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime  @updatedAt @db.Timestamptz(3)
+  deletedAt         DateTime? @db.Timestamptz(3)
+
+  customerAccount CustomerAccount @relation(fields: [customerAccountId], references: [id], onDelete: Cascade)
+
+  @@index([customerAccountId])
+  @@map("addresses")
+}
+
+// ----------------------------------------------------------- categories ---
+
+model Category {
+  id               String       @id @default(uuid(7)) @db.Uuid
+  slug             String       @unique
+  parentId         String?      @db.Uuid
+  vertical         Vertical
+  kind             CategoryKind
+  nameAz           String
+  nameRu           String
+  nameEn           String
+  icon             String?
+  keywords         String[]     @default([])
+  sortOrder        Int          @default(0)
+  active           Boolean      @default(true)
+  featured         Boolean      @default(false)
+  flow             CategoryFlow @default(INSTANT)
+  emergencyAllowed Boolean      @default(true)
+  createdAt        DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt        DateTime     @updatedAt @db.Timestamptz(3)
+
+  parent         Category?        @relation("CategoryTree", fields: [parentId], references: [id])
+  children       Category[]       @relation("CategoryTree")
+  handymanTrades HandymanTrade[]
+  companyTrades  CompanyTrade[]
+  requests       ServiceRequest[]
+  projects       Project[]
+
+  @@index([parentId])
+  @@map("categories")
+}
+
+// ------------------------------------------------------------ providers ---
+
+model HandymanProfile {
+  id                String             @id @default(uuid(7)) @db.Uuid
+  userId            String             @unique @db.Uuid
+  kind              HandymanKind
+  companyId         String?            @db.Uuid
+  status            VerificationStatus @default(DRAFT)
+  rejectReason      String?
+  blockedReason     String?
+  serviceRadiusKm   Int                @default(10)
+  baseLat           Float?
+  baseLng           Float?
+  baseCell7         String?
+  isOnline          Boolean            @default(false)
+  onlineSince       DateTime?          @db.Timestamptz(3)
+  lastLat           Float?
+  lastLng           Float?
+  lastCell7         String?
+  lastSeenAt        DateTime?          @db.Timestamptz(3)
+  ratingSum         Int                @default(0)
+  ratingCount       Int                @default(0)
+  completedCount    Int                @default(0)
+  strikes           Int                @default(0)
+  walletAccountId   String?            @unique @db.Uuid
+  earningsAccountId String?            @unique @db.Uuid
+  isBot             Boolean            @default(false)
+  approvedAt        DateTime?          @db.Timestamptz(3)
+  createdAt         DateTime           @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime           @updatedAt @db.Timestamptz(3)
+
+  user          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company       Company?                 @relation(fields: [companyId], references: [id])
+  wallet        LedgerAccount?           @relation("HandymanWallet", fields: [walletAccountId], references: [id])
+  earnings      LedgerAccount?           @relation("HandymanEarnings", fields: [earningsAccountId], references: [id])
+  trades        HandymanTrade[]
+  serviceCells  HandymanServiceCell[]
+  offers        Offer[]
+  assignments   Assignment[]
+  submissions   VerificationSubmission[]
+  strikeEvents  StrikeEvent[]
+  quotes        Quote[]
+  payoutMethod  PayoutMethod?
+  payouts       Payout[]
+
+  @@index([status])
+  @@index([companyId])
+  @@index([lastCell7])
+  @@map("handyman_profiles")
+}
+
+model HandymanTrade {
+  handymanId String @db.Uuid
+  categoryId String @db.Uuid
+
+  handyman HandymanProfile @relation(fields: [handymanId], references: [id], onDelete: Cascade)
+  category Category        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([handymanId, categoryId])
+  @@index([categoryId])
+  @@map("handyman_trades")
+}
+
+model HandymanServiceCell {
+  handymanId String @db.Uuid
+  cell7      String
+
+  handyman HandymanProfile @relation(fields: [handymanId], references: [id], onDelete: Cascade)
+
+  @@id([handymanId, cell7])
+  @@index([cell7])
+  @@map("handyman_service_cells")
+}
+
+model Company {
+  id                String             @id @default(uuid(7)) @db.Uuid
+  name              String
+  legalForm         LegalForm
+  voen              String             @unique
+  status            VerificationStatus @default(DRAFT)
+  rejectReason      String?
+  blockedReason     String?
+  ownerUserId       String             @db.Uuid
+  finalPriceEntry   FinalPriceEntry    @default(WORKER)
+  isVatPayer        Boolean            @default(false)
+  baseLat           Float?
+  baseLng           Float?
+  baseCell7         String?
+  baseAddress       String?
+  serviceRadiusKm   Int                @default(15)
+  ratingSum         Int                @default(0)
+  ratingCount       Int                @default(0)
+  completedCount    Int                @default(0)
+  strikes           Int                @default(0)
+  walletAccountId   String             @unique @db.Uuid
+  earningsAccountId String             @unique @db.Uuid
+  approvedAt        DateTime?          @db.Timestamptz(3)
+  createdAt         DateTime           @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime           @updatedAt @db.Timestamptz(3)
+
+  owner        User                     @relation("CompanyOwner", fields: [ownerUserId], references: [id])
+  wallet       LedgerAccount            @relation("CompanyWallet", fields: [walletAccountId], references: [id])
+  earnings     LedgerAccount            @relation("CompanyEarnings", fields: [earningsAccountId], references: [id])
+  members      CompanyMember[]
+  workers      HandymanProfile[]
+  invites      CompanyInvite[]
+  trades       CompanyTrade[]
+  serviceCells CompanyServiceCell[]
+  offers       Offer[]
+  assignments  Assignment[]
+  submissions  VerificationSubmission[]
+  strikeEvents StrikeEvent[]
+  quotes       Quote[]
+  payoutMethod PayoutMethod?
+  payouts      Payout[]
+
+  @@index([status])
+  @@map("companies")
+}
+
+model CompanyTrade {
+  companyId  String @db.Uuid
+  categoryId String @db.Uuid
+
+  company  Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([companyId, categoryId])
+  @@index([categoryId])
+  @@map("company_trades")
+}
+
+model CompanyServiceCell {
+  companyId String @db.Uuid
+  cell7     String
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@id([companyId, cell7])
+  @@index([cell7])
+  @@map("company_service_cells")
+}
+
+model CompanyMember {
+  id        String       @id @default(uuid(7)) @db.Uuid
+  companyId String       @db.Uuid
+  userId    String       @db.Uuid
+  role      CompanyRole
+  status    MemberStatus @default(ACTIVE)
+  joinedAt  DateTime     @default(now()) @db.Timestamptz(3)
+  removedAt DateTime?    @db.Timestamptz(3)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, userId])
+  @@index([userId])
+  @@map("company_members")
+}
+
+model CompanyInvite {
+  id              String      @id @default(uuid(7)) @db.Uuid
+  companyId       String      @db.Uuid
+  token           String      @unique
+  role            CompanyRole @default(WORKER)
+  expiresAt       DateTime    @db.Timestamptz(3)
+  maxUses         Int         @default(10)
+  usedCount       Int         @default(0)
+  revokedAt       DateTime?   @db.Timestamptz(3)
+  createdByUserId String      @db.Uuid
+  createdAt       DateTime    @default(now()) @db.Timestamptz(3)
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@map("company_invites")
+}
+
+model VerificationSubmission {
+  id                   String              @id @default(uuid(7)) @db.Uuid
+  subject              VerificationSubject
+  handymanId           String?             @db.Uuid
+  companyId            String?             @db.Uuid
+  submittedByUserId    String              @db.Uuid
+  idFrontFileId        String              @db.Uuid
+  idBackFileId         String              @db.Uuid
+  selfieFrontFileId    String              @db.Uuid
+  selfieTurnFileId     String              @db.Uuid
+  selfieBlinkFileId    String              @db.Uuid
+  tradeProofFileIds    String[]            @default([]) @db.Uuid
+  companyDocFileIds    String[]            @default([]) @db.Uuid
+  selfieChecks         Json?
+  consentPolicyVersion String
+  consentLocale        String
+  consentTextHash      String?
+  consentAcceptedAt    DateTime            @db.Timestamptz(3)
+  consentIp            String?
+  status               VerificationStatus  @default(PENDING_REVIEW)
+  reviewedByAdminId    String?             @db.Uuid
+  reviewedAt           DateTime?           @db.Timestamptz(3)
+  rejectReason         String?
+  docNumberLast4       String?
+  birthDate            DateTime?           @db.Date
+  docExpiry            DateTime?           @db.Date
+  createdAt            DateTime            @default(now()) @db.Timestamptz(3)
+
+  handyman HandymanProfile? @relation(fields: [handymanId], references: [id], onDelete: Cascade)
+  company  Company?         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([handymanId, createdAt])
+  @@index([companyId, createdAt])
+  @@index([status])
+  @@map("verification_submissions")
+}
+
+model KycAccessLog {
+  id      String   @id @default(uuid(7)) @db.Uuid
+  adminId String   @db.Uuid
+  fileId  String   @db.Uuid
+  at      DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([fileId])
+  @@map("kyc_access_logs")
+}
+
+// ------------------------------------------------------------- requests ---
+
+model ServiceRequest {
+  id                  String             @id @default(uuid(7)) @db.Uuid
+  number              Int                @unique @default(autoincrement())
+  customerAccountId   String             @db.Uuid
+  createdByUserId     String             @db.Uuid
+  categoryId          String             @db.Uuid
+  vertical            Vertical
+  description         String
+  timing              RequestTiming
+  scheduledAt         DateTime?          @db.Timestamptz(3)
+  slotsRequested      Int                @default(1)
+  providerPreference  ProviderPreference @default(ANY)
+  lat                 Float
+  lng                 Float
+  cell7               String
+  cell9               String
+  formatted           String
+  placeId             String?
+  district            String?
+  street              String?
+  building            String?
+  block               String?
+  entrance            String?
+  floor               String?
+  apartment           String?
+  intercom            String?
+  note                String?
+  photoFileIds        String[]           @default([]) @db.Uuid
+  status              RequestStatus      @default(SEARCHING)
+  isSearching         Boolean            @default(true)
+  dispatchStep        Int                @default(-1)
+  searchStartedAt     DateTime?          @db.Timestamptz(3)
+  searchEndsAt        DateTime?          @db.Timestamptz(3)
+  /// Scheduled requests: when live ring dispatch starts for still-open slots.
+  liveDispatchAt      DateTime?          @db.Timestamptz(3)
+  isGuaranteeFix      Boolean            @default(false)
+  originAssignmentId  String?            @db.Uuid
+  preferredHandymanId String?            @db.Uuid
+  preferredCompanyId  String?            @db.Uuid
+  cancelledAt         DateTime?          @db.Timestamptz(3)
+  cancelledBy         ActorSide?
+  cancelReason        String?
+  isDemo              Boolean            @default(false)
+  createdAt           DateTime           @default(now()) @db.Timestamptz(3)
+  updatedAt           DateTime           @updatedAt @db.Timestamptz(3)
+
+  customerAccount CustomerAccount @relation(fields: [customerAccountId], references: [id])
+  category        Category        @relation(fields: [categoryId], references: [id])
+  slots           RequestSlot[]
+  offers          Offer[]
+  assignments     Assignment[]
+
+  @@index([customerAccountId, createdAt])
+  @@index([status])
+  @@index([cell7])
+  @@index([isSearching])
+  @@map("service_requests")
+}
+
+model RequestSlot {
+  id                  String     @id @default(uuid(7)) @db.Uuid
+  requestId           String     @db.Uuid
+  index               Int
+  status              SlotStatus @default(OPEN)
+  emergencyHoldId     String?    @db.Uuid
+  emergencyCaptured   Boolean    @default(false)
+  emergencyRefunded   Boolean    @default(false)
+  currentAssignmentId String?    @db.Uuid
+  createdAt           DateTime   @default(now()) @db.Timestamptz(3)
+  updatedAt           DateTime   @updatedAt @db.Timestamptz(3)
+
+  request     ServiceRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  assignments Assignment[]
+
+  @@unique([requestId, index])
+  @@map("request_slots")
+}
+
+model Offer {
+  id               String            @id @default(uuid(7)) @db.Uuid
+  requestId        String            @db.Uuid
+  targetType       OfferTarget
+  handymanId       String?           @db.Uuid
+  companyId        String?           @db.Uuid
+  step             Int
+  ring             Int
+  status           OfferStatus       @default(SENT)
+  closeReason      OfferCloseReason?
+  sentAt           DateTime          @default(now()) @db.Timestamptz(3)
+  expiresAt        DateTime          @db.Timestamptz(3)
+  respondedAt      DateTime?         @db.Timestamptz(3)
+  deliveredAt      DateTime?         @db.Timestamptz(3)
+  seenAt           DateTime?         @db.Timestamptz(3)
+  distanceM        Int?
+  candidateWorkers Json?
+
+  request  ServiceRequest   @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  handyman HandymanProfile? @relation(fields: [handymanId], references: [id], onDelete: Cascade)
+  company  Company?         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([requestId, handymanId])
+  @@unique([requestId, companyId])
+  @@index([handymanId, status])
+  @@index([companyId, status])
+  @@index([status, expiresAt])
+  @@map("offers")
+}
+
+model Assignment {
+  id                   String           @id @default(uuid(7)) @db.Uuid
+  requestId            String           @db.Uuid
+  slotId               String           @db.Uuid
+  offerId              String?          @db.Uuid
+  providerType         ProviderType
+  handymanId           String           @db.Uuid
+  companyId            String?          @db.Uuid
+  acceptedByUserId     String           @db.Uuid
+  status               AssignmentStatus @default(ACCEPTED)
+  isGuaranteeFix       Boolean          @default(false)
+  acceptedAt           DateTime         @db.Timestamptz(3)
+  freeCancelUntil      DateTime         @db.Timestamptz(3)
+  enRouteAt            DateTime?        @db.Timestamptz(3)
+  arrivedAt            DateTime?        @db.Timestamptz(3)
+  priceProposedAt      DateTime?        @db.Timestamptz(3)
+  completedAt          DateTime?        @db.Timestamptz(3)
+  /// Set when the assignment reaches any terminal status.
+  endedAt              DateTime?        @db.Timestamptz(3)
+  cancelledAt          DateTime?        @db.Timestamptz(3)
+  cancelledBy          ActorSide?
+  cancelReason         String?
+  feeHoldId            String?          @db.Uuid
+  feeAmount            BigInt           @default(0)
+  feeCaptured          Boolean          @default(false)
+  feeRefunded          Boolean          @default(false)
+  laborAmount          BigInt?
+  materialsAmount      BigInt?
+  totalAmount          BigInt?
+  priceEnteredByUserId String?          @db.Uuid
+  paymentMethod        PaymentMethod?
+  paymentIntentId      String?          @db.Uuid
+  guaranteeUntil       DateTime?        @db.Timestamptz(3)
+  tipAmount            BigInt?
+  etaSec               Int?
+  etaUpdatedAt         DateTime?        @db.Timestamptz(3)
+  distanceM            Int?
+  routePolyline        String?
+  routeDurationSec     Int?
+  routeDistanceM       Int?
+  routeComputedAt      DateTime?        @db.Timestamptz(3)
+  routeSource          String?
+  lastLat              Float?
+  lastLng              Float?
+  lastHeading          Float?
+  lastLocationAt       DateTime?        @db.Timestamptz(3)
+  contactUnlockedAt    DateTime?        @db.Timestamptz(3)
+  customerRatedAt      DateTime?        @db.Timestamptz(3)
+  providerRatedAt      DateTime?        @db.Timestamptz(3)
+  createdAt            DateTime         @default(now()) @db.Timestamptz(3)
+  updatedAt            DateTime         @updatedAt @db.Timestamptz(3)
+
+  request  ServiceRequest  @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  slot     RequestSlot     @relation(fields: [slotId], references: [id], onDelete: Cascade)
+  handyman HandymanProfile @relation(fields: [handymanId], references: [id])
+  company  Company?        @relation(fields: [companyId], references: [id])
+  messages ChatMessage[]
+
+  @@index([handymanId, status])
+  @@index([companyId, status])
+  @@index([requestId])
+  @@index([status])
+  @@map("assignments")
+}
+
+model ChatMessage {
+  id           String    @id @default(uuid(7)) @db.Uuid
+  assignmentId String    @db.Uuid
+  senderUserId String    @db.Uuid
+  senderSide   ChatSide
+  body         String
+  createdAt    DateTime  @default(now()) @db.Timestamptz(3)
+  readAt       DateTime? @db.Timestamptz(3)
+
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  @@index([assignmentId, createdAt])
+  @@map("chat_messages")
+}
+
+model Rating {
+  id                String          @id @default(uuid(7)) @db.Uuid
+  assignmentId      String?         @db.Uuid
+  projectId         String?         @db.Uuid
+  direction         RatingDirection
+  raterUserId       String          @db.Uuid
+  handymanId        String?         @db.Uuid
+  companyId         String?         @db.Uuid
+  customerAccountId String?         @db.Uuid
+  stars             Int
+  comment           String?
+  createdAt         DateTime        @default(now()) @db.Timestamptz(3)
+
+  @@unique([assignmentId, direction])
+  @@unique([projectId, direction])
+  @@index([handymanId])
+  @@index([companyId])
+  @@index([customerAccountId])
+  @@map("ratings")
+}
+
+model StrikeEvent {
+  id               String    @id @default(uuid(7)) @db.Uuid
+  handymanId       String?   @db.Uuid
+  companyId        String?   @db.Uuid
+  assignmentId     String?   @db.Uuid
+  reason           String
+  createdAt        DateTime  @default(now()) @db.Timestamptz(3)
+  clearedAt        DateTime? @db.Timestamptz(3)
+  clearedByAdminId String?   @db.Uuid
+
+  handyman HandymanProfile? @relation(fields: [handymanId], references: [id], onDelete: Cascade)
+  company  Company?         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([handymanId])
+  @@index([companyId])
+  @@map("strike_events")
+}
+
+model Case {
+  id                String     @id @default(uuid(7)) @db.Uuid
+  type              CaseType
+  status            CaseStatus @default(OPEN)
+  assignmentId      String?    @db.Uuid
+  projectId         String?    @db.Uuid
+  openedByUserId    String     @db.Uuid
+  description       String
+  photoFileIds      String[]   @default([]) @db.Uuid
+  resolutionNote    String?
+  resolvedByAdminId String?    @db.Uuid
+  followUpRequestId String?    @db.Uuid
+  createdAt         DateTime   @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime   @updatedAt @db.Timestamptz(3)
+
+  notes CaseNote[]
+
+  @@index([status])
+  @@index([assignmentId])
+  @@index([openedByUserId])
+  @@map("cases")
+}
+
+model CaseNote {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  caseId     String   @db.Uuid
+  adminId    String?  @db.Uuid
+  authorName String
+  body       String
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+
+  case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+
+  @@index([caseId])
+  @@map("case_notes")
+}
+
+// ------------------------------------------------------------- B2B ---
+
+model Project {
+  id                String        @id @default(uuid(7)) @db.Uuid
+  number            Int           @unique @default(autoincrement())
+  customerAccountId String        @db.Uuid
+  createdByUserId   String        @db.Uuid
+  categoryId        String        @db.Uuid
+  title             String?
+  scope             String
+  dateFrom          DateTime      @db.Date
+  dateTo            DateTime      @db.Date
+  workDays          Int
+  workersNeeded     Int
+  description       String
+  photoFileIds      String[]      @default([]) @db.Uuid
+  lat               Float
+  lng               Float
+  cell7             String
+  formatted         String
+  placeId           String?
+  district          String?
+  street            String?
+  building          String?
+  block             String?
+  entrance          String?
+  floor             String?
+  apartment         String?
+  intercom          String?
+  note              String?
+  status            ProjectStatus @default(OPEN)
+  quoteDeadline     DateTime      @db.Timestamptz(3)
+  awardedQuoteId    String?       @unique @db.Uuid
+  guaranteeUntil    DateTime?     @db.Timestamptz(3)
+  completedAt       DateTime?     @db.Timestamptz(3)
+  cancelledAt       DateTime?     @db.Timestamptz(3)
+  createdAt         DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime      @updatedAt @db.Timestamptz(3)
+
+  customerAccount CustomerAccount @relation(fields: [customerAccountId], references: [id])
+  category        Category        @relation(fields: [categoryId], references: [id])
+  quotes          Quote[]
+  reports         ProjectReport[]
+  invoice         Invoice?
+
+  @@index([status])
+  @@index([cell7])
+  @@index([customerAccountId])
+  @@map("projects")
+}
+
+model Quote {
+  id                String       @id @default(uuid(7)) @db.Uuid
+  projectId         String       @db.Uuid
+  providerType      ProviderType
+  handymanId        String?      @db.Uuid
+  companyId         String?      @db.Uuid
+  submittedByUserId String       @db.Uuid
+  totalAmount       BigInt
+  workers           Int
+  days              Int
+  note              String?
+  status            QuoteStatus  @default(SUBMITTED)
+  holdId            String?      @db.Uuid
+  feeAmount         BigInt       @default(0)
+  feeCaptured       Boolean      @default(false)
+  terms             Json?
+  createdAt         DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime     @updatedAt @db.Timestamptz(3)
+
+  project  Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  handyman HandymanProfile? @relation(fields: [handymanId], references: [id])
+  company  Company?         @relation(fields: [companyId], references: [id])
+
+  @@unique([projectId, handymanId])
+  @@unique([projectId, companyId])
+  @@map("quotes")
+}
+
+model ProjectReport {
+  id              String   @id @default(uuid(7)) @db.Uuid
+  projectId       String   @db.Uuid
+  authorUserId    String   @db.Uuid
+  reportDate      DateTime @db.Date
+  note            String
+  progressPercent Int
+  photoFileIds    String[] @default([]) @db.Uuid
+  createdAt       DateTime @default(now()) @db.Timestamptz(3)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@map("project_reports")
+}
+
+model Invoice {
+  id                  String        @id @default(uuid(7)) @db.Uuid
+  number              String        @unique
+  projectId           String        @unique @db.Uuid
+  issuerType          ProviderType
+  handymanId          String?       @db.Uuid
+  companyId           String?       @db.Uuid
+  customerAccountId   String        @db.Uuid
+  subtotal            BigInt
+  vatRatePercent      Float
+  vatAmount           BigInt
+  total               BigInt
+  currency            String        @default("AZN")
+  status              InvoiceStatus @default(ISSUED)
+  issuedAt            DateTime      @default(now()) @db.Timestamptz(3)
+  paidAt              DateTime?     @db.Timestamptz(3)
+  markedPaidByAdminId String?       @db.Uuid
+  lines               Json
+  issuerSnapshot      Json
+  customerSnapshot    Json
+  createdAt           DateTime      @default(now()) @db.Timestamptz(3)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("invoices")
+}
+
+// --------------------------------------------------------------- ledger ---
+
+model LedgerAccount {
+  id            String            @id @default(uuid(7)) @db.Uuid
+  ownerType     LedgerOwnerType
+  /// Owner entity id (customer account, handyman profile, company). Platform accounts use the nil UUID.
+  ownerId       String            @db.Uuid
+  kind          LedgerAccountKind
+  currency      String            @default("AZN")
+  postedBalance BigInt            @default(0)
+  heldBalance   BigInt            @default(0)
+  allowNegative Boolean           @default(false)
+  version       Int               @default(0)
+  createdAt     DateTime          @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime          @updatedAt @db.Timestamptz(3)
+
+  entries          LedgerEntry[]
+  holds            Hold[]
+  customerAccount  CustomerAccount? @relation("CustomerWallet")
+  handymanWallet   HandymanProfile? @relation("HandymanWallet")
+  handymanEarnings HandymanProfile? @relation("HandymanEarnings")
+  companyWallet    Company?         @relation("CompanyWallet")
+  companyEarnings  Company?         @relation("CompanyEarnings")
+
+  @@unique([ownerType, ownerId, kind, currency])
+  @@map("ledger_accounts")
+}
+
+model LedgerTransaction {
+  id              String          @id @default(uuid(7)) @db.Uuid
+  kind            LedgerTxKind
+  idempotencyKey  String          @unique
+  memo            String?
+  requestId       String?         @db.Uuid
+  assignmentId    String?         @db.Uuid
+  projectId       String?         @db.Uuid
+  paymentIntentId String?         @db.Uuid
+  payoutId        String?         @db.Uuid
+  invoiceId       String?         @db.Uuid
+  actorType       AuditActorType?
+  actorId         String?         @db.Uuid
+  metadata        Json?
+  createdAt       DateTime        @default(now()) @db.Timestamptz(3)
+
+  entries LedgerEntry[]
+
+  @@index([requestId])
+  @@index([assignmentId])
+  @@index([createdAt])
+  @@map("ledger_transactions")
+}
+
+model LedgerEntry {
+  id            String   @id @default(uuid(7)) @db.Uuid
+  transactionId String   @db.Uuid
+  accountId     String   @db.Uuid
+  amount        BigInt
+  balanceAfter  BigInt
+  createdAt     DateTime @default(now()) @db.Timestamptz(3)
+
+  transaction LedgerTransaction @relation(fields: [transactionId], references: [id])
+  account     LedgerAccount     @relation(fields: [accountId], references: [id])
+
+  @@index([accountId, createdAt])
+  @@index([transactionId])
+  @@map("ledger_entries")
+}
+
+model Hold {
+  id           String     @id @default(uuid(7)) @db.Uuid
+  accountId    String     @db.Uuid
+  amount       BigInt
+  kind         HoldKind
+  status       HoldStatus @default(ACTIVE)
+  requestId    String?    @db.Uuid
+  slotId       String?    @db.Uuid
+  assignmentId String?    @db.Uuid
+  quoteId      String?    @db.Uuid
+  capturedTxId String?    @db.Uuid
+  createdAt    DateTime   @default(now()) @db.Timestamptz(3)
+  resolvedAt   DateTime?  @db.Timestamptz(3)
+
+  account LedgerAccount @relation(fields: [accountId], references: [id])
+
+  @@index([accountId, status])
+  @@index([assignmentId])
+  @@index([requestId])
+  @@map("holds")
+}
+
+model IdempotencyKey {
+  /// scope + ":" + client key
+  key            String    @id
+  requestHash    String
+  responseStatus Int?
+  responseBody   Json?
+  lockedUntil    DateTime? @db.Timestamptz(3)
+  createdAt      DateTime  @default(now()) @db.Timestamptz(3)
+
+  @@index([createdAt])
+  @@map("idempotency_keys")
+}
+
+// ------------------------------------------------------------- payments ---
+
+model PaymentIntent {
+  id              String         @id @default(uuid(7)) @db.Uuid
+  purpose         PaymentPurpose
+  amount          BigInt
+  currency        String         @default("AZN")
+  status          PaymentStatus  @default(CREATED)
+  provider        String         @default("fake")
+  providerRef     String?
+  payerUserId     String?        @db.Uuid
+  /// Wallet credited by a WALLET_TOPUP.
+  walletAccountId String?        @db.Uuid
+  assignmentId    String?        @db.Uuid
+  invoiceId       String?        @db.Uuid
+  companyId       String?        @db.Uuid
+  returnUrl       String?
+  idempotencyKey  String?        @unique
+  failureReason   String?
+  completedAt     DateTime?      @db.Timestamptz(3)
+  createdAt       DateTime       @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime       @updatedAt @db.Timestamptz(3)
+
+  @@index([payerUserId])
+  @@index([assignmentId])
+  @@index([status])
+  @@map("payment_intents")
+}
+
+model Payout {
+  id              String          @id @default(uuid(7)) @db.Uuid
+  ownerType       PayoutOwnerType
+  handymanId      String?         @db.Uuid
+  companyId       String?         @db.Uuid
+  amount          BigInt
+  currency        String          @default("AZN")
+  periodStart     DateTime        @db.Timestamptz(3)
+  periodEnd       DateTime        @db.Timestamptz(3)
+  status          PayoutStatus    @default(PENDING)
+  idempotencyKey  String          @unique
+  methodSnapshot  Json?
+  failureReason   String?
+  paidAt          DateTime?       @db.Timestamptz(3)
+  markedByAdminId String?         @db.Uuid
+  createdAt       DateTime        @default(now()) @db.Timestamptz(3)
+  updatedAt       DateTime        @updatedAt @db.Timestamptz(3)
+
+  handyman HandymanProfile? @relation(fields: [handymanId], references: [id])
+  company  Company?         @relation(fields: [companyId], references: [id])
+
+  @@index([status])
+  @@map("payouts")
+}
+
+model PayoutMethod {
+  id           String           @id @default(uuid(7)) @db.Uuid
+  handymanId   String?          @unique @db.Uuid
+  companyId    String?          @unique @db.Uuid
+  type         PayoutMethodType
+  maskedNumber String
+  holderName   String
+  createdAt    DateTime         @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime         @updatedAt @db.Timestamptz(3)
+
+  handyman HandymanProfile? @relation(fields: [handymanId], references: [id], onDelete: Cascade)
+  company  Company?         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@map("payout_methods")
+}
+
+// ---------------------------------------------------------------- misc ---
+
+model Notification {
+  id        String           @id @default(uuid(7)) @db.Uuid
+  userId    String           @db.Uuid
+  type      NotificationType
+  title     String
+  body      String
+  data      Json             @default("{}")
+  readAt    DateTime?        @db.Timestamptz(3)
+  createdAt DateTime         @default(now()) @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("notifications")
+}
+
+model AiClassification {
+  id              String   @id @default(uuid(7)) @db.Uuid
+  userId          String   @db.Uuid
+  fileId          String   @db.Uuid
+  model           String
+  resultSlug      String?
+  confidence      String?
+  candidates      Json?
+  latencyMs       Int?
+  inputTokens     Int?
+  outputTokens    Int?
+  finalCategoryId String?  @db.Uuid
+  error           String?
+  createdAt       DateTime @default(now()) @db.Timestamptz(3)
+
+  @@index([userId])
+  @@map("ai_classifications")
+}
+
+model PlatformSetting {
+  key              String   @id
+  value            Json
+  updatedByAdminId String?  @db.Uuid
+  updatedAt        DateTime @updatedAt @db.Timestamptz(3)
+
+  @@map("platform_settings")
+}
+
+model AuditLog {
+  id         String         @id @default(uuid(7)) @db.Uuid
+  actorType  AuditActorType
+  actorId    String?        @db.Uuid
+  action     String
+  entityType String
+  entityId   String?
+  before     Json?
+  after      Json?
+  ip         String?
+  at         DateTime       @default(now()) @db.Timestamptz(3)
+
+  @@index([entityType, entityId])
+  @@index([at])
+  @@map("audit_logs")
+}

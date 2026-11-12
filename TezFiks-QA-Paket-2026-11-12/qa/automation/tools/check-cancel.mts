@@ -1,0 +1,10 @@
+import { api, login } from '../lib.mts';
+const id = process.argv[2];
+const c = await login('demo', 'CUSTOMER'); const e = await login('elvin', 'PRO');
+const a: any = await c.c.call(api.assignments.get, { params: { id } });
+const p: any = await e.c.call(api.pro.assignment, { params: { id } });
+const cw: any = await c.c.call(api.wallet.get).catch(() => null);
+const tx: any = await c.c.call(api.wallet.transactions, { query: {} } as any).catch(() => null);
+const etx: any = await e.c.call(api.pro.walletTransactions ?? api.wallet.transactions, { query: {} } as any).catch(() => null);
+console.log(JSON.stringify({ status: a.status, cancelledBy: a.cancelledBy ?? a.cancel, proFee: p.fee, customerTx: (tx?.items ?? []).slice(0, 2).map((t: any) => [t.kind ?? t.type, t.amount, t.createdAt]), elvinTx: (etx?.items ?? []).slice(0, 3).map((t: any) => [t.kind ?? t.type, t.amount, t.createdAt]) }, null, 1));
+process.exit(0);

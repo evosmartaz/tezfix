@@ -1,0 +1,151 @@
+import { z } from 'zod';
+
+export const ERROR_CODES = [
+  'VALIDATION_FAILED',
+  'UNAUTHORIZED',
+  'FORBIDDEN',
+  'NOT_FOUND',
+  'CONFLICT',
+  'RATE_LIMITED',
+  'INTERNAL',
+  'OTP_INVALID',
+  'OTP_EXPIRED',
+  'OTP_TOO_MANY_ATTEMPTS',
+  'OTP_COOLDOWN',
+  'PHONE_INVALID',
+  'SESSION_REVOKED',
+  'REFRESH_INVALID',
+  'INVALID_CREDENTIALS',
+  'USER_BLOCKED',
+  'PROFILE_INCOMPLETE',
+  'CUSTOMER_ACCOUNT_REQUIRED',
+  'INSUFFICIENT_BALANCE',
+  'CUSTOMER_IN_DEBT',
+  'IDEMPOTENCY_CONFLICT',
+  'OFFER_UNAVAILABLE',
+  'OFFER_EXPIRED',
+  'NOT_ELIGIBLE',
+  'INVALID_STATE',
+  'CANCEL_NOT_ALLOWED',
+  'TOO_EARLY',
+  'HANDYMAN_NOT_APPROVED',
+  'COMPANY_NOT_APPROVED',
+  'NOT_COMPANY_MANAGER',
+  'ALREADY_IN_COMPANY',
+  'ALREADY_HANDYMAN',
+  'INVITE_INVALID',
+  'WORKER_UNAVAILABLE',
+  'CONTACT_LOCKED',
+  'CHAT_LOCKED',
+  'CATEGORY_INACTIVE',
+  'CATEGORY_REQUIRES_QUOTE',
+  'CATEGORY_NOT_INSTANT',
+  'EMERGENCY_NOT_ALLOWED',
+  'SCHEDULE_TOO_SOON',
+  'SCHEDULE_TOO_FAR',
+  'GUARANTEE_NOT_AVAILABLE',
+  'ALREADY_RATED',
+  'FILE_TOO_LARGE',
+  'FILE_TYPE_NOT_ALLOWED',
+  'FILE_NOT_OWNED',
+  'KYC_RESUBMIT_LIMIT',
+  'KYC_ALREADY_PENDING',
+  'PAYMENT_DECLINED',
+  'PAYMENT_NOT_PENDING',
+  'QUOTE_WINDOW_CLOSED',
+  'AI_UNAVAILABLE',
+  'DEMO_DISABLED',
+  'NOT_NEAR_ADDRESS',
+  'PAYMENTS_UNAVAILABLE',
+] as const;
+
+export type ErrorCode = (typeof ERROR_CODES)[number];
+export const ErrorCodeSchema = z.enum(ERROR_CODES);
+
+/** Default HTTP status for each error code. */
+export const ERROR_HTTP_STATUS: Record<ErrorCode, number> = {
+  VALIDATION_FAILED: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  RATE_LIMITED: 429,
+  INTERNAL: 500,
+  OTP_INVALID: 400,
+  OTP_EXPIRED: 400,
+  OTP_TOO_MANY_ATTEMPTS: 429,
+  OTP_COOLDOWN: 429,
+  PHONE_INVALID: 400,
+  SESSION_REVOKED: 401,
+  REFRESH_INVALID: 401,
+  INVALID_CREDENTIALS: 401,
+  USER_BLOCKED: 403,
+  PROFILE_INCOMPLETE: 409,
+  CUSTOMER_ACCOUNT_REQUIRED: 409,
+  INSUFFICIENT_BALANCE: 402,
+  CUSTOMER_IN_DEBT: 402,
+  IDEMPOTENCY_CONFLICT: 409,
+  OFFER_UNAVAILABLE: 409,
+  OFFER_EXPIRED: 409,
+  NOT_ELIGIBLE: 403,
+  INVALID_STATE: 409,
+  CANCEL_NOT_ALLOWED: 409,
+  TOO_EARLY: 409,
+  HANDYMAN_NOT_APPROVED: 403,
+  COMPANY_NOT_APPROVED: 403,
+  NOT_COMPANY_MANAGER: 403,
+  ALREADY_IN_COMPANY: 409,
+  ALREADY_HANDYMAN: 409,
+  INVITE_INVALID: 410,
+  WORKER_UNAVAILABLE: 409,
+  CONTACT_LOCKED: 403,
+  CHAT_LOCKED: 403,
+  CATEGORY_INACTIVE: 400,
+  CATEGORY_REQUIRES_QUOTE: 400,
+  CATEGORY_NOT_INSTANT: 400,
+  EMERGENCY_NOT_ALLOWED: 400,
+  SCHEDULE_TOO_SOON: 400,
+  SCHEDULE_TOO_FAR: 400,
+  GUARANTEE_NOT_AVAILABLE: 409,
+  ALREADY_RATED: 409,
+  FILE_TOO_LARGE: 413,
+  FILE_TYPE_NOT_ALLOWED: 415,
+  FILE_NOT_OWNED: 403,
+  KYC_RESUBMIT_LIMIT: 429,
+  KYC_ALREADY_PENDING: 409,
+  PAYMENT_DECLINED: 402,
+  PAYMENT_NOT_PENDING: 409,
+  QUOTE_WINDOW_CLOSED: 409,
+  AI_UNAVAILABLE: 503,
+  DEMO_DISABLED: 403,
+  /** "Arrived" without a fresh server-side position near the request address (outside the demo). */
+  NOT_NEAR_ADDRESS: 409,
+  /** Card payments, top-ups and tips need a real payment provider; the test checkout runs only in the demo. */
+  PAYMENTS_UNAVAILABLE: 503,
+};
+
+export const ApiErrorBodySchema = z.object({
+  error: z.object({
+    code: z.string(),
+    message: z.string(),
+    details: z.unknown().optional(),
+  }),
+});
+export type ApiErrorBody = z.infer<typeof ApiErrorBodySchema>;
+
+/** Error thrown by the typed API client. */
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly code: ErrorCode | string,
+    message: string,
+    public readonly details?: unknown,
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+
+  is(code: ErrorCode): boolean {
+    return this.code === code;
+  }
+}

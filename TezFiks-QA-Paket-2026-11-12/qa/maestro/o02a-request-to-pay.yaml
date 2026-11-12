@@ -1,0 +1,72 @@
+appId: az.tezfiks.app
+name: AU-O02a Customer - sorğu, usta tapılır, izləmə, qiymət, ödəniş ekranı
+# Qarşı tərəf: cd qa/automation && node mobile-driver.mts serve  (Elvini API ilə idarə edir)
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- tapOn: "Santexnik"
+- extendedWaitUntil:
+    visible:
+      id: "create-request-screen"
+    timeout: 20000
+- tapOn:
+    id: "request-description"
+- inputText: "QA Maestro: metbexde kran axir"
+- hideKeyboard
+- takeScreenshot: o02-01-request-form
+- scrollUntilVisible:
+    element:
+      id: "request-submit"
+- tapOn:
+    id: "request-submit"
+- extendedWaitUntil:
+    visible:
+      id: "searching-screen"
+    timeout: 30000
+- takeScreenshot: o02-02-searching
+# Driver Elvini onlayn edib qəbul edir -> izləmə ekranı
+- extendedWaitUntil:
+    visible:
+      id: "(tracking-screen|searching-found|searching-view-order)"
+    timeout: 120000
+- tapOn:
+    id: "searching-view-order"
+    optional: true
+- tapOn:
+    id: "searching-found-.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: "tracking-screen"
+    timeout: 30000
+- takeScreenshot: o02-03-tracking-accepted
+- extendedWaitUntil:
+    visible:
+      id: "tracking-phone"
+    timeout: 120000
+    optional: true
+- takeScreenshot: o02-04-tracking-enroute
+- extendedWaitUntil:
+    visible:
+      id: "tracking-pay"
+    timeout: 180000
+- takeScreenshot: o02-05-price-proposed
+- tapOn:
+    id: "tracking-pay"
+- extendedWaitUntil:
+    visible:
+      id: "pay-screen"
+    timeout: 20000
+- assertVisible:
+    id: "pay-total"
+- takeScreenshot: o02-06-pay
+- tapOn:
+    id: "pay-method-CARD"
+- tapOn:
+    id: "pay-submit"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: o02-07-checkout

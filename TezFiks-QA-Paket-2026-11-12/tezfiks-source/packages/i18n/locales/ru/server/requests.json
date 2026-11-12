@@ -1,0 +1,13 @@
+{
+  "memo": {
+    "requestFee": "Заказ #{{number}}: комиссия платформы",
+    "requestFeeRefund": "Заказ #{{number}}: возврат комиссии платформы",
+    "emergencyFee": "Заказ #{{number}}: плата за срочный вызов",
+    "emergencyFeeRefund": "Заказ #{{number}}: возврат платы за срочный вызов",
+    "cancelPenalty": "Заказ #{{number}}: штраф за отмену",
+    "penaltyCompensation": "Заказ #{{number}}: компенсация за отмену"
+  },
+  "offer": {
+    "areaFallback": "Баку"
+  }
+}

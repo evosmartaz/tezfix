@@ -1,0 +1,25 @@
+{
+  "actor": {
+    "CUSTOMER": "Customer",
+    "PROVIDER": "Pro",
+    "ADMIN": "Admin",
+    "SYSTEM": "System"
+  },
+  "timeline": {
+    "created": "{{category}}, pros needed: {{slots}}",
+    "offersSent": "Step {{step}}, ring {{ring}}: {{n}} offer(s)",
+    "price": "Labour: {{labor}}, materials: {{materials}}, total: {{total}}",
+    "paidCash": "Paid in cash",
+    "paidCard": "Paid by card",
+    "payment": "{{purpose}}: {{amount}}",
+    "amount": "{{amount}}",
+    "adminCancel": "Cancelled by an admin: {{reason}}",
+    "guaranteeFix": "Guarantee re-fix (no fees)"
+  },
+  "purpose": {
+    "JOB_PAYMENT": "Job payment",
+    "TIP": "Tip",
+    "WALLET_TOPUP": "Wallet top-up",
+    "INVOICE": "Invoice"
+  }
+}

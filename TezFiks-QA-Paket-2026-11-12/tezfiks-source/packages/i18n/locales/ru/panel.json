@@ -1,0 +1,1573 @@
+{
+  "appName": "Панель TezFiks",
+  "home": {
+    "title": "Панель управления TezFiks",
+    "subtitle": "Выберите панель для входа",
+    "admin": "Админ-панель TezFiks",
+    "adminHint": "Вход по e-mail и паролю",
+    "company": "Панель компании",
+    "companyHint": "Вход для менеджера по номеру телефона"
+  },
+  "nav": {
+    "admin": {
+      "dashboard": "Дашборд",
+      "orders": "Заказы",
+      "handymen": "Мастера",
+      "companies": "Компании",
+      "customers": "Клиенты",
+      "payments": "Платежи",
+      "cases": "Обращения",
+      "projects": "Проекты",
+      "categories": "Категории",
+      "map": "Карта",
+      "settings": "Настройки",
+      "audit": "Аудит",
+      "demo": "Демо"
+    },
+    "company": {
+      "dashboard": "Дашборд",
+      "dispatch": "Диспетчерская",
+      "orders": "Заказы",
+      "workers": "Мастера",
+      "balance": "Баланс",
+      "projects": "Проекты",
+      "settings": "Настройки"
+    }
+  },
+  "shell": {
+    "adminTitle": "TezFiks Админ",
+    "companyTitle": "Панель компании",
+    "logout": "Выйти",
+    "language": "Язык",
+    "switchCompany": "Сменить компанию",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "live": "Онлайн",
+    "offline": "Нет соединения",
+    "signedInAs": "Вы вошли как {{name}}"
+  },
+  "auth": {
+    "adminTitle": "Админ-панель TezFiks",
+    "adminSubtitle": "Войдите с учётной записью администратора",
+    "email": "E-mail",
+    "password": "Пароль",
+    "signIn": "Войти",
+    "companyTitle": "Панель компании",
+    "companySubtitle": "Войдите как менеджер по номеру телефона",
+    "sendCode": "Отправить код в WhatsApp",
+    "codeSentTo": "Код отправлен в WhatsApp на номер {{phone}}",
+    "code": "6-значный код",
+    "verify": "Подтвердить",
+    "resend": "Отправить код повторно",
+    "resendIn": "Новый код через {{seconds}} с",
+    "devCodeHint": "Тестовый режим: код {{code}}",
+    "changePhone": "Изменить номер",
+    "chooseCompanyTitle": "Выберите компанию",
+    "chooseCompanySubtitle": "Компании, которыми вы управляете",
+    "noManagedCompanies": "Этот номер не является менеджером ни одной компании. Компания регистрируется в приложении TezFiks Usta.",
+    "sessionExpired": "Сессия истекла, войдите снова",
+    "invalidEmail": "Введите корректный e-mail",
+    "required": "Обязательное поле",
+    "codeFormat": "Код должен состоять из 6 цифр",
+    "phonePlaceholder": "050 123 45 67"
+  },
+  "placeholder": {
+    "title": "Скоро",
+    "description": "Этот раздел в разработке."
+  },
+  "table": {
+    "previous": "Назад",
+    "next": "Далее",
+    "page": "Страница {{page}}",
+    "empty": "Нет данных",
+    "loading": "Загрузка..."
+  },
+  "confirm": {
+    "title": "Вы уверены?",
+    "description": "Это действие может быть необратимым."
+  },
+  "errorPage": {
+    "title": "Произошла ошибка",
+    "description": "Не удалось загрузить страницу. Попробуйте ещё раз.",
+    "notFoundTitle": "Страница не найдена",
+    "notFoundDescription": "Страница не существует или у вас нет к ней доступа.",
+    "backHome": "На главную"
+  },
+  "join": {
+    "title": "{{company}} приглашает вас в команду",
+    "role": "Роль: {{role}}",
+    "expires": "Приглашение действует до {{date}}",
+    "instructions": "Чтобы присоединиться, установите приложение TezFiks Usta и откройте это приглашение в нём.",
+    "openApp": "Открыть в TezFiks Usta",
+    "getApp": "Скачать приложение (Android)",
+    "storeSoon": "Приложение скоро появится в Google Play; сейчас его можно скачать напрямую.",
+    "invalidTitle": "Приглашение недействительно",
+    "reason": {
+      "EXPIRED": "Срок приглашения истёк. Попросите компанию отправить новое.",
+      "REVOKED": "Приглашение отозвано.",
+      "USED_UP": "Это приглашение уже использовано.",
+      "COMPANY_NOT_APPROVED": "Компания ещё не подтверждена.",
+      "NOT_FOUND": "Приглашение не найдено. Проверьте ссылку."
+    }
+  },
+  "status": {
+    "unknown": "Неизвестно",
+    "offerStatus": {
+      "SENT": "Отправлено",
+      "ACCEPTED": "Принято",
+      "DECLINED": "Отклонено",
+      "EXPIRED": "Истекло",
+      "CLOSED": "Закрыто"
+    },
+    "slotStatus": {
+      "OPEN": "Открыт",
+      "FILLED": "Мастер назначен",
+      "DONE": "Выполнен",
+      "CANCELLED": "Отменён",
+      "UNFILLED": "Мастер не найден"
+    },
+    "userStatus": {
+      "ACTIVE": "Активен",
+      "BLOCKED": "Заблокирован",
+      "DELETED": "Удалён"
+    },
+    "holdStatus": {
+      "ACTIVE": "Заблокировано",
+      "CAPTURED": "Списано",
+      "RELEASED": "Разблокировано"
+    },
+    "memberStatus": {
+      "ACTIVE": "Активен",
+      "REMOVED": "Исключён"
+    }
+  },
+  "map": {
+    "loading": "Загрузка карты...",
+    "osmAttribution": "© участники OpenStreetMap"
+  },
+  "admin": {
+    "common": {
+      "search": "Поиск",
+      "searchPlaceholder": "Искать...",
+      "all": "Все",
+      "apply": "Применить",
+      "reset": "Сбросить",
+      "from": "С",
+      "to": "По",
+      "view": "Открыть",
+      "yes": "Да",
+      "no": "Нет",
+      "bot": "Бот",
+      "online": "Онлайн",
+      "offline": "Офлайн",
+      "busy": "Занят",
+      "reason": "Причина",
+      "reasonPlaceholder": "Кратко опишите причину",
+      "reasonLength": "Причина должна содержать {{min}}–{{max}} символов",
+      "notFoundTitle": "Ничего не найдено",
+      "notFound": "Запись не найдена: она удалена или ссылка неверна."
+    },
+    "months": {
+      "m1": "января",
+      "m2": "февраля",
+      "m3": "марта",
+      "m4": "апреля",
+      "m5": "мая",
+      "m6": "июня",
+      "m7": "июля",
+      "m8": "августа",
+      "m9": "сентября",
+      "m10": "октября",
+      "m11": "ноября",
+      "m12": "декабря"
+    },
+    "enums": {
+      "providerType": {
+        "SOLO": "Частный мастер",
+        "COMPANY": "Компания"
+      },
+      "handymanKind": {
+        "SOLO": "Частный мастер",
+        "COMPANY_WORKER": "Мастер компании"
+      },
+      "actorSide": {
+        "CUSTOMER": "клиент",
+        "PROVIDER": "мастер",
+        "ADMIN": "админ",
+        "SYSTEM": "система"
+      },
+      "offerTarget": {
+        "HANDYMAN": "Мастер",
+        "COMPANY": "Компания"
+      },
+      "ledgerOwnerType": {
+        "CUSTOMER_ACCOUNT": "Клиент",
+        "HANDYMAN": "Мастер",
+        "COMPANY": "Компания",
+        "PLATFORM": "Платформа"
+      },
+      "ledgerAccountKind": {
+        "WALLET": "баланс",
+        "EARNINGS": "заработок",
+        "REVENUE": "доход",
+        "PROMO": "промо",
+        "EXTERNAL": "внешний",
+        "PAYOUTS_IN_TRANSIT": "выплаты в пути",
+        "ADJUSTMENTS": "корректировки"
+      },
+      "paymentPurpose": {
+        "WALLET_TOPUP": "Пополнение баланса",
+        "JOB_PAYMENT": "Оплата работы",
+        "TIP": "Чаевые",
+        "INVOICE": "Счёт-фактура"
+      },
+      "payoutOwnerType": {
+        "HANDYMAN": "Мастер",
+        "COMPANY": "Компания"
+      },
+      "payoutMethodType": {
+        "CARD": "Карта",
+        "IBAN": "IBAN"
+      },
+      "adminRole": {
+        "ADMIN": "Админ",
+        "OPERATOR": "Оператор"
+      },
+      "auditActor": {
+        "ADMIN": "Админ",
+        "USER": "Пользователь",
+        "SYSTEM": "Система"
+      },
+      "displayStatus": {
+        "ACTIVE": "Активен",
+        "LOW_BALANCE": "Мало средств",
+        "PENDING": "Ждёт проверки",
+        "BLOCKED": "Заблокирован",
+        "REJECTED": "Отклонён",
+        "DRAFT": "Черновик"
+      },
+      "resolveOutcome": {
+        "RESOLVED": "Решено",
+        "COMPLETE_CASH": "Завершить с оплатой наличными",
+        "REPROPOSE_PRICE": "Предложить новую цену",
+        "CANCEL_ASSIGNMENT": "Отменить заказ без сборов"
+      }
+    },
+    "dashboard": {
+      "title": "Дашборд",
+      "titleWithDate": "Дашборд — {{date}}",
+      "ordersToday": "Заказы сегодня",
+      "vsYesterday": "{{delta}} по сравнению со вчера",
+      "noComparison": "Нет данных для сравнения",
+      "activeHandymen": "Активные мастера",
+      "online": "онлайн: {{count}}",
+      "revenueToday": "Доход сегодня (сбор)",
+      "revenueHint_one": "{{count}} заказ × {{fee}}",
+      "revenueHint_few": "{{count}} заказа × {{fee}}",
+      "revenueHint_many": "{{count}} заказов × {{fee}}",
+      "revenueHint_other": "{{count}} заказа × {{fee}}",
+      "cancelRate": "Доля отмен",
+      "thisWeek": "{{delta}} за неделю",
+      "pendingKyc": "Мастера на проверке: {{count}}",
+      "pendingCompanies": "Компании на проверке: {{count}}",
+      "openCases": "Открытые обращения: {{count}}",
+      "recentOrders": "Последние заказы",
+      "allOrders": "Все заказы"
+    },
+    "orders": {
+      "title": "Заказы",
+      "description": "Все заказы, статусы и платежи",
+      "searchPlaceholder": "№ заказа, имя клиента или мастера",
+      "empty": "Заказы не найдены",
+      "detailTitle": "Заказ {{number}}",
+      "guaranteeFix": "Повторная работа по гарантии",
+      "captured": "списано",
+      "slotsValue": "{{filled}} / {{requested}}",
+      "noOffers": "Предложения не отправлялись",
+      "columns": {
+        "number": "№",
+        "customer": "Клиент",
+        "provider": "Мастер",
+        "service": "Услуга",
+        "timing": "Срочность",
+        "slots": "Мастеров",
+        "status": "Статус",
+        "fee": "Сбор",
+        "createdAt": "Создан"
+      },
+      "sections": {
+        "request": "Заказ",
+        "customer": "Клиент",
+        "timeline": "История",
+        "assignments": "Мастера",
+        "offers": "Журнал предложений",
+        "ledger": "Финансовые операции"
+      },
+      "fields": {
+        "createdAt": "Создан",
+        "scheduledAt": "Запланирован на",
+        "slots": "Мастеров (назначено / нужно)",
+        "preference": "Выбор исполнителя",
+        "emergencyFee": "Срочный сбор",
+        "cancelReason": "Причина отмены",
+        "address": "Адрес",
+        "addressNote": "Примечание к адресу",
+        "description": "Описание",
+        "photos": "Фото",
+        "customerType": "Тип аккаунта"
+      },
+      "offers": {
+        "target": "Кому",
+        "step": "Шаг / кольцо",
+        "stepValue": "{{step}} / {{ring}}",
+        "distance": "Расстояние",
+        "km": "{{km}} км",
+        "status": "Статус",
+        "sentAt": "Отправлено",
+        "respondedAt": "Ответ"
+      },
+      "cancel": {
+        "button": "Принудительная отмена",
+        "title": "Отменить заказ",
+        "description": "Все активные мастера будут освобождены, клиент получит уведомление.",
+        "chargeCustomer": "Взыскать с клиента штраф за отмену",
+        "chargeHint": "Текущий штраф: {{amount}}",
+        "success": "Заказ отменён"
+      }
+    },
+    "timeline": {
+      "created": "Заказ создан",
+      "request_created": "Заказ создан",
+      "search_started": "Поиск начат",
+      "offers_sent": "Предложения отправлены",
+      "offer_sent": "Предложение отправлено",
+      "accepted": "Мастер принял заказ",
+      "assignment_accepted": "Мастер принял заказ",
+      "en_route": "Мастер в пути",
+      "EN_ROUTE": "Мастер в пути",
+      "arrived": "Мастер прибыл",
+      "ARRIVED": "Мастер прибыл",
+      "contact_unlocked": "Контакты открыты",
+      "price_proposed": "Предложена цена",
+      "PRICE_PROPOSED": "Предложена цена",
+      "price_confirmed": "Цена подтверждена",
+      "price_disputed": "Цена оспорена",
+      "completed": "Выполнен",
+      "COMPLETED": "Выполнен",
+      "cancelled": "Отменён",
+      "CANCELLED": "Отменён",
+      "expired": "Мастер не найден",
+      "payment_succeeded": "Оплата прошла",
+      "payment_failed": "Оплата не прошла",
+      "fee_captured": "Сбор платформы списан",
+      "fee_refunded": "Сбор платформы возвращён",
+      "penalty": "Штраф за отмену"
+    },
+    "assignments": {
+      "empty": "Мастер не назначен",
+      "request": "Заказ",
+      "provider": "Мастер",
+      "customer": "Клиент",
+      "status": "Статус",
+      "acceptedAt": "Принят",
+      "finishedAt": "Завершён",
+      "price": "Цена",
+      "fee": "Сбор",
+      "contact": "Контакты открыты",
+      "locked": "Закрыты",
+      "eta": "≈ {{minutes}} мин",
+      "cancelledBy": "Отменил: {{actor}}",
+      "feeCaptured": "списан",
+      "feeHeld": "заблокирован",
+      "feeRefunded": "возвращён"
+    },
+    "ledger": {
+      "empty": "Нет операций",
+      "createdAt": "Дата",
+      "kind": "Тип",
+      "entries": "Проводки",
+      "memo": "Комментарий"
+    },
+    "handymen": {
+      "title": "Мастера — управление и проверка",
+      "detailTitle": "Мастер",
+      "searchPlaceholder": "Имя, фамилия или телефон",
+      "empty": "Мастера не найдены",
+      "note": "Примечание: при регистрации нового мастера администратор проверяет и подтверждает удостоверение личности и подтверждения квалификации.",
+      "review": "Проверить",
+      "strikesCount": "Предупреждений: {{count}}",
+      "rejectReason": "Причина отказа",
+      "radiusValue": "{{km}} км",
+      "companyWorkerWallet": "У мастера компании нет своего баланса: сборы оплачивает компания.",
+      "tabs": {
+        "all": "Все",
+        "pending": "Ждут проверки",
+        "blocked": "Заблокированные"
+      },
+      "columns": {
+        "name": "Мастер",
+        "trades": "Профессия",
+        "rating": "Рейтинг",
+        "orders": "Заказов",
+        "balance": "Баланс",
+        "status": "Статус",
+        "action": "Действие"
+      },
+      "sections": {
+        "profile": "Профиль",
+        "wallet": "Баланс",
+        "kyc": "Проверка личности",
+        "strikes": "Предупреждения ({{count}})",
+        "recentAssignments": "Последние заказы"
+      },
+      "fields": {
+        "phone": "Телефон",
+        "kind": "Тип",
+        "company": "Компания",
+        "trades": "Профессии",
+        "rating": "Рейтинг",
+        "completed": "Выполненные заказы",
+        "radius": "Радиус обслуживания",
+        "base": "Базовая точка",
+        "createdAt": "Регистрация"
+      },
+      "approve": {
+        "button": "Подтвердить",
+        "title": "Подтвердить мастера",
+        "description": "Подтвердите мастера после проверки документов. Данные из удостоверения необязательны.",
+        "docNumberLast4": "Последние 4 символа номера удостоверения",
+        "docNumberHint": "Цифры или заглавные буквы, например 4K7Z",
+        "birthDate": "Дата рождения",
+        "expiry": "Срок действия",
+        "invalid": "Проверьте данные: номер должен состоять из 4 символов",
+        "cancel": "Отмена",
+        "confirm": "Подтвердить",
+        "success": "Мастер подтверждён"
+      },
+      "actions": {
+        "reject": "Отклонить",
+        "rejectTitle": "Отклонить заявку",
+        "rejectDescription": "Мастер увидит причину и сможет отправить документы повторно.",
+        "rejected": "Заявка отклонена",
+        "block": "Заблокировать",
+        "blockTitle": "Заблокировать мастера",
+        "blockDescription": "Мастер станет офлайн и не сможет получать новые заказы.",
+        "blocked": "Мастер заблокирован",
+        "unblock": "Разблокировать",
+        "unblockDescription": "Мастер вернётся в прежний статус.",
+        "unblocked": "Мастер разблокирован",
+        "clearStrikes": "Снять предупреждения",
+        "clearStrikesDescription": "Будет снято активных предупреждений: {{count}}.",
+        "strikesCleared": "Предупреждения сняты"
+      }
+    },
+    "kyc": {
+      "none": "Документы не отправлены",
+      "submittedAt": "Отправлено",
+      "reviewedBy": "Проверил: {{name}}",
+      "rejectReason": "Причина отказа",
+      "idDocument": "Удостоверение личности",
+      "selfies": "Проверка селфи",
+      "otherDocuments": "Подтверждения квалификации и документы",
+      "consent": "Согласие",
+      "consentValue": "Версия {{version}} ({{locale}})",
+      "consentAt": "Время согласия",
+      "docNumberLast4": "№ удостоверения (последние 4)",
+      "birthDate": "Дата рождения",
+      "expiry": "Срок действия",
+      "selfieChecks": "Проверка лица на устройстве",
+      "noSelfieChecks": "Не проводилась",
+      "urlNote": "Ссылки на изображения временные; если они не открываются, обновите страницу.",
+      "files": {
+        "idFront": "Удостоверение, лицевая сторона",
+        "idBack": "Удостоверение, оборотная сторона",
+        "selfieFront": "Селфи: прямой взгляд",
+        "selfieTurn": "Селфи: поворот головы",
+        "selfieBlink": "Селфи: моргание",
+        "tradeProof": "Подтверждение квалификации",
+        "companyDoc": "Документ компании"
+      }
+    },
+    "strikes": {
+      "empty": "Предупреждений нет",
+      "cleared": "Снято:"
+    },
+    "wallet": {
+      "none": "Баланса нет",
+      "available": "Доступный баланс",
+      "posted": "Проведённый баланс",
+      "held": "Заблокировано",
+      "earnings": "Заработок (к выплате)",
+      "debt": "У клиента есть долг",
+      "lowBalance": "Мало средств",
+      "button": "Корректировка баланса",
+      "title": "Корректировка баланса",
+      "description": "Операция записывается в журнал как ADMIN_ADJUSTMENT и сохраняется в аудите.",
+      "direction": "Операция",
+      "credit": "Пополнить баланс",
+      "debit": "Списать с баланса",
+      "amount": "Сумма (₼)",
+      "amountError": "Введите сумму от 0,01 до 100 000 ₼",
+      "account": "Счёт",
+      "accountWallet": "Баланс",
+      "accountEarnings": "Заработок",
+      "reason": "Причина",
+      "reasonError": "Причина должна содержать 3–300 символов",
+      "cancel": "Отмена",
+      "close": "Закрыть",
+      "submit": "Подтвердить",
+      "success": "Баланс обновлён"
+    },
+    "companies": {
+      "title": "Компании",
+      "detailTitle": "Компания",
+      "searchPlaceholder": "Название, VÖEN или телефон",
+      "empty": "Компании не найдены",
+      "review": "Проверить",
+      "voen": "VÖEN {{voen}}",
+      "rejectReason": "Причина отказа",
+      "noMembers": "Участников нет",
+      "tabs": {
+        "all": "Все",
+        "pending": "Ждут проверки",
+        "blocked": "Заблокированные"
+      },
+      "columns": {
+        "name": "Компания",
+        "owner": "Руководитель",
+        "members": "Участники",
+        "rating": "Рейтинг",
+        "balance": "Баланс",
+        "status": "Статус",
+        "createdAt": "Регистрация",
+        "action": "Действие"
+      },
+      "sections": {
+        "company": "Данные компании",
+        "wallet": "Баланс",
+        "members": "Участники ({{count}})",
+        "kyc": "Документы",
+        "strikes": "Предупреждения ({{count}})"
+      },
+      "fields": {
+        "owner": "Руководитель",
+        "members": "Участников",
+        "finalPriceEntry": "Итоговую цену вводит",
+        "vat": "Плательщик НДС",
+        "trades": "Профессии",
+        "rating": "Рейтинг",
+        "createdAt": "Регистрация"
+      },
+      "memberColumns": {
+        "name": "Имя",
+        "role": "Роль",
+        "trades": "Профессии",
+        "rating": "Рейтинг",
+        "completed": "Заказов",
+        "presence": "Состояние",
+        "status": "Статус"
+      },
+      "actions": {
+        "approve": "Подтвердить",
+        "approveDescription": "Компания будет подтверждена и сможет принимать заказы.",
+        "approved": "Компания подтверждена",
+        "reject": "Отклонить",
+        "rejectTitle": "Отклонить компанию",
+        "rejectDescription": "Руководитель увидит причину и сможет отправить документы повторно.",
+        "rejected": "Компания отклонена",
+        "block": "Заблокировать",
+        "blockTitle": "Заблокировать компанию",
+        "blockDescription": "Компания и её мастера не смогут получать новые заказы.",
+        "blocked": "Компания заблокирована",
+        "unblock": "Разблокировать",
+        "unblockDescription": "Компания вернётся в прежний статус.",
+        "unblocked": "Компания разблокирована"
+      }
+    },
+    "customers": {
+      "title": "Клиенты",
+      "detailTitle": "Клиент",
+      "searchPlaceholder": "Имя, телефон или компания",
+      "empty": "Клиенты не найдены",
+      "columns": {
+        "name": "Клиент",
+        "type": "Тип",
+        "requests": "Заказов",
+        "rating": "Рейтинг",
+        "balance": "Баланс",
+        "status": "Статус",
+        "createdAt": "Регистрация",
+        "action": "Действие"
+      },
+      "sections": {
+        "account": "Аккаунт",
+        "wallet": "Баланс",
+        "recentRequests": "Последние заказы"
+      },
+      "actions": {
+        "block": "Заблокировать пользователя",
+        "blockTitle": "Заблокировать пользователя",
+        "blockDescription": "Все сессии будут закрыты, пользователь не сможет войти.",
+        "blocked": "Пользователь заблокирован",
+        "unblock": "Разблокировать",
+        "unblockDescription": "Пользователь снова сможет войти.",
+        "unblocked": "Пользователь разблокирован"
+      }
+    },
+    "paymentsPage": {
+      "title": "Платежи",
+      "tabs": {
+        "ledger": "Журнал",
+        "payments": "Платёжные намерения",
+        "payouts": "Выплаты",
+        "invoices": "Счета-фактуры"
+      },
+      "filters": {
+        "kind": "Тип",
+        "ownerType": "Владелец",
+        "status": "Статус",
+        "purpose": "Назначение"
+      }
+    },
+    "payments": {
+      "empty": "Платежей нет",
+      "columns": {
+        "createdAt": "Дата",
+        "payer": "Плательщик",
+        "purpose": "Назначение",
+        "amount": "Сумма",
+        "status": "Статус",
+        "provider": "Провайдер",
+        "completedAt": "Завершён"
+      }
+    },
+    "payouts": {
+      "empty": "Выплат нет",
+      "noMethod": "Способ выплаты не указан",
+      "run": "Создать выплаты сейчас",
+      "runDescription": "Еженедельная выплата будет запущена сейчас (один раз в неделю на владельца).",
+      "runResult": "Создано выплат: {{count}}, всего {{total}}",
+      "markPaid": "Выплачено",
+      "markPaidDescription": "Выплата будет отмечена как выполненная.",
+      "markedPaid": "Выплата отмечена как выполненная",
+      "markFailed": "Ошибка",
+      "markFailedTitle": "Выплата не прошла",
+      "markFailedDescription": "Сумма вернётся на баланс заработка.",
+      "markedFailed": "Выплата отмечена как неуспешная",
+      "columns": {
+        "owner": "Получатель",
+        "period": "Период",
+        "amount": "Сумма",
+        "method": "Способ",
+        "status": "Статус",
+        "paidAt": "Выплачено",
+        "actions": "Действие"
+      }
+    },
+    "invoices": {
+      "empty": "Счетов-фактур нет",
+      "project": "Проект P-{{number}}",
+      "vat": "НДС {{rate}}%",
+      "markPaid": "Оплачено",
+      "markPaidDescription": "Банковский перевод получен: сумма будет зачислена на заработок исполнителя.",
+      "markedPaid": "Счёт-фактура оплачен",
+      "columns": {
+        "number": "№",
+        "parties": "Исполнитель → Клиент",
+        "total": "Итого",
+        "status": "Статус",
+        "issuedAt": "Дата",
+        "paidAt": "Оплачен",
+        "actions": "Действие"
+      }
+    },
+    "cases": {
+      "title": "Обращения",
+      "description": "Гарантийные обращения, споры о цене и жалобы",
+      "detailTitle": "Обращение",
+      "empty": "Обращений нет",
+      "projectRef": "Проект P-{{number}}",
+      "openedAt": "Открыто:",
+      "openFollowUp": "Открыть повторный заказ",
+      "columns": {
+        "createdAt": "Дата",
+        "type": "Тип",
+        "reference": "Заказ",
+        "customer": "Клиент",
+        "provider": "Мастер",
+        "status": "Статус",
+        "updatedAt": "Обновлено",
+        "action": "Действие"
+      },
+      "sections": {
+        "claim": "Обращение",
+        "notes": "Внутренние заметки ({{count}})",
+        "assignment": "Заказ и мастер"
+      },
+      "fields": {
+        "description": "Описание",
+        "photos": "Фото",
+        "resolution": "Решение",
+        "followUp": "Повторный заказ"
+      },
+      "notes": {
+        "empty": "Заметок нет",
+        "placeholder": "Внутренняя заметка (клиент и мастер её не видят)",
+        "add": "Добавить заметку",
+        "added": "Заметка добавлена"
+      },
+      "resolve": {
+        "button": "Решить",
+        "title": "Решить обращение",
+        "description": "Клиент и мастер получат уведомление о решении.",
+        "outcome": "Итог",
+        "labor": "Работа (₼)",
+        "materials": "Материалы (₼)",
+        "priceError": "Введите корректную сумму",
+        "note": "Комментарий к решению",
+        "noteError": "Комментарий обязателен (до 2000 символов)",
+        "cancel": "Отмена",
+        "confirm": "Подтвердить",
+        "success": "Обращение решено"
+      },
+      "actions": {
+        "redispatch": "Отправить повторно",
+        "redispatchTitle": "Повторная работа по гарантии",
+        "redispatchDescription": "Будет создан бесплатный заказ, сначала предложенный исходному мастеру.",
+        "redispatched": "Повторный заказ создан",
+        "noteOptional": "Комментарий (необязательно)",
+        "note": "Комментарий",
+        "reject": "Отклонить",
+        "rejectTitle": "Отклонить обращение",
+        "rejectDescription": "Клиенту сообщат причину отказа.",
+        "rejected": "Обращение отклонено"
+      }
+    },
+    "projects": {
+      "title": "Проекты",
+      "detailTitle": "Проект {{number}}",
+      "empty": "Проектов нет",
+      "noQuotes": "Предложений нет",
+      "noReports": "Отчётов нет",
+      "progress": "Выполнено: {{percent}}%",
+      "columns": {
+        "number": "№",
+        "customer": "Клиент",
+        "category": "Категория",
+        "workers": "Мастеров",
+        "dates": "Даты",
+        "quotes": "Предложения",
+        "status": "Статус",
+        "createdAt": "Создан",
+        "action": "Действие"
+      },
+      "sections": {
+        "project": "Проект",
+        "customer": "Клиент",
+        "quotes": "Предложения ({{count}})",
+        "reports": "Ежедневные отчёты ({{count}})",
+        "invoice": "Счёт-фактура {{number}}"
+      },
+      "fields": {
+        "scope": "Объём",
+        "quoteDeadline": "Срок предложений",
+        "address": "Адрес",
+        "description": "Описание",
+        "photos": "Фото",
+        "guaranteeUntil": "Гарантия до"
+      },
+      "quotes": {
+        "provider": "Исполнитель",
+        "total": "Сумма",
+        "workersDays": "Мастера × дни",
+        "workersDaysValue": "{{workers}} × {{days}}",
+        "fee": "Сбор платформы",
+        "feeCaptured": "списан",
+        "feeHeld": "заблокирован",
+        "status": "Статус",
+        "createdAt": "Дата",
+        "completed_one": "{{count}} работа",
+        "completed_few": "{{count}} работы",
+        "completed_many": "{{count}} работ",
+        "completed_other": "{{count}} работы",
+        "vatPayer": "Плательщик НДС"
+      },
+      "invoice": {
+        "subtotal": "Итого без НДС",
+        "vat": "НДС {{rate}}%",
+        "total": "Всего"
+      }
+    },
+    "categories": {
+      "title": "Категории",
+      "description": "Группы услуг и услуги (с названиями на az / ru / en)",
+      "empty": "Категорий нет",
+      "new": "Новая категория",
+      "newTitle": "Новая категория",
+      "editTitle": "Редактирование: {{name}}",
+      "edit": "Изменить",
+      "activate": "Включить",
+      "deactivate": "Отключить",
+      "activated": "Категория включена",
+      "deactivated": "Категория отключена",
+      "created": "Категория создана",
+      "updated": "Категория обновлена",
+      "featured": "На главной",
+      "emergency": "Срочно",
+      "inactive": "Отключена",
+      "noParent": "Верхний уровень",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "close": "Закрыть",
+      "kind": {
+        "GROUP": "Группа",
+        "SERVICE": "Услуга"
+      },
+      "flow": {
+        "INSTANT": "Сразу",
+        "QUOTE": "По предложениям"
+      },
+      "fields": {
+        "slug": "Slug",
+        "slugHint": "Строчные латинские буквы, цифры и дефис",
+        "icon": "Иконка",
+        "iconHint": "Название MaterialCommunityIcons, например water-pump",
+        "vertical": "Направление",
+        "kind": "Тип",
+        "parent": "Родительская группа",
+        "flow": "Порядок заказа",
+        "nameAz": "Название (az)",
+        "nameRu": "Название (ru)",
+        "nameEn": "Название (en)",
+        "sortOrder": "Порядок",
+        "keywords": "Ключевые слова",
+        "keywordsHint": "Через запятую (поиск и AI)",
+        "active": "Активна",
+        "featured": "Показывать на главной",
+        "emergencyAllowed": "Можно срочный заказ"
+      },
+      "validation": {
+        "required": "Обязательное поле",
+        "tooLong": "Слишком длинно",
+        "slug": "2–60 символов: a-z, 0-9 и дефис",
+        "integer": "Введите целое число"
+      }
+    },
+    "map": {
+      "title": "Карта",
+      "description": "Мастера и заказы в поиске (шестиугольники H3) — обновляется каждые 10 секунд",
+      "legend": "Обозначения",
+      "updated": "Обновлено:",
+      "live": "В реальном времени",
+      "polling": "Обновление каждые 10 с",
+      "refresh": "Обновить",
+      "legendItems": {
+        "online": "Онлайн",
+        "busy": "Заняты",
+        "bot": "Боты",
+        "offline": "Офлайн",
+        "request": "Заказы",
+        "searching": "В поиске"
+      }
+    },
+    "settings": {
+      "title": "Настройки",
+      "description": "Сборы платформы, таймеры и лимиты",
+      "demoBadge": "Демо",
+      "demoNotice": "API работает в демо-режиме: часть таймеров ускорена (значения по умолчанию показаны с учётом этого).",
+      "defaultHint": "По умолчанию: {{value}}",
+      "invalidValue": "Неверное значение",
+      "invalidFields": "Неверных полей: {{count}}",
+      "noChanges": "Изменений нет",
+      "saved": "Настройки сохранены",
+      "save": "Сохранить",
+      "reset": "Вернуть",
+      "adminsTitle": "Администраторы",
+      "groups": {
+        "fees": "Сборы и штрафы",
+        "dispatch": "Поиск мастера",
+        "cancellation": "Отмена, контакты и завершение",
+        "scheduling": "Запланированные заказы",
+        "guarantee": "Гарантия и B2B",
+        "limits": "Лимиты"
+      },
+      "units": {
+        "azn": "₼",
+        "sec": "с",
+        "min": "мин",
+        "hours": "ч",
+        "days": "дн",
+        "percent": "%",
+        "count": "шт",
+        "m": "м"
+      },
+      "fields": {
+        "requestFee": "Сбор за заказ (мастер)",
+        "emergencyFeePerSlot": "Срочный сбор (за мастера)",
+        "cancelPenalty": "Штраф клиента за отмену",
+        "penaltyCompensation": "Компенсация мастеру",
+        "b2bFeePerWorkerDay": "Сбор B2B (мастер × день)",
+        "lowBalanceThreshold": "Порог низкого баланса",
+        "vatRatePercent": "Ставка НДС",
+        "offerTtlSec": "Срок предложения",
+        "ringStepSec": "Шаг кольца",
+        "emergencyRingStepSec": "Шаг кольца (срочно)",
+        "noMatchAfterSec": "Мастер не найден через",
+        "minCandidates": "Минимум кандидатов",
+        "maxOffersPerStep": "Максимум предложений за шаг",
+        "onlineStaleSec": "Сигнал онлайн устаревает",
+        "freeCancelSec": "Бесплатная отмена",
+        "contactUnlockEtaSec": "Контакты открываются при ETA ниже",
+        "arrivalMaxDistanceM": "Макс. расстояние для «Я на месте»",
+        "noShowAfterMin": "Неявка через",
+        "autoCompleteAfterMin": "Автозавершение через",
+        "chatOpenAfterTerminalMin": "Чат открыт ещё",
+        "scheduledMinLeadMin": "Минимум заранее",
+        "scheduledMaxLeadDays": "Максимум заранее",
+        "scheduledLiveDispatchLeadMin": "Живой поиск начинается за",
+        "scheduledUnfilledLeadMin": "Предупреждение о незаполненном",
+        "scheduledOfferWindowMin": "Окно предложений (план)",
+        "guaranteeDays": "Срок гарантии",
+        "guaranteeOriginalProviderMin": "Приоритет исходного мастера",
+        "quoteWindowHours": "Срок предложений B2B",
+        "maxSlots": "Максимум мастеров в заказе",
+        "maxPhotos": "Максимум фото"
+      }
+    },
+    "admins": {
+      "new": "Новый администратор",
+      "newTitle": "Новый администратор",
+      "editTitle": "Редактирование: {{email}}",
+      "edit": "Изменить",
+      "you": "вы",
+      "active": "Активен",
+      "inactive": "Отключён",
+      "operatorNote": "Управлять администраторами может только роль ADMIN.",
+      "created": "Администратор создан",
+      "updated": "Администратор обновлён",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "close": "Закрыть",
+      "fields": {
+        "email": "Эл. почта",
+        "name": "Имя",
+        "role": "Роль",
+        "status": "Статус",
+        "lastLogin": "Последний вход",
+        "password": "Пароль",
+        "passwordHint": "Не менее 10 символов",
+        "newPassword": "Новый пароль",
+        "newPasswordHint": "Оставьте пустым, чтобы не менять",
+        "active": "Активен"
+      },
+      "validation": {
+        "email": "Введите корректный адрес",
+        "nameLength": "Имя должно содержать 2–100 символов",
+        "password": "Пароль должен содержать не менее 10 символов",
+        "tooLong": "Слишком длинно"
+      }
+    },
+    "audit": {
+      "title": "Аудит",
+      "empty": "Записей нет",
+      "before": "До",
+      "after": "После",
+      "filters": {
+        "entityType": "Тип объекта",
+        "entityId": "ID объекта"
+      },
+      "columns": {
+        "at": "Время",
+        "actor": "Кто",
+        "action": "Действие",
+        "entity": "Объект",
+        "changes": "Изменения",
+        "ip": "IP"
+      }
+    },
+    "demo": {
+      "title": "Демо",
+      "description": "Симулятор: боты-мастера, автопринятие и тестовые заказы",
+      "disabledTitle": "Демо-режим выключен",
+      "disabledDescription": "Симулятор доступен, только когда API запущен с DEMO_MODE=true.",
+      "mapHint": "Нажмите на карту: тестовый заказ и боты будут размещены в этой точке.",
+      "pickedPoint": "Выбранная точка",
+      "clear": "Удалить ботов",
+      "clearDescription": "Все боты-мастера будут удалены.",
+      "cleared": "Боты удалены",
+      "noBots": "Ботов нет",
+      "busy": "Занят",
+      "free": "Свободен",
+      "priceNote": "Автоматическая цена:",
+      "sections": {
+        "request": "Тестовый заказ",
+        "spawn": "Создать ботов-мастеров",
+        "config": "Симулятор",
+        "bots": "Боты ({{count}})"
+      },
+      "columns": {
+        "name": "Бот",
+        "trades": "Профессии",
+        "location": "Позиция",
+        "state": "Состояние"
+      },
+      "spawn": {
+        "count": "Количество (1–50)",
+        "radius": "Радиус (км)",
+        "atPoint": "Вокруг выбранной точки",
+        "atCenter": "Вокруг центра Баку (точка не выбрана)",
+        "submit": "Создать",
+        "done": "Создано ботов: {{count}}",
+        "invalid": "Количество 1–50, радиус 0,3–20 км",
+        "trade": "Профессия",
+        "anyTrade": "Любая (выбирает симулятор)",
+        "company": "Компания",
+        "solo": "Индивидуальные боты"
+      },
+      "config": {
+        "autoAccept": "Автопринятие",
+        "autoArrive": "Автоприбытие",
+        "autoPrice": "Автоцена",
+        "acceptDelaySec": "Задержка принятия (с)",
+        "speedKmh": "Скорость (км/ч)",
+        "priceLabor": "Работа (₼)",
+        "priceMaterials": "Материалы (₼)",
+        "save": "Сохранить",
+        "saved": "Симулятор обновлён",
+        "noChanges": "Изменений нет",
+        "invalid": "Задержка 1–120 с, скорость 5–300 км/ч"
+      },
+      "request": {
+        "pickPoint": "Сначала выберите точку на карте",
+        "point": "Точка: {{lat}}, {{lng}}",
+        "category": "Услуга",
+        "timing": "Срочность",
+        "slots": "Мастеров",
+        "slotsError": "1–10",
+        "scheduledAt": "Время",
+        "bakuTime": "Время Баку",
+        "description": "Описание",
+        "required": "Обязательно",
+        "submit": "Создать заказ",
+        "created": "Заказ #{{number}} создан",
+        "open": "Заказ #{{number}}"
+      }
+    }
+  },
+  "company": {
+    "common": {
+      "notFoundTitle": "Данные не найдены",
+      "notFound": "Запись не найдена: она удалена или ссылка неверна."
+    },
+    "workerState": {
+      "free": "Свободен",
+      "busy": "На заказе",
+      "offline": "Офлайн",
+      "noTrade": "Нет специальности"
+    },
+    "dashboard": {
+      "title": "Дашборд",
+      "openDispatch": "Открыть диспетчерскую",
+      "openDispatchWaiting_one": "Диспетчерская: {{count}} новый заказ",
+      "openDispatchWaiting_few": "Диспетчерская: {{count}} новых заказа",
+      "openDispatchWaiting_many": "Диспетчерская: {{count}} новых заказов",
+      "openDispatchWaiting_other": "Диспетчерская: {{count}} новых заказа",
+      "topUp": "+ Пополнить баланс",
+      "statusBanner": {
+        "DRAFT": "Компания ещё не отправлена на проверку. Отправьте документы из приложения TezFiks Usta.",
+        "PENDING_REVIEW": "TezFiks проверяет компанию. Заказы начнут поступать после одобрения.",
+        "REJECTED": "Компания не прошла проверку. Отправьте документы повторно из приложения.",
+        "BLOCKED": "Компания заблокирована. Обратитесь в поддержку TezFiks."
+      },
+      "rejectReason": "Причина: {{value}}",
+      "lowBalance": "Низкий баланс: пополните его, чтобы принимать заказы.",
+      "balance": "Баланс",
+      "balanceHint": "Заблокировано: {{amount}}",
+      "jobsToday": "Заказы сегодня",
+      "activeJobs": "Активные заказы",
+      "workersOnline": "Мастера онлайн",
+      "workersHint": "онлайн / все мастера",
+      "revenueToday": "Оборот сегодня",
+      "feesToday": "Комиссия платформы сегодня",
+      "earnings": "Доход по картам",
+      "earningsHint": "Выплачивается еженедельно"
+    },
+    "dispatch": {
+      "title": "Диспетчерская",
+      "subtitle": "Входящие заказы, активные работы и карта мастеров",
+      "live": "Онлайн",
+      "polling": "Обновление (нет соединения)",
+      "walletChip": "Баланс: {{amount}}",
+      "notice": {
+        "TAKEN": "Заказ {{number}} уже взял другой исполнитель",
+        "EXPIRED": "Время на заказ {{number}} истекло",
+        "CANCELLED": "Клиент отменил заказ {{number}}",
+        "SEARCH_ENDED": "Поиск по заказу {{number}} завершён",
+        "DECLINED": "Заказ {{number}} отклонён",
+        "ACCEPTED": "Заказ {{number}} принят"
+      },
+      "offers": {
+        "title": "Входящие заказы",
+        "empty": "Сейчас новых заказов нет",
+        "emptyHint": "Новые заказы появятся здесь с обратным отсчётом.",
+        "unavailable": "Заказы пока не загружаются.",
+        "accepted_one": "Заказ {{number}} принят: отправлен {{count}} мастер",
+        "accepted_few": "Заказ {{number}} принят: отправлено {{count}} мастера",
+        "accepted_many": "Заказ {{number}} принят: отправлено {{count}} мастеров",
+        "accepted_other": "Заказ {{number}} принят: отправлено {{count}} мастера",
+        "newOrder": "Новый заказ {{number}}",
+        "emergency": "Срочно",
+        "guarantee": "Гарантия",
+        "expiresIn": "Осталось времени",
+        "scheduled": "Запланирован:",
+        "eta": "~{{minutes}} мин",
+        "customer": "Клиент: {{name}}",
+        "slots": "Нужно мастеров: {{value}} / {{requested}}",
+        "feeNote": "При принятии с баланса компании будет удержано {{amount}}",
+        "lowBalance": "Баланса компании недостаточно для этого заказа.",
+        "topUp": "Пополнить",
+        "pickTitle": "Выберите мастера",
+        "pickHint": "Не более {{count}}",
+        "noCandidates": "Нет подходящих мастеров для этого заказа.",
+        "accept": "Принять и отправить",
+        "decline": "Отказаться",
+        "declined": "Заказ {{number}} отклонён",
+        "limit": "Для этого заказа можно выбрать не более {{count}}",
+        "unavailableWorker": "Этого мастера сейчас нельзя отправить"
+      },
+      "board": {
+        "title": "Активные работы",
+        "empty": "Активных работ нет",
+        "unavailable": "Не удалось загрузить активные работы. Попробуйте чуть позже.",
+        "error": "Не удалось загрузить активные работы",
+        "columns": {
+          "ACCEPTED": "Принят",
+          "EN_ROUTE": "В пути",
+          "ARRIVED": "На месте",
+          "PRICE": "Цена / оплата"
+        },
+        "eta": "в {{minutes}} мин",
+        "scheduledFor": "Время:",
+        "freeCancel": "Бесплатная отмена: {{value}}",
+        "price": "Цена:"
+      },
+      "map": {
+        "title": "Карта мастеров",
+        "unavailable": "Не удалось загрузить местоположение мастеров.",
+        "error": "Не удалось обновить местоположение мастеров",
+        "noPosition": "Местоположение неизвестно: {{count}}"
+      }
+    },
+    "orders": {
+      "title": "Заказы",
+      "tabs": {
+        "active": "Активные",
+        "history": "История"
+      },
+      "columns": {
+        "number": "Заказ",
+        "category": "Услуга",
+        "worker": "Мастер",
+        "customer": "Клиент",
+        "status": "Статус",
+        "acceptedAt": "Принят",
+        "price": "Цена",
+        "fee": "Комиссия"
+      },
+      "emptyActive": "Активных заказов нет",
+      "emptyHistory": "История пуста",
+      "detailTitle": "Заказ {{number}}",
+      "detailTitleShort": "Заказ",
+      "emergency": "Срочно",
+      "guaranteeFix": "Повторная работа по гарантии",
+      "workerEntersPrice": "В этой компании итоговую цену вводит мастер.",
+      "etaNote": "Мастер в {{minutes}} мин",
+      "contactLocked": "Телефон клиента откроется, когда мастер будет рядом.",
+      "freeCancelUntil": "Бесплатная отмена до:",
+      "feeHeld": "заблокировано",
+      "feeCaptured": "списано",
+      "feeRefunded": "возвращено",
+      "feeReleased": "разблокировано",
+      "sections": {
+        "job": "Работа",
+        "worker": "Мастер",
+        "customer": "Клиент",
+        "price": "Цена и оплата",
+        "timeline": "Ход работы"
+      },
+      "fields": {
+        "category": "Услуга",
+        "timing": "Время",
+        "description": "Описание",
+        "address": "Адрес",
+        "addressDetails": "Дом, подъезд, этаж, квартира",
+        "addressNote": "Примечание",
+        "photo": "Фото",
+        "labor": "Работа",
+        "materials": "Материалы",
+        "total": "Итого",
+        "paymentMethod": "Способ оплаты",
+        "paymentStatus": "Статус оплаты",
+        "tip": "Чаевые",
+        "fee": "Комиссия платформы",
+        "guaranteeUntil": "Гарантия"
+      },
+      "timeline": {
+        "acceptedAt": "Заказ принят",
+        "enRouteAt": "Мастер выехал",
+        "arrivedAt": "Мастер прибыл",
+        "priceProposedAt": "Цена предложена",
+        "completedAt": "Работа завершена",
+        "cancelledAt": "Отменён"
+      },
+      "cancelledBy": {
+        "CUSTOMER": "клиентом",
+        "PROVIDER": "компанией",
+        "ADMIN": "TezFiks",
+        "SYSTEM": "системой"
+      },
+      "price": {
+        "button": "Ввести цену",
+        "title": "Итоговая цена",
+        "description": "Введите стоимость работы и материалов. Клиент подтвердит сумму в приложении.",
+        "labor": "Работа (₼)",
+        "laborError": "Введите корректную стоимость работы",
+        "materials": "Материалы (₼)",
+        "materialsError": "Введите корректную стоимость материалов",
+        "total": "Итого",
+        "warning": "После подтверждения цену нельзя изменить.",
+        "submit": "Подтвердить цену и завершить",
+        "success": "Цена отправлена клиенту"
+      },
+      "reassign": {
+        "button": "Сменить мастера",
+        "title": "Выберите другого мастера",
+        "description": "Работа перейдёт выбранному мастеру. Можно выбрать только свободных мастеров с этой специальностью.",
+        "pickError": "Выберите мастера",
+        "none": "Нет подходящих свободных мастеров.",
+        "submit": "Сменить мастера",
+        "success": "Работа передана другому мастеру"
+      },
+      "cancel": {
+        "button": "Отменить",
+        "title": "Отменить заказ?",
+        "freeDescription": "Период бесплатной отмены: комиссия платформы вернётся, а заказ уйдёт другому исполнителю.",
+        "lateDescription": "Период бесплатной отмены истёк: комиссия не возвращается, компании начисляется штрафной балл.",
+        "reason": "Причина (необязательно)",
+        "submit": "Отменить заказ",
+        "success": "Заказ отменён"
+      }
+    },
+    "workers": {
+      "title": "Мастера",
+      "subtitle": "Команда, роли, специальности и ссылки-приглашения",
+      "members": {
+        "title": "Команда",
+        "titleCount": "Команда ({{count}})",
+        "empty": "Мастеров пока нет. Создайте ссылку-приглашение и отправьте её мастерам.",
+        "you": "вы",
+        "columns": {
+          "name": "Мастер",
+          "role": "Роль",
+          "trades": "Специальности",
+          "state": "Состояние",
+          "rating": "Рейтинг",
+          "completed": "Работы",
+          "joinedAt": "В команде с",
+          "actions": "Действия"
+        },
+        "roleChanged": "Роль изменена",
+        "editTrades": "Изменить специальности",
+        "editTradesTitle": "{{name}}: специальности",
+        "editTradesHint": "Можно выбрать только специальности компании.",
+        "tradesError": "Выберите хотя бы одну специальность",
+        "tradesSaved": "Специальности сохранены",
+        "remove": "Исключить",
+        "removeTitle": "Исключить {{name}} из команды?",
+        "removeDescription": "Мастер больше не будет получать заказы компании. Его можно пригласить снова.",
+        "removed": "Мастер исключён из команды"
+      },
+      "invites": {
+        "title": "Ссылки-приглашения",
+        "empty": "Ссылок-приглашений нет",
+        "emptyHint": "Создайте ссылку и отправьте её в WhatsApp: мастера вступят в команду в приложении TezFiks Usta.",
+        "create": "Создать ссылку",
+        "createTitle": "Новая ссылка-приглашение",
+        "createHint": "Ссылка открывается в приложении TezFiks Usta, и мастер вступает в компанию.",
+        "role": "Роль",
+        "maxUses": "Число использований",
+        "maxUsesError": "От 1 до 100",
+        "expiresInDays": "Срок действия (дней)",
+        "expiresInDaysError": "От 1 до 30 дней",
+        "submit": "Создать",
+        "created": "Ссылка-приглашение создана",
+        "createdTitle": "Ссылка готова",
+        "createdHint": "Скопируйте ссылку и отправьте мастеру.",
+        "copy": "Копировать",
+        "copied": "Ссылка скопирована",
+        "copyFailed": "Не удалось скопировать, выделите ссылку вручную",
+        "revoke": "Отозвать",
+        "revokeTitle": "Отозвать ссылку-приглашение?",
+        "revokeDescription": "По этой ссылке больше никто не сможет вступить.",
+        "revoked": "Ссылка отозвана",
+        "uses": "{{value}} / {{max}}",
+        "columns": {
+          "link": "Ссылка",
+          "role": "Роль",
+          "uses": "Использования",
+          "expiresAt": "Действует до",
+          "state": "Состояние",
+          "actions": "Действия"
+        },
+        "state": {
+          "active": "Активна",
+          "inactive": "Недействительна",
+          "revoked": "Отозвана"
+        }
+      }
+    },
+    "balance": {
+      "title": "Баланс",
+      "subtitle": "Баланс компании, операции, доход по картам и выплаты",
+      "wallet": {
+        "title": "Баланс компании",
+        "available": "Доступно",
+        "held": "Заблокировано",
+        "heldHint": "Комиссии принятых заказов",
+        "posted": "Общий баланс",
+        "lowBalance": "Низкий баланс: пополните его, чтобы принимать новые заказы."
+      },
+      "topup": {
+        "title": "Пополнить баланс",
+        "amount": "Сумма (₼)",
+        "amountHint": "1 ₼ – 1000 ₼. Страница оплаты откроется в новой вкладке.",
+        "amountError": "Введите сумму от 1 до 1000 ₼",
+        "submit": "Перейти к оплате",
+        "opened": "Страница оплаты открыта в новой вкладке",
+        "popupBlocked": "Браузер заблокировал новую вкладку: откройте ссылку ниже",
+        "openCheckout": "Открыть страницу оплаты",
+        "returned": "Если оплата прошла, баланс обновится через несколько секунд."
+      },
+      "transactions": {
+        "title": "История операций",
+        "empty": "Операций нет",
+        "project": "Проект #{{number}}",
+        "columns": {
+          "date": "Дата",
+          "kind": "Операция",
+          "ref": "Заказ",
+          "amount": "Сумма",
+          "balanceAfter": "Баланс"
+        }
+      },
+      "earnings": {
+        "title": "Доход по картам",
+        "balance": "Невыплаченный доход",
+        "balanceHint": "Оплаты картой и чаевые",
+        "pending": "В пути (выплата)",
+        "thisWeek": "Эта неделя",
+        "card_one": "Картой: {{count}} работа, {{amount}}",
+        "card_few": "Картой: {{count}} работы, {{amount}}",
+        "card_many": "Картой: {{count}} работ, {{amount}}",
+        "card_other": "Картой: {{count}} работы, {{amount}}",
+        "cash_one": "Наличными: {{count}} работа, {{amount}}",
+        "cash_few": "Наличными: {{count}} работы, {{amount}}",
+        "cash_many": "Наличными: {{count}} работ, {{amount}}",
+        "cash_other": "Наличными: {{count}} работы, {{amount}}",
+        "tips": "Чаевые: {{amount}}"
+      },
+      "payouts": {
+        "title": "Выплаты",
+        "empty": "Выплат пока не было",
+        "period": "Период",
+        "amount": "Сумма",
+        "status": "Статус",
+        "paidAt": "Выплачено",
+        "hint": "Доход выплачивается каждый понедельник в 09:00."
+      },
+      "payoutMethod": {
+        "title": "Карта для выплат",
+        "none": "Карта или IBAN для выплат не добавлены.",
+        "typeLabel": "Тип",
+        "type": {
+          "CARD": "Карта",
+          "IBAN": "IBAN"
+        },
+        "cardNumber": "Номер карты",
+        "iban": "IBAN",
+        "numberError": "Номер карты — 16–19 цифр, IBAN — 28 символов, начиная с AZ",
+        "holder": "Имя владельца",
+        "holderError": "Имя должно содержать 3–100 символов",
+        "hint": "Хранится только маскированный номер.",
+        "save": "Сохранить",
+        "saved": "Данные для выплат сохранены"
+      }
+    },
+    "projects": {
+      "title": "Проекты",
+      "subtitle": "Бизнес-заказы: предложения, выполнение и счета-фактуры",
+      "tabs": {
+        "open": "Ждут предложений",
+        "active": "Наши проекты",
+        "history": "История"
+      },
+      "empty": {
+        "open": "Сейчас открытых проектов нет",
+        "active": "Активных проектов нет",
+        "history": "История пуста"
+      },
+      "columns": {
+        "number": "№",
+        "project": "Проект",
+        "customer": "Заказчик",
+        "dates": "Даты",
+        "workers": "Мастера",
+        "deadline": "Срок предложений",
+        "status": "Статус",
+        "myQuote": "Наше предложение"
+      },
+      "number": "#{{number}}",
+      "open": "Открыть",
+      "awardedToUs": "Выбраны мы",
+      "detailTitle": "Проект #{{number}}: {{name}}",
+      "detailTitleShort": "Проект",
+      "sections": {
+        "details": "Проект",
+        "quote": "Ценовое предложение",
+        "reports": "Ежедневные отчёты ({{count}})",
+        "invoice": "Счёт-фактура"
+      },
+      "fields": {
+        "customer": "Заказчик",
+        "customerRating": "Рейтинг заказчика",
+        "dates": "Даты",
+        "workers": "Нужно мастеров",
+        "address": "Адрес",
+        "deadline": "Срок предложений",
+        "quotes": "Предложения",
+        "feePerWorkerDay": "Комиссия платформы (мастер × день)",
+        "photo": "Фото"
+      },
+      "quote": {
+        "total": "Общая цена (₼)",
+        "totalError": "Введите сумму больше 1 ₼",
+        "workers": "Мастеров",
+        "workersError": "1–100 мастеров",
+        "days": "Дней",
+        "daysError": "1–365 дней",
+        "note": "Примечание",
+        "noteError": "Примечание не может быть длиннее 1000 символов",
+        "fee": "Комиссия платформы: {{amount}} ({{fee}} × {{workers}} мастеров × {{days}} дней) будет заблокирована на балансе компании. Если предложение не примут, она вернётся.",
+        "feeUnknown": "Комиссия платформы: {{fee}} × мастера × дни",
+        "lowBalance": "Баланса компании недостаточно для комиссии этого предложения.",
+        "submit": "Отправить предложение",
+        "submitted": "Предложение отправлено",
+        "withdraw": "Отозвать",
+        "withdrawTitle": "Отозвать предложение?",
+        "withdrawDescription": "Заблокированная комиссия вернётся на баланс.",
+        "withdrawn": "Предложение отозвано",
+        "workersDays": "Мастера × дни",
+        "workersDaysValue": "{{workers}} мастеров × {{days}} дней",
+        "feeHeld": "Комиссия платформы",
+        "feeCaptured": "списана",
+        "feeOnHold": "заблокирована",
+        "sentAt": "Отправлено",
+        "closed": "Приём предложений закрыт."
+      },
+      "report": {
+        "title": "Новый отчёт",
+        "empty": "Отчётов пока нет",
+        "date": "Дата",
+        "dateError": "Выберите корректную дату",
+        "progress": "Выполнено (%)",
+        "progressError": "От 0 до 100",
+        "note": "Выполненные работы",
+        "noteError": "Напишите примечание",
+        "photosHint": "Фото можно добавить из приложения TezFiks Usta.",
+        "submit": "Добавить отчёт",
+        "added": "Отчёт добавлен"
+      },
+      "complete": {
+        "hint": "После завершения работы выставляется счёт-фактура.",
+        "defaultLine": "Без дополнительных строк в счёте будет одна строка: {{amount}} (сумма предложения).",
+        "lineDescription": "Описание",
+        "lineAmount": "Сумма (₼)",
+        "lineError": "Введите описание и сумму",
+        "removeLine": "Удалить строку",
+        "addLine": "Добавить строку",
+        "subtotal": "Итого",
+        "submit": "Завершить работу",
+        "confirmTitle": "Завершить проект?",
+        "confirmDescription": "Будет выставлен счёт-фактура (с НДС) и отправлен заказчику.",
+        "done": "Счёт-фактура {{number}} выставлен"
+      },
+      "invoice": {
+        "none": "Счёта-фактуры пока нет",
+        "number": "Счёт-фактура {{number}}",
+        "issuer": "Исполнитель",
+        "customer": "Заказчик",
+        "voen": "VÖEN: {{voen}}",
+        "subtotal": "Сумма",
+        "vat": "НДС ({{rate}}%)",
+        "noVat": "Не плательщик НДС",
+        "total": "Итого",
+        "issuedAt": "Дата",
+        "paidAt": "Оплачен"
+      }
+    },
+    "settings": {
+      "title": "Настройки",
+      "sections": {
+        "settings": "Настройки компании",
+        "company": "Компания"
+      },
+      "finalPrice": {
+        "title": "Кто вводит итоговую цену?",
+        "description": "Выберите, кто вводит итоговую цену заказа после завершения работы. Правило действует для всех мастеров компании.",
+        "WORKER": {
+          "title": "Мастер вводит сам",
+          "description": "После работы мастер вводит итоговую цену в телефоне — менеджер получает уведомление."
+        },
+        "MANAGER": {
+          "title": "Вводит менеджер",
+          "description": "Мастер завершает работу, менеджер вводит и подтверждает цену в приложении или панели. Мастеру шаг ввода цены не показывается."
+        },
+        "howTitle": "Как это работает",
+        "how": "В любом режиме заказ не закрывается без цены, а сумма показывается клиенту для подтверждения. Частные мастера всегда вводят цену сами."
+      },
+      "name": "Название компании",
+      "radius": "Радиус обслуживания (км)",
+      "radiusHint": "2–50 км",
+      "vat": "Мы плательщики НДС",
+      "vatHint": "В счетах-фактурах бизнес-проектов будет строка НДС.",
+      "trades": "Специальности",
+      "base": "Базовая точка",
+      "baseHint": "Нажмите на карту, чтобы выбрать базовую точку компании.",
+      "lat": "Широта",
+      "lng": "Долгота",
+      "baseAddress": "Адрес базы",
+      "save": "Сохранить",
+      "saved": "Настройки сохранены",
+      "noChanges": "Изменений нет",
+      "errors": {
+        "name": "Название должно содержать 2–120 символов",
+        "radius": "Радиус должен быть 2–50 км",
+        "trades": "Выберите хотя бы одну специальность",
+        "base": "Введите корректные координаты",
+        "baseAddress": "Адрес не может быть длиннее 300 символов"
+      },
+      "fields": {
+        "legal": "Правовая форма",
+        "voen": "VÖEN {{voen}}",
+        "status": "Статус",
+        "kyc": "Проверка документов",
+        "rejectReason": "Причина отказа",
+        "rating": "Рейтинг",
+        "strikes": "Штрафные баллы",
+        "members": "Онлайн / мастера"
+      },
+      "kycNone": "Документы не отправлены",
+      "kycHint": "Отправьте документы из приложения TezFiks Usta. Документы видят только сотрудники TezFiks."
+    }
+  }
+}

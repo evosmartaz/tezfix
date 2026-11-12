@@ -1,0 +1,17 @@
+appId: az.tezfiks.app
+name: AU-O02b Customer - ödəniş ekranından kartla ödəmə (checkout səhifəsi)
+---
+- extendedWaitUntil:
+    visible:
+      id: "pay-screen"
+    timeout: 20000
+- assertVisible:
+    id: "pay-total"
+- takeScreenshot: o02-06-pay
+- tapOn:
+    id: "pay-method-CARD"
+- tapOn:
+    id: "pay-submit"
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: o02-07-checkout

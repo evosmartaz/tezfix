@@ -1,0 +1,6 @@
+{
+  "cancelReason": {
+    "providerBlocked": "The pro was blocked by the platform; the job is being sent to another pro",
+    "companyBlocked": "The company was blocked by the platform; the job is being sent to another pro"
+  }
+}

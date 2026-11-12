@@ -1,0 +1,17 @@
+{
+  "memo": {
+    "quoteFee": "Project #{{number}}: platform fee for the quote",
+    "invoicePayment": "Payment of invoice {{invoice}} (project #{{number}})"
+  },
+  "invoice": {
+    "defaultLine": "Project #{{number}}: {{category}} works"
+  },
+  "notify": {
+    "expiredTitle": "Project #{{number}} closed",
+    "expiredNoQuotes": "No quotes were received during the quote window.",
+    "expiredNoAward": "The project was closed because no quote was chosen; the quotes were cancelled.",
+    "ratedTitle": "New rating",
+    "ratedBody": "Your work on project #{{number}} was rated {{stars}} out of 5."
+  },
+  "areaFallback": "Baku"
+}

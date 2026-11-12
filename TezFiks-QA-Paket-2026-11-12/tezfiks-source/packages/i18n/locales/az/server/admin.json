@@ -1,0 +1,25 @@
+{
+  "actor": {
+    "CUSTOMER": "Müştəri",
+    "PROVIDER": "Usta",
+    "ADMIN": "Admin",
+    "SYSTEM": "Sistem"
+  },
+  "timeline": {
+    "created": "{{category}}, usta sayı: {{slots}}",
+    "offersSent": "Addım {{step}}, halqa {{ring}}: {{n}} təklif",
+    "price": "İş: {{labor}}, material: {{materials}}, cəmi: {{total}}",
+    "paidCash": "Nağd ödəniş",
+    "paidCard": "Kartla ödəniş",
+    "payment": "{{purpose}}: {{amount}}",
+    "amount": "{{amount}}",
+    "adminCancel": "Admin tərəfindən ləğv edildi: {{reason}}",
+    "guaranteeFix": "Zəmanət üzrə təkrar iş (haqsız)"
+  },
+  "purpose": {
+    "JOB_PAYMENT": "İş haqqı",
+    "TIP": "Bəxşiş",
+    "WALLET_TOPUP": "Balans artırılması",
+    "INVOICE": "Hesab-faktura"
+  }
+}

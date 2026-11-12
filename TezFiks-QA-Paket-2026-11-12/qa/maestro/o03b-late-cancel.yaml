@@ -1,0 +1,29 @@
+appId: az.tezfiks.app
+name: AU-O03b Customer - gec ləğv (5 dəq sonra, 15 AZN xəbərdarlığı)
+# Qarşı tərəf: node mobile-driver.mts accept-only
+---
+- runFlow: sub-create-request.yaml
+- takeScreenshot: o03-00-tracking-top
+- takeScreenshot: o03-04-late-start
+# Pulsuz pəncərə bitənə qədər gözlə (~5 dəq)
+- extendedWaitUntil:
+    notVisible:
+      id: "tracking-free-cancel"
+    timeout: 360000
+- takeScreenshot: o03-05-window-closed
+- scrollUntilVisible:
+    element:
+      id: "tracking-cancel"
+- tapOn:
+    id: "tracking-cancel"
+- extendedWaitUntil:
+    visible:
+      id: "tracking-cancel-sheet-message"
+    timeout: 10000
+- assertVisible: ".*15,00.*"
+- takeScreenshot: o03-06-late-sheet
+- tapOn:
+    id: "tracking-cancel-sheet-confirm"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: o03-07-late-cancelled

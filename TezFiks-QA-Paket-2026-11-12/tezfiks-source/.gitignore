@@ -1,0 +1,32 @@
+node_modules/
+dist/
+build/
+.next/
+out/
+.expo/
+.turbo/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+# SSH keys, certificates and signing keystores never belong in the repo.
+id_ed25519*
+id_rsa*
+id_ecdsa*
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+!debug.keystore
+.tezfiks-signing/
+# QA admin password files written by apps/api/prisma/seed/qa-admin.ts
+*qa-admin-password*
+apps/*/android/
+apps/*/ios/
+apps/api/src/generated/
+apps/api/uploads/
+*.tsbuildinfo
+.DS_Store
+.npm-lock/

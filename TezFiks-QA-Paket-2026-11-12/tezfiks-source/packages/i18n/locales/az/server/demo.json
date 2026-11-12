@@ -1,0 +1,21 @@
+{
+  "botRemoved": "Demo usta silindi, sifariş başqa ustaya göndərilir",
+  "requestDescription": "Demo sifariş: test üçün yaradılıb",
+  "seedBlockReason": "Müştəri şikayətləri (demo)",
+  "seed": {
+    "leakingTap": "Mətbəxdə kran damcılayır, altından su sızır",
+    "sockets": "Qonaq otağında iki rozetka işləmir, açar qığılcım verir",
+    "toilet": "Unitazın çəni dolmur, klapanı dəyişmək lazımdır",
+    "boiler": "Kombi işə düşmür, ekranda xəta kodu var",
+    "refrigeration": "Mağazada soyuducu vitrin soyutmur",
+    "lights": "Dəhlizdə işıq yanıb-sönür, açarı dəyişmək lazımdır",
+    "ratingComment": "Vaxtında gəldi, işi səliqəli gördü",
+    "cancelReason": "Planlarım dəyişdi",
+    "projectTitle": "Ofisin təmiri",
+    "projectScope": "≈ 450 m² (3 mərtəbə, 12 otaq)",
+    "projectDescription": "Ofisin tam kosmetik təmiri: divarların rənglənməsi, döşəmə, asma tavan və elektrik xətlərinin yenilənməsi",
+    "quoteFixpro": "3 usta, 5 iş günü, materiallar daxil",
+    "quoteElvin": "Santexnika və kafel işləri daxil",
+    "guaranteeClaim": "Təmirdən sonra rozetkalardan biri yenidən işləmir"
+  }
+}

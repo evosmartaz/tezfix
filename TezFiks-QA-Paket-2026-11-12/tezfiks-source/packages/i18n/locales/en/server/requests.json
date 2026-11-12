@@ -1,0 +1,13 @@
+{
+  "memo": {
+    "requestFee": "Job #{{number}}: platform fee",
+    "requestFeeRefund": "Job #{{number}}: platform fee refund",
+    "emergencyFee": "Job #{{number}}: emergency call fee",
+    "emergencyFeeRefund": "Job #{{number}}: emergency call fee refund",
+    "cancelPenalty": "Job #{{number}}: cancellation penalty",
+    "penaltyCompensation": "Job #{{number}}: cancellation compensation"
+  },
+  "offer": {
+    "areaFallback": "Baku"
+  }
+}

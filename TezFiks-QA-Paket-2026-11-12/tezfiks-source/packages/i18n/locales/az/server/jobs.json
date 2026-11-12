@@ -1,0 +1,6 @@
+{
+  "cancelReason": {
+    "providerBlocked": "Usta platforma tərəfindən bloklandı, sifariş başqa ustaya göndərilir",
+    "companyBlocked": "Şirkət platforma tərəfindən bloklandı, sifariş başqa ustaya göndərilir"
+  }
+}

@@ -1,0 +1,20 @@
+appId: az.tezfiks.app
+name: AU-O03b (izləmə ekranından) - gec ləğv, 15 AZN xəbərdarlığı
+---
+- runFlow: sub-scroll-to-cancel.yaml
+- assertNotVisible:
+    id: "tracking-free-cancel"
+- takeScreenshot: o03-05-window-closed
+- tapOn:
+    id: "tracking-cancel"
+- extendedWaitUntil:
+    visible:
+      id: "tracking-cancel-sheet-message"
+    timeout: 10000
+- assertVisible: ".*15,00.*"
+- takeScreenshot: o03-06-late-sheet
+- tapOn:
+    id: "tracking-cancel-sheet-confirm"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: o03-07-late-cancelled

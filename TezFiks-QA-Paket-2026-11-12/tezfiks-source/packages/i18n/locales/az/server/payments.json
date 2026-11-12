@@ -1,0 +1,41 @@
+{
+  "checkout": {
+    "pageTitle": "TezFiks — test ödənişi",
+    "testMode": "TEST REJİMİ",
+    "testModeHint": "Real pul çıxılmır. Uğurlu ödəniş üçün 4242 4242 4242 4242, rədd edilən ödəniş üçün 4000 0000 0000 0002 kartından istifadə edin.",
+    "amount": "Məbləğ",
+    "purpose": {
+      "WALLET_TOPUP": "Balansın artırılması",
+      "JOB_PAYMENT": "Görülən işin ödənişi",
+      "TIP": "Bəxşiş",
+      "INVOICE": "Hesab-fakturanın ödənişi"
+    },
+    "cardNumber": "Kart nömrəsi",
+    "expiry": "AA/İİ",
+    "cvc": "CVC",
+    "holderName": "Kart sahibinin adı",
+    "pay": "{{amount}} ödə",
+    "cancel": "Ləğv et",
+    "secureNote": "Kart məlumatları saxlanılmır."
+  },
+  "result": {
+    "CREATED": "Ödəniş gözləyir",
+    "SUCCEEDED": "Ödəniş uğurla tamamlandı",
+    "FAILED": "Ödəniş alınmadı",
+    "CANCELLED": "Ödəniş ləğv edildi",
+    "succeededBody": "{{amount}} uğurla ödənildi.",
+    "failedBody": "Ödəniş həyata keçirilmədi. Yenidən cəhd edə bilərsiniz.",
+    "cancelledBody": "Ödəniş ləğv edildi, heç bir məbləğ çıxılmadı.",
+    "pendingBody": "Ödəniş hələ tamamlanmayıb.",
+    "close": "Bu səhifəni bağlayıb tətbiqə qayıda bilərsiniz."
+  },
+  "reason": {
+    "card_declined": "Kart bank tərəfindən rədd edildi.",
+    "unsupported_test_card": "Bu test kartı dəstəklənmir. 4242 4242 4242 4242 kartından istifadə edin.",
+    "cancelled": "Ödəniş istifadəçi tərəfindən ləğv edildi."
+  },
+  "invalidLink": {
+    "title": "Keçid etibarsızdır",
+    "body": "Bu ödəniş keçidi etibarsızdır. Tətbiqdən yenidən cəhd edin."
+  }
+}

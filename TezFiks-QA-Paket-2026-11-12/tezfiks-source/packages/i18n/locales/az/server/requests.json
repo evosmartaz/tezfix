@@ -1,0 +1,13 @@
+{
+  "memo": {
+    "requestFee": "Sifariş #{{number}}: platforma haqqı",
+    "requestFeeRefund": "Sifariş #{{number}}: platforma haqqının qaytarılması",
+    "emergencyFee": "Sifariş #{{number}}: təcili çağırış haqqı",
+    "emergencyFeeRefund": "Sifariş #{{number}}: təcili çağırış haqqının qaytarılması",
+    "cancelPenalty": "Sifariş #{{number}}: ləğvetmə cəriməsi",
+    "penaltyCompensation": "Sifariş #{{number}}: ləğvetmə kompensasiyası"
+  },
+  "offer": {
+    "areaFallback": "Bakı"
+  }
+}

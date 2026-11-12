@@ -1,0 +1,5 @@
+{
+  "otp": {
+    "message": "TezFiks təsdiq kodunuz: {{code}}. Kod {{minutes}} dəqiqə etibarlıdır. Kodu heç kimə deməyin."
+  }
+}

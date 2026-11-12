@@ -1,0 +1,1564 @@
+{
+  "appName": "TezFiks Panel",
+  "home": {
+    "title": "TezFiks control panel",
+    "subtitle": "Choose the panel you want to sign in to",
+    "admin": "TezFiks admin panel",
+    "adminHint": "Sign in with email and password",
+    "company": "Company panel",
+    "companyHint": "Managers sign in with their phone number"
+  },
+  "nav": {
+    "admin": {
+      "dashboard": "Dashboard",
+      "orders": "Orders",
+      "handymen": "Handymen",
+      "companies": "Companies",
+      "customers": "Customers",
+      "payments": "Payments",
+      "cases": "Cases",
+      "projects": "Projects",
+      "categories": "Categories",
+      "map": "Map",
+      "settings": "Settings",
+      "audit": "Audit",
+      "demo": "Demo"
+    },
+    "company": {
+      "dashboard": "Dashboard",
+      "dispatch": "Dispatch",
+      "orders": "Orders",
+      "workers": "Handymen",
+      "balance": "Balance",
+      "projects": "Projects",
+      "settings": "Settings"
+    }
+  },
+  "shell": {
+    "adminTitle": "TezFiks Admin",
+    "companyTitle": "Company panel",
+    "logout": "Log out",
+    "language": "Language",
+    "switchCompany": "Switch company",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "live": "Live",
+    "offline": "Disconnected",
+    "signedInAs": "Signed in as {{name}}"
+  },
+  "auth": {
+    "adminTitle": "TezFiks admin panel",
+    "adminSubtitle": "Sign in with your admin account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "companyTitle": "Company panel",
+    "companySubtitle": "Sign in as a manager with your phone number",
+    "sendCode": "Send code via WhatsApp",
+    "codeSentTo": "We sent the code to {{phone}} on WhatsApp",
+    "code": "6-digit code",
+    "verify": "Verify",
+    "resend": "Resend code",
+    "resendIn": "New code in {{seconds}} s",
+    "devCodeHint": "Test mode: code {{code}}",
+    "changePhone": "Change number",
+    "chooseCompanyTitle": "Choose a company",
+    "chooseCompanySubtitle": "Companies you manage",
+    "noManagedCompanies": "This number does not manage any company. Companies register in the TezFiks Usta app.",
+    "sessionExpired": "Your session expired, please sign in again",
+    "invalidEmail": "Enter a valid email address",
+    "required": "This field is required",
+    "codeFormat": "The code has 6 digits",
+    "phonePlaceholder": "050 123 45 67"
+  },
+  "placeholder": {
+    "title": "Coming soon",
+    "description": "This section is being built."
+  },
+  "table": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}}",
+    "empty": "No data",
+    "loading": "Loading..."
+  },
+  "confirm": {
+    "title": "Are you sure?",
+    "description": "This action may not be reversible."
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "The page could not be loaded. Please try again.",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The page does not exist or you do not have access to it.",
+    "backHome": "Back to home"
+  },
+  "join": {
+    "title": "{{company}} invites you to join the team",
+    "role": "Role: {{role}}",
+    "expires": "The invite is valid until {{date}}",
+    "instructions": "To join, install the TezFiks Usta app and open this invite in it.",
+    "openApp": "Open in TezFiks Usta",
+    "getApp": "Download the app (Android)",
+    "storeSoon": "The app is coming to Google Play soon; you can download it directly now.",
+    "invalidTitle": "Invite is not valid",
+    "reason": {
+      "EXPIRED": "The invite has expired. Ask the company for a new one.",
+      "REVOKED": "The invite was revoked.",
+      "USED_UP": "This invite has already been used.",
+      "COMPANY_NOT_APPROVED": "The company is not verified yet.",
+      "NOT_FOUND": "Invite not found. Check the link."
+    }
+  },
+  "status": {
+    "unknown": "Unknown",
+    "offerStatus": {
+      "SENT": "Sent",
+      "ACCEPTED": "Accepted",
+      "DECLINED": "Declined",
+      "EXPIRED": "Expired",
+      "CLOSED": "Closed"
+    },
+    "slotStatus": {
+      "OPEN": "Open",
+      "FILLED": "Handyman assigned",
+      "DONE": "Done",
+      "CANCELLED": "Cancelled",
+      "UNFILLED": "No handyman found"
+    },
+    "userStatus": {
+      "ACTIVE": "Active",
+      "BLOCKED": "Blocked",
+      "DELETED": "Deleted"
+    },
+    "holdStatus": {
+      "ACTIVE": "On hold",
+      "CAPTURED": "Captured",
+      "RELEASED": "Released"
+    },
+    "memberStatus": {
+      "ACTIVE": "Active",
+      "REMOVED": "Removed"
+    }
+  },
+  "map": {
+    "loading": "Loading map...",
+    "osmAttribution": "© OpenStreetMap contributors"
+  },
+  "admin": {
+    "common": {
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "all": "All",
+      "apply": "Apply",
+      "reset": "Reset",
+      "from": "From",
+      "to": "To",
+      "view": "View",
+      "yes": "Yes",
+      "no": "No",
+      "bot": "Bot",
+      "online": "Online",
+      "offline": "Offline",
+      "busy": "Busy",
+      "reason": "Reason",
+      "reasonPlaceholder": "Briefly describe the reason",
+      "reasonLength": "The reason must be {{min}}–{{max}} characters",
+      "notFoundTitle": "Nothing found",
+      "notFound": "Not found: it was removed or the link is wrong."
+    },
+    "months": {
+      "m1": "January",
+      "m2": "February",
+      "m3": "March",
+      "m4": "April",
+      "m5": "May",
+      "m6": "June",
+      "m7": "July",
+      "m8": "August",
+      "m9": "September",
+      "m10": "October",
+      "m11": "November",
+      "m12": "December"
+    },
+    "enums": {
+      "providerType": {
+        "SOLO": "Individual handyman",
+        "COMPANY": "Company"
+      },
+      "handymanKind": {
+        "SOLO": "Individual handyman",
+        "COMPANY_WORKER": "Company worker"
+      },
+      "actorSide": {
+        "CUSTOMER": "customer",
+        "PROVIDER": "handyman",
+        "ADMIN": "admin",
+        "SYSTEM": "system"
+      },
+      "offerTarget": {
+        "HANDYMAN": "Handyman",
+        "COMPANY": "Company"
+      },
+      "ledgerOwnerType": {
+        "CUSTOMER_ACCOUNT": "Customer",
+        "HANDYMAN": "Handyman",
+        "COMPANY": "Company",
+        "PLATFORM": "Platform"
+      },
+      "ledgerAccountKind": {
+        "WALLET": "wallet",
+        "EARNINGS": "earnings",
+        "REVENUE": "revenue",
+        "PROMO": "promo",
+        "EXTERNAL": "external",
+        "PAYOUTS_IN_TRANSIT": "payouts in transit",
+        "ADJUSTMENTS": "adjustments"
+      },
+      "paymentPurpose": {
+        "WALLET_TOPUP": "Wallet top-up",
+        "JOB_PAYMENT": "Job payment",
+        "TIP": "Tip",
+        "INVOICE": "Invoice"
+      },
+      "payoutOwnerType": {
+        "HANDYMAN": "Handyman",
+        "COMPANY": "Company"
+      },
+      "payoutMethodType": {
+        "CARD": "Card",
+        "IBAN": "IBAN"
+      },
+      "adminRole": {
+        "ADMIN": "Admin",
+        "OPERATOR": "Operator"
+      },
+      "auditActor": {
+        "ADMIN": "Admin",
+        "USER": "User",
+        "SYSTEM": "System"
+      },
+      "displayStatus": {
+        "ACTIVE": "Active",
+        "LOW_BALANCE": "Low balance",
+        "PENDING": "Awaiting approval",
+        "BLOCKED": "Blocked",
+        "REJECTED": "Rejected",
+        "DRAFT": "Draft"
+      },
+      "resolveOutcome": {
+        "RESOLVED": "Resolved",
+        "COMPLETE_CASH": "Complete as cash payment",
+        "REPROPOSE_PRICE": "Propose a new price",
+        "CANCEL_ASSIGNMENT": "Cancel the job without fees"
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "titleWithDate": "Dashboard — {{date}}",
+      "ordersToday": "Orders today",
+      "vsYesterday": "{{delta}} vs yesterday",
+      "noComparison": "No data to compare",
+      "activeHandymen": "Active handymen",
+      "online": "online: {{count}}",
+      "revenueToday": "Revenue today (fees)",
+      "revenueHint_one": "{{count}} order × {{fee}}",
+      "revenueHint_other": "{{count}} orders × {{fee}}",
+      "cancelRate": "Cancellation rate",
+      "thisWeek": "{{delta}} this week",
+      "pendingKyc": "Handymen awaiting approval: {{count}}",
+      "pendingCompanies": "Companies awaiting approval: {{count}}",
+      "openCases": "Open cases: {{count}}",
+      "recentOrders": "Recent orders",
+      "allOrders": "All orders"
+    },
+    "orders": {
+      "title": "Orders",
+      "description": "All orders, statuses and payments",
+      "searchPlaceholder": "Order no., customer or handyman name",
+      "empty": "No orders found",
+      "detailTitle": "Order {{number}}",
+      "guaranteeFix": "Guarantee re-fix",
+      "captured": "captured",
+      "slotsValue": "{{filled}} / {{requested}}",
+      "noOffers": "No offers were sent",
+      "columns": {
+        "number": "No.",
+        "customer": "Customer",
+        "provider": "Handyman",
+        "service": "Service",
+        "timing": "Timing",
+        "slots": "Handymen",
+        "status": "Status",
+        "fee": "Fee",
+        "createdAt": "Created"
+      },
+      "sections": {
+        "request": "Order",
+        "customer": "Customer",
+        "timeline": "Timeline",
+        "assignments": "Handymen",
+        "offers": "Offers log",
+        "ledger": "Ledger entries"
+      },
+      "fields": {
+        "createdAt": "Created",
+        "scheduledAt": "Scheduled for",
+        "slots": "Handymen (filled / requested)",
+        "preference": "Provider preference",
+        "emergencyFee": "Emergency fee",
+        "cancelReason": "Cancellation reason",
+        "address": "Address",
+        "addressNote": "Address note",
+        "description": "Description",
+        "photos": "Photos",
+        "customerType": "Account type"
+      },
+      "offers": {
+        "target": "To",
+        "step": "Step / ring",
+        "stepValue": "{{step}} / {{ring}}",
+        "distance": "Distance",
+        "km": "{{km}} km",
+        "status": "Status",
+        "sentAt": "Sent",
+        "respondedAt": "Response"
+      },
+      "cancel": {
+        "button": "Force cancel",
+        "title": "Cancel the order",
+        "description": "All active handymen are released and the customer is notified.",
+        "chargeCustomer": "Charge the customer the cancellation penalty",
+        "chargeHint": "Current penalty: {{amount}}",
+        "success": "Order cancelled"
+      }
+    },
+    "timeline": {
+      "created": "Order created",
+      "request_created": "Order created",
+      "search_started": "Search started",
+      "offers_sent": "Offers sent",
+      "offer_sent": "Offer sent",
+      "accepted": "Handyman accepted",
+      "assignment_accepted": "Handyman accepted",
+      "en_route": "Handyman on the way",
+      "EN_ROUTE": "Handyman on the way",
+      "arrived": "Handyman arrived",
+      "ARRIVED": "Handyman arrived",
+      "contact_unlocked": "Contact unlocked",
+      "price_proposed": "Price proposed",
+      "PRICE_PROPOSED": "Price proposed",
+      "price_confirmed": "Price confirmed",
+      "price_disputed": "Price disputed",
+      "completed": "Completed",
+      "COMPLETED": "Completed",
+      "cancelled": "Cancelled",
+      "CANCELLED": "Cancelled",
+      "expired": "No handyman found",
+      "payment_succeeded": "Payment succeeded",
+      "payment_failed": "Payment failed",
+      "fee_captured": "Platform fee captured",
+      "fee_refunded": "Platform fee refunded",
+      "penalty": "Cancellation penalty"
+    },
+    "assignments": {
+      "empty": "No handyman assigned",
+      "request": "Order",
+      "provider": "Handyman",
+      "customer": "Customer",
+      "status": "Status",
+      "acceptedAt": "Accepted",
+      "finishedAt": "Finished",
+      "price": "Price",
+      "fee": "Fee",
+      "contact": "Contact unlocked",
+      "locked": "Locked",
+      "eta": "≈ {{minutes}} min",
+      "cancelledBy": "Cancelled by: {{actor}}",
+      "feeCaptured": "captured",
+      "feeHeld": "held",
+      "feeRefunded": "refunded"
+    },
+    "ledger": {
+      "empty": "No transactions",
+      "createdAt": "Date",
+      "kind": "Type",
+      "entries": "Entries",
+      "memo": "Memo"
+    },
+    "handymen": {
+      "title": "Handymen — management and verification",
+      "detailTitle": "Handyman",
+      "searchPlaceholder": "Name, surname or phone",
+      "empty": "No handymen found",
+      "note": "Note: when a new handyman registers, an admin checks and approves the ID card and the trade proofs.",
+      "review": "Review",
+      "strikesCount": "Strikes: {{count}}",
+      "rejectReason": "Rejection reason",
+      "radiusValue": "{{km}} km",
+      "companyWorkerWallet": "Company workers have no wallet of their own: the company pays the fees.",
+      "tabs": {
+        "all": "All",
+        "pending": "Awaiting approval",
+        "blocked": "Blocked"
+      },
+      "columns": {
+        "name": "Handyman",
+        "trades": "Trade",
+        "rating": "Rating",
+        "orders": "Orders",
+        "balance": "Balance",
+        "status": "Status",
+        "action": "Action"
+      },
+      "sections": {
+        "profile": "Profile",
+        "wallet": "Balance",
+        "kyc": "Identity verification",
+        "strikes": "Strikes ({{count}})",
+        "recentAssignments": "Recent orders"
+      },
+      "fields": {
+        "phone": "Phone",
+        "kind": "Type",
+        "company": "Company",
+        "trades": "Trades",
+        "rating": "Rating",
+        "completed": "Completed orders",
+        "radius": "Service radius",
+        "base": "Base location",
+        "createdAt": "Registered"
+      },
+      "approve": {
+        "button": "Approve",
+        "title": "Approve the handyman",
+        "description": "Approve the handyman once the documents are checked. The fields read from the ID card are optional.",
+        "docNumberLast4": "Last 4 characters of the ID number",
+        "docNumberHint": "Digits or capital letters, e.g. 4K7Z",
+        "birthDate": "Date of birth",
+        "expiry": "Expiry date",
+        "invalid": "Check the fields: the number must be 4 characters",
+        "cancel": "Cancel",
+        "confirm": "Approve",
+        "success": "Handyman approved"
+      },
+      "actions": {
+        "reject": "Reject",
+        "rejectTitle": "Reject the application",
+        "rejectDescription": "The handyman sees the reason and can resubmit the documents.",
+        "rejected": "Application rejected",
+        "block": "Block",
+        "blockTitle": "Block the handyman",
+        "blockDescription": "The handyman goes offline and cannot receive new orders.",
+        "blocked": "Handyman blocked",
+        "unblock": "Unblock",
+        "unblockDescription": "The handyman returns to the previous status.",
+        "unblocked": "Handyman unblocked",
+        "clearStrikes": "Clear strikes",
+        "clearStrikesDescription_one": "{{count}} active strike will be cleared.",
+        "clearStrikesDescription_other": "{{count}} active strikes will be cleared.",
+        "strikesCleared": "Strikes cleared"
+      }
+    },
+    "kyc": {
+      "none": "No documents submitted",
+      "submittedAt": "Submitted",
+      "reviewedBy": "Reviewed by: {{name}}",
+      "rejectReason": "Rejection reason",
+      "idDocument": "ID card",
+      "selfies": "Selfie check",
+      "otherDocuments": "Trade proofs and documents",
+      "consent": "Consent",
+      "consentValue": "Version {{version}} ({{locale}})",
+      "consentAt": "Consent given",
+      "docNumberLast4": "ID no. (last 4)",
+      "birthDate": "Date of birth",
+      "expiry": "Expiry date",
+      "selfieChecks": "On-device face check",
+      "noSelfieChecks": "Not performed",
+      "urlNote": "Image links are short-lived; reload the page if they do not open.",
+      "files": {
+        "idFront": "ID card, front",
+        "idBack": "ID card, back",
+        "selfieFront": "Selfie: looking straight",
+        "selfieTurn": "Selfie: head turn",
+        "selfieBlink": "Selfie: blink",
+        "tradeProof": "Trade proof",
+        "companyDoc": "Company document"
+      }
+    },
+    "strikes": {
+      "empty": "No strikes",
+      "cleared": "Cleared:"
+    },
+    "wallet": {
+      "none": "No wallet",
+      "available": "Available balance",
+      "posted": "Posted balance",
+      "held": "Held",
+      "earnings": "Earnings (to be paid out)",
+      "debt": "The customer is in debt",
+      "lowBalance": "Low balance",
+      "button": "Adjust balance",
+      "title": "Adjust balance",
+      "description": "Recorded in the ledger as ADMIN_ADJUSTMENT and kept in the audit log.",
+      "direction": "Operation",
+      "credit": "Add to balance",
+      "debit": "Deduct from balance",
+      "amount": "Amount (₼)",
+      "amountError": "Enter an amount between 0.01 and 100,000 ₼",
+      "account": "Account",
+      "accountWallet": "Wallet",
+      "accountEarnings": "Earnings",
+      "reason": "Reason",
+      "reasonError": "The reason must be 3–300 characters",
+      "cancel": "Cancel",
+      "close": "Close",
+      "submit": "Confirm",
+      "success": "Balance updated"
+    },
+    "companies": {
+      "title": "Companies",
+      "detailTitle": "Company",
+      "searchPlaceholder": "Company name, VOEN or phone",
+      "empty": "No companies found",
+      "review": "Review",
+      "voen": "VOEN {{voen}}",
+      "rejectReason": "Rejection reason",
+      "noMembers": "No members",
+      "tabs": {
+        "all": "All",
+        "pending": "Awaiting approval",
+        "blocked": "Blocked"
+      },
+      "columns": {
+        "name": "Company",
+        "owner": "Manager",
+        "members": "Members",
+        "rating": "Rating",
+        "balance": "Balance",
+        "status": "Status",
+        "createdAt": "Registered",
+        "action": "Action"
+      },
+      "sections": {
+        "company": "Company details",
+        "wallet": "Balance",
+        "members": "Members ({{count}})",
+        "kyc": "Documents",
+        "strikes": "Strikes ({{count}})"
+      },
+      "fields": {
+        "owner": "Manager",
+        "members": "Members",
+        "finalPriceEntry": "Final price entered by",
+        "vat": "VAT payer",
+        "trades": "Trades",
+        "rating": "Rating",
+        "createdAt": "Registered"
+      },
+      "memberColumns": {
+        "name": "Name",
+        "role": "Role",
+        "trades": "Trades",
+        "rating": "Rating",
+        "completed": "Orders",
+        "presence": "Presence",
+        "status": "Status"
+      },
+      "actions": {
+        "approve": "Approve",
+        "approveDescription": "The company is approved and can accept orders.",
+        "approved": "Company approved",
+        "reject": "Reject",
+        "rejectTitle": "Reject the company",
+        "rejectDescription": "The manager sees the reason and can resubmit the documents.",
+        "rejected": "Company rejected",
+        "block": "Block",
+        "blockTitle": "Block the company",
+        "blockDescription": "The company and its workers cannot receive new orders.",
+        "blocked": "Company blocked",
+        "unblock": "Unblock",
+        "unblockDescription": "The company returns to the previous status.",
+        "unblocked": "Company unblocked"
+      }
+    },
+    "customers": {
+      "title": "Customers",
+      "detailTitle": "Customer",
+      "searchPlaceholder": "Name, phone or company",
+      "empty": "No customers found",
+      "columns": {
+        "name": "Customer",
+        "type": "Type",
+        "requests": "Orders",
+        "rating": "Rating",
+        "balance": "Balance",
+        "status": "Status",
+        "createdAt": "Registered",
+        "action": "Action"
+      },
+      "sections": {
+        "account": "Account",
+        "wallet": "Balance",
+        "recentRequests": "Recent orders"
+      },
+      "actions": {
+        "block": "Block user",
+        "blockTitle": "Block the user",
+        "blockDescription": "All sessions are closed and the user cannot sign in.",
+        "blocked": "User blocked",
+        "unblock": "Unblock",
+        "unblockDescription": "The user can sign in again.",
+        "unblocked": "User unblocked"
+      }
+    },
+    "paymentsPage": {
+      "title": "Payments",
+      "tabs": {
+        "ledger": "Ledger",
+        "payments": "Payment intents",
+        "payouts": "Payouts",
+        "invoices": "Invoices"
+      },
+      "filters": {
+        "kind": "Type",
+        "ownerType": "Owner",
+        "status": "Status",
+        "purpose": "Purpose"
+      }
+    },
+    "payments": {
+      "empty": "No payments",
+      "columns": {
+        "createdAt": "Date",
+        "payer": "Payer",
+        "purpose": "Purpose",
+        "amount": "Amount",
+        "status": "Status",
+        "provider": "Provider",
+        "completedAt": "Completed"
+      }
+    },
+    "payouts": {
+      "empty": "No payouts",
+      "noMethod": "No payout method",
+      "run": "Create payouts now",
+      "runDescription": "Runs the weekly payout job now (once per owner per week).",
+      "runResult_one": "{{count}} payout created, total {{total}}",
+      "runResult_other": "{{count}} payouts created, total {{total}}",
+      "markPaid": "Paid",
+      "markPaidDescription": "The payout is marked as paid.",
+      "markedPaid": "Payout marked as paid",
+      "markFailed": "Failed",
+      "markFailedTitle": "Payout failed",
+      "markFailedDescription": "The amount returns to the earnings balance.",
+      "markedFailed": "Payout marked as failed",
+      "columns": {
+        "owner": "Recipient",
+        "period": "Period",
+        "amount": "Amount",
+        "method": "Method",
+        "status": "Status",
+        "paidAt": "Paid",
+        "actions": "Action"
+      }
+    },
+    "invoices": {
+      "empty": "No invoices",
+      "project": "Project P-{{number}}",
+      "vat": "VAT {{rate}}%",
+      "markPaid": "Paid",
+      "markPaidDescription": "Bank transfer received: the amount is credited to the provider's earnings.",
+      "markedPaid": "Invoice marked as paid",
+      "columns": {
+        "number": "No.",
+        "parties": "Provider → Customer",
+        "total": "Total",
+        "status": "Status",
+        "issuedAt": "Date",
+        "paidAt": "Paid",
+        "actions": "Action"
+      }
+    },
+    "cases": {
+      "title": "Cases",
+      "description": "Guarantee claims, price disputes and reports",
+      "detailTitle": "Case",
+      "empty": "No cases",
+      "projectRef": "Project P-{{number}}",
+      "openedAt": "Opened:",
+      "openFollowUp": "View the follow-up order",
+      "columns": {
+        "createdAt": "Date",
+        "type": "Type",
+        "reference": "Order",
+        "customer": "Customer",
+        "provider": "Handyman",
+        "status": "Status",
+        "updatedAt": "Updated",
+        "action": "Action"
+      },
+      "sections": {
+        "claim": "Claim",
+        "notes": "Internal notes ({{count}})",
+        "assignment": "Order and handyman"
+      },
+      "fields": {
+        "description": "Description",
+        "photos": "Photos",
+        "resolution": "Decision",
+        "followUp": "Follow-up order"
+      },
+      "notes": {
+        "empty": "No notes",
+        "placeholder": "Internal note (not visible to the customer or handyman)",
+        "add": "Add note",
+        "added": "Note added"
+      },
+      "resolve": {
+        "button": "Resolve",
+        "title": "Resolve the case",
+        "description": "The customer and the handyman are notified of the decision.",
+        "outcome": "Outcome",
+        "labor": "Labour (₼)",
+        "materials": "Materials (₼)",
+        "priceError": "Enter a valid amount",
+        "note": "Decision note",
+        "noteError": "A note is required (up to 2000 characters)",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "success": "Case resolved"
+      },
+      "actions": {
+        "redispatch": "Redispatch",
+        "redispatchTitle": "Guarantee re-fix",
+        "redispatchDescription": "A fee-free order is created and offered to the original handyman first.",
+        "redispatched": "Follow-up order created",
+        "noteOptional": "Note (optional)",
+        "note": "Note",
+        "reject": "Reject",
+        "rejectTitle": "Reject the case",
+        "rejectDescription": "The customer is told the reason.",
+        "rejected": "Case rejected"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "detailTitle": "Project {{number}}",
+      "empty": "No projects",
+      "noQuotes": "No quotes",
+      "noReports": "No reports",
+      "progress": "Progress: {{percent}}%",
+      "columns": {
+        "number": "No.",
+        "customer": "Customer",
+        "category": "Category",
+        "workers": "Workers",
+        "dates": "Dates",
+        "quotes": "Quotes",
+        "status": "Status",
+        "createdAt": "Created",
+        "action": "Action"
+      },
+      "sections": {
+        "project": "Project",
+        "customer": "Customer",
+        "quotes": "Quotes ({{count}})",
+        "reports": "Daily reports ({{count}})",
+        "invoice": "Invoice {{number}}"
+      },
+      "fields": {
+        "scope": "Scope",
+        "quoteDeadline": "Quote deadline",
+        "address": "Address",
+        "description": "Description",
+        "photos": "Photos",
+        "guaranteeUntil": "Guarantee until"
+      },
+      "quotes": {
+        "provider": "Provider",
+        "total": "Amount",
+        "workersDays": "Workers × days",
+        "workersDaysValue": "{{workers}} × {{days}}",
+        "fee": "Platform fee",
+        "feeCaptured": "captured",
+        "feeHeld": "held",
+        "status": "Status",
+        "createdAt": "Date",
+        "completed_one": "{{count}} job",
+        "completed_other": "{{count}} jobs",
+        "vatPayer": "VAT payer"
+      },
+      "invoice": {
+        "subtotal": "Subtotal (excl. VAT)",
+        "vat": "VAT {{rate}}%",
+        "total": "Total"
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "description": "Service groups and services (with az / ru / en names)",
+      "empty": "No categories",
+      "new": "New category",
+      "newTitle": "New category",
+      "editTitle": "Edit: {{name}}",
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "activated": "Category activated",
+      "deactivated": "Category deactivated",
+      "created": "Category created",
+      "updated": "Category updated",
+      "featured": "Featured",
+      "emergency": "Emergency",
+      "inactive": "Inactive",
+      "noParent": "Top level",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "kind": {
+        "GROUP": "Group",
+        "SERVICE": "Service"
+      },
+      "flow": {
+        "INSTANT": "Instant",
+        "QUOTE": "Quote"
+      },
+      "fields": {
+        "slug": "Slug",
+        "slugHint": "Lowercase latin letters, digits and hyphens",
+        "icon": "Icon",
+        "iconHint": "MaterialCommunityIcons name, e.g. water-pump",
+        "vertical": "Vertical",
+        "kind": "Type",
+        "parent": "Parent group",
+        "flow": "Order flow",
+        "nameAz": "Name (az)",
+        "nameRu": "Name (ru)",
+        "nameEn": "Name (en)",
+        "sortOrder": "Sort order",
+        "keywords": "Keywords",
+        "keywordsHint": "Comma separated (search and AI)",
+        "active": "Active",
+        "featured": "Show on the home screen",
+        "emergencyAllowed": "Emergency orders allowed"
+      },
+      "validation": {
+        "required": "This field is required",
+        "tooLong": "Too long",
+        "slug": "2–60 characters: a-z, 0-9 and hyphens",
+        "integer": "Enter a whole number"
+      }
+    },
+    "map": {
+      "title": "Map",
+      "description": "Handymen and searching orders (H3 hexagons) — refreshed every 10 seconds",
+      "legend": "Legend",
+      "updated": "Updated:",
+      "live": "Live",
+      "polling": "Refreshing every 10 s",
+      "refresh": "Refresh",
+      "legendItems": {
+        "online": "Online",
+        "busy": "Busy",
+        "bot": "Bot",
+        "offline": "Offline",
+        "request": "Orders",
+        "searching": "Searching"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Platform fees, timers and limits",
+      "demoBadge": "Demo",
+      "demoNotice": "The API runs in demo mode: some timers are accelerated (the defaults shown reflect this).",
+      "defaultHint": "Default: {{value}}",
+      "invalidValue": "Invalid value",
+      "invalidFields": "Invalid fields: {{count}}",
+      "noChanges": "No changes",
+      "saved": "Settings saved",
+      "save": "Save",
+      "reset": "Revert",
+      "adminsTitle": "Admins",
+      "groups": {
+        "fees": "Fees and penalties",
+        "dispatch": "Dispatch",
+        "cancellation": "Cancellation, contact and completion",
+        "scheduling": "Scheduled orders",
+        "guarantee": "Guarantee and B2B",
+        "limits": "Limits"
+      },
+      "units": {
+        "azn": "₼",
+        "sec": "s",
+        "min": "min",
+        "hours": "h",
+        "days": "days",
+        "percent": "%",
+        "count": "pcs",
+        "m": "m"
+      },
+      "fields": {
+        "requestFee": "Request fee (handyman)",
+        "emergencyFeePerSlot": "Emergency fee (per handyman)",
+        "cancelPenalty": "Customer cancellation penalty",
+        "penaltyCompensation": "Compensation to the handyman",
+        "b2bFeePerWorkerDay": "B2B fee (worker × day)",
+        "lowBalanceThreshold": "Low balance threshold",
+        "vatRatePercent": "VAT rate",
+        "offerTtlSec": "Offer lifetime",
+        "ringStepSec": "Ring step",
+        "emergencyRingStepSec": "Emergency ring step",
+        "noMatchAfterSec": "No match after",
+        "minCandidates": "Minimum candidates",
+        "maxOffersPerStep": "Maximum offers per step",
+        "onlineStaleSec": "Online signal goes stale",
+        "freeCancelSec": "Free cancellation window",
+        "contactUnlockEtaSec": "Contact unlocks below ETA",
+        "arrivalMaxDistanceM": "Max distance for \"I have arrived\"",
+        "noShowAfterMin": "No-show after",
+        "autoCompleteAfterMin": "Auto-complete after",
+        "chatOpenAfterTerminalMin": "Chat stays open",
+        "scheduledMinLeadMin": "Minimum lead time",
+        "scheduledMaxLeadDays": "Maximum lead time",
+        "scheduledLiveDispatchLeadMin": "Live dispatch starts",
+        "scheduledUnfilledLeadMin": "Unfilled warning",
+        "scheduledOfferWindowMin": "Scheduled offer window",
+        "guaranteeDays": "Guarantee period",
+        "guaranteeOriginalProviderMin": "Original handyman priority",
+        "quoteWindowHours": "B2B quote window",
+        "maxSlots": "Maximum handymen per order",
+        "maxPhotos": "Maximum photos"
+      }
+    },
+    "admins": {
+      "new": "New admin",
+      "newTitle": "New admin",
+      "editTitle": "Edit: {{email}}",
+      "edit": "Edit",
+      "you": "you",
+      "active": "Active",
+      "inactive": "Inactive",
+      "operatorNote": "Only the ADMIN role can manage admins.",
+      "created": "Admin created",
+      "updated": "Admin updated",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "fields": {
+        "email": "Email",
+        "name": "Name",
+        "role": "Role",
+        "status": "Status",
+        "lastLogin": "Last sign-in",
+        "password": "Password",
+        "passwordHint": "At least 10 characters",
+        "newPassword": "New password",
+        "newPasswordHint": "Leave empty to keep the current password",
+        "active": "Active"
+      },
+      "validation": {
+        "email": "Enter a valid email",
+        "nameLength": "The name must be 2–100 characters",
+        "password": "The password must be at least 10 characters",
+        "tooLong": "Too long"
+      }
+    },
+    "audit": {
+      "title": "Audit",
+      "empty": "No entries",
+      "before": "Before",
+      "after": "After",
+      "filters": {
+        "entityType": "Entity type",
+        "entityId": "Entity ID"
+      },
+      "columns": {
+        "at": "Time",
+        "actor": "Actor",
+        "action": "Action",
+        "entity": "Entity",
+        "changes": "Changes",
+        "ip": "IP"
+      }
+    },
+    "demo": {
+      "title": "Demo",
+      "description": "Simulator: bot handymen, auto-accept and test orders",
+      "disabledTitle": "Demo mode is off",
+      "disabledDescription": "The simulator is only available when the API runs with DEMO_MODE=true.",
+      "mapHint": "Click the map: test orders and bots are placed at that point.",
+      "pickedPoint": "Selected point",
+      "clear": "Remove bots",
+      "clearDescription": "All bot handymen will be removed.",
+      "cleared": "Bots removed",
+      "noBots": "No bots",
+      "busy": "Busy",
+      "free": "Free",
+      "priceNote": "Automatic price:",
+      "sections": {
+        "request": "Test order",
+        "spawn": "Spawn bot handymen",
+        "config": "Simulator",
+        "bots": "Bots ({{count}})"
+      },
+      "columns": {
+        "name": "Bot",
+        "trades": "Trades",
+        "location": "Location",
+        "state": "State"
+      },
+      "spawn": {
+        "count": "Count (1–50)",
+        "radius": "Radius (km)",
+        "atPoint": "Around the selected point",
+        "atCenter": "Around central Baku (no point selected)",
+        "submit": "Spawn",
+        "done_one": "{{count}} bot spawned",
+        "done_other": "{{count}} bots spawned",
+        "invalid": "Count must be 1–50, radius 0.3–20 km",
+        "trade": "Trade",
+        "anyTrade": "Any (simulator picks)",
+        "company": "Company",
+        "solo": "Solo bots"
+      },
+      "config": {
+        "autoAccept": "Auto-accept",
+        "autoArrive": "Auto-arrive",
+        "autoPrice": "Auto-price",
+        "acceptDelaySec": "Accept delay (s)",
+        "speedKmh": "Speed (km/h)",
+        "priceLabor": "Labour (₼)",
+        "priceMaterials": "Materials (₼)",
+        "save": "Save",
+        "saved": "Simulator updated",
+        "noChanges": "No changes",
+        "invalid": "Delay must be 1–120 s, speed 5–300 km/h"
+      },
+      "request": {
+        "pickPoint": "Select a point on the map first",
+        "point": "Point: {{lat}}, {{lng}}",
+        "category": "Service",
+        "timing": "Timing",
+        "slots": "Handymen",
+        "slotsError": "1–10",
+        "scheduledAt": "Time",
+        "bakuTime": "Baku time",
+        "description": "Description",
+        "required": "Required",
+        "submit": "Create order",
+        "created": "Order #{{number}} created",
+        "open": "Order #{{number}}"
+      }
+    }
+  },
+  "company": {
+    "common": {
+      "notFoundTitle": "Nothing found",
+      "notFound": "Not found: it was removed or the link is wrong."
+    },
+    "workerState": {
+      "free": "Free",
+      "busy": "On a job",
+      "offline": "Offline",
+      "noTrade": "Wrong trade"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "openDispatch": "Open dispatch",
+      "openDispatchWaiting_one": "Dispatch: {{count}} new order",
+      "openDispatchWaiting_other": "Dispatch: {{count}} new orders",
+      "topUp": "+ Top up balance",
+      "statusBanner": {
+        "DRAFT": "The company has not been submitted for verification yet. Send the documents from the TezFiks Usta app.",
+        "PENDING_REVIEW": "TezFiks is verifying the company. Orders will arrive after approval.",
+        "REJECTED": "The company did not pass verification. Resubmit the documents from the app.",
+        "BLOCKED": "The company is blocked. Contact TezFiks support for details."
+      },
+      "rejectReason": "Reason: {{value}}",
+      "lowBalance": "Low balance: top up to accept orders.",
+      "balance": "Balance",
+      "balanceHint": "On hold: {{amount}}",
+      "jobsToday": "Orders today",
+      "activeJobs": "Active orders",
+      "workersOnline": "Handymen online",
+      "workersHint": "online / all handymen",
+      "revenueToday": "Turnover today",
+      "feesToday": "Platform fees today",
+      "earnings": "Card earnings",
+      "earningsHint": "Paid out weekly"
+    },
+    "dispatch": {
+      "title": "Dispatch",
+      "subtitle": "Incoming orders, active jobs and the live map of your handymen",
+      "live": "Live",
+      "polling": "Refreshing (no live connection)",
+      "walletChip": "Balance: {{amount}}",
+      "notice": {
+        "TAKEN": "Order {{number}} was taken by someone else",
+        "EXPIRED": "Time is up for order {{number}}",
+        "CANCELLED": "Order {{number}} was cancelled by the customer",
+        "SEARCH_ENDED": "The search for order {{number}} has ended",
+        "DECLINED": "Order {{number}} was declined",
+        "ACCEPTED": "Order {{number}} was accepted"
+      },
+      "offers": {
+        "title": "Incoming orders",
+        "empty": "No new orders right now",
+        "emptyHint": "New orders appear here with a countdown.",
+        "unavailable": "Orders cannot be loaded yet.",
+        "accepted_one": "Order {{number}} accepted: {{count}} handyman sent",
+        "accepted_other": "Order {{number}} accepted: {{count}} handymen sent",
+        "newOrder": "New order {{number}}",
+        "emergency": "Emergency",
+        "guarantee": "Guarantee",
+        "expiresIn": "Time left",
+        "scheduled": "Scheduled:",
+        "eta": "~{{minutes}} min",
+        "customer": "Customer: {{name}}",
+        "slots": "Handymen needed: {{value}} / {{requested}}",
+        "feeNote": "{{amount}} will be held from the company balance on acceptance",
+        "lowBalance": "The company balance is not enough for this order.",
+        "topUp": "Top up",
+        "pickTitle": "Choose the handyman",
+        "pickHint": "Up to {{count}}",
+        "noCandidates": "No suitable handyman for this order.",
+        "accept": "Accept and send",
+        "decline": "Decline",
+        "declined": "Order {{number}} declined",
+        "limit": "You can choose at most {{count}} for this order",
+        "unavailableWorker": "This handyman cannot be sent right now"
+      },
+      "board": {
+        "title": "Active jobs",
+        "empty": "No active jobs",
+        "unavailable": "Could not load active jobs. Try again in a moment.",
+        "error": "Could not load the active jobs",
+        "columns": {
+          "ACCEPTED": "Accepted",
+          "EN_ROUTE": "On the way",
+          "ARRIVED": "On site",
+          "PRICE": "Price / payment"
+        },
+        "eta": "{{minutes}} min away",
+        "scheduledFor": "Time:",
+        "freeCancel": "Free cancel: {{value}}",
+        "price": "Price:"
+      },
+      "map": {
+        "title": "Handymen map",
+        "unavailable": "Could not load the handymen's positions.",
+        "error": "Could not refresh the handymen positions",
+        "noPosition": "Position unknown: {{count}}"
+      }
+    },
+    "orders": {
+      "title": "Orders",
+      "tabs": {
+        "active": "Active",
+        "history": "History"
+      },
+      "columns": {
+        "number": "Order",
+        "category": "Service",
+        "worker": "Handyman",
+        "customer": "Customer",
+        "status": "Status",
+        "acceptedAt": "Accepted",
+        "price": "Price",
+        "fee": "Fee"
+      },
+      "emptyActive": "No active orders",
+      "emptyHistory": "History is empty",
+      "detailTitle": "Order {{number}}",
+      "detailTitleShort": "Order",
+      "emergency": "Emergency",
+      "guaranteeFix": "Guarantee re-fix",
+      "workerEntersPrice": "In this company the handyman enters the final price.",
+      "etaNote": "The handyman is {{minutes}} min away",
+      "contactLocked": "The customer's phone unlocks when the handyman is close.",
+      "freeCancelUntil": "Free cancellation until:",
+      "feeHeld": "on hold",
+      "feeCaptured": "charged",
+      "feeRefunded": "refunded",
+      "feeReleased": "released",
+      "sections": {
+        "job": "Job",
+        "worker": "Handyman",
+        "customer": "Customer",
+        "price": "Price and payment",
+        "timeline": "Progress"
+      },
+      "fields": {
+        "category": "Service",
+        "timing": "Time",
+        "description": "Description",
+        "address": "Address",
+        "addressDetails": "Building, entrance, floor, flat",
+        "addressNote": "Note",
+        "photo": "Photo",
+        "labor": "Labour",
+        "materials": "Materials",
+        "total": "Total",
+        "paymentMethod": "Payment method",
+        "paymentStatus": "Payment status",
+        "tip": "Tip",
+        "fee": "Platform fee",
+        "guaranteeUntil": "Guarantee"
+      },
+      "timeline": {
+        "acceptedAt": "Order accepted",
+        "enRouteAt": "Handyman on the way",
+        "arrivedAt": "Handyman arrived",
+        "priceProposedAt": "Price proposed",
+        "completedAt": "Job completed",
+        "cancelledAt": "Cancelled"
+      },
+      "cancelledBy": {
+        "CUSTOMER": "customer",
+        "PROVIDER": "company",
+        "ADMIN": "TezFiks",
+        "SYSTEM": "system"
+      },
+      "price": {
+        "button": "Enter price",
+        "title": "Final price",
+        "description": "Enter the labour and the materials. The customer confirms the amount in the app.",
+        "labor": "Labour (₼)",
+        "laborError": "Enter a valid labour amount",
+        "materials": "Materials (₼)",
+        "materialsError": "Enter a valid materials amount",
+        "total": "Total",
+        "warning": "The price cannot be changed after confirmation.",
+        "submit": "Confirm the price and finish",
+        "success": "The price was sent to the customer"
+      },
+      "reassign": {
+        "button": "Change handyman",
+        "title": "Choose another handyman",
+        "description": "The job moves to the chosen handyman. Only free handymen with this trade can be chosen.",
+        "pickError": "Choose a handyman",
+        "none": "No suitable free handyman.",
+        "submit": "Change handyman",
+        "success": "The job was given to another handyman"
+      },
+      "cancel": {
+        "button": "Cancel",
+        "title": "Cancel the order?",
+        "freeDescription": "Within the free cancellation window: the platform fee is returned and the order goes to another provider.",
+        "lateDescription": "The free cancellation window is over: the platform fee is not returned and the company gets a strike.",
+        "reason": "Reason (optional)",
+        "submit": "Cancel the order",
+        "success": "Order cancelled"
+      }
+    },
+    "workers": {
+      "title": "Handymen",
+      "subtitle": "Your team, roles, trades and invite links",
+      "members": {
+        "title": "Team",
+        "titleCount": "Team ({{count}})",
+        "empty": "No handymen yet. Create an invite link and send it to them.",
+        "you": "you",
+        "columns": {
+          "name": "Handyman",
+          "role": "Role",
+          "trades": "Trades",
+          "state": "State",
+          "rating": "Rating",
+          "completed": "Jobs",
+          "joinedAt": "Joined",
+          "actions": "Actions"
+        },
+        "roleChanged": "Role changed",
+        "editTrades": "Edit trades",
+        "editTradesTitle": "{{name}}: trades",
+        "editTradesHint": "Only the company's trades can be chosen.",
+        "tradesError": "Choose at least one trade",
+        "tradesSaved": "Trades saved",
+        "remove": "Remove",
+        "removeTitle": "Remove {{name}} from the team?",
+        "removeDescription": "The handyman will no longer get the company's orders. You can invite them again.",
+        "removed": "Handyman removed from the team"
+      },
+      "invites": {
+        "title": "Invite links",
+        "empty": "No invite links",
+        "emptyHint": "Create a link and send it via WhatsApp: handymen join the team in the TezFiks Usta app.",
+        "create": "Create invite link",
+        "createTitle": "New invite link",
+        "createHint": "The link opens in the TezFiks Usta app and the handyman joins the company.",
+        "role": "Role",
+        "maxUses": "Uses",
+        "maxUsesError": "Must be between 1 and 100",
+        "expiresInDays": "Valid for (days)",
+        "expiresInDaysError": "Must be between 1 and 30 days",
+        "submit": "Create",
+        "created": "Invite link created",
+        "createdTitle": "The link is ready",
+        "createdHint": "Copy the link and send it to the handyman.",
+        "copy": "Copy",
+        "copied": "Link copied",
+        "copyFailed": "Could not copy, select the link manually",
+        "revoke": "Revoke",
+        "revokeTitle": "Revoke the invite link?",
+        "revokeDescription": "Nobody will be able to join with this link anymore.",
+        "revoked": "Invite link revoked",
+        "uses": "{{value}} / {{max}}",
+        "columns": {
+          "link": "Link",
+          "role": "Role",
+          "uses": "Uses",
+          "expiresAt": "Expires",
+          "state": "State",
+          "actions": "Actions"
+        },
+        "state": {
+          "active": "Active",
+          "inactive": "Invalid",
+          "revoked": "Revoked"
+        }
+      }
+    },
+    "balance": {
+      "title": "Balance",
+      "subtitle": "Company balance, transactions, card earnings and payouts",
+      "wallet": {
+        "title": "Company balance",
+        "available": "Available",
+        "held": "On hold",
+        "heldHint": "Fees of accepted orders",
+        "posted": "Total balance",
+        "lowBalance": "Low balance: top up to accept new orders."
+      },
+      "topup": {
+        "title": "Top up balance",
+        "amount": "Amount (₼)",
+        "amountHint": "₼1 – ₼1000. The payment page opens in a new tab.",
+        "amountError": "Enter an amount between ₼1 and ₼1000",
+        "submit": "Go to payment",
+        "opened": "The payment page opened in a new tab",
+        "popupBlocked": "The browser blocked the new tab: open the link below",
+        "openCheckout": "Open the payment page",
+        "returned": "If the payment went through, the balance updates in a few seconds."
+      },
+      "transactions": {
+        "title": "Transaction history",
+        "empty": "No transactions",
+        "project": "Project #{{number}}",
+        "columns": {
+          "date": "Date",
+          "kind": "Transaction",
+          "ref": "Order",
+          "amount": "Amount",
+          "balanceAfter": "Balance"
+        }
+      },
+      "earnings": {
+        "title": "Card earnings",
+        "balance": "Unpaid earnings",
+        "balanceHint": "Card payments and tips",
+        "pending": "In transit (payout)",
+        "thisWeek": "This week",
+        "card_one": "Card: {{count}} job, {{amount}}",
+        "card_other": "Card: {{count}} jobs, {{amount}}",
+        "cash_one": "Cash: {{count}} job, {{amount}}",
+        "cash_other": "Cash: {{count}} jobs, {{amount}}",
+        "tips": "Tips: {{amount}}"
+      },
+      "payouts": {
+        "title": "Payouts",
+        "empty": "No payouts yet",
+        "period": "Period",
+        "amount": "Amount",
+        "status": "Status",
+        "paidAt": "Paid",
+        "hint": "Earnings are paid out every Monday at 09:00."
+      },
+      "payoutMethod": {
+        "title": "Payout card",
+        "none": "No payout card or IBAN added.",
+        "typeLabel": "Type",
+        "type": {
+          "CARD": "Card",
+          "IBAN": "IBAN"
+        },
+        "cardNumber": "Card number",
+        "iban": "IBAN",
+        "numberError": "A card number has 16–19 digits; an IBAN has 28 characters starting with AZ",
+        "holder": "Holder name",
+        "holderError": "The name must have 3–100 characters",
+        "hint": "Only a masked copy of the number is stored.",
+        "save": "Save",
+        "saved": "Payout details saved"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Business orders: quotes, execution and invoices",
+      "tabs": {
+        "open": "Open for quotes",
+        "active": "Our projects",
+        "history": "History"
+      },
+      "empty": {
+        "open": "No open projects right now",
+        "active": "No active projects",
+        "history": "History is empty"
+      },
+      "columns": {
+        "number": "No.",
+        "project": "Project",
+        "customer": "Customer",
+        "dates": "Dates",
+        "workers": "Handymen",
+        "deadline": "Quote deadline",
+        "status": "Status",
+        "myQuote": "Our quote"
+      },
+      "number": "#{{number}}",
+      "open": "View",
+      "awardedToUs": "Awarded to us",
+      "detailTitle": "Project #{{number}}: {{name}}",
+      "detailTitleShort": "Project",
+      "sections": {
+        "details": "Project",
+        "quote": "Quote",
+        "reports": "Daily reports ({{count}})",
+        "invoice": "Invoice"
+      },
+      "fields": {
+        "customer": "Customer",
+        "customerRating": "Customer rating",
+        "dates": "Dates",
+        "workers": "Handymen needed",
+        "address": "Address",
+        "deadline": "Quote deadline",
+        "quotes": "Quotes",
+        "feePerWorkerDay": "Platform fee (handyman × day)",
+        "photo": "Photo"
+      },
+      "quote": {
+        "total": "Total price (₼)",
+        "totalError": "Enter an amount above ₼1",
+        "workers": "Handymen",
+        "workersError": "1–100 handymen",
+        "days": "Days",
+        "daysError": "1–365 days",
+        "note": "Note",
+        "noteError": "The note cannot be longer than 1000 characters",
+        "fee": "Platform fee: {{amount}} ({{fee}} × {{workers}} handymen × {{days}} days) will be held on the company balance. It is returned if the quote is not accepted.",
+        "feeUnknown": "Platform fee: {{fee}} × handymen × days",
+        "lowBalance": "The company balance is not enough for this quote's fee.",
+        "submit": "Send quote",
+        "submitted": "Quote sent",
+        "withdraw": "Withdraw",
+        "withdrawTitle": "Withdraw the quote?",
+        "withdrawDescription": "The held platform fee returns to the balance.",
+        "withdrawn": "Quote withdrawn",
+        "workersDays": "Handymen × days",
+        "workersDaysValue": "{{workers}} handymen × {{days}} days",
+        "feeHeld": "Platform fee",
+        "feeCaptured": "charged",
+        "feeOnHold": "on hold",
+        "sentAt": "Sent",
+        "closed": "Quotes are closed."
+      },
+      "report": {
+        "title": "New report",
+        "empty": "No reports yet",
+        "date": "Date",
+        "dateError": "Choose a valid date",
+        "progress": "Progress (%)",
+        "progressError": "Between 0 and 100",
+        "note": "Work done",
+        "noteError": "Write a note",
+        "photosHint": "Photos can be added from the TezFiks Usta app.",
+        "submit": "Add report",
+        "added": "Report added"
+      },
+      "complete": {
+        "hint": "When the work is done an invoice is issued.",
+        "defaultLine": "Without extra lines the invoice has one line: {{amount}} (the quote total).",
+        "lineDescription": "Description",
+        "lineAmount": "Amount (₼)",
+        "lineError": "Enter a description and an amount",
+        "removeLine": "Remove line",
+        "addLine": "Add line",
+        "subtotal": "Subtotal",
+        "submit": "Complete the work",
+        "confirmTitle": "Complete the project?",
+        "confirmDescription": "An invoice (with VAT) is issued and sent to the customer.",
+        "done": "Invoice {{number}} issued"
+      },
+      "invoice": {
+        "none": "No invoice yet",
+        "number": "Invoice {{number}}",
+        "issuer": "Provider",
+        "customer": "Customer",
+        "voen": "TIN: {{voen}}",
+        "subtotal": "Amount",
+        "vat": "VAT ({{rate}}%)",
+        "noVat": "Not a VAT payer",
+        "total": "Total",
+        "issuedAt": "Date",
+        "paidAt": "Paid"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "sections": {
+        "settings": "Company settings",
+        "company": "Company"
+      },
+      "finalPrice": {
+        "title": "Who enters the final price?",
+        "description": "Choose who enters the final price of an order when the job is done. The rule applies to all handymen of the company.",
+        "WORKER": {
+          "title": "The handyman enters it",
+          "description": "When the job is done the handyman types the final price on the phone — the manager gets a notification."
+        },
+        "MANAGER": {
+          "title": "The manager enters it",
+          "description": "The handyman finishes the job, the manager enters and confirms the price in the app or the panel. The handyman does not see the price step."
+        },
+        "howTitle": "How it works",
+        "how": "Whichever mode you choose, an order is not closed without a price, and the amount is shown to the customer for confirmation. Solo handymen always enter the price themselves."
+      },
+      "name": "Company name",
+      "radius": "Service radius (km)",
+      "radiusHint": "2–50 km",
+      "vat": "We are a VAT payer",
+      "vatHint": "Invoices of business projects will include a VAT line.",
+      "trades": "Trades",
+      "base": "Base point",
+      "baseHint": "Click the map to set the company's base point.",
+      "lat": "Latitude",
+      "lng": "Longitude",
+      "baseAddress": "Base address",
+      "save": "Save",
+      "saved": "Settings saved",
+      "noChanges": "Nothing changed",
+      "errors": {
+        "name": "The name must have 2–120 characters",
+        "radius": "The radius must be 2–50 km",
+        "trades": "Choose at least one trade",
+        "base": "Enter valid coordinates",
+        "baseAddress": "The address cannot be longer than 300 characters"
+      },
+      "fields": {
+        "legal": "Legal form",
+        "voen": "TIN {{voen}}",
+        "status": "Status",
+        "kyc": "Document check",
+        "rejectReason": "Rejection reason",
+        "rating": "Rating",
+        "strikes": "Strikes",
+        "members": "Online / handymen"
+      },
+      "kycNone": "No documents sent",
+      "kycHint": "Send the documents from the TezFiks Usta app. Only TezFiks staff can see them."
+    }
+  }
+}

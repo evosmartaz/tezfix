@@ -1,0 +1,13 @@
+appId: az.tezfiks.app
+name: sub - izləmə ekranında "ləğv et" düyməsinə qədər sürüşdür (xəritədən kənarda)
+---
+- repeat:
+    while:
+      notVisible:
+        id: "tracking-cancel"
+    times: 6
+    commands:
+      - swipe:
+          start: 50%, 88%
+          end: 50%, 35%
+          duration: 600

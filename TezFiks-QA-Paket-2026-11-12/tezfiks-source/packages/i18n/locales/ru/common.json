@@ -1,0 +1,296 @@
+{
+  "brand": {
+    "name": "TezFiks",
+    "tagline": "Мастер, когда он нужен — для дома и авто"
+  },
+  "login": {
+    "codeViaWhatsApp": "Мы отправим код подтверждения в WhatsApp"
+  },
+  "languages": {
+    "az": "Azərbaycanca",
+    "ru": "Русский",
+    "en": "English"
+  },
+  "actions": {
+    "continue": "Продолжить",
+    "save": "Сохранить",
+    "cancel": "Отменить",
+    "confirm": "Подтвердить",
+    "close": "Закрыть",
+    "back": "Назад",
+    "retry": "Повторить",
+    "edit": "Изменить",
+    "delete": "Удалить",
+    "search": "Поиск",
+    "send": "Отправить",
+    "accept": "Принять",
+    "decline": "Отказаться",
+    "approve": "Одобрить",
+    "reject": "Отклонить",
+    "block": "Заблокировать",
+    "unblock": "Разблокировать",
+    "view": "Открыть",
+    "share": "Поделиться",
+    "call": "Позвонить",
+    "message": "Написать",
+    "logout": "Выйти",
+    "done": "Готово",
+    "next": "Далее",
+    "skip": "Пропустить",
+    "add": "Добавить",
+    "upload": "Загрузить",
+    "takePhoto": "Сделать фото",
+    "chooseFromGallery": "Выбрать из галереи",
+    "refresh": "Обновить",
+    "copy": "Копировать",
+    "copied": "Скопировано",
+    "topUp": "Пополнить баланс",
+    "openSettings": "Открыть настройки"
+  },
+  "states": {
+    "loading": "Загрузка...",
+    "empty": "Пока ничего нет",
+    "error": "Произошла ошибка",
+    "offline": "Нет подключения к интернету",
+    "reconnecting": "Восстанавливаем соединение...",
+    "saved": "Сохранено"
+  },
+  "units": {
+    "minutes_one": "{{count}} минута",
+    "minutes_few": "{{count}} минуты",
+    "minutes_many": "{{count}} минут",
+    "minutes_other": "{{count}} минуты",
+    "km": "{{value}} км",
+    "m": "{{value}} м",
+    "workers_one": "{{count}} мастер",
+    "workers_few": "{{count}} мастера",
+    "workers_many": "{{count}} мастеров",
+    "workers_other": "{{count}} мастера",
+    "days_one": "{{count}} день",
+    "days_few": "{{count}} дня",
+    "days_many": "{{count}} дней",
+    "days_other": "{{count}} дня",
+    "seconds_one": "{{count}} секунда",
+    "seconds_few": "{{count}} секунды",
+    "seconds_many": "{{count}} секунд",
+    "seconds_other": "{{count}} секунды"
+  },
+  "time": {
+    "justNow": "только что",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "tomorrow": "Завтра"
+  },
+  "fields": {
+    "phone": "Номер телефона",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "companyName": "Название компании",
+    "voen": "ВОЕН",
+    "legalForm": "Правовая форма",
+    "contactPerson": "Контактное лицо",
+    "address": "Адрес",
+    "district": "Район",
+    "street": "Улица",
+    "building": "Дом",
+    "block": "Корпус",
+    "entrance": "Подъезд",
+    "floor": "Этаж",
+    "apartment": "Квартира",
+    "intercom": "Код домофона",
+    "note": "Примечание (ориентир)",
+    "description": "Описание проблемы",
+    "amount": "Сумма",
+    "labor": "Стоимость работы",
+    "materials": "Материалы",
+    "total": "Итого",
+    "comment": "Комментарий"
+  },
+  "requestStatus": {
+    "SEARCHING": "Ищем мастера",
+    "ASSIGNED": "Мастер назначен",
+    "IN_PROGRESS": "В работе",
+    "COMPLETED": "Выполнен",
+    "CANCELLED": "Отменён",
+    "EXPIRED": "Мастер не найден"
+  },
+  "assignmentStatus": {
+    "ACCEPTED": "Заказ принят",
+    "EN_ROUTE": "Мастер в пути",
+    "ARRIVED": "Мастер на месте",
+    "PRICE_PROPOSED": "Ожидает подтверждения цены",
+    "PRICE_DISPUTED": "Цена оспаривается",
+    "COMPLETED": "Выполнен",
+    "CANCELLED_FREE": "Отменён",
+    "CANCELLED_BY_PROVIDER": "Отменён мастером",
+    "CANCELLED_BY_CUSTOMER": "Отменён клиентом",
+    "DECLINED_ON_ARRIVAL": "Отказ на месте",
+    "NO_SHOW": "Мастер не приехал"
+  },
+  "timing": {
+    "NOW": "Сейчас",
+    "SCHEDULED": "Запланировать",
+    "EMERGENCY": "Срочно"
+  },
+  "verificationStatus": {
+    "DRAFT": "Черновик",
+    "PENDING_REVIEW": "На проверке",
+    "APPROVED": "Активен",
+    "REJECTED": "Отклонён",
+    "BLOCKED": "Заблокирован"
+  },
+  "customerType": {
+    "INDIVIDUAL": "Личный аккаунт",
+    "COMPANY": "Аккаунт компании"
+  },
+  "providerPreference": {
+    "ANY": "Без разницы",
+    "INDIVIDUAL": "Частный мастер",
+    "COMPANY": "Сервисная компания"
+  },
+  "legalForm": {
+    "MMC": "ООО (MMC)",
+    "ASC": "ОАО (ASC)",
+    "QSC": "ЗАО (QSC)",
+    "FS": "Индивидуальный предприниматель",
+    "OTHER": "Другое"
+  },
+  "companyRole": {
+    "MANAGER": "Управляющий",
+    "WORKER": "Мастер"
+  },
+  "finalPriceEntry": {
+    "WORKER": "Мастер вводит сам",
+    "MANAGER": "Вводит управляющий"
+  },
+  "paymentMethod": {
+    "CASH": "Наличными на месте",
+    "CARD": "Оплата картой"
+  },
+  "paymentStatus": {
+    "CREATED": "Ожидает",
+    "SUCCEEDED": "Оплачено",
+    "FAILED": "Ошибка оплаты",
+    "CANCELLED": "Отменено"
+  },
+  "payoutStatus": {
+    "PENDING": "Ожидает",
+    "PAID": "Выплачено",
+    "FAILED": "Не выполнено"
+  },
+  "ledgerTxKind": {
+    "TOPUP": "Пополнение баланса",
+    "ADMIN_ADJUSTMENT": "Корректировка администратором",
+    "REQUEST_FEE_CAPTURE": "Комиссия платформы",
+    "REQUEST_FEE_REFUND": "Возврат комиссии",
+    "EMERGENCY_FEE_CAPTURE": "Плата за срочный заказ",
+    "EMERGENCY_FEE_REFUND": "Возврат платы за срочность",
+    "CANCEL_PENALTY": "Штраф за отмену",
+    "PENALTY_COMPENSATION": "Компенсация за отмену",
+    "JOB_PAYMENT": "Оплата работы",
+    "TIP": "Чаевые",
+    "B2B_FEE_CAPTURE": "Комиссия за корпоративный заказ",
+    "INVOICE_PAYMENT": "Оплата счёта",
+    "PAYOUT_CREATED": "Вывод средств",
+    "PAYOUT_PAID": "Выплата переведена",
+    "PAYOUT_FAILED": "Выплата возвращена"
+  },
+  "caseType": {
+    "GUARANTEE": "Гарантия TezFiks",
+    "PRICE_DISPUTE": "Спор о цене",
+    "REPORT": "Жалоба"
+  },
+  "caseStatus": {
+    "OPEN": "Открыто",
+    "IN_REVIEW": "На рассмотрении",
+    "REDISPATCHED": "Мастер направлен",
+    "RESOLVED": "Решено",
+    "REJECTED": "Отклонено"
+  },
+  "projectStatus": {
+    "OPEN": "Сбор предложений",
+    "AWARDED": "Исполнитель выбран",
+    "IN_PROGRESS": "Выполняется",
+    "COMPLETED": "Завершён",
+    "INVOICED": "Счёт выставлен",
+    "PAID": "Оплачен",
+    "CANCELLED": "Отменён",
+    "EXPIRED": "Нет предложений"
+  },
+  "quoteStatus": {
+    "SUBMITTED": "Отправлено",
+    "ACCEPTED": "Принято",
+    "REJECTED": "Отклонено",
+    "WITHDRAWN": "Отозвано",
+    "EXPIRED": "Истекло"
+  },
+  "invoiceStatus": {
+    "ISSUED": "Выставлен",
+    "PAID": "Оплачен",
+    "VOID": "Аннулирован"
+  },
+  "vertical": {
+    "HOME": "Мастера для дома",
+    "AUTO": "Автомастера"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Проверьте введённые данные",
+    "UNAUTHORIZED": "Войдите снова",
+    "FORBIDDEN": "У вас нет доступа к этому действию",
+    "NOT_FOUND": "Не найдено",
+    "CONFLICT": "Данные уже изменились, обновите страницу",
+    "RATE_LIMITED": "Слишком много попыток. Попробуйте позже",
+    "INTERNAL": "Произошла непредвиденная ошибка",
+    "OTP_INVALID": "Неверный код",
+    "OTP_EXPIRED": "Срок действия кода истёк, запросите новый",
+    "OTP_TOO_MANY_ATTEMPTS": "Слишком много неверных попыток. Запросите новый код",
+    "OTP_COOLDOWN": "Подождите немного перед запросом нового кода",
+    "PHONE_INVALID": "Введите корректный мобильный номер",
+    "SESSION_REVOKED": "Сессия завершена, войдите снова",
+    "REFRESH_INVALID": "Сессия истекла, войдите снова",
+    "INVALID_CREDENTIALS": "Неверный e-mail или пароль",
+    "USER_BLOCKED": "Ваш аккаунт заблокирован",
+    "PROFILE_INCOMPLETE": "Заполните профиль",
+    "CUSTOMER_ACCOUNT_REQUIRED": "Сначала выберите тип аккаунта",
+    "INSUFFICIENT_BALANCE": "Недостаточно средств на балансе",
+    "CUSTOMER_IN_DEBT": "На балансе есть задолженность. Пополните баланс, чтобы создать заказ",
+    "IDEMPOTENCY_CONFLICT": "Этот запрос уже был отправлен с другими данными",
+    "OFFER_UNAVAILABLE": "Заказ уже принял другой мастер",
+    "OFFER_EXPIRED": "Время предложения истекло",
+    "NOT_ELIGIBLE": "Вы не подходите для этого заказа",
+    "INVALID_STATE": "Это действие недоступно на текущем этапе",
+    "CANCEL_NOT_ALLOWED": "На этом этапе отмена невозможна",
+    "TOO_EARLY": "Пока слишком рано",
+    "HANDYMAN_NOT_APPROVED": "Ваш профиль ещё не подтверждён",
+    "COMPANY_NOT_APPROVED": "Компания ещё не подтверждена",
+    "NOT_COMPANY_MANAGER": "Действие доступно только управляющему компании",
+    "ALREADY_IN_COMPANY": "Вы уже состоите в компании",
+    "ALREADY_HANDYMAN": "У вас уже есть профиль мастера",
+    "INVITE_INVALID": "Ссылка-приглашение недействительна",
+    "WORKER_UNAVAILABLE": "Выбранный мастер сейчас недоступен",
+    "CONTACT_LOCKED": "Контакты откроются, когда мастер будет рядом",
+    "CHAT_LOCKED": "Чат откроется, когда мастер будет рядом",
+    "CATEGORY_INACTIVE": "Эта услуга сейчас недоступна",
+    "CATEGORY_REQUIRES_QUOTE": "Для этой услуги создайте запрос коммерческого предложения",
+    "CATEGORY_NOT_INSTANT": "Эта услуга не заказывается мгновенно",
+    "EMERGENCY_NOT_ALLOWED": "Срочный заказ для этой услуги недоступен",
+    "SCHEDULE_TOO_SOON": "Выбранное время слишком близко",
+    "SCHEDULE_TOO_FAR": "Выбранное время слишком далеко",
+    "GUARANTEE_NOT_AVAILABLE": "Гарантия действует только для работ, оплаченных картой",
+    "ALREADY_RATED": "Вы уже поставили оценку",
+    "FILE_TOO_LARGE": "Файл слишком большой",
+    "FILE_TYPE_NOT_ALLOWED": "Этот тип файла не поддерживается",
+    "FILE_NOT_OWNED": "Этот файл нельзя использовать",
+    "KYC_RESUBMIT_LIMIT": "Попытки на сегодня исчерпаны, попробуйте завтра",
+    "KYC_ALREADY_PENDING": "Ваши документы уже проверяются",
+    "PAYMENT_DECLINED": "Платёж отклонён",
+    "PAYMENT_NOT_PENDING": "Этот платёж уже завершён",
+    "QUOTE_WINDOW_CLOSED": "Приём предложений завершён",
+    "AI_UNAVAILABLE": "Автовыбор сейчас недоступен, выберите категорию сами",
+    "DEMO_DISABLED": "Демо-режим не включён",
+    "NOT_NEAR_ADDRESS": "Вы ещё не у адреса: попробуйте снова, когда доберётесь",
+    "PAYMENTS_UNAVAILABLE": "Оплата картой сейчас недоступна",
+    "NETWORK": "Не удалось подключиться к серверу",
+    "TIMEOUT": "Сервер не ответил"
+  }
+}

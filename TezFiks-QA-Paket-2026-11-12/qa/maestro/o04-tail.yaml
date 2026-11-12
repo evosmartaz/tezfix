@@ -1,0 +1,60 @@
+appId: az.tezfiks.usta
+name: AU-O04 (iş ekranından)
+---
+- runFlow:
+    file: sub-pro-scroll-to.yaml
+    env:
+      TARGET: "job-en-route"
+- tapOn:
+    id: "job-en-route"
+- waitForAnimationToEnd:
+    timeout: 5000
+- runFlow:
+    file: sub-pro-scroll-to.yaml
+    env:
+      TARGET: "job-arrived"
+- takeScreenshot: o04-05-en-route
+- tapOn:
+    id: "job-arrived"
+- extendedWaitUntil:
+    visible:
+      id: "job-arrived-confirm"
+    timeout: 10000
+- tapOn:
+    id: "job-arrived-confirm"
+- waitForAnimationToEnd:
+    timeout: 5000
+- runFlow:
+    file: sub-pro-scroll-to.yaml
+    env:
+      TARGET: "job-complete"
+- takeScreenshot: o04-06-arrived
+- tapOn:
+    id: "job-complete"
+- extendedWaitUntil:
+    visible:
+      id: "price-screen"
+    timeout: 20000
+- tapOn:
+    id: "price-labor"
+- tapOn:
+    id: "price-keypad-3"
+- tapOn:
+    id: "price-keypad-5"
+- tapOn:
+    id: "price-materials"
+- tapOn:
+    id: "price-keypad-1"
+- tapOn:
+    id: "price-keypad-0"
+- assertVisible: ".*45.*"
+- takeScreenshot: o04-07-price
+- tapOn:
+    id: "price-submit"
+- extendedWaitUntil:
+    visible:
+      id: "price-confirm-send"
+    timeout: 10000
+- takeScreenshot: o04-08-price-confirm
+- tapOn:
+    id: "price-confirm-send"

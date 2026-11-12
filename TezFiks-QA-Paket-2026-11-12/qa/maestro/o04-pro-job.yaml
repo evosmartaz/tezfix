@@ -1,0 +1,95 @@
+appId: az.tezfiks.usta
+name: AU-O04 Pro (Elvin) - onlayn, təklif, qəbul, yola çıxdım, gəldim, qiymət
+# Qarşı tərəf: node mobile-driver.mts customer  (müştəri API ilə telefonun yerində sorğu yaradır, nağd təsdiqləyir)
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- takeScreenshot: o04-01-home-offline
+- tapOn:
+    id: "online-toggle"
+- tapOn:
+    text: "(While using the app|Tətbiqdən istifadə edərkən|İcazə verin|Allow)"
+    optional: true
+- extendedWaitUntil:
+    visible: "(ONLAYN|Onlayn)"
+    timeout: 20000
+- takeScreenshot: o04-02-online
+# Təklif pəncərəsi (15 s)
+- extendedWaitUntil:
+    visible:
+      id: "offer-modal"
+    timeout: 120000
+- takeScreenshot: o04-03-offer
+- tapOn:
+    id: "offer-accept"
+- extendedWaitUntil:
+    visible:
+      id: "job-screen"
+    timeout: 30000
+- takeScreenshot: o04-04-job-accepted
+- runFlow:
+    file: sub-pro-scroll-to.yaml
+    env:
+      TARGET: "job-en-route"
+- tapOn:
+    id: "job-en-route"
+- waitForAnimationToEnd:
+    timeout: 5000
+- runFlow:
+    file: sub-pro-scroll-to.yaml
+    env:
+      TARGET: "job-arrived"
+- takeScreenshot: o04-05-en-route
+- tapOn:
+    id: "job-arrived"
+- extendedWaitUntil:
+    visible:
+      id: "job-arrived-confirm"
+    timeout: 10000
+- tapOn:
+    id: "job-arrived-confirm"
+- waitForAnimationToEnd:
+    timeout: 5000
+- runFlow:
+    file: sub-pro-scroll-to.yaml
+    env:
+      TARGET: "job-complete"
+- takeScreenshot: o04-06-arrived
+- tapOn:
+    id: "job-complete"
+- extendedWaitUntil:
+    visible:
+      id: "price-screen"
+    timeout: 20000
+- tapOn:
+    id: "price-labor"
+- tapOn:
+    id: "price-keypad-3"
+- tapOn:
+    id: "price-keypad-5"
+- tapOn:
+    id: "price-materials"
+- tapOn:
+    id: "price-keypad-1"
+- tapOn:
+    id: "price-keypad-0"
+- assertVisible: ".*45.*"
+- takeScreenshot: o04-07-price
+- tapOn:
+    id: "price-submit"
+- extendedWaitUntil:
+    visible:
+      id: "price-confirm-send"
+    timeout: 10000
+- takeScreenshot: o04-08-price-confirm
+- tapOn:
+    id: "price-confirm-send"
+# Müştəri nağd təsdiqləyir (driver)
+- extendedWaitUntil:
+    visible:
+      id: "(job-state-done|job-state-awaiting-customer|job-rate|rate-screen)"
+    timeout: 120000
+- takeScreenshot: o04-09-after-price

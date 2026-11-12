@@ -1,0 +1,662 @@
+{
+  "appName": "TezFiks Pro",
+  "brand": {
+    "tagline": "Jobs near you — on your own schedule"
+  },
+  "auth": {
+    "welcomeTitle": "Sign in with your phone number",
+    "terms": "By continuing you accept the terms of use and the privacy policy",
+    "otpTitle": "Verification code",
+    "otpSubtitle": "Enter the 6-digit code sent via WhatsApp to {{phone}}",
+    "verify": "Verify",
+    "resend": "Resend code",
+    "resendIn": "Resend code ({{time}})",
+    "codeSent": "A new code has been sent",
+    "changeNumber": "Change number",
+    "devCodeHint": "Test mode: your code is {{code}}",
+    "profileTitle": "Complete your profile",
+    "profileSubtitle": "Customers will see your name and photo",
+    "addPhoto": "Add photo",
+    "changePhoto": "Change photo",
+    "photoOptional": "Photo is optional",
+    "firstNameRequired": "Enter your first name",
+    "lastNameRequired": "Enter your last name",
+    "photoUploadFailed": "The photo was not uploaded. Try again later from your profile",
+    "galleryDenied": "Gallery access was not granted",
+    "language": "Language"
+  },
+  "tabs": {
+    "home": "Home",
+    "orders": "Orders",
+    "balance": "Balance",
+    "profile": "Profile"
+  },
+  "home": {
+    "greeting": "Hello, {{name}}",
+    "online": "ONLINE",
+    "offline": "OFFLINE",
+    "today": "Today",
+    "statJobs": "Jobs",
+    "statEarnings": "Earnings",
+    "statFees": "Platform fees",
+    "lowBalanceTitle": "Current balance: {{balance}}",
+    "lowBalance": "With less than {{fee}} on your balance you cannot accept new orders",
+    "topUp": "+ Top up balance",
+    "waitingOffers": "You are online. New orders nearby will appear here",
+    "waitingCompany": "You are online. Your company can assign orders to you",
+    "workerOf": "Company: {{company}}",
+    "removedFromCompany": "You are no longer a member of a company. You can join again with a new invite link",
+    "warning": {
+      "LOW_BALANCE": "Your balance does not cover the platform fee: you will not receive order offers",
+      "NO_TRADES": "No trades selected in your profile: you will not receive order offers",
+      "COMPANY_LOW_BALANCE": "The company balance is low: no orders will be assigned until the manager tops it up"
+    }
+  },
+  "onboarding": {
+    "joinTitle": "Join as a handyman",
+    "joinSubtitle": "How will you work?",
+    "soloTitle": "Independent handyman",
+    "soloSubtitle": "You work under your own name and accept orders yourself",
+    "companyTitle": "Handyman company",
+    "companySubtitle": "You run a team: the manager accepts orders and assigns handymen",
+    "inviteTitle": "Join with an invite link",
+    "inviteSubtitle": "Join your company as a handyman with the link it sent you",
+    "inviteLabel": "Invite link or code",
+    "invitePlaceholder": "https://evosmart.az/tezfix/join/...",
+    "inviteInvalid": "The invite link is not valid",
+    "reviewInfo": "After registration an admin checks your ID and proof of trade (VÖEN for companies) and approves you, usually within 24 hours.",
+    "soloFormSubtitle": "Customers will see your name, photo and trade",
+    "companyFormSubtitle": "Once the company is verified you add handymen with invite links",
+    "managerSection": "Manager",
+    "companySection": "Company details",
+    "photoHint": "A photo that clearly shows your face builds customer trust",
+    "trades": "Trades",
+    "tradesHint": "{{count}} of {{max}} selected",
+    "tradesSearch": "Search trades",
+    "radius": "Service radius",
+    "radiusValue": "{{km}} km",
+    "radiusHint": "You will receive orders within this distance ({{min}}–{{max}} km)",
+    "base": "Your base location",
+    "companyBase": "Company location",
+    "baseAddress": "Address",
+    "baseAddressPlaceholder": "E.g. Khatai, M.Hadi st. 12",
+    "baseHint": "Move the map so the pin points at your location",
+    "baseSelected": "Selected point: {{lat}}, {{lng}}",
+    "useMyLocation": "My location",
+    "locationUnavailable": "Could not find your location. Pick it on the map",
+    "vatPayer": "We are a VAT payer",
+    "voenHint": "10 digits",
+    "continueToKyc": "Continue to verification",
+    "errors": {
+      "firstNameRequired": "Enter your first name",
+      "lastNameRequired": "Enter your last name",
+      "nameTooLong": "At most 60 characters",
+      "tradesRequired": "Select at least one trade",
+      "tradesTooMany": "Too many trades selected",
+      "radius": "Invalid radius",
+      "baseRequired": "Pick the location on the map",
+      "companyNameRequired": "Enter the company name",
+      "companyNameTooLong": "At most 120 characters",
+      "legalForm": "Select the legal form",
+      "voen": "VÖEN must be 10 digits",
+      "voenTaken": "A company with this VÖEN is already registered",
+      "addressTooLong": "The address is too long",
+      "invalid": "Check the details",
+      "fixFields": "Something is missing: fix the field marked in red"
+    }
+  },
+  "kyc": {
+    "title": "Identity verification",
+    "titleCompany": "Company verification",
+    "step": "Step {{current}} of {{total}}",
+    "consentTitle": "Consent",
+    "consentText": "I consent to TezFiks processing photos of my ID card, my selfies and my trade documents solely to verify my identity and qualifications. These images are shown only to TezFiks administrators, every view is logged, and they are deleted 30 days after the decision.",
+    "stepsId": "Front and back of your ID card",
+    "stepsSelfie": "Three short selfies: look straight, turn your head, blink",
+    "stepsReview": "Admin review, usually within 24 hours",
+    "agree": "I agree, continue",
+    "slot": {
+      "idFront": {
+        "title": "Front of the ID",
+        "instruction": "Place the ID inside the frame. All text must be readable"
+      },
+      "idBack": {
+        "title": "Back of the ID",
+        "instruction": "Turn the ID over and place the back inside the frame"
+      },
+      "selfieFront": {
+        "title": "Selfie: look straight",
+        "instruction": "Fit your face inside the oval and look straight at the camera"
+      },
+      "selfieTurn": {
+        "title": "Selfie: turn your head",
+        "instruction": "Slowly turn your head to the right and take the photo"
+      },
+      "selfieBlink": {
+        "title": "Selfie: blink",
+        "instruction": "Look at the camera, blink and take the photo"
+      }
+    },
+    "capture": "Take photo",
+    "retake": "Retake",
+    "usePhoto": "Use this photo",
+    "cameraDenied": "Camera access was not granted. Verification needs the camera",
+    "allowCamera": "Allow camera",
+    "uploadFailed": "The photo was not uploaded. Please retake it",
+    "extrasTitle": "Proof of trade (optional)",
+    "extrasTitleCompany": "Company documents (optional)",
+    "extrasHint": "Photos of certificates, diplomas or past work speed up the review (at most {{max}})",
+    "extraItem": "Document {{n}}",
+    "addDocument": "Add document",
+    "extrasCount_one": "{{count}} extra document",
+    "extrasCount_other": "{{count}} extra documents",
+    "reviewTitle": "Check and submit",
+    "submit": "Submit for review",
+    "upload": {
+      "uploading": "Uploading",
+      "uploaded": "Ready",
+      "failed": "Retake"
+    }
+  },
+  "verification": {
+    "title": "Verification",
+    "pendingTitle": "Under review",
+    "pendingBody": "Your documents were sent. An admin reviews and approves them, usually within 24 hours. After approval you can go online and accept orders.",
+    "pendingBodyCompany": "The company documents were sent. An admin reviews them, usually within 24 hours. After approval you can invite handymen.",
+    "rejectedTitle": "Verification was not approved",
+    "reason": "Reason: {{reason}}",
+    "resubmit": "Submit again",
+    "attemptsLeft_one": "{{count}} attempt left in 24 hours",
+    "attemptsLeft_other": "{{count}} attempts left in 24 hours",
+    "limitReached": "No attempts left for the next 24 hours. Try again later",
+    "blockedTitle": "Account blocked",
+    "blockedBody": "Contact TezFiks support for details",
+    "draftTitle": "Verify your identity",
+    "draftTitleCompany": "Submit your company for review",
+    "draftBody": "To accept orders, verify yourself with your ID card and a selfie",
+    "start": "Start verification",
+    "approved": "Approved! You can go online now",
+    "toHome": "Go to home"
+  },
+  "offer": {
+    "newTitle": "New order!",
+    "number": "Order #{{number}}",
+    "countdown_one": "{{count}} second to accept",
+    "countdown_other": "{{count}} seconds to accept",
+    "waiting_one": "{{count}} more order waiting",
+    "waiting_other": "{{count}} more orders waiting",
+    "emergency": "URGENT",
+    "service": "Service",
+    "address": "Address",
+    "distance": "Distance",
+    "customer": "Customer",
+    "scheduledAt": "Time",
+    "km": "{{km}} km",
+    "eta": "~{{min}} min",
+    "feeWarning": "When you accept, a platform fee of {{fee}} AZN is taken from your balance",
+    "accept": "✓ Accept",
+    "decline": "Decline",
+    "accepted": "Order accepted",
+    "taken": "Another handyman has already taken this order",
+    "insufficientBalance": "Your balance does not cover the platform fee"
+  },
+  "scheduled": {
+    "title": "Scheduled orders",
+    "subtitle": "Orders booked for a later time",
+    "empty": "No scheduled orders right now"
+  },
+  "online": {
+    "serviceTitle": "You are online",
+    "serviceBody": "TezFiks Pro shares your location to receive new orders",
+    "locationRequired": "Location access is needed to go online"
+  },
+  "device": {
+    "title": "Device setup",
+    "subtitle": "Notifications, location and battery",
+    "intro": "Check these settings to receive orders on time",
+    "notifications": "Notifications",
+    "notificationsBody": "Sound and vibration when a new order arrives",
+    "location": "Location",
+    "locationBody": "Needed to receive nearby orders while you are online (only while the app is open or the online notification is active)",
+    "allow": "Allow",
+    "state": {
+      "granted": "On",
+      "denied": "Not allowed",
+      "blocked": "Enable in settings",
+      "unknown": "Unknown"
+    },
+    "batteryTitle": "Battery optimization",
+    "batteryIntro": "{{device}} may stop background apps to save battery. Turn the restriction off for TezFiks Pro:",
+    "thisPhone": "This phone",
+    "openBattery": "Open battery settings",
+    "testTitle": "Test offer",
+    "testBody": "Check that your phone rings and vibrates when a new order arrives",
+    "testButton": "Send a test offer",
+    "testAlertBody": "This is a test offer — sound and vibration work",
+    "testSent": "Test alert sent. If there was no sound or vibration, check the notification permission and the sound mode.",
+    "battery": {
+      "samsung": "Settings → Battery → Background usage limits → add TezFiks Pro to \"Never sleeping apps\".",
+      "xiaomi": "Settings → Apps → TezFiks Pro → Battery saver → choose \"No restrictions\" and enable \"Autostart\".",
+      "huawei": "Settings → Battery → App launch → turn off automatic management for TezFiks Pro and enable all three options.",
+      "oppo": "Settings → Battery → TezFiks Pro → \"Allow background activity\" and enable auto launch.",
+      "vivo": "Settings → Battery → High background power consumption → allow TezFiks Pro.",
+      "oneplus": "Settings → Battery → Battery optimization → TezFiks Pro → \"Don't optimize\".",
+      "google": "Settings → Apps → TezFiks Pro → Battery → \"Unrestricted\".",
+      "generic": "Settings → Battery → Battery optimization: turn optimization off for TezFiks Pro."
+    }
+  },
+  "join": {
+    "title": "Join a company",
+    "company": "Company",
+    "role": "Role: {{role}}",
+    "expires": "The link is valid until {{date}}",
+    "workerInfo": "After joining, the company manager assigns orders to you. The company is verified, so you can start right away.",
+    "managerInfo": "As a manager you accept the company's orders and assign handymen.",
+    "accept": "Join",
+    "joined": "You joined {{company}}",
+    "reason": {
+      "EXPIRED": "The invite has expired. Ask the manager for a new link",
+      "REVOKED": "This invite was revoked",
+      "USED_UP": "This invite has already been used",
+      "COMPANY_NOT_APPROVED": "The company is not approved yet",
+      "INVALID": "The invite link is not valid"
+    }
+  },
+  "mode": {
+    "personal": "Personal",
+    "company": "{{name}}",
+    "managerTitle": "{{name}} — Manager",
+    "balanceChip": "Balance: {{amount}}",
+    "companyStats": "Handymen: {{members}} • Online: {{online}}"
+  },
+  "job": {
+    "title": "Active order #{{number}}",
+    "titleShort": "Active order",
+    "navigate": "Open navigation",
+    "timeline": {
+      "accepted": "Order accepted",
+      "enRoute": "On my way",
+      "arrived": "Arrived at the address",
+      "completed": "Job completed"
+    },
+    "startRoute": "On my way",
+    "markArrived": "I have arrived",
+    "arrivedConfirm": {
+      "title": "Have you arrived?",
+      "body": "The customer will be notified.",
+      "confirm": "Yes, I'm here",
+      "keep": "Not yet"
+    },
+    "complete": "✓ Complete the job",
+    "rateCustomer": "Rate the customer",
+    "openChat": "Message",
+    "call": "Call",
+    "customerPhone": "Customer's phone",
+    "contactLocked": "Phone and messages unlock when you are about 5 minutes from the customer",
+    "state": {
+      "awaitingCustomer": "Waiting for the customer's confirmation",
+      "awaitingCustomerBody": "The customer will confirm the price and choose how to pay",
+      "awaitingManager": "The manager will enter the final price",
+      "awaitingWorker": "The handyman will enter the final price",
+      "disputed": "The customer disputed the price. The TezFiks team is reviewing it",
+      "done": "Job completed",
+      "cancelled": "Order closed: {{status}}",
+      "followWorker": "Handyman: {{status}}"
+    },
+    "customer": "Customer",
+    "description": "Problem",
+    "photos": "Photos",
+    "address": "Address",
+    "addressParts": {
+      "block": "Block",
+      "entrance": "Entrance",
+      "floor": "Floor",
+      "apartment": "Apt.",
+      "intercom": "Intercom"
+    },
+    "addressNote": "Note: {{note}}",
+    "eta": "~{{min}} min away",
+    "scheduledAt": "Time: {{time}}",
+    "emergency": "URGENT",
+    "guaranteeFix": "Guarantee re-fix",
+    "price": "Total amount",
+    "priceLine": "Labour {{labor}} + materials {{materials}}",
+    "paymentMethod": "Payment: {{method}}",
+    "tip": "Tip: {{amount}}",
+    "guaranteeUntil": "Guarantee until {{date}}",
+    "fee": "Platform fee: {{amount}}",
+    "feeState": {
+      "held": "held",
+      "captured": "charged",
+      "refunded": "refunded"
+    },
+    "worker": "Handyman",
+    "cancel": {
+      "button": "Cancel the order",
+      "free": "Free cancellation: {{time}} left",
+      "paid": "The free cancellation window is over: the platform fee is not refunded and a strike is added",
+      "title": "Cancel this order?",
+      "bodyFree": "You are still inside the free cancellation window: the platform fee will be returned.",
+      "bodyPaid": "The free cancellation window is over: the platform fee will not be returned and a strike will be added to your profile. The order will be sent to another handyman.",
+      "reason": "Reason (optional)",
+      "confirm": "Cancel order",
+      "keep": "Back",
+      "done": "The order was cancelled"
+    },
+    "nav": {
+      "google": "Google Maps",
+      "waze": "Waze",
+      "share": "Share"
+    },
+    "limited": {
+      "location": "Job location",
+      "assignedBy": "Order #{{number}} • assigned by {{company}}",
+      "note": "Your company accepted this order — you only see the job location. Contact your manager for other details."
+    },
+    "route": {
+      "title": "You are on your way",
+      "acceptedTitle": "Active order",
+      "body": "Your location is shown to the customer",
+      "permissionDenied": "Location permission is off: the customer will not see where you are. Allow location access in Settings."
+    },
+    "updated": "Status updated"
+  },
+  "profile": {
+    "work": "Work profile",
+    "trades": "Trades: {{trades}}",
+    "radius": "Service radius: {{km}} km",
+    "status": "Status: {{status}}",
+    "edit": "Edit work profile",
+    "editTitle": "Work profile",
+    "saved": "Profile updated",
+    "notifications": "Notifications",
+    "earnings": "Earnings and payouts",
+    "payout": "Payout card",
+    "projects": "Projects",
+    "base": "Base location",
+    "delete": "Delete account",
+    "deleteTitle": "Delete your account?",
+    "deleteBody": "Your personal data will be deleted and you will be signed out on all devices. This cannot be undone.",
+    "deleteConfirm": "Yes, delete the account"
+  },
+  "offline": {
+    "title": "Could not reach the server",
+    "message": "Check your internet connection and try again"
+  },
+  "notifications": {
+    "channelOffers": "New orders",
+    "channelDefault": "Notifications"
+  },
+  "price": {
+    "title": "Complete the job #{{number}}",
+    "subtitle": "Enter the final price to close the order",
+    "labor": "Labour",
+    "materials": "Materials",
+    "total": "Total amount",
+    "warning": "The order cannot be closed without a price. The amount you enter is shown in the customer's app for confirmation.",
+    "submit": "✓ Confirm the price and finish",
+    "companyNote": "If you are a company handyman and your manager enters prices, this screen is not shown to you.",
+    "guaranteeFix": "Guarantee re-fix: the price may be 0 ₼",
+    "sent": "The price was sent to the customer",
+    "confirm": {
+      "title": "Check the price",
+      "body": "Send {{total}} to the customer? (Labour {{labor}} + materials {{materials}}). It cannot be changed after sending.",
+      "send": "Yes, send",
+      "edit": "Edit"
+    },
+    "notAllowed": "You do not enter the final price for this order",
+    "errors": {
+      "zero": "Enter an amount",
+      "tooLarge": "The amount is too large"
+    }
+  },
+  "rate": {
+    "title": "Rate the customer",
+    "subtitle": "How was the job with {{name}}?",
+    "comment": "Comment (optional)",
+    "submit": "Send",
+    "skip": "Later",
+    "thanks": "Thank you! Your rating was saved",
+    "pickStars": "Choose the stars"
+  },
+  "chat": {
+    "title": "Messages",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "locked": "Chat unlocks when you are about 5 minutes from the customer",
+    "empty": "No messages yet",
+    "you": "You"
+  },
+  "orders": {
+    "active": "Active",
+    "history": "History",
+    "empty": "No active orders",
+    "emptyHistory": "No orders yet",
+    "companyTitle": "Company orders",
+    "workerLine": "Handyman: {{name}}",
+    "loadMore": "Load more"
+  },
+  "balance": {
+    "current": "Current balance",
+    "held": "On hold: {{amount}}",
+    "topUp": "+ Top up balance",
+    "history": "Transaction history",
+    "empty": "No transactions yet",
+    "earnings": "Earnings and payouts",
+    "earningsHint": "Card payments and tips: {{amount}}",
+    "companyTitle": "{{name}} balance",
+    "workerTitle": "Company handyman",
+    "workerBody": "Your company pays the platform fees. The balance, earnings and payouts are managed by your manager.",
+    "debt": "The balance is negative",
+    "tx": "{{kind}}",
+    "txRequest": "Order #{{number}} — {{kind}}",
+    "txProject": "Project #{{number}} — {{kind}}"
+  },
+  "topup": {
+    "title": "Top up balance",
+    "amount": "Amount (AZN)",
+    "pay": "Go to payment",
+    "testHint": "Test mode: card 4242 4242 4242 4242 succeeds, 4000 0000 0000 0002 is declined",
+    "waiting": "Waiting for the payment…",
+    "check": "Check payment",
+    "succeeded": "Balance topped up: {{amount}}",
+    "failed": "The payment failed",
+    "failedBody": "The card was declined or the payment was cancelled. Your balance did not change — please try again.",
+    "errors": {
+      "invalid": "Enter a valid amount",
+      "tooSmall": "Minimum 1 AZN",
+      "tooLarge": "Maximum 1000 AZN"
+    }
+  },
+  "earnings": {
+    "title": "Earnings and payouts",
+    "balance": "Unpaid earnings",
+    "hint": "Card payments and tips are paid out to your payout card every Monday",
+    "pending": "Being paid out: {{amount}}",
+    "thisWeek": "This week",
+    "card": "Card: {{count}} jobs • {{amount}}",
+    "cash": "Cash: {{count}} jobs • {{amount}}",
+    "tips": "Tips: {{amount}}",
+    "payouts": "Payouts",
+    "noPayouts": "No payouts yet",
+    "period": "{{from}} – {{to}}",
+    "failure": "Reason: {{reason}}",
+    "method": "Payout card",
+    "noMethod": "No payout card added",
+    "addMethod": "Add a card",
+    "changeMethod": "Change"
+  },
+  "payout": {
+    "title": "Payout card",
+    "subtitle": "Weekly payouts are sent to this card or account",
+    "card": "Card",
+    "iban": "IBAN",
+    "cardNumber": "Card number",
+    "ibanNumber": "IBAN (AZ…)",
+    "holder": "Holder name",
+    "hint": "The full number is not stored — only the last 4 digits are shown",
+    "current": "Current: {{masked}} • {{holder}}",
+    "save": "Save",
+    "saved": "Payout details saved",
+    "errors": {
+      "invalidCard": "The card number is not valid",
+      "invalidIban": "The IBAN is not valid (AZ + 26 characters)",
+      "holderRequired": "Enter the first and last name"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Business requests and quotes",
+    "tabOpen": "Open requests",
+    "tabMine": "My quotes",
+    "empty": "No open requests right now",
+    "emptyMine": "You have not quoted yet",
+    "number": "Project #{{number}}",
+    "deadline": "Quotes until {{time}}",
+    "dates": "{{from}} – {{to}}",
+    "workers": "Handymen needed: {{count}}",
+    "quotes": "Quotes: {{count}}",
+    "scope": "Scope",
+    "description": "Description",
+    "address": "Address",
+    "customer": "Customer",
+    "feeRate": "Platform fee: {{amount}} / handyman / day",
+    "windowClosed": "This request no longer accepts quotes",
+    "quote": {
+      "title": "Quote",
+      "total": "Total price (AZN)",
+      "workers": "Handymen",
+      "days": "Days",
+      "note": "Note (optional)",
+      "feePreview": "Sending the quote holds {{amount}} on your balance: it is charged if you win and returned otherwise",
+      "submit": "Send quote",
+      "sent": "Your quote was sent",
+      "errors": {
+        "required": "Fill in this field",
+        "range": "The value is not valid"
+      }
+    },
+    "myQuote": "Your quote",
+    "quoteLine": "{{amount}} • {{workers}} handymen • {{days}} days",
+    "feeHeld": "Platform fee: {{amount}} ({{state}})",
+    "feeStateHeld": "held",
+    "feeStateCaptured": "charged",
+    "withdraw": "Withdraw the quote",
+    "withdrawn": "The quote was withdrawn",
+    "awarded": "The project was awarded to you",
+    "reports": "Daily reports",
+    "noReports": "No reports yet",
+    "reportLine": "{{date}} • {{percent}}% • {{author}}",
+    "addReport": "Add a report",
+    "report": {
+      "title": "Daily report",
+      "note": "Work done today",
+      "progress": "Progress: {{percent}}%",
+      "photos": "Photos ({{count}}/5)",
+      "addPhoto": "Add a photo",
+      "submit": "Send report",
+      "sent": "The report was sent",
+      "errors": {
+        "required": "Describe the work done",
+        "range": "The value is not valid"
+      }
+    },
+    "complete": "Finish the work and issue the invoice",
+    "completeTitle": "Finish the work?",
+    "completeBody": "An invoice for the accepted quote amount will be issued and sent to the customer.",
+    "completed": "The invoice was issued",
+    "invoice": {
+      "title": "Invoice {{number}}",
+      "issuer": "Supplier: {{name}}",
+      "customer": "Customer: {{name}}",
+      "voen": "VÖEN: {{voen}}",
+      "subtotal": "Subtotal",
+      "vat": "VAT ({{rate}}%)",
+      "noVat": "Not a VAT payer",
+      "total": "Total",
+      "issuedAt": "Date: {{date}}",
+      "paidAt": "Paid: {{date}}"
+    }
+  },
+  "notificationsList": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "markAll": "Mark all as read"
+  },
+  "company": {
+    "incoming": "New orders",
+    "noOffers": "No new orders right now",
+    "offerTitle": "New order #{{number}}",
+    "customerLine": "{{timing}} • Customer: {{name}}",
+    "feeNote": "{{fee}} AZN will be charged to the company balance on acceptance",
+    "feeNotePerWorker": "{{fee}} AZN per handyman will be charged to the company balance on acceptance",
+    "slots": "Handymen needed: {{open}}/{{total}}",
+    "pickWorker": "Choose the handyman",
+    "pickWorkers": "Choose the handymen ({{selected}}/{{max}})",
+    "free": "Free",
+    "busy": "On a job",
+    "noTrade": "No matching trade",
+    "noCandidates": "No suitable handyman to send",
+    "decline": "Decline",
+    "acceptSend": "✓ Accept and send",
+    "accepted": "The order was sent to the handyman",
+    "selectFirst": "Choose a handyman first",
+    "workerUnavailable": "The selected handyman is no longer free",
+    "stats": {
+      "jobsToday": "Today",
+      "activeJobs": "Active",
+      "revenueToday": "Revenue",
+      "feesToday": "Platform fees"
+    },
+    "menu": {
+      "jobs": "Company orders",
+      "members": "Handymen and invites",
+      "settings": "Settings",
+      "balance": "Company balance",
+      "projects": "Projects"
+    },
+    "members": {
+      "title": "Handymen",
+      "empty": "No handymen yet. Share an invite link",
+      "online": "Online",
+      "offline": "Offline",
+      "line": "{{role}} • ★ {{rating}} • {{jobs}} jobs",
+      "remove": "Remove from the company",
+      "removeTitle": "Remove {{name}} from the company?",
+      "removed": "The handyman was removed from the company"
+    },
+    "invites": {
+      "title": "Invite links",
+      "empty": "No active invite links",
+      "createWorker": "Create a handyman invite",
+      "createManager": "Create a manager invite",
+      "created": "The invite link was created",
+      "share": "Share",
+      "revoke": "Revoke",
+      "revoked": "The invite was revoked",
+      "usage": "{{role}} • {{used}}/{{max}} uses • until {{date}}",
+      "shareMessage": "Join {{company}} in the TezFiks Usta app: {{url}}"
+    },
+    "settings": {
+      "title": "Settings",
+      "priceQuestion": "Who enters the final price?",
+      "priceIntro": "Choose who enters the final price of an order when the job is done. The rule applies to all handymen of the company.",
+      "workerTitle": "The handyman enters it",
+      "workerBody": "When the job is done the handyman types the final price on the phone — the manager is notified",
+      "managerTitle": "The manager enters it",
+      "managerBody": "The handyman finishes the job, the manager enters and confirms the price in the app. The handyman's screen has no price step",
+      "howTitle": "How it works",
+      "howBody": "Whichever mode you choose, the order is not closed without a price and the amount is shown in the customer's app for confirmation. Solo handymen always enter the price themselves.",
+      "save": "Save",
+      "saved": "Settings saved"
+    },
+    "job": {
+      "enterPrice": "Enter the final price",
+      "reassign": "Change the handyman",
+      "reassignTitle": "Choose a new handyman",
+      "reassigned": "The handyman was changed",
+      "noReassign": "No free handyman to assign",
+      "workerPhone": "Call the handyman"
+    }
+  }
+}

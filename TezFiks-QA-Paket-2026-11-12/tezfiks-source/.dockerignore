@@ -1,0 +1,17 @@
+# Build context is the repository root (see apps/api/Dockerfile, apps/panel/Dockerfile).
+.git
+**/node_modules
+**/dist
+**/.next
+**/.expo
+**/android
+**/ios
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+!**/.env.example
+apps/api/uploads
+apps/api/src/generated
+design
+docs
+e2e

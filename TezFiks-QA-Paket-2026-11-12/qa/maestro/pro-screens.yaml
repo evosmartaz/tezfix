@@ -1,0 +1,28 @@
+appId: az.tezfiks.usta
+name: TezFiks Usta - main screens (screenshots)
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-pro-02-home
+- tapOn:
+    id: "tab-orders"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-pro-03-orders
+- tapOn:
+    id: "tab-balance"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-pro-04-balance
+- tapOn:
+    id: "tab-profile"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: ${SIZE}-pro-05-profile
+- tapOn:
+    id: "tab-home"

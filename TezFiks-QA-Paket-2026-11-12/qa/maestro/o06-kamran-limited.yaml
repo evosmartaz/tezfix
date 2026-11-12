@@ -1,0 +1,38 @@
+appId: az.tezfiks.usta
+name: AU-O06 Kamran (FixPro işçisi) - işin məhdud görünüşü (təsvir və qiymət yoxdur)
+---
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000013"
+      SIZE: "o06-kamran"
+- extendedWaitUntil:
+    visible:
+      id: "home-active-job"
+    timeout: 30000
+- takeScreenshot: o06-01-home
+- tapOn:
+    id: "home-active-job"
+- extendedWaitUntil:
+    visible:
+      id: "job-screen"
+    timeout: 20000
+- assertVisible:
+    id: "job-limited"
+- assertNotVisible:
+    id: "job-full"
+- assertNotVisible:
+    id: "job-description"
+- assertNotVisible:
+    id: "job-price"
+- assertNotVisible:
+    id: "job-money"
+- assertNotVisible: ".*şirkət sifarişi.*"
+- takeScreenshot: o06-02-limited-top
+- swipe:
+    start: 50%, 85%
+    end: 50%, 30%
+    duration: 600
+- assertNotVisible: ".*(AZN|₼).*"
+- assertNotVisible: ".*şirkət sifarişi.*"
+- takeScreenshot: o06-03-limited-bottom

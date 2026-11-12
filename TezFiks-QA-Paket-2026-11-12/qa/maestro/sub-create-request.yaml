@@ -1,0 +1,36 @@
+appId: az.tezfiks.app
+name: sub - Demo Müştəri santexnik sorğusu yaradır və izləmə ekranına çatır
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- tapOn: "Santexnik"
+- extendedWaitUntil:
+    visible:
+      id: "create-request-screen"
+    timeout: 20000
+- tapOn:
+    id: "request-description"
+- inputText: "QA Maestro: legv testi"
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: "request-submit"
+- tapOn:
+    id: "request-submit"
+- extendedWaitUntil:
+    visible:
+      id: "(tracking-screen|searching-found-.*|searching-view-order)"
+    timeout: 120000
+- tapOn:
+    id: "searching-view-order"
+    optional: true
+- tapOn:
+    id: "searching-found-.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: "tracking-screen"
+    timeout: 30000

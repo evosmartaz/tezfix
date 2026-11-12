@@ -1,0 +1,71 @@
+appId: az.tezfiks.usta
+name: AU-O07 Pro - dil keçidi (Elvin), Samirin gözləmə ekranı, Vüqarın bloklanma ekranı
+---
+# 1) Dil keçidi (Elvin daxil olub)
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "home-screen"
+    timeout: 40000
+- tapOn:
+    id: "tab-profile"
+- scrollUntilVisible:
+    element:
+      id: "language-picker-ru"
+- tapOn:
+    id: "language-picker-ru"
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertVisible: ".*(Профиль|Язык|Выйти).*"
+- takeScreenshot: o07-01-ru
+- tapOn:
+    id: "tab-home"
+- takeScreenshot: o07-02-ru-home
+- tapOn:
+    id: "tab-profile"
+- scrollUntilVisible:
+    element:
+      id: "language-picker-en"
+- tapOn:
+    id: "language-picker-en"
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertVisible: ".*(Profile|Language|Log out).*"
+- takeScreenshot: o07-03-en
+- tapOn:
+    id: "language-picker-az"
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertVisible: ".*(Profil|Dil|Çıxış).*"
+# 2) Samir: KYC yoxlamada
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000002"
+      SIZE: "o07-samir"
+- extendedWaitUntil:
+    visible:
+      id: "verification-card-pending"
+    timeout: 20000
+- takeScreenshot: o07-04-samir-pending
+- assertNotVisible:
+    id: "online-toggle"
+# 3) Vüqar: bloklanıb
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000003"
+      SIZE: "o07-vuqar"
+- extendedWaitUntil:
+    visible:
+      id: "verification-card-blocked"
+    timeout: 20000
+- takeScreenshot: o07-05-vuqar-blocked
+- assertNotVisible:
+    id: "online-toggle"
+# 4) Elvinə qayıt
+- runFlow:
+    file: sub-pro-login.yaml
+    env:
+      PHONE: "502000001"
+      SIZE: "o07-elvin"

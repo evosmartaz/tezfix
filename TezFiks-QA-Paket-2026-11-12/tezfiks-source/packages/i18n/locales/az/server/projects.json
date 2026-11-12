@@ -1,0 +1,17 @@
+{
+  "memo": {
+    "quoteFee": "Layihə №{{number}}: təklif üzrə platforma haqqı",
+    "invoicePayment": "Hesab-faktura {{invoice}} (layihə №{{number}}) ödənişi"
+  },
+  "invoice": {
+    "defaultLine": "Layihə №{{number}}: {{category}} işləri"
+  },
+  "notify": {
+    "expiredTitle": "Layihə №{{number}} bağlandı",
+    "expiredNoQuotes": "Təklif müddətində heç bir qiymət təklifi gəlmədi.",
+    "expiredNoAward": "Heç bir təklif seçilmədiyi üçün layihə bağlandı və təkliflər ləğv edildi.",
+    "ratedTitle": "Yeni qiymətləndirmə",
+    "ratedBody": "Layihə №{{number}} üzrə işiniz {{stars}} ulduzla qiymətləndirildi."
+  },
+  "areaFallback": "Bakı"
+}
