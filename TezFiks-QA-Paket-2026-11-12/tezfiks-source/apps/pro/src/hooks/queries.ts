@@ -153,7 +153,7 @@ export function useLocaleRefetch(): void {
   useEffect(() => {
     if (last.current === locale) return;
     last.current = locale;
-    for (const queryKey of [qk.profile, qk.categories, ['pro', 'assignment'], ['pro', 'assignments'], ['pro', 'offers'], ['company'], ['projects'], qk.notifications]) {
+    for (const queryKey of [qk.profile, qk.categories, ['pro', 'assignment'], ['pro', 'assignments'], ['pro', 'offers'], ['company'], ['projects'], ['invites'], qk.notifications]) {
       void queryClient.invalidateQueries({ queryKey });
     }
   }, [locale, queryClient]);

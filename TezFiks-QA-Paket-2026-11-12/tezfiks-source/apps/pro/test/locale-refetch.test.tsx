@@ -20,13 +20,15 @@ describe('useLocaleRefetch', () => {
 
   it('does nothing on mount, refetches localized queries on every language change and leaves wallet/chat alone', async () => {
     const { spy, wrapper } = setup();
-    renderHook(() => useLocaleRefetch(), { wrapper });
+    await renderHook(() => useLocaleRefetch(), { wrapper }); // async in @testing-library/react-native 14
     expect(spy).not.toHaveBeenCalled();
 
     await act(async () => {
       await i18n.changeLanguage('en');
     });
     expect(keys(spy)).toEqual(expect.arrayContaining([qk.profile, qk.categories, ['pro', 'assignments']]));
+    // Everything the API localizes for the pro app: offers, company boards, projects, invite previews, notifications.
+    expect(keys(spy)).toEqual(expect.arrayContaining([['pro', 'assignment'], ['pro', 'offers'], ['company'], ['projects'], ['invites'], qk.notifications]));
     expect(keys(spy)).not.toContainEqual(['wallet']);
     expect(keys(spy)).not.toContainEqual(['chat']);
 
@@ -44,7 +46,7 @@ describe('useLocaleRefetch', () => {
 
   it('does not refetch when the same language is set again', async () => {
     const { spy, wrapper } = setup();
-    renderHook(() => useLocaleRefetch(), { wrapper });
+    await renderHook(() => useLocaleRefetch(), { wrapper });
     await act(async () => {
       await i18n.changeLanguage('az');
     });
