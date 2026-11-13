@@ -1,6 +1,7 @@
 import { act, fireEvent, renderRouter, screen, waitFor } from 'expo-router/testing-library';
 import path from 'node:path';
-import { Share } from 'react-native';
+import { Share, StyleSheet, type ViewStyle } from 'react-native';
+import { i18n } from '@tezfiks/mobile';
 import type { OfferView, ProAssignment } from '@tezfiks/shared';
 import { emitServerEvent, header, resetApp, UUID } from './pro-helpers';
 import { assignment, candidate, companyView, member, offer } from './fixtures';
@@ -112,6 +113,44 @@ describe('manager mode home (board 04)', () => {
     expect(screen.getByText('Ustaları seçin (2/2)')).toBeTruthy();
   });
 
+  it('BUG-006: the offer actions are stacked full-width buttons that show the whole label in every language', async () => {
+    const state = { offers: [companyOffer()] };
+    installPro({ me: MANAGER_ME, profile: null, managedCompanies: MANAGED, routes: managerRoutes(state) });
+    await renderRouter(APP_DIR, { initialUrl: '/' });
+    await waitFor(() => expect(screen.getByTestId(`company-offer-${UUID(4001)}`)).toBeTruthy());
+    const accept = screen.getByTestId(`company-offer-accept-${UUID(4001)}`);
+    const decline = screen.getByTestId(`company-offer-decline-${UUID(4001)}`);
+    // Side by side each button had half the card and the label was cut ("Qəbul et və…"): one column, full width each.
+    expect(accept.parent).toBe(decline.parent);
+    const box: ViewStyle = StyleSheet.flatten(accept.parent!.props.style as ViewStyle) ?? {};
+    expect(box.flexDirection ?? 'column').toBe('column');
+    const order = accept.parent!.children;
+    expect(order.indexOf(accept)).toBeLessThan(order.indexOf(decline));
+    for (const button of [accept, decline]) {
+      const style: ViewStyle = StyleSheet.flatten(button.props.style as ViewStyle) ?? {};
+      expect(style.alignSelf).toBe('stretch');
+      expect(style.flex).toBeUndefined();
+      expect(style.height).toBeGreaterThanOrEqual(48); // touch target
+    }
+    try {
+      for (const [lng, acceptLabel, declineLabel] of [
+        ['az', '✓ Qəbul et və göndər', 'İmtina et'],
+        ['ru', '✓ Принять и отправить', 'Отклонить'],
+        ['en', '✓ Accept and send', 'Decline'],
+      ] as const) {
+        await act(async () => {
+          await i18n.changeLanguage(lng);
+        });
+        expect(screen.getByText(acceptLabel)).toBeTruthy();
+        expect(screen.getByText(declineLabel)).toBeTruthy();
+        expect(screen.getByTestId(`company-offer-accept-${UUID(4001)}`).props.accessibilityLabel).toBe(acceptLabel);
+      }
+    } finally {
+      await act(async () => {
+        await i18n.changeLanguage('az');
+      });
+    }
+  });
   it('a worker who became busy keeps the card and refreshes; decline tells the server; offer:closed removes a card', async () => {
     const state = { offers: [companyOffer(), companyOffer({ id: UUID(4002), requestNumber: 2852 })] };
     const world = installPro({
