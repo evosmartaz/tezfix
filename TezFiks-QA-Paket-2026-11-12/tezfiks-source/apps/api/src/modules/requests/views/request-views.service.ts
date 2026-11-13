@@ -165,9 +165,10 @@ export class RequestViews {
   searchState(r: ServiceRequest, offersSent: number, s: PlatformSettings): RequestSearchState | null {
     if (!r.isSearching || r.dispatchStep < 0 || !r.searchStartedAt || !r.searchEndsAt) return null;
     const plan = ringPlan(r.timing === 'EMERGENCY' ? 'EMERGENCY' : 'NOW', s);
+    // After the plan `dispatchStep` counts sweeps (see DispatchService.runStep); clients keep seeing the last plan step.
     const p = plan[Math.min(r.dispatchStep, plan.length - 1)]!;
     return {
-      step: r.dispatchStep,
+      step: p.step,
       ring: p.ring,
       wide: p.wide,
       cells: gridDisk(r.cell7, p.ring),

@@ -44,9 +44,11 @@ export interface ClosedOffer {
 
 /**
  * H3 ring dispatch (spec 5). Each step offers only the new ring (step 0 = centre cell; emergency step 0 = k<=1 disk; the
- * final wide step = ring 5 plus providers whose service area covers the request cell), sorted by distance and capped at
+ * final wide step = ring 5 plus providers whose service area covers the request cell, plus the solo pros of the whole
+ * disk that were never offered this request), sorted by distance and capped at
  * maxOffersPerStep. Steps follow ringPlan(); while fewer than minCandidates providers were offered the next step comes
- * after RING_FAST_FORWARD_SEC. Postgres holds every deadline; jobs are the timers and `dispatch.repair` the safety net.
+ * after RING_FAST_FORWARD_SEC. After the plan the wide step repeats every ring step until the search ends (sweeps, see
+ * runStep). Postgres holds every deadline; jobs are the timers and `dispatch.repair` the safety net.
  * Exported: start, reopenSlot, stop, createGuaranteeFixRequest.
  */
 @Injectable()
@@ -280,9 +282,15 @@ export class DispatchService implements OnModuleInit {
 
   // ------------------------------------------------------------------- steps
 
+  /** Seconds between the ring steps of this request's plan; the sweeps that follow the plan use the same grid. */
+  private static stepSecOf(r: Pick<ServiceRequest, 'timing'>, s: PlatformSettings): number {
+    return r.timing === 'EMERGENCY' ? s.emergencyRingStepSec : s.ringStepSec;
+  }
+
   private stepCells(r: ServiceRequest, step: number, s: PlatformSettings) {
     const plan = ringPlan(r.timing === 'EMERGENCY' ? 'EMERGENCY' : 'NOW', s);
-    const p = plan[step]!;
+    const p = plan[Math.min(step, plan.length - 1)]!; // steps after the plan repeat the wide step
+
     const emergencyFirst = r.timing === 'EMERGENCY' && step === 0;
     const newCells = emergencyFirst
       ? gridDisk(r.cell7, 1)
@@ -292,7 +300,14 @@ export class DispatchService implements OnModuleInit {
     return { plan, p, newCells, disk: gridDisk(r.cell7, p.ring) };
   }
 
-  /** Runs ring step `step` (idempotent: a step runs once; later calls for older steps do nothing). */
+  /**
+   * Runs ring step `step` (idempotent: a step runs once; later calls for older steps do nothing).
+   *
+   * Steps after the plan are sweeps (BUG-004): the wide step again, so a provider who becomes eligible while the search
+   * is still running gets the offer. Sweeps sit on the ring-step grid counted from the search start: sweep `last + g`
+   * is due at start + g * ringStep, until searchEndsAt. From the wide step on, `dispatchStep` is that cursor
+   * (`last + g` of the latest run), which is how `repair` knows whether the sweep of the current grid point ran.
+   */
   async runStep(requestId: string, step: number): Promise<void> {
     const s = await this.settings.get();
     const now = this.clock.now();
@@ -304,22 +319,33 @@ export class DispatchService implements OnModuleInit {
       return;
     }
     const plan = ringPlan(r.timing === 'EMERGENCY' ? 'EMERGENCY' : 'NOW', s);
-    if (step >= plan.length) return;
+    const last = plan.length - 1;
+    const startMs = r.searchStartedAt.getTime();
+    const stepMs = DispatchService.stepSecOf(r, s) * 1000;
+    // A sweep asked for before its grid point is ignored, so it cannot swallow the sweeps before it.
+    if (step > last && startMs + (step - last) * stepMs > now.getTime() + 1000) return;
     const open = await this.prisma.requestSlot.count({ where: { requestId, status: 'OPEN' } });
     if (!open) return;
+    const grid = Math.floor((now.getTime() - startMs) / stepMs);
+    const cursor = step < last ? step : Math.max(step, last + grid);
     const claimed = await this.prisma.serviceRequest.updateMany({
       where: { id: requestId, isSearching: true, dispatchStep: { lt: step } },
-      data: { dispatchStep: step },
+      data: { dispatchStep: cursor },
     });
     if (claimed.count === 0) return;
-    r.dispatchStep = step;
+    r.dispatchStep = cursor;
 
     const { p, newCells, disk } = this.stepCells(r, step, s);
     const req = DispatchService.dispatchRequest(r);
     const fee = r.isGuaranteeFix ? 0 : s.requestFee;
     const entries = await this.presence.candidatesInCells(disk, s.onlineStaleSec);
     const ring = new Set(newCells);
-    const soloEntries = entries.filter((e) => !e.companyId && ring.has(EligibilityService.cellOf(e)));
+    // Solo pros come from the new ring. The final (wide) step has no later step behind it, so it sweeps the whole disk:
+    // a pro who was not offered when their ring ran (online, fresh or free only later, or cut by maxOffersPerStep) is
+    // evaluated here. Pros offered before are dropped by filterSolos from the request's own offer history (BUG-004).
+    const soloEntries = entries.filter(
+      (e) => !e.companyId && (p.wide || ring.has(EligibilityService.cellOf(e))),
+    );
     const workerEntries: PresenceEntry[] = entries.filter((e) => !!e.companyId);
     const cands: Candidate[] = [];
     cands.push(
@@ -335,12 +361,13 @@ export class DispatchService implements OnModuleInit {
         where: { cell7: r.cell7 },
         select: { handymanId: true },
       });
-      // BUG-004: only providers already evaluated in THIS step are skipped. Solo providers that are online inside the
-      // disk but outside the new ring (e.g. they went online after an inner step ran) were never evaluated, so the
-      // service-area pass must still consider them. Providers offered earlier are skipped by sendOffers.
-      const known = new Set([...soloEntries, ...workerEntries].map((e) => e.handymanId));
+      // BUG-004: the service-area pass skips only the solos picked above. It used to skip everyone presence listed in the
+      // disk, which also hid pros who had never been offered this request. Earlier offers are excluded by filterSolos.
+      const picked = new Set(cands.map((c) => (c.kind === 'SOLO' ? c.handymanId : null)));
       const area = (
-        await this.eligibility.freshPresence(covering.map((c) => c.handymanId).filter((id) => !known.has(id)))
+        await this.eligibility.freshPresence(
+          covering.map((c) => c.handymanId).filter((id) => !picked.has(id)),
+        )
       ).filter((e) => !e.companyId);
       cands.push(
         ...(await this.eligibility.filterSolos(req, area, {
@@ -359,8 +386,9 @@ export class DispatchService implements OnModuleInit {
           where: { companyId: { in: companyCells.map((c) => c.companyId) }, kind: 'COMPANY_WORKER' },
           select: { id: true },
         });
+        const listed = new Set(workerEntries.map((e) => e.handymanId));
         const extra = await this.eligibility.freshPresence(
-          workers.map((w) => w.id).filter((id) => !known.has(id)),
+          workers.map((w) => w.id).filter((id) => !listed.has(id)),
         );
         workerEntries.push(...extra.filter((e) => !!e.companyId));
       }
@@ -375,10 +403,11 @@ export class DispatchService implements OnModuleInit {
     );
     const chosen = this.rank(cands).slice(0, s.maxOffersPerStep);
     const expiresAt = new Date(now.getTime() + s.offerTtlSec * 1000);
-    await this.sendOffers(r, chosen, step, p.ring, expiresAt, now);
+    const created = await this.sendOffers(r, chosen, step, p.ring, expiresAt, now);
 
     const offersSent = await this.prisma.offer.count({ where: { requestId } });
-    const search = this.views.searchState(r, offersSent, s);
+    // A sweep changes nothing the customer sees unless it sent offers.
+    const search = step <= last || created.length ? this.views.searchState(r, offersSent, s) : null;
     if (search) {
       const payload = { requestId, ...search };
       this.realtime.toRequest(requestId, 'request:search', payload);
@@ -386,19 +415,27 @@ export class DispatchService implements OnModuleInit {
       if (owner) this.realtime.toUser(owner, 'request:search', payload);
     }
 
-    if (step + 1 < plan.length) {
-      const natural = r.searchStartedAt.getTime() + plan[step + 1]!.atSec * 1000;
-      const at =
-        offersSent < s.minCandidates
-          ? Math.min(natural, now.getTime() + RING_FAST_FORWARD_SEC * 1000)
-          : natural;
-      if (!r.searchEndsAt || at < r.searchEndsAt.getTime()) {
-        await this.jobs.schedule(
-          JOB.dispatchStep,
-          { requestId, step: step + 1 },
-          { at: new Date(at), jobId: jobId.dispatchStep(requestId) },
-        );
-      }
+    let next: { step: number; at: number };
+    if (step < last) {
+      const natural = startMs + plan[step + 1]!.atSec * 1000;
+      next = {
+        step: step + 1,
+        at:
+          offersSent < s.minCandidates
+            ? Math.min(natural, now.getTime() + RING_FAST_FORWARD_SEC * 1000)
+            : natural,
+      };
+    } else {
+      // The plan is over: the next sweep belongs to the next grid point.
+      const g = cursor - last + 1;
+      next = { step: last + g, at: startMs + g * stepMs };
+    }
+    if (!r.searchEndsAt || next.at < r.searchEndsAt.getTime()) {
+      await this.jobs.schedule(
+        JOB.dispatchStep,
+        { requestId, step: next.step },
+        { at: new Date(next.at), jobId: jobId.dispatchStep(requestId) },
+      );
     }
   }
 
@@ -846,9 +883,16 @@ export class DispatchService implements OnModuleInit {
     });
     for (const r of running) {
       const plan = ringPlan(r.timing === 'EMERGENCY' ? 'EMERGENCY' : 'NOW', s);
-      const next = plan[r.dispatchStep + 1];
-      if (next && r.searchStartedAt!.getTime() + next.atSec * 1000 < now.getTime())
-        await this.runStep(r.id, next.step);
+      const last = plan.length - 1;
+      const startMs = r.searchStartedAt!.getTime();
+      if (r.dispatchStep < last) {
+        const next = plan[r.dispatchStep + 1]!;
+        if (startMs + next.atSec * 1000 < now.getTime()) await this.runStep(r.id, next.step);
+      } else {
+        // Plan over: the sweep of the current grid point, unless it already ran (see runStep).
+        const sweep = last + Math.floor((now.getTime() - startMs) / (DispatchService.stepSecOf(r, s) * 1000));
+        if (sweep > r.dispatchStep) await this.runStep(r.id, sweep);
+      }
     }
   }
 }
