@@ -6,7 +6,7 @@ import { latLngToCell } from 'h3-js';
 import { api } from '@tezfiks/shared';
 import { createTestApp, type TestApp } from '../helpers/app';
 import { adminToken, BAKU, categoryId, createCompany, createCustomer, createSoloHandyman, createUser, tokenFor } from '../helpers/factories';
-import { loadEnv } from '../../src/config/env';
+import { ENV, loadEnv } from '../../src/config/env';
 import { FilesService, FILES_PURGE_JOB, KYC_URL_MAX_TTL_SEC } from '../../src/modules/files/files.service';
 import { hashPassword } from '../../src/common/auth/password';
 import { azPhone, createAssignment, localUrl, otpLogin, pngBuffer, upload } from './helpers';
@@ -328,6 +328,77 @@ describe('A1 hardening', () => {
       await expect(
         t.client().call(api.auth.adminLogin, { body: { email: 'win@tezfiks.az', password: 'Doğru-Parol-123' }, headers: ip }),
       ).resolves.toMatchObject({ admin: { email: 'win@tezfiks.az' } });
+    });
+  });
+});
+
+// BUG-002: the lifetime of signed file URLs comes from FILE_URL_TTL_SEC (spec §12: 10 minutes by default).
+describe('BUG-002 signed URL TTL configuration', () => {
+  const withTtl = (value?: string) => {
+    const { FILE_URL_TTL_SEC: _unset, ...rest } = process.env;
+    return loadEnv(value === undefined ? rest : { ...rest, FILE_URL_TTL_SEC: value });
+  };
+
+  it('defaults to 600 s, takes an override from the environment and refuses values under a minute', () => {
+    expect(withTtl().FILE_URL_TTL_SEC).toBe(600);
+    expect(withTtl('900').FILE_URL_TTL_SEC).toBe(900);
+    expect(withTtl('120').FILE_URL_TTL_SEC).toBe(120);
+    expect(() => withTtl('30')).toThrow(/FILE_URL_TTL_SEC/);
+    expect(() => withTtl('ten minutes')).toThrow(/FILE_URL_TTL_SEC/);
+  });
+
+  describe('with FILE_URL_TTL_SEC=120', () => {
+    const TTL = 120;
+    let t: TestApp;
+    beforeAll(async () => {
+      t = await createTestApp((b) => b.overrideProvider(ENV).useValue({ ...loadEnv(), FILE_URL_TTL_SEC: TTL }));
+    });
+    afterAll(async () => {
+      await t.close();
+    });
+    beforeEach(async () => {
+      await t.reset();
+    });
+
+    it('the configured TTL is the one used: the URL works inside it and is rejected (EXPIRED) once it has passed', async () => {
+      const u = await createUser(t);
+      const before = Math.floor(t.clock.nowMs() / 1000);
+      const ref = await upload(t, await tokenFor(t, u.userId), 'REQUEST_PHOTO');
+      const exp = Number(new URL(ref.url).searchParams.get('exp'));
+      expect(exp).toBeLessThanOrEqual(Math.ceil(t.clock.nowMs() / 1000) + TTL);
+      expect(exp).toBeGreaterThanOrEqual(before + TTL / 2);
+
+      const ok = await fetch(localUrl(t, ref.url));
+      expect(ok.status).toBe(200);
+      expect(ok.headers.get('content-type')).toBe('image/jpeg');
+
+      t.clock.advance((exp - Math.floor(t.clock.nowMs() / 1000) - 1) * 1000); // one second before the expiry
+      expect((await fetch(localUrl(t, ref.url))).status).toBe(200);
+      t.clock.advance(3_000);
+      const late = await fetch(localUrl(t, ref.url));
+      expect(late.status).toBe(403);
+      expect(((await late.json()) as { error: { details: { reason: string } } }).error.details.reason).toBe('EXPIRED');
+      // A fresh reference after the expiry is a new, working URL: authorized access keeps working.
+      const again = await t.app.get(FilesService).ref(ref.id);
+      expect(again.url).not.toBe(ref.url);
+      expect((await fetch(localUrl(t, again.url))).status).toBe(200);
+    });
+
+    it('a changed signature or a pushed-out expiry is rejected (BAD_SIGNATURE)', async () => {
+      const u = await createUser(t);
+      const ref = await upload(t, await tokenFor(t, u.userId), 'REQUEST_PHOTO');
+      const reason = async (url: URL) => {
+        const res = await fetch(localUrl(t, url.toString()));
+        expect(res.status).toBe(403);
+        return ((await res.json()) as { error: { details: { reason: string } } }).error.details.reason;
+      };
+      const badSig = new URL(ref.url);
+      const sig = badSig.searchParams.get('sig')!;
+      badSig.searchParams.set('sig', (sig[0] === 'a' ? 'b' : 'a') + sig.slice(1));
+      expect(await reason(badSig)).toBe('BAD_SIGNATURE');
+      const longer = new URL(ref.url);
+      longer.searchParams.set('exp', String(Number(longer.searchParams.get('exp')) + 3600));
+      expect(await reason(longer)).toBe('BAD_SIGNATURE');
     });
   });
 });
