@@ -20,14 +20,17 @@
   --color-muted: #edf1ff;
   --color-muted-foreground: #5f6b7d;
   --color-ring: #2f5bff;
+  --color-primary-soft: #edf1ff;
+  --color-navy: #0b1a5c;
+  --color-lime: #d4f53c;
 
   --font-sans:
     'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 }
 
 @layer base {
