@@ -48,7 +48,7 @@ export const PhoneInput = forwardRef<TextInputInstance, PhoneInputProps>(functio
           styles.box,
           {
             backgroundColor: dark ? colors.darkSoft : colors.surface,
-            borderColor: error ? colors.danger : dark ? colors.darkSoft : colors.border,
+            borderColor: error ? colors.danger : dark ? colors.darkSoft : colors.primary,
           },
         ]}
       >
@@ -90,8 +90,8 @@ export const PhoneInput = forwardRef<TextInputInstance, PhoneInputProps>(functio
 const styles = StyleSheet.create({
   wrap: { marginBottom: spacing.md },
   label: { marginBottom: spacing.xs },
-  box: { flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: radii.md, height: 52, paddingLeft: spacing.xs },
+  box: { flexDirection: 'row', alignItems: 'center', borderWidth: 1.5, borderRadius: 14, height: 52, paddingLeft: spacing.md },
   chip: { borderRadius: radii.sm, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs, marginRight: spacing.sm },
-  input: { flex: 1, fontFamily: fonts.semibold, fontSize: 17, letterSpacing: 0.5, paddingVertical: spacing.sm },
+  input: { flex: 1, fontFamily: fonts.regular, fontSize: 14, letterSpacing: 0, paddingVertical: spacing.sm },
   error: { marginTop: spacing.xs },
 });
