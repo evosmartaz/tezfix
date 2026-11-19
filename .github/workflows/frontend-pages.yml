@@ -1,0 +1,45 @@
+name: Frontend pages & component tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: TezFiks-QA-Paket-2026-11-12/tezfiks-source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: TezFiks-QA-Paket-2026-11-12/tezfiks-source/package-lock.json
+      - name: Install pinned monorepo dependencies
+        run: npm ci
+      - name: Build API/shared contracts for frontend
+        run: npm run build:shared
+      - name: Audit every customer, pro and panel page entrypoint
+        run: node scripts/page-audit.mjs
+      - name: Shared UI tests
+        run: npm test -w @tezfiks/mobile -- --watch=false --runInBand
+      - name: Customer app tests
+        run: npm test -w @tezfiks/customer -- --watch=false --runInBand
+      - name: Usta app tests
+        run: npm test -w @tezfiks/pro -- --watch=false --runInBand
+      - name: Web panel tests
+        run: npm test -w @tezfiks/panel
+      - name: Typecheck mobile apps and web panels
+        run: |
+          npm run typecheck -w @tezfiks/mobile
+          npm run typecheck -w @tezfiks/customer
+          npm run typecheck -w @tezfiks/pro
+          npm run typecheck -w @tezfiks/panel
