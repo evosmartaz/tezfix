@@ -11,7 +11,7 @@ export const colors = {
   surface: '#FFFFFF',
   danger: '#C83746',
   dangerSoft: '#FDECEC',
-  text: '#0B1A5C',
+  text: '#0B0F14',
   textMuted: '#5F6B7D',
   textInverse: '#FFFFFF',
   textInverseMuted: '#9AA8B6',
