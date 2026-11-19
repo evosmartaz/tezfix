@@ -88,7 +88,7 @@ function Sidebar({
               onClick={onNavigate}
               aria-current={active ? 'page' : undefined}
               className={cn(
-                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                'flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors',
                 active ? 'bg-primary text-white' : 'text-white/75 hover:bg-white/8 hover:text-white',
               )}
             >
@@ -126,17 +126,17 @@ export function AppShell(props: AppShellProps) {
 
   return (
     <div className="flex min-h-dvh">
-      <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 lg:block">
+      <aside className="sticky top-0 hidden h-dvh w-[248px] shrink-0 lg:block">
         <Sidebar {...props} />
       </aside>
       <Dialog open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="w-64 bg-ink p-0" closeLabel={t('closeMenu')}>
+        <SheetContent side="left" className="w-[248px] bg-ink p-0" closeLabel={t('closeMenu')}>
           <SheetTitle className="sr-only">TezFiks</SheetTitle>
           <Sidebar {...props} onNavigate={() => setMobileOpen(false)} />
         </SheetContent>
       </Dialog>
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border bg-surface/95 px-4 backdrop-blur lg:px-8">
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border bg-surface/95 px-4 backdrop-blur lg:px-8">
           <button
             type="button"
             className="rounded-md p-2 text-foreground hover:bg-muted lg:hidden"
@@ -159,7 +159,7 @@ export function AppShell(props: AppShellProps) {
             </button>
           </form>
         </header>
-        <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8">{children}</main>
+        <main className="flex-1 px-4 py-6 lg:px-10 lg:py-8">{children}</main>
       </div>
     </div>
   );
