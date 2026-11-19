@@ -30,7 +30,7 @@ const VARIANTS: Record<ButtonVariant, { bg: string; fg: string; border?: string;
   accent: { bg: colors.accent, fg: colors.dark, pressed: '#DB8A06' },
 };
 
-const HEIGHTS: Record<ButtonSize, number> = { sm: 36, md: 48, lg: 56 };
+const HEIGHTS: Record<ButtonSize, number> = { sm: 36, md: 48, lg: 52 };
 
 /** Rounded button (green primary "Davam et", dark "Naviqasiyanı aç", outline "İmtina et"). */
 export function Button({
@@ -81,7 +81,7 @@ export function Button({
 }
 
 const styles = StyleSheet.create({
-  base: { borderRadius: radii.md, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.lg },
+  base: { borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.lg },
   full: { alignSelf: 'stretch' },
   inline: { alignSelf: 'flex-start' },
   disabled: { opacity: 0.45 },

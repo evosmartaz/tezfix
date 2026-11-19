@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { api } from '@tezfiks/shared';
 import { otpFlowStore } from '../../auth/flow';
 import { errorMessage } from '../../errors';
 import { azDigitsToE164, sanitizeAzPhoneDigits } from '../../format';
 import { useT } from '../../i18n';
 import { useRuntime } from '../../runtime';
-import { colors, spacing } from '../../theme/tokens';
+import { colors, radii, spacing } from '../../theme/tokens';
 import { Button } from '../../ui/Button';
 import { LanguagePicker } from '../../ui/LanguagePicker';
 import { PhoneInput } from '../../ui/PhoneInput';
@@ -43,6 +44,93 @@ export function PhoneScreen({ onCodeSent, brand }: PhoneScreenProps) {
       setLoading(false);
     }
   };
+
+  if (runtime.app === 'CUSTOMER') {
+    const copy = {
+      az: {
+        hero: 'Lazım olan anda usta',
+        description: 'Ev və avto üçün yoxlanılmış ustalar — bir neçə dəqiqəyə qapınızda.',
+        verified: 'Sənədləri yoxlanılmış ustalar',
+        wait: 'Orta gözləmə 1–3 dəqiqə',
+        payment: 'Nağd və ya kartla — kartda TezFiks Zəmanəti',
+      },
+      ru: {
+        hero: 'Мастер, когда нужен',
+        description: 'Проверенные мастера для дома и автомобиля.',
+        verified: 'Мастера с проверенными документами',
+        wait: 'Среднее ожидание 1–3 минуты',
+        payment: 'Наличными или картой — гарантия TezFiks при оплате картой',
+      },
+      en: {
+        hero: 'A handyman when you need one',
+        description: 'Verified professionals for your home and car.',
+        verified: 'Document-verified professionals',
+        wait: 'Average wait 1–3 minutes',
+        payment: 'Cash or card — TezFiks Guarantee with card payments',
+      },
+    }[locale] ?? {
+      hero: 'Lazım olan anda usta',
+      description: 'Ev və avto üçün yoxlanılmış ustalar — bir neçə dəqiqəyə qapınızda.',
+      verified: 'Sənədləri yoxlanılmış ustalar',
+      wait: 'Orta gözləmə 1–3 dəqiqə',
+      payment: 'Nağd və ya kartla — kartda TezFiks Zəmanəti',
+    };
+    return (
+      <Screen
+        scroll
+        testID="phone-screen"
+        style={styles.customerScreen}
+        contentStyle={styles.customerContent}
+        footer={
+          <View style={styles.customerFooter}>
+            <AppText variant="bodyStrong" style={styles.customerPhoneLabel}>
+              {t('common:fields.phone')}
+            </AppText>
+            <PhoneInput
+              value={digits}
+              onChange={(d, normalized) => {
+                setDigits(d);
+                setE164(normalized);
+                if (error) setError(null);
+              }}
+              error={error}
+              onSubmitEditing={() => void submit()}
+              accessibilityLabel={t('common:fields.phone')}
+            />
+            <Button title={t('common:actions.continue')} size="lg" onPress={() => void submit()} disabled={!e164} loading={loading} testID="phone-continue" />
+            <AppText variant="caption" color="textMuted" align="center" style={styles.terms}>
+              {t('auth.terms')}
+            </AppText>
+            <AppText variant="caption" color="textMuted" align="center" style={styles.customerDeliveryHint} testID="phone-whatsapp-hint">
+              {t('common:login.codeViaWhatsApp')}
+            </AppText>
+          </View>
+        }
+      >
+        <View style={styles.top}><LanguagePicker /></View>
+        <View style={styles.customerLogo}>
+          <View style={styles.customerMark}><Ionicons name="flash" size={26} color={colors.surface} /></View>
+          <AppText variant="h1">{brand ?? t('appName')}</AppText>
+        </View>
+        <View style={styles.customerHero} testID="phone-hero">
+          <AppText variant="display">{copy.hero}</AppText>
+          <AppText variant="body" color="textMuted" style={styles.customerDescription}>{copy.description}</AppText>
+        </View>
+        <View style={styles.customerBenefits}>
+          {([
+            { icon: 'shield-checkmark-outline' as const, label: copy.verified },
+            { icon: 'time-outline' as const, label: copy.wait },
+            { icon: 'wallet-outline' as const, label: copy.payment },
+          ]).map(({ icon, label }) => (
+            <View key={icon} style={styles.customerBenefitRow}>
+              <View style={styles.customerBenefitIcon}><Ionicons name={icon} size={18} color={colors.primary} /></View>
+              <AppText variant="bodyStrong" style={styles.customerBenefitText}>{label}</AppText>
+            </View>
+          ))}
+        </View>
+      </Screen>
+    );
+  }
 
   return (
     <Screen dark scroll testID="phone-screen">
@@ -95,4 +183,17 @@ const styles = StyleSheet.create({
   title: { marginBottom: spacing.xs },
   hint: { marginBottom: spacing.md },
   terms: { marginTop: spacing.md },
+  customerScreen: { backgroundColor: colors.surface },
+  customerContent: { paddingHorizontal: spacing.xl, paddingTop: spacing.sm, paddingBottom: spacing.xl },
+  customerLogo: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, marginTop: 40 },
+  customerMark: { width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary },
+  customerHero: { marginTop: spacing.xl, gap: spacing.sm },
+  customerDescription: { marginTop: spacing.xs },
+  customerBenefits: { marginTop: spacing.xl, backgroundColor: colors.background, borderRadius: radii.lg, padding: spacing.lg, gap: 14 },
+  customerBenefitRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  customerBenefitIcon: { height: 34, width: 34, borderRadius: 10, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
+  customerBenefitText: { flex: 1 },
+  customerPhoneLabel: { marginBottom: spacing.sm },
+  customerFooter: { backgroundColor: colors.surface },
+  customerDeliveryHint: { marginTop: spacing.sm },
 });

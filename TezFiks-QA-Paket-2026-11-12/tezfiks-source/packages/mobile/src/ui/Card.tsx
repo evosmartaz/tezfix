@@ -7,7 +7,7 @@ export interface CardProps {
   onPress?: () => void;
   /** Dark card (board 03 "Cari balans", board 02 guarantee explainer). */
   dark?: boolean;
-  /** Highlighted with a green border (selected option). */
+  /** Highlighted with the Figma v2 primary-blue border (selected option). */
   selected?: boolean;
   padded?: boolean;
   style?: StyleProp<ViewStyle>;
@@ -45,7 +45,7 @@ export function Card({ children, onPress, dark, selected, padded = true, style, 
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: radii.lg, borderWidth: 1 },
+  card: { borderRadius: radii.lg, borderWidth: 1, overflow: 'hidden' },
   light: { backgroundColor: colors.surface, borderColor: colors.border, ...shadows.card },
   dark: { backgroundColor: colors.dark, borderColor: colors.dark },
   selected: { borderColor: colors.primary, borderWidth: 2 },

@@ -1,33 +1,36 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* TezFiks design tokens (design/01-brand-colors-typography.png, board 05 admin panel). */
+/* Shared Figma v2 design tokens: 00 · Cover & Brend, 8:352. */
 @theme {
-  --color-primary: #00a971;
-  --color-primary-strong: #00845a;
+  --color-primary: #2f5bff;
+  --color-primary-strong: #2147d8;
   --color-primary-foreground: #ffffff;
-  --color-ink: #0b1b2b;
-  --color-ink-soft: #16293d;
+  --color-ink: #0b1a5c;
+  --color-ink-soft: #162b76;
   --color-accent: #f59e0b;
   --color-accent-strong: #b45309;
-  --color-danger: #e5484d;
+  --color-danger: #c83746;
   --color-info: #2563eb;
-  --color-background: #f6f8fa;
+  --color-background: #f5f7fc;
   --color-surface: #ffffff;
-  --color-foreground: #0b1b2b;
-  --color-border: #e3e8ee;
-  --color-input: #d5dce4;
-  --color-muted: #eef1f4;
-  --color-muted-foreground: #5b6675;
-  --color-ring: #00a971;
+  --color-foreground: #0b1a5c;
+  --color-border: #dfe4ef;
+  --color-input: #dfe4ef;
+  --color-muted: #edf1ff;
+  --color-muted-foreground: #5f6b7d;
+  --color-ring: #2f5bff;
+  --color-primary-soft: #edf1ff;
+  --color-navy: #0b1a5c;
+  --color-lime: #d4f53c;
 
   --font-sans:
     'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 }
 
 @layer base {

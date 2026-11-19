@@ -25,7 +25,7 @@ export function StatCard({ label, value, hint, tone = 'ink', icon, className }: 
   return (
     <div
       className={cn(
-        'flex flex-col gap-1 rounded-lg border border-border bg-surface p-5 shadow-xs',
+        'flex flex-col gap-1 rounded-2xl border border-border bg-surface p-5 shadow-xs',
         className,
       )}
     >

@@ -6,11 +6,11 @@ import { AppText } from './Text';
 export type Tone = 'success' | 'warning' | 'danger' | 'info' | 'neutral' | 'dark';
 
 export const TONES: Record<Tone, { bg: string; fg: string; dot: string }> = {
-  success: { bg: colors.primarySoft, fg: colors.primaryDark, dot: colors.primary },
+  success: { bg: '#E6F7F0', fg: '#008A5C', dot: '#00A971' },
   warning: { bg: colors.accentSoft, fg: '#92580A', dot: colors.accent },
   danger: { bg: colors.dangerSoft, fg: '#B4282D', dot: colors.danger },
   info: { bg: colors.infoSoft, fg: '#1D5BAA', dot: colors.info },
-  neutral: { bg: '#EEF1F4', fg: colors.textMuted, dot: colors.borderStrong },
+  neutral: { bg: colors.background, fg: colors.textMuted, dot: colors.borderStrong },
   dark: { bg: colors.dark, fg: colors.textInverse, dot: colors.primary },
 };
 
