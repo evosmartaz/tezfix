@@ -8,6 +8,13 @@ const MAPS_KEY = process.env.GOOGLE_MAPS_ANDROID_KEY || null;
  * placeholder and the app renders OpenStreetMap tiles instead (extra.hasGoogleMapsKey = false).
  */
 const MAPS_KEY_OR_PLACEHOLDER = MAPS_KEY ?? 'NO_GOOGLE_MAPS_KEY_OSM_FALLBACK';
+/** Mapbox public token for the map tiles (takes precedence over the Google key); empty = Google or OpenStreetMap. */
+const MAPBOX_TOKEN = process.env.EXPO_PUBLIC_MAPBOX_TOKEN?.trim() || null;
+// Everything in an app build can be extracted from the APK, so only a public (pk.) token may go in.
+if (MAPBOX_TOKEN && !MAPBOX_TOKEN.startsWith('pk.')) {
+  throw new Error('EXPO_PUBLIC_MAPBOX_TOKEN must be a Mapbox public token (pk.*), never a secret sk.* token.');
+}
+const MAPBOX_STYLE = process.env.EXPO_PUBLIC_MAPBOX_STYLE?.trim() || null;
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -75,5 +82,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     apiUrl: API_URL,
     hasGoogleMapsKey: MAPS_KEY !== null,
+    mapboxToken: MAPBOX_TOKEN,
+    mapboxStyle: MAPBOX_STYLE,
   },
 });

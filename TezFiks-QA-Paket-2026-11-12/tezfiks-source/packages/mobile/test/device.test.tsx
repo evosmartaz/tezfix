@@ -4,6 +4,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react-native';
 import { latLngToCell } from 'h3-js';
 import * as Notifications from 'expo-notifications';
 import * as Location from 'expo-location';
+import Constants from 'expo-constants';
 import { createMobileRuntime, RuntimeProvider } from '../src/runtime';
 import { createMemoryStorage } from '../src/storage';
 import { NOTIFICATION_CHANNELS, registerForPush } from '../src/push';
@@ -154,6 +155,31 @@ describe('map helpers', () => {
     await render(<TfMapView useGoogleTiles />);
     expect(screen.getByTestId('tf-map').props.mapType).toBe('standard');
     expect(screen.queryByTestId('UrlTile')).toBeNull();
+  });
+
+  describe('with a Mapbox token in the build', () => {
+    const extra = (Constants.expoConfig as { extra: Record<string, unknown> }).extra;
+    const saved = { ...extra };
+    afterEach(() => {
+      for (const k of Object.keys(extra)) delete extra[k];
+      Object.assign(extra, saved);
+    });
+
+    it('draws Mapbox tiles (@2x, 512 px images) with the Mapbox attribution, ahead of a Google key', async () => {
+      Object.assign(extra, { mapboxToken: 'pk.test-token', hasGoogleMapsKey: true });
+      await render(<TfMapView />);
+      expect(screen.getByTestId('tf-map').props.mapType).toBe('none');
+      const tile = screen.getByTestId('UrlTile').props;
+      expect(tile.urlTemplate).toBe('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/256/{z}/{x}/{y}@2x?access_token=pk.test-token');
+      expect(tile.tileSize).toBe(512);
+      expect(screen.getByTestId('tf-map-attribution').props.children).toBe('© Mapbox © OpenStreetMap');
+    });
+
+    it('uses a configured Mapbox Studio style', async () => {
+      Object.assign(extra, { mapboxToken: 'pk.test-token', mapboxStyle: 'evosmart/brand-v2' });
+      await render(<TfMapView />);
+      expect(screen.getByTestId('UrlTile').props.urlTemplate).toContain('/styles/v1/evosmart/brand-v2/tiles/256/');
+    });
   });
 });
 

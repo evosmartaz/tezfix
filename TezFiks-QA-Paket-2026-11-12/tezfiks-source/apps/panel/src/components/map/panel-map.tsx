@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { panelTiles } from './tiles';
 import type { PanelMapProps } from './types';
 
 function MapLoading() {
@@ -18,14 +19,20 @@ const LeafletMap = dynamic(() => import('./leaflet-map'), { ssr: false, loading:
 const GoogleMap = dynamic(() => import('./google-map'), { ssr: false, loading: MapLoading });
 
 /**
- * Live map for the panels (admin Xəritə, company dispatch): Google Maps when a browser key is configured,
- * otherwise OpenStreetMap tiles via Leaflet so maps work without any key.
+ * Live map for the panels (admin Xəritə, company dispatch). Base map, first match wins: Mapbox tiles via Leaflet when
+ * NEXT_PUBLIC_MAPBOX_TOKEN is set, Google Maps when a browser key is configured, otherwise OpenStreetMap tiles via
+ * Leaflet so maps work without any key.
  */
 export function PanelMap({ className, ...props }: PanelMapProps) {
-  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY ?? '';
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
+  const googleKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY ?? '';
   return (
     <div className={cn('relative h-96 w-full overflow-hidden rounded-lg border border-border', className)}>
-      {key ? <GoogleMap apiKey={key} {...props} /> : <LeafletMap {...props} />}
+      {googleKey && !mapboxToken ? (
+        <GoogleMap apiKey={googleKey} {...props} />
+      ) : (
+        <LeafletMap {...props} tiles={panelTiles(mapboxToken, process.env.NEXT_PUBLIC_MAPBOX_STYLE)} />
+      )}
     </div>
   );
 }

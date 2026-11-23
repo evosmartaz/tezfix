@@ -117,7 +117,8 @@ The API address is baked in at build time. For each app:
 ```bash
 cd apps/customer                                      # or apps/pro
 export EXPO_PUBLIC_API_URL=https://evosmart.az/tezfix/api
-export GOOGLE_MAPS_ANDROID_KEY=...                    # needed for maps (see "Status" below)
+export EXPO_PUBLIC_MAPBOX_TOKEN=pk....                # map tiles (Mapbox public token; see "Status" below)
+export GOOGLE_MAPS_ANDROID_KEY=...                    # alternative to Mapbox: Google map
 export TEZFIKS_RELEASE_STORE_FILE=...                 # + _STORE_PASSWORD, _KEY_ALIAS, _KEY_PASSWORD: docs/android-release-signing.md
 npx expo prebuild --platform android --clean          # always --clean: Gradle does not notice changed EXPO_PUBLIC_* values
 cd android && ./gradlew assembleRelease               # APK: android/app/build/outputs/apk/release/app-release.apk
@@ -159,9 +160,13 @@ Before real users:
 - **WhatsApp login codes:** the server runs with `OTP_CHANNEL=console`, so only the demo phones (bypass code) can log in.
   Real logins need Meta WhatsApp Cloud API credentials (`OTP_CHANNEL=whatsapp_cloud` + `WHATSAPP_*`) or your own bot
   (`OTP_CHANNEL=webhook`).
-- **Maps:** the apps need a Google Maps Android key (`GOOGLE_MAPS_ANDROID_KEY`, restricted to `az.tezfiks.app` and
-  `az.tezfiks.usta`). Without it the map areas stay empty. Optional: `GOOGLE_MAPS_SERVER_KEY` for traffic-aware ETAs and
-  address search, `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY` for the panel maps.
+- **Maps:** the base map is, first match wins, Mapbox raster tiles (Static Tiles API) when a Mapbox **public** token is
+  set, the Google map when a Google key is set, otherwise OpenStreetMap tiles (fine for development, not for production
+  traffic). Apps: `EXPO_PUBLIC_MAPBOX_TOKEN` (or `GOOGLE_MAPS_ANDROID_KEY`, restricted to `az.tezfiks.app` and
+  `az.tezfiks.usta`) at build time; panel: `NEXT_PUBLIC_MAPBOX_TOKEN` (or `NEXT_PUBLIC_GOOGLE_MAPS_BROWSER_KEY`) at image
+  build time. Optional `*_MAPBOX_STYLE` picks a Mapbox Studio style. A secret `sk.*` token fails the build. Without a
+  payment method the Mapbox account is usage-limited (tiles stop at the limit). Address search and traffic-aware ETAs
+  still use `GOOGLE_MAPS_SERVER_KEY`.
 - **Payments:** in-app payments are test-mode only (a TezFiks checkout page, no real money). A real payment provider and the
   legal setup for holding customer money are still to do.
 - **Push notifications:** `PUSH_PROVIDER=log`; offers still arrive over the socket while the app is open. Real pushes need a

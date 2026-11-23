@@ -3,10 +3,17 @@ import Constants from 'expo-constants';
 /** Android emulator alias for the host machine (spec: dev API on the host). */
 export const DEFAULT_API_URL = 'http://10.0.2.2:3000/tezfix/api';
 
+/** Mapbox style of the map tiles unless EXPO_PUBLIC_MAPBOX_STYLE names another (e.g. a Mapbox Studio style). */
+export const MAPBOX_DEFAULT_STYLE = 'mapbox/streets-v12';
+
 export interface MobileExtra {
   apiUrl: string;
   /** True when GOOGLE_MAPS_ANDROID_KEY was set at build time; otherwise maps use OpenStreetMap tiles. */
   hasGoogleMapsKey: boolean;
+  /** Mapbox public token (EXPO_PUBLIC_MAPBOX_TOKEN at build time); when set, maps use Mapbox tiles. */
+  mapboxToken: string | null;
+  /** Mapbox style id ("owner/style") of those tiles. */
+  mapboxStyle: string;
 }
 
 /** Reads `expo.extra` written by app.config.ts. */
@@ -15,6 +22,8 @@ export function getExtra(): MobileExtra {
   return {
     apiUrl: typeof extra.apiUrl === 'string' && extra.apiUrl ? extra.apiUrl : DEFAULT_API_URL,
     hasGoogleMapsKey: extra.hasGoogleMapsKey === true,
+    mapboxToken: typeof extra.mapboxToken === 'string' && extra.mapboxToken ? extra.mapboxToken : null,
+    mapboxStyle: typeof extra.mapboxStyle === 'string' && extra.mapboxStyle ? extra.mapboxStyle : MAPBOX_DEFAULT_STYLE,
   };
 }
 

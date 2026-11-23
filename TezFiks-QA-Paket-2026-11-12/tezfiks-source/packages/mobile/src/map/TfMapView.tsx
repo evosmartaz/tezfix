@@ -4,7 +4,7 @@ import MapView, { Marker, Polygon, Polyline, PROVIDER_GOOGLE, UrlTile, type MapV
 import { getExtra } from '../config';
 import { colors } from '../theme/tokens';
 import { AppText } from '../ui/Text';
-import { BAKU_REGION, OSM_TILE_URL, hexagonCoordinates, type LatLng, type MapRegion } from './geo';
+import { BAKU_REGION, OSM_TILE_URL, hexagonCoordinates, mapboxTileUrl, type LatLng, type MapRegion } from './geo';
 
 export interface TfMapViewProps extends Omit<MapViewProps, 'provider' | 'mapType' | 'style'> {
   children?: ReactNode;
@@ -15,14 +15,17 @@ export interface TfMapViewProps extends Omit<MapViewProps, 'provider' | 'mapType
 }
 
 /**
- * Google map when the build has GOOGLE_MAPS_ANDROID_KEY; otherwise `mapType="none"` plus OpenStreetMap tiles,
- * so maps work in the emulator without a key.
+ * Base map, first match wins: Mapbox tiles when the build has a Mapbox token (EXPO_PUBLIC_MAPBOX_TOKEN), the Google
+ * map when it has GOOGLE_MAPS_ANDROID_KEY, otherwise OpenStreetMap tiles so maps work in the emulator without any
+ * key. Mapbox and OpenStreetMap tiles are drawn on `mapType="none"`.
  */
 export const TfMapView = forwardRef<MapView, TfMapViewProps>(function TfMapView(
   { children, style, initialRegion = BAKU_REGION, useGoogleTiles, ...rest },
   ref,
 ) {
-  const google = useGoogleTiles ?? getExtra().hasGoogleMapsKey;
+  const { hasGoogleMapsKey, mapboxToken, mapboxStyle } = getExtra();
+  const google = useGoogleTiles ?? (!mapboxToken && hasGoogleMapsKey);
+  const mapboxUrl = !google && mapboxToken ? mapboxTileUrl(mapboxToken, mapboxStyle) : null;
   return (
     <View style={[styles.wrap, style]}>
       <MapView
@@ -35,13 +38,17 @@ export const TfMapView = forwardRef<MapView, TfMapViewProps>(function TfMapView(
         toolbarEnabled={false}
         testID="tf-map"
       >
-        {google ? null : <UrlTile urlTemplate={OSM_TILE_URL} maximumZ={19} flipY={false} shouldReplaceMapContent />}
+        {google ? null : mapboxUrl ? (
+          <UrlTile urlTemplate={mapboxUrl} tileSize={512} maximumZ={22} flipY={false} shouldReplaceMapContent />
+        ) : (
+          <UrlTile urlTemplate={OSM_TILE_URL} maximumZ={19} flipY={false} shouldReplaceMapContent />
+        )}
         {children}
       </MapView>
       {google ? null : (
         <View style={styles.attribution} pointerEvents="none">
-          <AppText variant="caption" color="textMuted">
-            © OpenStreetMap
+          <AppText variant="caption" color="textMuted" testID="tf-map-attribution">
+            {mapboxUrl ? '© Mapbox © OpenStreetMap' : '© OpenStreetMap'}
           </AppText>
         </View>
       )}

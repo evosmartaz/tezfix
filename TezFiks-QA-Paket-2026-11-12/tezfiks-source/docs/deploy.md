@@ -127,7 +127,8 @@ The API URL is baked into the apps at build time (`EXPO_PUBLIC_API_URL`). For ea
 ```bash
 cd apps/customer                     # or apps/pro
 export EXPO_PUBLIC_API_URL=https://evosmart.az/tezfix/api
-export GOOGLE_MAPS_ANDROID_KEY=...   # optional; without it the map uses OpenStreetMap tiles
+export EXPO_PUBLIC_MAPBOX_TOKEN=pk...  # Mapbox public token for the map tiles (a secret sk.* token fails the build)
+export GOOGLE_MAPS_ANDROID_KEY=...   # optional alternative; with neither, the map uses OpenStreetMap tiles
 export TEZFIKS_RELEASE_STORE_FILE=... TEZFIKS_RELEASE_STORE_PASSWORD=... TEZFIKS_RELEASE_KEY_ALIAS=... TEZFIKS_RELEASE_KEY_PASSWORD=...
 npx expo prebuild --platform android --clean
 cd android && ./gradlew assembleRelease     # APK in android/app/build/outputs/apk/release/

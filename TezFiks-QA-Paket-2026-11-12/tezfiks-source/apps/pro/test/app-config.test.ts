@@ -52,6 +52,16 @@ describe('pro app.config', () => {
     expect(plugin(withKey, 'react-native-maps')).toEqual({ androidGoogleMapsApiKey: 'AIza-test' });
   });
 
+  it('passes a Mapbox public token and style to the app and refuses a secret token', () => {
+    const none = load({ EXPO_PUBLIC_MAPBOX_TOKEN: undefined, EXPO_PUBLIC_MAPBOX_STYLE: undefined });
+    expect(none.extra?.mapboxToken).toBeNull();
+    expect(none.extra?.mapboxStyle).toBeNull();
+    const withToken = load({ EXPO_PUBLIC_MAPBOX_TOKEN: ' pk.test-token ', EXPO_PUBLIC_MAPBOX_STYLE: 'evosmart/brand-v2' });
+    expect(withToken.extra?.mapboxToken).toBe('pk.test-token');
+    expect(withToken.extra?.mapboxStyle).toBe('evosmart/brand-v2');
+    expect(() => load({ EXPO_PUBLIC_MAPBOX_TOKEN: 'sk.secret-token' })).toThrow(/public token/);
+  });
+
   it('enables foreground location only (no background location permission)', () => {
     const cfg = load();
     expect(plugin(cfg, 'expo-location')).toMatchObject({ isAndroidForegroundServiceEnabled: true, isAndroidBackgroundLocationEnabled: false });
