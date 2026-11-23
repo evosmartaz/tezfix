@@ -12,7 +12,7 @@
  *   (default ~/.tezfiks-qa-admin-password, mode 600, never overwritten). The password is never printed or logged.
  * - Every change is written to the audit log (actor SYSTEM).
  */
-import 'dotenv/config';
+import { config as loadDotenv } from 'dotenv';
 import { randomBytes } from 'node:crypto';
 import { rmSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -97,6 +97,9 @@ export async function provisionQaAdmin(prisma: PrismaClient, o: QaAdminOptions):
 }
 
 async function main(): Promise<void> {
+  // Only the CLI reads .env: importing this module (test/b5/qa-admin.spec.ts) must not pull a developer's local
+  // settings (OTP bypass, API keys) into the test environment.
+  loadDotenv();
   const url = process.env.DATABASE_URL;
   if (!url) throw new QaAdminError('DATABASE_URL is not set');
   const email = process.env.QA_ADMIN_EMAIL ?? '';
