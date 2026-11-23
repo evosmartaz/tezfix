@@ -20,7 +20,11 @@
     "lastNameRequired": "Enter your last name",
     "photoUploadFailed": "The photo was not uploaded. Try again later from your profile",
     "galleryDenied": "Gallery access was not granted",
-    "language": "Language"
+    "language": "Language",
+    "lead": "Verified handymen for home and car — at your door in minutes.",
+    "feature1": "Handymen with verified documents",
+    "feature2": "Average wait 1–3 minutes",
+    "feature3": "Cash or card — card payments carry the TezFiks Guarantee"
   },
   "tabs": {
     "home": "Home",
@@ -44,7 +48,8 @@
     "debtTitle": "Your balance is in debt",
     "debtMessage": "Debt: {{amount}}. Top up to place a new order",
     "business": "Business order",
-    "businessHint": "Get quotes from handymen and companies for corporate work"
+    "businessHint": "Get quotes from handymen and companies for corporate work",
+    "allShort": "All ({{count}})"
   },
   "placeholder": {
     "comingSoon": "This section is coming soon"
@@ -95,7 +100,7 @@
     "slotsLess": "Fewer handymen",
     "slotsMore": "More handymen",
     "preference": "Who should come?",
-    "priceNote": "The handyman assesses the job on site and agrees the price with you. You pay the handyman directly.",
+    "priceNote": "The handyman agrees the price on site. Payment: cash to the handyman or card through TezFiks (guaranteed).",
     "submit": "Call a handyman",
     "errors": {
       "categoryRequired": "Choose a service",
@@ -115,7 +120,8 @@
       "labelRequired": "Give the address a name to save it"
     },
     "inProgress": "Your order is already being sent, please wait",
-    "business": "Create a business order"
+    "business": "Create a business order",
+    "cancelRule": "Free cancellation for {{min}} min after acceptance, then {{amount}}"
   },
   "address": {
     "title": "Address",
@@ -197,7 +203,16 @@
     "cancel": "Cancel order",
     "cancelled": "The order was cancelled",
     "cancelledAt": "Cancelled: {{time}}",
-    "track": "Track the handyman"
+    "track": "Track the handyman",
+    "cancelledTitle": "Order cancelled",
+    "cancelTime": "Cancelled at",
+    "afterAccept": "{{min}} min after acceptance",
+    "cancelKind": "Cancellation",
+    "kindFree": "Free cancellation",
+    "kindLate": "Late cancellation (charged)",
+    "lateNote": "Cancelled after the free-cancel window. The charged amount is shown in your wallet history.",
+    "findNew": "Find a new handyman",
+    "toHome": "Home"
   },
   "slotStatus": {
     "OPEN": "Searching",
@@ -275,12 +290,12 @@
     "agreed": "Agreed price",
     "methodTitle": "Choose how to pay",
     "cash": "Cash — pay at the door",
-    "cashHint": "You pay the handyman directly",
+    "cashHint": "You pay the handyman directly when the job is done",
     "card": "Pay by card",
-    "cardHint": "Paid securely through TezFiks",
+    "cardHint": "Secure payment · TezFiks Guarantee included",
     "guaranteeIncluded": "TezFiks Guarantee included",
     "guaranteeTitle": "What is the TezFiks Guarantee?",
-    "guaranteeText": "With card payment TezFiks guarantees the work: if a problem appears, the platform sends a handyman again on its own account after your claim and resolves it under our control.",
+    "guaranteeText": "If something is wrong with a job paid by card, TezFiks sends a handyman again on your request and resolves it under its own control.",
     "testCard": "Test mode: card 4242 4242 4242 4242 succeeds, 4000 0000 0000 0002 is declined",
     "payAmount": "Pay {{amount}}",
     "confirmCash": "I pay {{amount}} in cash",
@@ -310,7 +325,10 @@
     "send": "Tip {{amount}}",
     "skip": "Skip",
     "thanks": "Thank you! The tip goes to the handyman",
-    "notAvailable": "Tips are only possible for jobs paid by card"
+    "notAvailable": "Tips are only possible for jobs paid by card",
+    "workFee": "Work",
+    "tipLine": "Tip",
+    "total": "Total"
   },
   "rate": {
     "done": "Job completed!",

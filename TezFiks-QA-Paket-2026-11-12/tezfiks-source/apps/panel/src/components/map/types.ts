@@ -33,5 +33,5 @@ export interface PanelMapProps {
 /** Baku city centre. */
 export const BAKU_CENTER: MapPoint = { lat: 40.4093, lng: 49.8671 };
 export const DEFAULT_ZOOM = 12;
-export const MARKER_COLOR = '#00A971';
+export const MARKER_COLOR = '#2F5BFF';
 export const POLYGON_COLOR = '#F59E0B';

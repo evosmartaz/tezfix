@@ -7,8 +7,11 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export interface ConfirmDialogProps {
-  /** Element that opens the dialog (rendered as the trigger). */
-  trigger: ReactNode;
+  /** Element that opens the dialog (rendered as the trigger). Omit it to open the dialog from code (`open`). */
+  trigger?: ReactNode;
+  /** Controlled mode: the caller decides when the dialog is open (e.g. after a select changed). */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   title?: ReactNode;
   description?: ReactNode;
   confirmLabel?: ReactNode;
@@ -22,6 +25,8 @@ export interface ConfirmDialogProps {
 
 export function ConfirmDialog({
   trigger,
+  open: openProp,
+  onOpenChange,
   title,
   description,
   confirmLabel,
@@ -31,7 +36,13 @@ export function ConfirmDialog({
   onConfirm,
 }: ConfirmDialogProps) {
   const t = useTranslations();
-  const [open, setOpen] = useState(false);
+  const [innerOpen, setInnerOpen] = useState(false);
+  const controlled = openProp !== undefined;
+  const open = controlled ? openProp : innerOpen;
+  const setOpen = (next: boolean) => {
+    if (controlled) onOpenChange?.(next);
+    else setInnerOpen(next);
+  };
   const [busy, setBusy] = useState(false);
 
   async function confirm() {
@@ -46,7 +57,7 @@ export function ConfirmDialog({
 
   return (
     <AlertDialog.Root open={open} onOpenChange={(next) => !busy && setOpen(next)}>
-      <AlertDialog.Trigger render={<span className="inline-flex" />}>{trigger}</AlertDialog.Trigger>
+      {trigger ? <AlertDialog.Trigger render={<span className="inline-flex" />}>{trigger}</AlertDialog.Trigger> : null}
       <AlertDialog.Portal>
         <AlertDialog.Backdrop className="fixed inset-0 z-50 bg-ink/40 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <AlertDialog.Popup

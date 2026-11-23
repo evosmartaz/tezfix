@@ -84,7 +84,7 @@ describe('A2 payments and test checkout', () => {
     expect(html).toContain('TEST REJİMİ');
     expect(html).toContain('20,00');
     expect(html).toContain('Balansın artırılması');
-    expect(html).toContain('#00A971');
+    expect(html).toContain('#2F5BFF');
     expect(html).toContain('name="viewport"');
 
     const res = await submitCheckout(t, out.checkoutUrl, { card: OK_CARD });

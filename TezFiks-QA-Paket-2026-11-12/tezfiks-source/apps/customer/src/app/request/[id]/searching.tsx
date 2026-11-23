@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useQueryClient } from '@tanstack/react-query';
+import { Ionicons } from '@expo/vector-icons';
 import { api, formatMoney, type CustomerAssignment, type RequestDetail } from '@tezfiks/shared';
 import {
   AppText,
@@ -31,7 +32,7 @@ import { requestErrorInfo } from '../../../lib/requestErrors';
 const SEARCH_POLL_MS = 10_000;
 
 /**
- * Board 02 B4 "Yaxınlıqdakı ustalar axtarılır...": dark screen, pulsing H3 rings from `request:search`, countdown to the
+ * Board 02 B4 "Yaxınlıqdakı ustalar axtarılır...": light screen (UX-C19), pulsing H3 rings from `request:search`, countdown to the
  * end of the search and cancel. A multi-handyman request becomes ASSIGNED with the first acceptance while the open slots
  * are still dispatched (spec 6.1): the screen then keeps the live search, lists the handymen found so far and links to the
  * order. When the handyman of a single-handyman request accepts, it moves straight to their live tracking (B5); otherwise to
@@ -107,7 +108,7 @@ export default function SearchingRoute() {
     }
   };
 
-  if (req.isPending) return <LoadingState dark testID="searching-loading" />;
+  if (req.isPending) return <LoadingState testID="searching-loading" />;
   if (req.isError || !r) {
     return (
       <Screen testID="searching-screen">
@@ -125,26 +126,26 @@ export default function SearchingRoute() {
     .filter((a): a is CustomerAssignment => !!a);
 
   return (
-    <Screen dark scroll padded={false} testID="searching-screen">
+    <Screen scroll padded={false} testID="searching-screen">
       <View style={styles.mapBox}>
         <SearchHexMap cells={cells} center={{ lat: r.address.lat, lng: r.address.lng }} centerCell={centerCell} />
       </View>
       <View style={styles.body}>
         <PulseDot />
-        <AppText variant="h2" color="textInverse" align="center" style={styles.title}>
+        <AppText variant="h2" color="text" align="center" style={styles.title}>
           {t(partly ? 'searching.partialTitle' : 'searching.title')}
         </AppText>
-        <AppText variant="small" color="textInverseMuted" align="center" testID="searching-reach">
+        <AppText variant="small" color="textMuted" align="center" testID="searching-reach">
           {t('searching.reach', { km: String(reachKmForRing(newestRing)).replace('.', locale === 'en' ? '.' : ',') })}
         </AppText>
         {r.slotsRequested > 1 ? (
-          <AppText variant="small" color="textInverse" align="center" style={styles.line} testID="searching-slots">
+          <AppText variant="small" color="text" align="center" style={styles.line} testID="searching-slots">
             {t('orders.slotsFilled', { filled: r.slotsFilled, total: r.slotsRequested })}
           </AppText>
         ) : null}
         {found.length ? (
           <View style={styles.found} testID="searching-found">
-            <AppText variant="caption" color="textInverseMuted">
+            <AppText variant="caption" color="textMuted">
               {t('searching.found')}
             </AppText>
             {found.map((a) => (
@@ -154,14 +155,14 @@ export default function SearchingRoute() {
         ) : null}
         {endsAt ? (
           <View style={styles.countdown}>
-            <AppText variant="caption" color="textInverseMuted">
+            <AppText variant="caption" color="textMuted">
               {t('searching.endsIn')}
             </AppText>
-            <Countdown deadline={endsAt} color="textInverse" variant="bodyStrong" testID="searching-countdown" />
+            <Countdown deadline={endsAt} color="text" variant="bodyStrong" testID="searching-countdown" />
           </View>
         ) : null}
         {r.emergencyFee ? (
-          <AppText variant="caption" color="textInverseMuted" align="center" style={styles.line}>
+          <AppText variant="caption" color="textMuted" align="center" style={styles.line}>
             {t('searching.emergencyHeld', { amount: formatMoney(r.emergencyFee.total, locale) })}
           </AppText>
         ) : null}
@@ -174,7 +175,7 @@ export default function SearchingRoute() {
           />
         ) : null}
         <Button
-          variant="dark"
+          variant="outline"
           title={t('searching.cancel')}
           onPress={() => setConfirm(true)}
           disabled={!r.canCancel}
@@ -210,11 +211,11 @@ function FoundProvider({ a }: { a: CustomerAssignment }) {
     >
       <Avatar uri={p.photo?.url} firstName={p.firstName} lastName={p.lastName} size={36} />
       <View style={styles.foundText}>
-        <AppText variant="bodyStrong" color="textInverse">
+        <AppText variant="bodyStrong" color="text">
           {`${p.firstName} ${p.lastName}`.trim()}
         </AppText>
         <View style={styles.foundMeta}>
-          <AppText variant="caption" color="textInverseMuted">
+          <AppText variant="caption" color="textMuted">
             {p.ratingAvg !== null ? `★ ${p.ratingAvg.toFixed(1)} · ` : ''}
             {t('detail.jobs', { count: p.completedCount })}
           </AppText>
@@ -228,12 +229,12 @@ function FoundProvider({ a }: { a: CustomerAssignment }) {
 function NoMatch({ request }: { request: RequestDetail }) {
   const { t } = useT();
   return (
-    <Screen dark testID="searching-expired">
+    <Screen testID="searching-expired">
       <View style={styles.expired}>
-        <AppText variant="h2" color="textInverse" align="center">
+        <AppText variant="h2" color="text" align="center">
           {t('searching.expiredTitle')}
         </AppText>
-        <AppText variant="body" color="textInverseMuted" align="center" style={styles.line}>
+        <AppText variant="body" color="textMuted" align="center" style={styles.line}>
           {t('searching.expiredMessage')}
         </AppText>
         <Button
@@ -260,8 +261,11 @@ function PulseDot() {
   const opacity = v.interpolate({ inputRange: [0, 1], outputRange: [0.6, 0] });
   return (
     <View style={styles.pulseBox} testID="searching-pulse">
+      <View style={styles.pulseHalo} />
       <Animated.View style={[styles.pulseRing, { transform: [{ scale }], opacity }]} />
-      <View style={styles.pulseCore} />
+      <View style={styles.pulseCore}>
+        <Ionicons name="radio-outline" size={30} color={colors.textInverse} />
+      </View>
     </View>
   );
 }
@@ -279,7 +283,8 @@ const styles = StyleSheet.create({
   foundText: { flex: 1, marginLeft: spacing.sm },
   foundMeta: { flexDirection: 'row', alignItems: 'center' },
   expired: { flex: 1, justifyContent: 'center' },
-  pulseBox: { width: 72, height: 72, alignItems: 'center', justifyContent: 'center' },
-  pulseRing: { position: 'absolute', width: 72, height: 72, borderRadius: 36, backgroundColor: colors.primary },
-  pulseCore: { width: 28, height: 28, borderRadius: 14, backgroundColor: colors.primary },
+  pulseBox: { width: 132, height: 132, alignItems: 'center', justifyContent: 'center' },
+  pulseHalo: { position: 'absolute', width: 132, height: 132, borderRadius: 66, backgroundColor: colors.primarySoft },
+  pulseRing: { position: 'absolute', width: 96, height: 96, borderRadius: 48, backgroundColor: colors.primaryHalo },
+  pulseCore: { width: 64, height: 64, borderRadius: 32, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center' },
 });

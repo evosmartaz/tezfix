@@ -3,7 +3,7 @@ import { ActivityIndicator, Pressable, StyleSheet, View, type StyleProp, type Vi
 import { colors, radii, spacing, typography } from '../theme/tokens';
 import { AppText } from './Text';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'dark' | 'outline' | 'ghost' | 'danger' | 'accent';
+export type ButtonVariant = 'primary' | 'secondary' | 'dark' | 'outline' | 'ghost' | 'danger' | 'dangerOutline' | 'dangerText' | 'accent';
 export type ButtonSize = 'md' | 'lg' | 'sm';
 
 export interface ButtonProps {
@@ -20,19 +20,26 @@ export interface ButtonProps {
   accessibilityHint?: string;
 }
 
-const VARIANTS: Record<ButtonVariant, { bg: string; fg: string; border?: string; pressed: string }> = {
-  primary: { bg: colors.primary, fg: colors.textInverse, pressed: colors.primaryDark },
-  secondary: { bg: colors.primarySoft, fg: colors.primaryDark, pressed: '#D3F0E4' },
-  dark: { bg: colors.dark, fg: colors.textInverse, pressed: colors.darkSoft },
-  outline: { bg: colors.surface, fg: colors.text, border: colors.borderStrong, pressed: colors.background },
-  ghost: { bg: 'transparent', fg: colors.primary, pressed: colors.primarySoft },
-  danger: { bg: colors.danger, fg: colors.textInverse, pressed: '#C93C41' },
-  accent: { bg: colors.accent, fg: colors.dark, pressed: '#DB8A06' },
+const VARIANTS: Record<ButtonVariant, { bg: string; fg: string; border?: string; pressed: string; filled: boolean }> = {
+  primary: { bg: colors.primary, fg: colors.textInverse, pressed: colors.primaryDark, filled: true },
+  secondary: { bg: colors.primarySoft, fg: colors.primary, pressed: colors.primaryHalo, filled: true },
+  dark: { bg: colors.dark, fg: colors.textInverse, pressed: colors.darkSoft, filled: true },
+  outline: { bg: colors.surface, fg: colors.text, border: colors.border, pressed: colors.background, filled: false },
+  ghost: { bg: 'transparent', fg: colors.primary, pressed: colors.primarySoft, filled: false },
+  danger: { bg: colors.danger, fg: colors.textInverse, pressed: '#A92B39', filled: true },
+  /** Red outline ("Sifarişi ləğv et", UX-C07). */
+  dangerOutline: { bg: colors.surface, fg: colors.danger, border: colors.danger, pressed: colors.dangerSoft, filled: false },
+  /** Red text action without a frame (pro "Sifarişi ləğv et", UX-P07). */
+  dangerText: { bg: 'transparent', fg: colors.danger, pressed: colors.dangerSoft, filled: false },
+  accent: { bg: colors.accent, fg: colors.dark, pressed: '#D98A06', filled: true },
 };
 
-const HEIGHTS: Record<ButtonSize, number> = { sm: 36, md: 48, lg: 52 };
+const HEIGHTS: Record<ButtonSize, number> = { sm: 40, md: 52, lg: 56 };
 
-/** Rounded button (green primary "Davam et", dark "Naviqasiyanı aç", outline "İmtina et"). */
+/**
+ * Rounded button (blue primary "Davam et", navy "Naviqasiyanı aç", outline "İmtina et"). A disabled filled button
+ * turns grey with a muted label instead of fading, so it keeps >= 3:1 contrast (UX-C15).
+ */
 export function Button({
   title,
   onPress,
@@ -46,7 +53,9 @@ export function Button({
   testID,
   accessibilityHint,
 }: ButtonProps) {
-  const v = VARIANTS[variant];
+  const base = VARIANTS[variant];
+  const greyedOut = !!disabled && !loading && base.filled;
+  const v = greyedOut ? { ...base, bg: colors.disabled, fg: colors.textMuted, border: undefined } : base;
   const inactive = disabled || loading;
   return (
     <Pressable
@@ -62,7 +71,7 @@ export function Button({
         { height: HEIGHTS[size], backgroundColor: pressed && !inactive ? v.pressed : v.bg },
         v.border ? { borderWidth: 1, borderColor: v.border } : null,
         fullWidth ? styles.full : styles.inline,
-        disabled && !loading ? styles.disabled : null,
+        disabled && !loading && !greyedOut ? styles.disabled : null,
         style,
       ]}
     >
@@ -71,7 +80,8 @@ export function Button({
       ) : (
         <View style={styles.row}>
           {icon ? <View style={styles.icon}>{icon}</View> : null}
-          <AppText style={[size === 'sm' ? typography.small : typography.button, styles.label, { color: v.fg }]} numberOfLines={1}>
+          {/* Two lines, so a long label in a half-width button wraps instead of being cut (BUG-006). */}
+          <AppText style={[size === 'sm' ? typography.small : typography.button, styles.label, { color: v.fg }]} numberOfLines={2}>
             {title}
           </AppText>
         </View>
@@ -81,11 +91,17 @@ export function Button({
 }
 
 const styles = StyleSheet.create({
-  base: { borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.lg },
+  base: {
+    borderRadius: radii.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.xs,
+  },
   full: { alignSelf: 'stretch' },
   inline: { alignSelf: 'flex-start' },
-  disabled: { opacity: 0.45 },
-  row: { flexDirection: 'row', alignItems: 'center' },
+  disabled: { opacity: 0.5 },
+  row: { flexDirection: 'row', alignItems: 'center', flexShrink: 1 },
   icon: { marginRight: spacing.sm },
-  label: { fontFamily: typography.button.fontFamily },
+  label: { fontFamily: typography.button.fontFamily, textAlign: 'center', flexShrink: 1 },
 });

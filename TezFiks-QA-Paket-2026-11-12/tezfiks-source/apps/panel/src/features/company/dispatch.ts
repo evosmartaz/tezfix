@@ -347,7 +347,7 @@ export function workerMapState(w: Pick<WorkerLive, 'busy' | 'isOnline'>): Worker
 }
 
 export const WORKER_MARKER_COLORS: Record<WorkerMapState, string> = {
-  online: '#00A971',
+  online: '#2F5BFF',
   busy: '#F59E0B',
   offline: '#94A3B8',
 };

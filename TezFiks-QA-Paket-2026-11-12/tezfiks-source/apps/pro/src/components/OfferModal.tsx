@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   title: { marginTop: spacing.lg },
   rowBlock: { marginTop: spacing.md },
   feeBox: { marginTop: spacing.lg, backgroundColor: colors.accentSoft, borderRadius: radii.md, borderWidth: 1, borderColor: colors.accent, padding: spacing.md },
-  feeText: { color: '#92400E' },
+  feeText: { color: colors.accentText },
   error: { marginTop: spacing.md },
   actions: { flexDirection: 'row', marginTop: spacing.lg },
   action: { flex: 1, marginHorizontal: spacing.xs },

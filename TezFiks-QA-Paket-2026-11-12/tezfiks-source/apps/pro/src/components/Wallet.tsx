@@ -5,6 +5,7 @@ import { useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-quer
 import { api, formatDateTime, formatMoney, type LedgerTxView, type WalletSummary } from '@tezfiks/shared';
 import {
   AppText,
+  Badge,
   Banner,
   BottomSheet,
   Button,
@@ -36,6 +37,9 @@ function useWallet(companyId: string | null) {
       companyId ? client.call(api.company.wallet, { params: { companyId } }) : client.call(api.wallet.get, { query: { owner: 'handyman' } }),
   });
 }
+
+/** Ledger kinds that take a fee or a penalty off the balance for good. */
+const CAPTURE_KINDS: ReadonlySet<LedgerTxView['kind']> = new Set(['REQUEST_FEE_CAPTURE', 'EMERGENCY_FEE_CAPTURE', 'B2B_FEE_CAPTURE', 'CANCEL_PENALTY']);
 
 export function txTitle(t: (k: string, v?: Record<string, unknown>) => string, tx: LedgerTxView): string {
   const kind = t(`common:ledgerTxKind.${tx.kind}`);
@@ -119,9 +123,13 @@ export function WalletPanel({ companyId, title }: { companyId: string | null; ti
               subtitle={formatDateTime(it.createdAt)}
               divider={i < items.length - 1}
               right={
-                <AppText variant="bodyStrong" color={it.amount < 0 ? 'danger' : 'primary'} testID={`tx-amount-${it.id}`}>
-                  {formatMoney(it.amount, locale, { sign: true })}
-                </AppText>
+                <View style={styles.txRight}>
+                  <AppText variant="bodyStrong" color={it.amount < 0 ? 'danger' : 'primary'} testID={`tx-amount-${it.id}`}>
+                    {formatMoney(it.amount, locale, { sign: true })}
+                  </AppText>
+                  {/* UX-P04: a captured fee says so ("tutulub"); the reserved part is the "Rezerv" line above. */}
+                  {CAPTURE_KINDS.has(it.kind) ? <Badge label={t('job.feeState.captured')} tone="neutral" style={styles.txBadge} testID={`tx-state-${it.id}`} /> : null}
+                </View>
               }
               testID={`tx-${it.id}`}
             />
@@ -251,6 +259,8 @@ export function TopupSheet({ open, onClose, companyId }: { open: boolean; onClos
 }
 
 const styles = StyleSheet.create({
+  txRight: { alignItems: 'flex-end' },
+  txBadge: { alignSelf: 'flex-end', marginTop: spacing.xxs },
   block: { marginTop: spacing.md },
   txCard: { marginTop: spacing.sm, paddingHorizontal: spacing.lg },
   warnRow: { flexDirection: 'row', alignItems: 'center', marginTop: spacing.sm },

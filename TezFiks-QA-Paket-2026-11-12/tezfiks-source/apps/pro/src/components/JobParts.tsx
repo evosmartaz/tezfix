@@ -267,7 +267,7 @@ export function CancelSection({
         {info.free ? t('job.cancel.free', { time: formatCountdown(info.freeSecondsLeft) }) : t('job.cancel.paid')}
       </AppText>
       <Button
-        variant="ghost"
+        variant="dangerText"
         title={t('job.cancel.button')}
         onPress={() => {
           key.current = newIdempotencyKey();

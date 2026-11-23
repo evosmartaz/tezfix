@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useT } from '../i18n';
 import { colors, spacing } from '../theme/tokens';
 import { AppText } from './Text';
 
@@ -25,13 +26,29 @@ export function starIcons(value: number): Array<'star' | 'star-half' | 'star-out
 }
 
 export function Stars({ value, onChange, size = 20, showValue, testID = 'stars' }: StarsProps) {
+  const { t } = useT();
   const icons = starIcons(value);
   return (
-    <View style={styles.row} testID={testID} accessibilityRole={onChange ? 'adjustable' : 'text'} accessibilityValue={{ min: 0, max: 5, now: value }}>
+    <View
+      style={styles.row}
+      testID={testID}
+      accessibilityRole={onChange ? 'radiogroup' : 'text'}
+      accessibilityValue={onChange ? undefined : { min: 0, max: 5, now: value }}
+    >
       {icons.map((name, i) => {
-        const star = <Ionicons name={name} size={size} color={name === 'star-outline' ? colors.borderStrong : colors.star} />;
+        const star = <Ionicons name={name} size={size} color={name === 'star-outline' ? colors.border : colors.star} />;
+        // Every tappable star is its own labelled control ("4 ulduz", UX-C12).
         return onChange ? (
-          <Pressable key={i} onPress={() => onChange(i + 1)} hitSlop={6} testID={`${testID}-${i + 1}`} style={styles.gap}>
+          <Pressable
+            key={i}
+            onPress={() => onChange(i + 1)}
+            hitSlop={6}
+            testID={`${testID}-${i + 1}`}
+            style={styles.gap}
+            accessibilityRole="radio"
+            accessibilityLabel={t('common:units.starLabel', { value: i + 1 })}
+            accessibilityState={{ checked: Math.round(value) === i + 1 }}
+          >
             {star}
           </Pressable>
         ) : (

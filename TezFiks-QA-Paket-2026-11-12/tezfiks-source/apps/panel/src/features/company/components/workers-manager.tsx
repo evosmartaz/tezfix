@@ -129,32 +129,49 @@ function RoleSelect({ companyId, member }: { companyId: string; member: MemberVi
   const tc = useTranslations('common');
   const router = useRouter();
   const [busy, setBusy] = useState(false);
-  async function change(role: CompanyRole) {
-    if (role === member.role) return;
+  // UX-W03: a manager gets the company balance, payments and order intake, so promoting asks first.
+  const [confirmPromote, setConfirmPromote] = useState(false);
+  async function change(role: CompanyRole): Promise<boolean> {
+    if (role === member.role) return true;
     setBusy(true);
     try {
       const r = await updateMemberAction(companyId, member.userId, { role });
       if (r.ok) {
         toast.success(t('roleChanged'));
         router.refresh();
-      } else {
-        toast.error(r.message);
+        return true;
       }
+      toast.error(r.message);
+      return false;
     } finally {
       setBusy(false);
     }
   }
   return (
-    <Select
-      aria-label={t('columns.role')}
-      className="h-8 w-36 text-xs"
-      value={member.role}
-      disabled={busy}
-      onChange={(e) => void change(e.target.value as CompanyRole)}
-    >
-      <option value="WORKER">{tc('companyRole.WORKER')}</option>
-      <option value="MANAGER">{tc('companyRole.MANAGER')}</option>
-    </Select>
+    <>
+      <Select
+        aria-label={t('columns.role')}
+        className="h-8 w-36 text-xs"
+        value={member.role}
+        disabled={busy}
+        onChange={(e) => {
+          const role = e.target.value as CompanyRole;
+          if (role === 'MANAGER' && member.role !== 'MANAGER') setConfirmPromote(true);
+          else void change(role);
+        }}
+      >
+        <option value="WORKER">{tc('companyRole.WORKER')}</option>
+        <option value="MANAGER">{tc('companyRole.MANAGER')}</option>
+      </Select>
+      <ConfirmDialog
+        open={confirmPromote}
+        onOpenChange={setConfirmPromote}
+        title={t('promoteTitle', { name: `${member.firstName} ${member.lastName}`.trim() })}
+        description={t('promoteDescription')}
+        confirmLabel={t('promoteConfirm')}
+        onConfirm={() => change('MANAGER')}
+      />
+    </>
   );
 }
 
@@ -351,7 +368,8 @@ export function InvitesManager({ companyId, invites, nowMs }: { companyId: strin
                   <TableCell>
                     <div className="flex justify-end gap-2">
                       {active ? <CopyButton text={i.url} label={t('copy')} /> : null}
-                      {i.revokedAt === null ? (
+                      {/* UX-W06: only a link that still works can be revoked. */}
+                      {active ? (
                         <ConfirmDialog
                           trigger={
                             <Button size="sm" variant="ghost" className="text-danger">

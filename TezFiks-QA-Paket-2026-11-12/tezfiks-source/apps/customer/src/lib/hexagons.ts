@@ -127,7 +127,7 @@ function round2(n: number): number {
   return Math.round(n * 100) / 100;
 }
 
-/** rgba() of the brand green (#00A971) with the given alpha. */
+/** rgba() of the brand blue (#2F5BFF) with the given alpha. */
 export function brandFill(alpha: number): string {
-  return `rgba(0, 169, 113, ${alpha})`;
+  return `rgba(47, 91, 255, ${alpha})`;
 }

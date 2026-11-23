@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { api, type FinalPriceEntry } from '@tezfiks/shared';
-import { AppText, Button, Card, ErrorState, Header, LoadingState, Screen, errorMessage, spacing, useApi, useT, useToast } from '@tezfiks/mobile';
+import { AppText, Banner, Button, Card, ErrorState, Header, LoadingState, Screen, errorMessage, spacing, useApi, useT, useToast } from '@tezfiks/mobile';
 import { OptionCard } from '../../../components/OptionCard';
 import { qk } from '../../../hooks/queries';
 
@@ -21,6 +21,8 @@ export default function CompanySettings() {
   useEffect(() => {
     if (company.data && choice === null) setChoice(company.data.finalPriceEntry);
   }, [company.data, choice]);
+
+  const dirty = !!company.data && choice !== null && choice !== company.data.finalPriceEntry;
 
   const save = async () => {
     if (!choice) return;
@@ -41,7 +43,13 @@ export default function CompanySettings() {
     <Screen
       scroll
       testID="company-settings-screen"
-      footer={<Button title={t('company.settings.save')} onPress={() => void save()} loading={saving} disabled={!choice} testID="company-settings-save" />}
+      footer={
+        <View>
+          {/* UX-W14: a pending change is announced next to the pinned save button. */}
+          {dirty ? <Banner tone="warning" icon="alert-circle-outline" message={t('company.settings.unsaved')} testID="company-settings-unsaved" /> : null}
+          <Button title={t('company.settings.save')} onPress={() => void save()} loading={saving} disabled={!choice} testID="company-settings-save" />
+        </View>
+      }
     >
       <Header title={t('company.settings.title')} onBack={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
       {company.isLoading ? <LoadingState /> : null}
@@ -67,7 +75,7 @@ export default function CompanySettings() {
             testID="price-entry-MANAGER"
           />
           <Card dark style={styles.how}>
-            <AppText variant="bodyStrong" color="primary">
+            <AppText variant="h3" color="mint">
               {t('company.settings.howTitle')}
             </AppText>
             <AppText variant="small" color="textInverse" style={styles.howText}>

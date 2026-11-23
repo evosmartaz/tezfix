@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   priceRowOn: { backgroundColor: colors.primarySoft },
   totalRow: { flexDirection: 'row', alignItems: 'center', borderTopWidth: 1, borderTopColor: colors.border, marginTop: spacing.sm, paddingTop: spacing.md, paddingHorizontal: spacing.sm },
   warning: { marginVertical: spacing.md, backgroundColor: colors.accentSoft, borderRadius: radii.md, borderWidth: 1, borderColor: colors.accent, padding: spacing.md },
-  warningText: { color: '#92400E' },
+  warningText: { color: colors.accentText },
   note: { marginTop: spacing.sm },
   confirmRow: { flexDirection: 'row', marginTop: spacing.lg },
   confirmAction: { flex: 1, marginHorizontal: spacing.xs },

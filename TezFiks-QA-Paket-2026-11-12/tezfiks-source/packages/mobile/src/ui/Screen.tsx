@@ -82,12 +82,18 @@ export interface HeaderProps {
   backLabel?: string;
   right?: ReactNode;
   dark?: boolean;
+  /**
+   * Big h1 title under the back arrow (auth and onboarding steps: "Təsdiq kodu", "Hesab tipini seçin"). By default the
+   * title sits next to the back arrow ("← Sifariş — Santexnik").
+   */
+  large?: boolean;
 }
 
-/** Screen header: back arrow, bold title (board 02 A2 "Təsdiq kodu"). */
-export function Header({ title, subtitle, onBack, backLabel, right, dark }: HeaderProps) {
+/** Screen header: 48 dp back arrow (UX-C09) and the title inline, or large below it. */
+export function Header({ title, subtitle, onBack, backLabel, right, dark, large }: HeaderProps) {
   const { t } = useT();
   const fg = dark ? 'textInverse' : 'text';
+  const inlineTitle = title && !large;
   return (
     <View style={styles.header}>
       <View style={styles.headerRow}>
@@ -96,18 +102,24 @@ export function Header({ title, subtitle, onBack, backLabel, right, dark }: Head
             onPress={onBack}
             accessibilityRole="button"
             accessibilityLabel={backLabel ?? t('common:actions.back')}
-            hitSlop={12}
+            hitSlop={8}
             style={styles.back}
             testID="header-back"
           >
-            <Ionicons name="arrow-back" size={22} color={dark ? colors.textInverse : colors.text} />
+            <Ionicons name="arrow-back" size={24} color={dark ? colors.textInverse : colors.text} />
           </Pressable>
         ) : null}
-        <View style={styles.flex} />
+        {inlineTitle ? (
+          <AppText variant="h2" color={fg} accessibilityRole="header" numberOfLines={2} style={styles.inlineTitle}>
+            {title}
+          </AppText>
+        ) : (
+          <View style={styles.flex} />
+        )}
         {right}
       </View>
-      {title ? (
-        <AppText variant="h1" color={fg} accessibilityRole="header">
+      {title && large ? (
+        <AppText variant="h1" color={fg} accessibilityRole="header" style={styles.largeTitle}>
           {title}
         </AppText>
       ) : null}
@@ -127,7 +139,9 @@ const styles = StyleSheet.create({
   padded: { paddingHorizontal: spacing.xl, paddingTop: spacing.md },
   footer: { paddingHorizontal: spacing.xl, paddingBottom: spacing.xl, paddingTop: spacing.md, backgroundColor: colors.surface },
   header: { marginBottom: spacing.lg },
-  headerRow: { flexDirection: 'row', alignItems: 'center', minHeight: 48, marginBottom: spacing.sm },
-  back: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center' },
+  headerRow: { flexDirection: 'row', alignItems: 'center', minHeight: 48 },
+  back: { width: 48, height: 48, marginLeft: -spacing.md, alignItems: 'center', justifyContent: 'center' },
+  inlineTitle: { flex: 1, marginRight: spacing.sm },
+  largeTitle: { marginTop: spacing.md },
   subtitle: { marginTop: spacing.xs },
 });

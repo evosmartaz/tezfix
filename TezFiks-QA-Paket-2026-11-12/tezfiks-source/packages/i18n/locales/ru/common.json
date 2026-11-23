@@ -73,7 +73,8 @@
     "seconds_one": "{{count}} секунда",
     "seconds_few": "{{count}} секунды",
     "seconds_many": "{{count}} секунд",
-    "seconds_other": "{{count}} секунды"
+    "seconds_other": "{{count}} секунды",
+    "starLabel": "Оценка {{value}} из 5"
   },
   "time": {
     "justNow": "только что",

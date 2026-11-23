@@ -89,6 +89,6 @@ describe('hexagon geometry for the searching screen', () => {
     expect(ringOpacity(2, 3, 1)).toBe(0.18);
     expect(ringOpacity(1, 3, 0.3)).toBe(0.14);
     expect(ringOpacity(0, 10, 1)).toBe(0.06);
-    expect(brandFill(0.25)).toBe('rgba(0, 169, 113, 0.25)');
+    expect(brandFill(0.25)).toBe('rgba(47, 91, 255, 0.25)');
   });
 });

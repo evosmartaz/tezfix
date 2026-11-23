@@ -384,5 +384,5 @@ const styles = StyleSheet.create({
   photo: { width: 80, height: 80, borderRadius: radii.md, marginRight: spacing.sm, backgroundColor: colors.border },
   report: { marginTop: spacing.md, paddingTop: spacing.sm, borderTopWidth: 1, borderTopColor: colors.border },
   feeBox: { marginVertical: spacing.md, backgroundColor: colors.accentSoft, borderRadius: radii.md, borderWidth: 1, borderColor: colors.accent, padding: spacing.md },
-  feeText: { color: '#92400E' },
+  feeText: { color: colors.accentText },
 });

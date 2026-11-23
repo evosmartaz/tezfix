@@ -131,7 +131,7 @@ function DeleteAccount() {
   const [busy, setBusy] = useState(false);
   return (
     <View style={styles.delete}>
-      <Button variant="ghost" title={t('profile.delete')} onPress={() => setOpen(true)} testID="profile-delete" />
+      <Button variant="dangerOutline" title={t('profile.delete')} onPress={() => setOpen(true)} testID="profile-delete" />
       <BottomSheet visible={open} onClose={() => setOpen(false)} title={t('profile.deleteTitle')} testID="profile-delete-sheet">
         <AppText variant="body">{t('profile.deleteBody')}</AppText>
         <View style={styles.row}>

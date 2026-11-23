@@ -159,6 +159,17 @@ export default function AssignmentTrackingRoute() {
         right={<StatusPill label={t(`common:assignmentStatus.${a.status}`)} tone={assignmentStatusTone(a.status)} testID="tracking-status" />}
       />
 
+      {/* UX-C05: the free-cancel countdown is pinned at the top, before anything else. */}
+      {a.actions.cancel && freeLeft > 0 ? (
+        <View style={styles.freeBanner} testID="tracking-free-cancel">
+          <Ionicons name="time-outline" size={22} color={colors.mint} />
+          <AppText variant="bodyStrong" color="textInverse" style={styles.freeText}>
+            {t('tracking.freeCancel')}
+          </AppText>
+          <Countdown deadline={a.freeCancelUntil} variant="h3" color="mint" testID="tracking-free-countdown" onExpire={() => void q.refetch()} />
+        </View>
+      ) : null}
+
       {siblings.length ? (
         <View style={styles.block} testID="tracking-siblings">
           <AppText variant="caption" color="textMuted">
@@ -284,14 +295,6 @@ export default function AssignmentTrackingRoute() {
         />
       </Card>
 
-      {a.actions.cancel && freeLeft > 0 ? (
-        <View style={styles.freeRow} testID="tracking-free-cancel">
-          <AppText variant="small" color="textMuted">
-            {t('tracking.freeCancel')}
-          </AppText>
-          <Countdown deadline={a.freeCancelUntil} variant="bodyStrong" testID="tracking-free-countdown" onExpire={() => void q.refetch()} />
-        </View>
-      ) : null}
       {a.actions.reportNoShow ? (
         <Button variant="outline" title={t('tracking.noShow')} onPress={() => setSheet('noShow')} style={styles.line} testID="tracking-noshow" />
       ) : null}
@@ -299,7 +302,7 @@ export default function AssignmentTrackingRoute() {
         <Button variant="outline" title={t('tracking.decline')} onPress={() => setSheet('decline')} style={styles.line} testID="tracking-decline" />
       ) : null}
       {a.actions.cancel ? (
-        <Button variant="ghost" title={t('tracking.cancel')} onPress={() => setSheet('cancel')} style={styles.line} testID="tracking-cancel" />
+        <Button variant="dangerOutline" title={t('tracking.cancel')} onPress={() => setSheet('cancel')} style={styles.line} testID="tracking-cancel" />
       ) : null}
       <Button variant="ghost" title={t('tracking.viewRequest')} onPress={() => router.push(`/request/${a.requestId}` as never)} testID="tracking-request" />
 
@@ -363,5 +366,14 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     borderRadius: radii.pill,
   },
-  freeRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: spacing.sm },
+  freeBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.dark,
+    borderRadius: radii.lg,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    marginBottom: spacing.md,
+  },
+  freeText: { flex: 1, marginHorizontal: spacing.sm },
 });

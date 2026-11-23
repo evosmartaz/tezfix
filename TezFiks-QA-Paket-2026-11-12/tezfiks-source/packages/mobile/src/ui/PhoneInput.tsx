@@ -52,7 +52,7 @@ export const PhoneInput = forwardRef<TextInputInstance, PhoneInputProps>(functio
           },
         ]}
       >
-        <View style={[styles.chip, { backgroundColor: dark ? colors.dark : colors.background }]} testID={`${testID}-chip`}>
+        <View style={[styles.chip, { borderRightColor: dark ? colors.dark : colors.border }]} testID={`${testID}-chip`}>
           <AppText variant="bodyStrong" color={dark ? 'textInverse' : 'text'}>
             {AZ_COUNTRY_PREFIX}
           </AppText>
@@ -90,8 +90,8 @@ export const PhoneInput = forwardRef<TextInputInstance, PhoneInputProps>(functio
 const styles = StyleSheet.create({
   wrap: { marginBottom: spacing.md },
   label: { marginBottom: spacing.xs },
-  box: { flexDirection: 'row', alignItems: 'center', borderWidth: 1.5, borderRadius: 14, height: 52, paddingLeft: spacing.md },
-  chip: { borderRadius: radii.sm, paddingHorizontal: spacing.sm, paddingVertical: spacing.xs, marginRight: spacing.sm },
-  input: { flex: 1, fontFamily: fonts.regular, fontSize: 14, letterSpacing: 0, paddingVertical: spacing.sm },
+  box: { flexDirection: 'row', alignItems: 'center', borderWidth: 1.5, borderRadius: radii.md, height: 54, paddingLeft: spacing.md },
+  chip: { borderRightWidth: 1, paddingRight: spacing.md, paddingVertical: spacing.xs, marginRight: spacing.md },
+  input: { flex: 1, fontFamily: fonts.medium, fontSize: 16, letterSpacing: 0.3, paddingVertical: spacing.sm },
   error: { marginTop: spacing.xs },
 });

@@ -20,7 +20,11 @@
     "lastNameRequired": "Soyadınızı daxil edin",
     "photoUploadFailed": "Şəkil yüklənmədi. Sonra profildən yenidən cəhd edin",
     "galleryDenied": "Qalereyaya giriş icazəsi verilmədi",
-    "language": "Dil"
+    "language": "Dil",
+    "lead": "Ev və avto üçün yoxlanılmış ustalar — bir neçə dəqiqəyə qapınızda.",
+    "feature1": "Sənədləri yoxlanılmış ustalar",
+    "feature2": "Orta gözləmə 1–3 dəqiqə",
+    "feature3": "Nağd və ya kartla — kartda TezFiks Zəmanəti"
   },
   "tabs": {
     "home": "Əsas",
@@ -43,7 +47,8 @@
     "debtTitle": "Balansınızda borc var",
     "debtMessage": "Borc: {{amount}}. Yeni sifariş üçün balansı artırın",
     "business": "Biznes sifarişi",
-    "businessHint": "Korporativ işlər üçün ustalardan və şirkətlərdən qiymət təklifləri alın"
+    "businessHint": "Korporativ işlər üçün ustalardan və şirkətlərdən qiymət təklifləri alın",
+    "allShort": "Hamısı ({{count}})"
   },
   "placeholder": {
     "comingSoon": "Bu bölmə tezliklə hazır olacaq"
@@ -94,7 +99,7 @@
     "slotsLess": "Usta sayını azalt",
     "slotsMore": "Usta sayını artır",
     "preference": "Kim gəlsin?",
-    "priceNote": "İşin qiymətini usta yerində qiymətləndirib sizinlə razılaşdırır. Ödəniş birbaşa ustaya edilir.",
+    "priceNote": "Qiyməti usta yerində razılaşdırır. Ödəniş: nağd ustaya və ya kartla TezFiks vasitəsilə (zəmanətli).",
     "submit": "Usta çağır",
     "errors": {
       "categoryRequired": "Xidməti seçin",
@@ -114,7 +119,8 @@
       "labelRequired": "Ünvanı yadda saxlamaq üçün ona ad verin"
     },
     "inProgress": "Sifarişiniz artıq göndərilir, bir az gözləyin",
-    "business": "Biznes sifarişi yarat"
+    "business": "Biznes sifarişi yarat",
+    "cancelRule": "Qəbuldan sonra {{min}} dəq pulsuz ləğv, sonra {{amount}}"
   },
   "address": {
     "title": "Ünvan",
@@ -195,7 +201,16 @@
     "cancel": "Sifarişi ləğv et",
     "cancelled": "Sifariş ləğv edildi",
     "cancelledAt": "Ləğv edilib: {{time}}",
-    "track": "Ustanı izlə"
+    "track": "Ustanı izlə",
+    "cancelledTitle": "Sifariş ləğv edildi",
+    "cancelTime": "Ləğv vaxtı",
+    "afterAccept": "qəbuldan {{min}} dəq sonra",
+    "cancelKind": "Ləğv növü",
+    "kindFree": "Pulsuz ləğv",
+    "kindLate": "Gec ləğv (ödənişli)",
+    "lateNote": "Pulsuz ləğv müddəti bitdikdən sonra ləğv edildi. Tutulan məbləğ Pul kisəsi tarixçəsində görünür.",
+    "findNew": "Yeni usta tap",
+    "toHome": "Ana səhifə"
   },
   "slotStatus": {
     "OPEN": "Axtarılır",
@@ -273,12 +288,12 @@
     "agreed": "Razılaşdırılmış qiymət",
     "methodTitle": "Ödəniş üsulunu seçin",
     "cash": "Nağd — qapıda ödəmə",
-    "cashHint": "Ödəniş birbaşa ustaya edilir",
+    "cashHint": "İş bitəndə birbaşa ustaya ödəyirsiniz",
     "card": "Kartla ödəmə",
-    "cardHint": "Ödəniş TezFiks üzərindən təhlükəsiz aparılır",
+    "cardHint": "Təhlükəsiz ödəniş · TezFiks Zəmanəti daxildir",
     "guaranteeIncluded": "TezFiks Zəmanəti daxildir",
     "guaranteeTitle": "TezFiks Zəmanəti nədir?",
-    "guaranteeText": "Kartla ödənişdə işin zəmanətini TezFiks təmin edir: görülən işdə problem yaranarsa, müraciətinizə əsasən platforma öz tərəfindən yenidən usta yönləndirir və məsələ bizim nəzarətimizdə həll olunur.",
+    "guaranteeText": "Kartla ödənişdə görülən işdə problem yaranarsa, müraciətiniz əsasında TezFiks yenidən usta yönləndirir və məsələni öz nəzarətində həll edir.",
     "testCard": "Test rejimi: 4242 4242 4242 4242 kartı uğurlu, 4000 0000 0000 0002 kartı rədd edilir",
     "payAmount": "{{amount}} ödə",
     "confirmCash": "{{amount}} nağd ödəyirəm",
@@ -308,7 +323,10 @@
     "send": "{{amount}} bəxşiş ver",
     "skip": "Keç",
     "thanks": "Təşəkkürlər! Bəxşiş ustaya çatdırılacaq",
-    "notAvailable": "Bəxşiş yalnız kartla ödənilmiş işlər üçün mümkündür"
+    "notAvailable": "Bəxşiş yalnız kartla ödənilmiş işlər üçün mümkündür",
+    "workFee": "İş haqqı",
+    "tipLine": "Bəxşiş",
+    "total": "Cəmi"
   },
   "rate": {
     "done": "İş tamamlandı!",

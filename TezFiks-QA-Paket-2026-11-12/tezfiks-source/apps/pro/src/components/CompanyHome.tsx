@@ -224,9 +224,9 @@ function WorkerRow({ w, selected, onPress }: { w: OfferCandidateWorker; selected
   const parts = [
     w.ratingAvg !== null ? `★ ${w.ratingAvg.toFixed(1)}` : null,
     kmLabel(w.distanceM, locale),
-    !w.online ? t('company.members.offline') : null,
   ].filter(Boolean);
-  const state = w.busy ? t('company.busy') : !w.hasTrade ? t('company.noTrade') : t('company.free');
+  // UX-P03: an offline worker is labelled "Oflayn" and greyed out.
+  const state = w.busy ? t('company.busy') : !w.online ? t('company.members.offline') : !w.hasTrade ? t('company.noTrade') : t('company.free');
   return (
     <Pressable
       onPress={onPress}
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
   stat: { flex: 1, backgroundColor: colors.background, borderRadius: radii.md, paddingVertical: spacing.sm, alignItems: 'center' },
   offer: { marginTop: spacing.md },
   feeBox: { marginTop: spacing.md, backgroundColor: colors.accentSoft, borderRadius: radii.md, padding: spacing.sm },
-  feeText: { color: '#92400E' },
+  feeText: { color: colors.accentText },
   worker: { flexDirection: 'row', alignItems: 'center', marginTop: spacing.sm, padding: spacing.sm, borderRadius: radii.md, borderWidth: 1, borderColor: colors.border },
   workerOn: { borderColor: colors.primary, borderWidth: 2 },
   workerOff: { opacity: 0.6 },

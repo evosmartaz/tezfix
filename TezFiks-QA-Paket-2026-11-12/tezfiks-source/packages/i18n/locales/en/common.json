@@ -65,7 +65,8 @@
     "days_one": "{{count}} day",
     "days_other": "{{count}} days",
     "seconds_one": "{{count}} second",
-    "seconds_other": "{{count}} seconds"
+    "seconds_other": "{{count}} seconds",
+    "starLabel": "{{value}} of 5 stars"
   },
   "time": {
     "justNow": "just now",

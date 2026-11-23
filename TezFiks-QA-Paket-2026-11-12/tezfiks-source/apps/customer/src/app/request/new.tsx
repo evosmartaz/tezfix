@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { Ionicons } from '@expo/vector-icons';
-import { api, formatMoney, type ProviderPreference, type RequestTiming } from '@tezfiks/shared';
+import { DEFAULT_SETTINGS, api, formatMoney, type ProviderPreference, type RequestTiming } from '@tezfiks/shared';
 import {
   AppText,
   Banner,
@@ -28,7 +28,7 @@ import { CategoryPickerSheet } from '../../components/CategoryPickerSheet';
 import { PhotoPicker, isUploading, newPhotoKey, uploadedIds, type PhotoItem } from '../../components/PhotoPicker';
 import { ScheduledPicker } from '../../components/ScheduledPicker';
 import { Stepper } from '../../components/Stepper';
-import { qk, useCategories, useCustomerAccount, useRequest, useSavedAddresses, useTimingConfig } from '../../data/queries';
+import { qk, useCategories, useCustomerAccount, usePublicConfig, useRequest, useSavedAddresses, useTimingConfig } from '../../data/queries';
 import { useCurrentLocation } from '../../hooks/useCurrentLocation';
 import { addressDetails, applyGeoAddress, applyPin, emptyAddressDraft, hasPin, savedAddressToDraft, type AddressDraft } from '../../lib/address';
 import { findCategory } from '../../lib/categories';
@@ -56,6 +56,7 @@ export default function CreateRequestRoute() {
   const params = useLocalSearchParams<Params>();
   const customerType = useAuth((s) => s.me?.customer?.type ?? null);
   const config = useTimingConfig();
+  const publicConfig = usePublicConfig();
   const categories = useCategories();
   const account = useCustomerAccount();
   const saved = useSavedAddresses();
@@ -218,6 +219,16 @@ export default function CreateRequestRoute() {
           <AppText variant="caption" color="textMuted" align="center" style={styles.footNote}>
             {t('request.priceNote')}
           </AppText>
+          {/* UX-C05: the cancel rule is shown before the customer calls a handyman. */}
+          <View style={styles.cancelRule} testID="request-cancel-rule">
+            <Ionicons name="time-outline" size={16} color={colors.accentText} />
+            <AppText variant="small" color="accentText" style={styles.cancelRuleText}>
+              {t('request.cancelRule', {
+                min: Math.round((publicConfig.data?.freeCancelSec ?? DEFAULT_SETTINGS.freeCancelSec) / 60),
+                amount: formatMoney(publicConfig.data?.cancelPenalty ?? DEFAULT_SETTINGS.cancelPenalty, locale, { compact: true }),
+              })}
+            </AppText>
+          </View>
           <Button
             title={t('request.submit')}
             onPress={() => void submit()}
@@ -464,5 +475,7 @@ const styles = StyleSheet.create({
   },
   formError: { marginTop: spacing.md, gap: spacing.sm },
   footNote: { marginBottom: spacing.sm },
+  cancelRule: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: spacing.sm },
+  cancelRuleText: { marginLeft: spacing.xs, flexShrink: 1 },
 });
 

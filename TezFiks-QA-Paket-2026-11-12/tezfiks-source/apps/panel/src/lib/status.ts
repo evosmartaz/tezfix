@@ -142,7 +142,7 @@ export function statusPresentation<F extends StatusFamily>(
   };
 }
 
-/** Tailwind classes per tone (board 05 palette: primary #00A971, accent #F59E0B, danger #E5484D). */
+/** Tailwind classes per tone (board 05 palette: primary #2F5BFF, accent #F59E0B, danger #C83746). */
 export const TONE_CLASSES: Record<StatusTone, string> = {
   success: 'bg-primary/10 text-primary-strong ring-primary/25',
   warning: 'bg-accent/12 text-accent-strong ring-accent/30',

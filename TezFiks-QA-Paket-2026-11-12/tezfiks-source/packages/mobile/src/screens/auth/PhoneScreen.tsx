@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type ComponentProps } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { api } from '@tezfiks/shared';
@@ -17,11 +17,17 @@ import { AppText } from '../../ui/Text';
 export interface PhoneScreenProps {
   /** Called after the code was requested; navigate to the OTP screen. */
   onCodeSent: () => void;
-  /** Brand line under the logo; defaults to the app name from the app namespace. */
+  /** Brand name next to the logo; defaults to the app name from the app namespace. */
   brand?: string;
 }
 
-/** Board 02 A1: dark welcome with the +994 phone field and "Davam et". */
+const FEATURES: { key: 'feature1' | 'feature2' | 'feature3'; icon: ComponentProps<typeof Ionicons>['name'] }[] = [
+  { key: 'feature1', icon: 'shield-checkmark-outline' },
+  { key: 'feature2', icon: 'time-outline' },
+  { key: 'feature3', icon: 'wallet-outline' },
+];
+
+/** Board A1 (v2, UX-C19 one light theme): logo, headline, three promises, then the +994 phone field and "Davam et". */
 export function PhoneScreen({ onCodeSent, brand }: PhoneScreenProps) {
   const { t, locale } = useT();
   const runtime = useRuntime();
@@ -45,115 +51,47 @@ export function PhoneScreen({ onCodeSent, brand }: PhoneScreenProps) {
     }
   };
 
-  if (runtime.app === 'CUSTOMER') {
-    const copy = {
-      az: {
-        hero: 'Lazım olan anda usta',
-        description: 'Ev və avto üçün yoxlanılmış ustalar — bir neçə dəqiqəyə qapınızda.',
-        verified: 'Sənədləri yoxlanılmış ustalar',
-        wait: 'Orta gözləmə 1–3 dəqiqə',
-        payment: 'Nağd və ya kartla — kartda TezFiks Zəmanəti',
-      },
-      ru: {
-        hero: 'Мастер, когда нужен',
-        description: 'Проверенные мастера для дома и автомобиля.',
-        verified: 'Мастера с проверенными документами',
-        wait: 'Среднее ожидание 1–3 минуты',
-        payment: 'Наличными или картой — гарантия TezFiks при оплате картой',
-      },
-      en: {
-        hero: 'A handyman when you need one',
-        description: 'Verified professionals for your home and car.',
-        verified: 'Document-verified professionals',
-        wait: 'Average wait 1–3 minutes',
-        payment: 'Cash or card — TezFiks Guarantee with card payments',
-      },
-    }[locale] ?? {
-      hero: 'Lazım olan anda usta',
-      description: 'Ev və avto üçün yoxlanılmış ustalar — bir neçə dəqiqəyə qapınızda.',
-      verified: 'Sənədləri yoxlanılmış ustalar',
-      wait: 'Orta gözləmə 1–3 dəqiqə',
-      payment: 'Nağd və ya kartla — kartda TezFiks Zəmanəti',
-    };
-    return (
-      <Screen
-        scroll
-        testID="phone-screen"
-        style={styles.customerScreen}
-        contentStyle={styles.customerContent}
-        footer={
-          <View style={styles.customerFooter}>
-            <AppText variant="bodyStrong" style={styles.customerPhoneLabel}>
-              {t('common:fields.phone')}
-            </AppText>
-            <PhoneInput
-              value={digits}
-              onChange={(d, normalized) => {
-                setDigits(d);
-                setE164(normalized);
-                if (error) setError(null);
-              }}
-              error={error}
-              onSubmitEditing={() => void submit()}
-              accessibilityLabel={t('common:fields.phone')}
-            />
-            <Button title={t('common:actions.continue')} size="lg" onPress={() => void submit()} disabled={!e164} loading={loading} testID="phone-continue" />
-            <AppText variant="caption" color="textMuted" align="center" style={styles.terms}>
-              {t('auth.terms')}
-            </AppText>
-            <AppText variant="caption" color="textMuted" align="center" style={styles.customerDeliveryHint} testID="phone-whatsapp-hint">
-              {t('common:login.codeViaWhatsApp')}
-            </AppText>
+  return (
+    <Screen scroll testID="phone-screen">
+      <View style={styles.top}>
+        <View style={styles.logoRow}>
+          <View style={styles.logo}>
+            <Ionicons name="flash-outline" size={22} color={colors.textInverse} />
           </View>
-        }
-      >
-        <View style={styles.top}><LanguagePicker /></View>
-        <View style={styles.customerLogo}>
-          <View style={styles.customerMark}><Ionicons name="flash" size={26} color={colors.surface} /></View>
-          <AppText variant="h1">{brand ?? t('appName')}</AppText>
+          <AppText variant="h2" style={styles.brand}>
+            {brand ?? t('appName')}
+          </AppText>
         </View>
-        <View style={styles.customerHero} testID="phone-hero">
-          <AppText variant="display">{copy.hero}</AppText>
-          <AppText variant="body" color="textMuted" style={styles.customerDescription}>{copy.description}</AppText>
-        </View>
-        <View style={styles.customerBenefits}>
-          {([
-            { icon: 'shield-checkmark-outline' as const, label: copy.verified },
-            { icon: 'time-outline' as const, label: copy.wait },
-            { icon: 'wallet-outline' as const, label: copy.payment },
-          ]).map(({ icon, label }) => (
-            <View key={icon} style={styles.customerBenefitRow}>
-              <View style={styles.customerBenefitIcon}><Ionicons name={icon} size={18} color={colors.primary} /></View>
-              <AppText variant="bodyStrong" style={styles.customerBenefitText}>{label}</AppText>
+        <LanguagePicker />
+      </View>
+      <View style={styles.hero} testID="phone-hero">
+        <AppText variant="numeric" accessibilityRole="header">
+          {t('common:brand.tagline')}
+        </AppText>
+        <AppText variant="body" color="textMuted" style={styles.lead}>
+          {t('auth.lead')}
+        </AppText>
+        <View style={styles.features}>
+          {FEATURES.map((f) => (
+            <View key={f.key} style={styles.feature}>
+              <View style={styles.featureIcon}>
+                <Ionicons name={f.icon} size={18} color={colors.primary} />
+              </View>
+              <AppText variant="bodyStrong" style={styles.featureText}>
+                {t(`auth.${f.key}`)}
+              </AppText>
             </View>
           ))}
         </View>
-      </Screen>
-    );
-  }
-
-  return (
-    <Screen dark scroll testID="phone-screen">
-      <View style={styles.top}>
-        <LanguagePicker dark />
-      </View>
-      <View style={styles.hero} testID="phone-hero">
-        <AppText variant="display" color="textInverse">
-          {brand ?? t('appName')}
-        </AppText>
-        <AppText variant="body" color="primary" style={styles.tagline}>
-          {t('common:brand.tagline')}
-        </AppText>
       </View>
       <View style={styles.form}>
-        <AppText variant="h3" color="textInverse" style={styles.title}>
+        <AppText variant="bodyStrong" style={styles.title}>
           {t('auth.welcomeTitle')}
         </AppText>
-        <AppText variant="small" color="textInverseMuted" style={styles.hint} testID="phone-whatsapp-hint">
+        <AppText variant="small" color="textMuted" style={styles.hint} testID="phone-whatsapp-hint">
           {t('common:login.codeViaWhatsApp')}
         </AppText>
         <PhoneInput
-          dark
           value={digits}
           onChange={(d, normalized) => {
             setDigits(d);
@@ -165,7 +103,7 @@ export function PhoneScreen({ onCodeSent, brand }: PhoneScreenProps) {
           accessibilityLabel={t('common:fields.phone')}
         />
         <Button title={t('common:actions.continue')} onPress={() => void submit()} disabled={!e164} loading={loading} testID="phone-continue" />
-        <AppText variant="caption" color="textInverseMuted" align="center" style={styles.terms}>
+        <AppText variant="small" color="textMuted" align="center" style={styles.terms}>
           {t('auth.terms')}
         </AppText>
       </View>
@@ -174,26 +112,20 @@ export function PhoneScreen({ onCodeSent, brand }: PhoneScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  top: { flexDirection: 'row', justifyContent: 'flex-end' },
+  top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.sm },
+  logoRow: { flexDirection: 'row', alignItems: 'center', flexShrink: 1 },
+  logo: { width: 40, height: 40, borderRadius: radii.md, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center' },
+  brand: { marginLeft: spacing.sm, flexShrink: 1 },
   // Grows into the free space on tall screens; on a 360x640 dp phone with the keyboard open it gives way so the title,
   // the phone field and "Davam et" stay above the keyboard.
-  hero: { flex: 1, justifyContent: 'center', paddingVertical: spacing.lg, minHeight: 80 },
-  tagline: { marginTop: spacing.sm, color: colors.primary },
+  hero: { flex: 1, justifyContent: 'center', paddingVertical: spacing.xl, minHeight: 80 },
+  lead: { marginTop: spacing.sm },
+  features: { marginTop: spacing.xl, backgroundColor: colors.surfaceMuted, borderRadius: radii.lg, padding: spacing.lg, gap: spacing.md },
+  feature: { flexDirection: 'row', alignItems: 'center' },
+  featureIcon: { width: 32, height: 32, borderRadius: radii.sm, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
+  featureText: { flex: 1, marginLeft: spacing.md },
   form: { paddingBottom: spacing.xl },
-  title: { marginBottom: spacing.xs },
-  hint: { marginBottom: spacing.md },
+  title: { marginBottom: spacing.xxs },
+  hint: { marginBottom: spacing.sm },
   terms: { marginTop: spacing.md },
-  customerScreen: { backgroundColor: colors.surface },
-  customerContent: { paddingHorizontal: spacing.xl, paddingTop: spacing.sm, paddingBottom: spacing.xl },
-  customerLogo: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, marginTop: 40 },
-  customerMark: { width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary },
-  customerHero: { marginTop: spacing.xl, gap: spacing.sm },
-  customerDescription: { marginTop: spacing.xs },
-  customerBenefits: { marginTop: spacing.xl, backgroundColor: colors.background, borderRadius: radii.lg, padding: spacing.lg, gap: 14 },
-  customerBenefitRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-  customerBenefitIcon: { height: 34, width: 34, borderRadius: 10, backgroundColor: colors.primarySoft, alignItems: 'center', justifyContent: 'center' },
-  customerBenefitText: { flex: 1 },
-  customerPhoneLabel: { marginBottom: spacing.sm },
-  customerFooter: { backgroundColor: colors.surface },
-  customerDeliveryHint: { marginTop: spacing.sm },
 });

@@ -73,18 +73,28 @@ export default function CustomerHome() {
   return (
     <Screen padded={false} edges={['top']} testID="home-screen">
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+        {/* UX-C19: light header (white band) instead of the old dark hero. */}
         <View style={styles.hero}>
           <View style={styles.heroTop}>
-            <AppText variant="h2" color="textInverse" style={styles.flex}>
-              {t('home.greeting', { name: firstName })}
-            </AppText>
-            <NotificationBell dark testID="home-bell" />
-          </View>
-          <View style={styles.locationRow} testID="home-location">
-            <Ionicons name="location-outline" size={14} color={colors.textInverseMuted} />
-            <AppText variant="small" color="textInverseMuted" numberOfLines={1} style={styles.locationText}>
-              {placeText}
-            </AppText>
+            <View style={styles.flex}>
+              <View style={styles.greetingRow}>
+                <AppText variant="h1" numberOfLines={1} style={styles.greeting}>
+                  {t('home.greeting', { name: firstName })}
+                </AppText>
+                <AppText variant="h1" importantForAccessibility="no" accessibilityElementsHidden>
+                  {' 👋'}
+                </AppText>
+              </View>
+              <View style={styles.locationRow} testID="home-location">
+                <Ionicons name="location-outline" size={16} color={colors.primary} />
+                <AppText variant="body" color="textMuted" numberOfLines={1} style={styles.locationText}>
+                  {placeText}
+                </AppText>
+              </View>
+            </View>
+            <View style={styles.bellBox}>
+              <NotificationBell testID="home-bell" />
+            </View>
           </View>
           <Pressable
             style={styles.search}
@@ -92,8 +102,8 @@ export default function CustomerHome() {
             accessibilityRole="search"
             testID="home-search"
           >
-            <Ionicons name="search" size={18} color={colors.textInverseMuted} />
-            <AppText variant="small" color="textInverseMuted" style={styles.searchText}>
+            <Ionicons name="search" size={20} color={colors.textMuted} />
+            <AppText variant="body" color="textMuted" style={styles.searchText}>
               {t(vertical === 'AUTO' ? 'home.searchAuto' : 'home.searchHome')}
             </AppText>
           </Pressable>
@@ -136,15 +146,28 @@ export default function CustomerHome() {
           />
           {vertical === 'AUTO' ? (
             <View style={styles.autoHint} testID="home-auto-hint">
-              <AppText variant="caption" color="primaryDark">
+              <Ionicons name="checkmark" size={18} color={colors.primary} />
+              <AppText variant="small" color="primary" style={styles.autoHintText}>
                 {t('home.autoHint')}
               </AppText>
             </View>
           ) : null}
 
-          <AppText variant="h3" style={styles.sectionTitle}>
-            {t('home.categoriesTitle')}
-          </AppText>
+          <View style={styles.sectionRow}>
+            <AppText variant="h3" style={styles.flex}>
+              {t('home.categoriesTitle')}
+            </AppText>
+            <Pressable
+              onPress={() => router.push({ pathname: '/categories', params: { vertical } })}
+              accessibilityRole="link"
+              hitSlop={12}
+              testID="home-all-short"
+            >
+              <AppText variant="bodyStrong" color="primary">
+                {t('home.allShort', { count: totalServices })}
+              </AppText>
+            </Pressable>
+          </View>
           {categories.isError && !items.length ? (
             <Card testID="home-categories-error">
               <AppText variant="small" color="textMuted">
@@ -168,10 +191,10 @@ export default function CustomerHome() {
             accessibilityRole="link"
             testID="home-all-categories"
           >
-            <AppText variant="small" color="primaryDark" style={styles.allText}>
+            <AppText variant="small" color="primary" style={styles.allText}>
               {t('home.allCategories', { count: totalServices })}
             </AppText>
-            <Ionicons name="arrow-forward" size={16} color={colors.primaryDark} />
+            <Ionicons name="arrow-forward" size={16} color={colors.primary} />
           </Pressable>
 
           <Card onPress={() => router.push({ pathname: '/find-by-photo', params: { vertical } })} style={styles.photo} testID="home-find-by-photo">
@@ -190,18 +213,21 @@ export default function CustomerHome() {
           </Card>
 
           {isCompany ? (
-            <Card onPress={() => router.push('/project/new' as never)} style={styles.photo} testID="home-business">
+            // UX-C19: the B2B entry is a labelled navy card (lime subtitle), not a bare icon.
+            <Card dark onPress={() => router.push('/project/new' as never)} style={styles.photo} testID="home-business">
               <View style={styles.activeRow}>
                 <View style={[styles.photoIcon, styles.businessIcon]}>
-                  <Ionicons name="briefcase" size={22} color={colors.textInverse} />
+                  <Ionicons name="briefcase-outline" size={22} color={colors.mint} />
                 </View>
                 <View style={styles.flex}>
-                  <AppText variant="bodyStrong">{t('home.business')}</AppText>
-                  <AppText variant="caption" color="textMuted">
+                  <AppText variant="h3" color="textInverse">
+                    {t('home.business')}
+                  </AppText>
+                  <AppText variant="small" color="mint">
                     {t('home.businessHint')}
                   </AppText>
                 </View>
-                <Ionicons name="chevron-forward" size={20} color={colors.textMuted} />
+                <Ionicons name="chevron-forward" size={20} color={colors.textInverse} />
               </View>
             </Card>
           ) : null}
@@ -214,28 +240,55 @@ export default function CustomerHome() {
 const styles = StyleSheet.create({
   scroll: { paddingBottom: spacing.xxl },
   flex: { flex: 1 },
-  hero: { backgroundColor: colors.dark, paddingHorizontal: spacing.lg, paddingTop: spacing.xl, paddingBottom: spacing.lg },
+  hero: {
+    backgroundColor: colors.surface,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
   heroTop: { flexDirection: 'row', alignItems: 'center' },
-  businessIcon: { backgroundColor: colors.dark },
+  greetingRow: { flexDirection: 'row', alignItems: 'center' },
+  greeting: { flexShrink: 1 },
+  bellBox: {
+    width: 48,
+    height: 48,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: spacing.sm,
+  },
+  businessIcon: { backgroundColor: colors.darkSoft, borderRadius: radii.md },
   locationRow: { flexDirection: 'row', alignItems: 'center', marginTop: spacing.xs },
-  locationText: { marginLeft: spacing.xs, flex: 1 },
+  locationText: { marginLeft: spacing.xs, flexShrink: 1 },
   search: {
-    marginTop: spacing.md,
+    marginTop: spacing.lg,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.darkSoft,
+    backgroundColor: colors.surfaceMuted,
     borderRadius: radii.md,
     paddingHorizontal: spacing.md,
-    height: 44,
+    minHeight: 48,
   },
   searchText: { marginLeft: spacing.sm },
   body: { padding: spacing.lg },
   gap: { height: spacing.md },
   active: { marginBottom: spacing.lg },
   activeRow: { flexDirection: 'row', alignItems: 'center' },
-  pulse: { width: 12, height: 12, borderRadius: 6, backgroundColor: colors.primary, marginRight: spacing.md },
-  autoHint: { marginTop: spacing.md, backgroundColor: colors.primarySoft, borderRadius: radii.md, padding: spacing.sm },
-  sectionTitle: { marginTop: spacing.lg, marginBottom: spacing.sm },
+  pulse: { width: 12, height: 12, borderRadius: 6, backgroundColor: colors.mint, marginRight: spacing.md },
+  autoHint: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: spacing.md,
+    backgroundColor: colors.primarySoft,
+    borderRadius: radii.md,
+    padding: spacing.md,
+  },
+  autoHintText: { flex: 1, marginLeft: spacing.sm },
+  sectionRow: { flexDirection: 'row', alignItems: 'center', marginTop: spacing.xl, marginBottom: spacing.sm },
   grid: { flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -spacing.xs },
   cell: { width: '50%', padding: spacing.xs },
   allLink: {

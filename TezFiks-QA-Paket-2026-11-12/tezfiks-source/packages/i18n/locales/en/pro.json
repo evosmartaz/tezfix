@@ -23,7 +23,11 @@
     "lastNameRequired": "Enter your last name",
     "photoUploadFailed": "The photo was not uploaded. Try again later from your profile",
     "galleryDenied": "Gallery access was not granted",
-    "language": "Language"
+    "language": "Language",
+    "lead": "Go online, accept nearby jobs and manage your earnings yourself.",
+    "feature1": "Flat 10 ₼ platform fee per job",
+    "feature2": "You agree the price with the customer on site",
+    "feature3": "Work as a solo handyman or a company"
   },
   "tabs": {
     "home": "Home",
@@ -38,7 +42,7 @@
     "today": "Today",
     "statJobs": "Jobs",
     "statEarnings": "Earnings",
-    "statFees": "Platform fees",
+    "statFees": "Fee",
     "lowBalanceTitle": "Current balance: {{balance}}",
     "lowBalance": "With less than {{fee}} on your balance you cannot accept new orders",
     "topUp": "+ Top up balance",
@@ -50,7 +54,11 @@
       "LOW_BALANCE": "Your balance does not cover the platform fee: you will not receive order offers",
       "NO_TRADES": "No trades selected in your profile: you will not receive order offers",
       "COMPANY_LOW_BALANCE": "The company balance is low: no orders will be assigned until the manager tops it up"
-    }
+    },
+    "statusOnline": "You are online",
+    "statusOffline": "You are offline",
+    "statusOnlineHint": "New jobs are sent to you",
+    "statusOfflineHint": "Go online to receive jobs"
   },
   "onboarding": {
     "joinTitle": "Join as a handyman",
@@ -176,7 +184,8 @@
     "draftBody": "To accept orders, verify yourself with your ID card and a selfie",
     "start": "Start verification",
     "approved": "Approved! You can go online now",
-    "toHome": "Go to home"
+    "toHome": "Go to home",
+    "refresh": "Refresh status"
   },
   "offer": {
     "newTitle": "New order!",
@@ -193,7 +202,7 @@
     "scheduledAt": "Time",
     "km": "{{km}} km",
     "eta": "~{{min}} min",
-    "feeWarning": "When you accept, a platform fee of {{fee}} AZN is taken from your balance",
+    "feeWarning": "On accept, a {{fee}} ₼ platform fee is reserved from your balance",
     "accept": "✓ Accept",
     "decline": "Decline",
     "accepted": "Order accepted",
@@ -326,7 +335,7 @@
     "guaranteeUntil": "Guarantee until {{date}}",
     "fee": "Platform fee: {{amount}}",
     "feeState": {
-      "held": "held",
+      "held": "reserved",
       "captured": "charged",
       "refunded": "refunded"
     },
@@ -438,7 +447,7 @@
   },
   "balance": {
     "current": "Current balance",
-    "held": "On hold: {{amount}}",
+    "held": "Reserved: {{amount}}",
     "topUp": "+ Top up balance",
     "history": "Transaction history",
     "empty": "No transactions yet",
@@ -588,8 +597,8 @@
     "noOffers": "No new orders right now",
     "offerTitle": "New order #{{number}}",
     "customerLine": "{{timing}} • Customer: {{name}}",
-    "feeNote": "{{fee}} AZN will be charged to the company balance on acceptance",
-    "feeNotePerWorker": "{{fee}} AZN per handyman will be charged to the company balance on acceptance",
+    "feeNote": "{{fee}} ₼ is reserved from the company balance on acceptance",
+    "feeNotePerWorker": "{{fee}} ₼ per handyman is reserved from the company balance on acceptance",
     "slots": "Handymen needed: {{open}}/{{total}}",
     "pickWorker": "Choose the handyman",
     "pickWorkers": "Choose the handymen ({{selected}}/{{max}})",
@@ -648,7 +657,8 @@
       "howTitle": "How it works",
       "howBody": "Whichever mode you choose, the order is not closed without a price and the amount is shown in the customer's app for confirmation. Solo handymen always enter the price themselves.",
       "save": "Save",
-      "saved": "Settings saved"
+      "saved": "Settings saved",
+      "unsaved": "You have unsaved changes"
     },
     "job": {
       "enterPrice": "Enter the final price",

@@ -19,7 +19,7 @@ export function VerificationCard({ status, rejectReason, attemptsLeft24h, subjec
   if (status === 'PENDING_REVIEW') {
     return (
       <Card dark testID={`${testID}-pending`}>
-        <AppText variant="bodyStrong" color="primary">
+        <AppText variant="h3" color="mint">
           {t('verification.pendingTitle')}
         </AppText>
         <AppText variant="small" color="textInverse" style={styles.body}>

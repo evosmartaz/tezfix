@@ -23,7 +23,7 @@ describe('company panel messages', () => {
     expect(ru('dashboard.openDispatchWaiting', { count: 5 })).toBe('Диспетчерская: 5 новых заказов');
     expect(ru('balance.earnings.cash', { count: 21, amount: '10 ₼' })).toBe('Наличными: 21 работа, 10 ₼');
     const az = tr('az', 'panel.company');
-    expect(az('dashboard.openDispatchWaiting', { count: 4 })).toBe('Dispatch: 4 yeni sifariş');
+    expect(az('dashboard.openDispatchWaiting', { count: 4 })).toBe('Dispetçer: 4 yeni sifariş');
   });
 
   it('board 04 texts in Azerbaijani', () => {

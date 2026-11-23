@@ -211,7 +211,9 @@ describe('tip and rating', () => {
     });
     const r = await renderRouter(APP_DIR, { initialUrl: `${BASE}/tip` });
     await waitFor(() => expect(screen.getByTestId('tip-amount')).toBeTruthy());
-    expect(screen.getByText('5,00 ₼ bəxşiş ver')).toBeTruthy();
+    // UX-C17 (design v2): no tip is preselected.
+    expect(screen.getByText('Ustaya bəxşiş ver')).toBeTruthy();
+    expect(screen.getByTestId('tip-amount-preset-500').props.accessibilityState.selected).toBe(false);
     await fireEvent.changeText(screen.getByTestId('tip-amount-custom'), '0,5');
     await fireEvent.press(screen.getByTestId('tip-send'));
     expect(screen.getByText('Minimum məbləğ 1 ₼-dir')).toBeTruthy();

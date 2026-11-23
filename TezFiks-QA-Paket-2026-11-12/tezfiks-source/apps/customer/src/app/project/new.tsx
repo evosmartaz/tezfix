@@ -282,7 +282,7 @@ export default function NewProjectRoute() {
       <PhotoPicker items={photos} onChange={setPhotos} max={PROJECT_LIMITS.photos} />
 
       <Card dark style={styles.section} testID="project-corporate">
-        <AppText variant="bodyStrong" color="primary">
+        <AppText variant="h3" color="mint">
           {t('project.corporateTitle')}
         </AppText>
         <AppText variant="small" color="textInverseMuted">

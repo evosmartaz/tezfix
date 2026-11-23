@@ -47,7 +47,7 @@ export default function OnboardingChoice() {
         </View>
       }
     >
-      <Header title={t('onboarding.joinTitle')} subtitle={t('onboarding.joinSubtitle')} />
+      <Header large title={t('onboarding.joinTitle')} subtitle={t('onboarding.joinSubtitle')} />
       <OptionCard
         title={t('onboarding.soloTitle')}
         subtitle={t('onboarding.soloSubtitle')}
@@ -88,7 +88,7 @@ export default function OnboardingChoice() {
         />
       ) : null}
       <Card dark style={styles.info}>
-        <AppText variant="bodyStrong" color="primary">
+        <AppText variant="h3" color="mint">
           {t('verification.pendingTitle')}
         </AppText>
         <AppText variant="small" color="textInverse" style={styles.infoText}>

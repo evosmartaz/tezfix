@@ -57,11 +57,10 @@ export default function ProHome() {
 
   return (
     <Screen padded={false} scroll edges={['top']} testID="home-screen" onRefresh={() => void profile.refetch()} refreshing={profile.isRefetching}>
+      {/* UX-C19: one light theme; the greeting sits on the page background. */}
       <View style={styles.hero}>
-        <AppText variant="h2" color="textInverse">
-          {t('home.greeting', { name: firstName })}
-        </AppText>
-        <ModeSwitcher profile={profile.data} mode={mode} dark />
+        <AppText variant="h1">{t('home.greeting', { name: firstName })}</AppText>
+        <ModeSwitcher profile={profile.data} mode={mode} />
       </View>
       <View style={styles.body}>
         {profile.isLoading ? <LoadingState /> : null}
@@ -123,6 +122,46 @@ function ApprovedHome({ profile, session }: { profile: ProProfile; session: Onli
 
   return (
     <View testID="home-approved">
+      {/* Every trade of the profile, not only the first (UX-P17). */}
+      {profile.trades.length ? (
+        <View style={styles.chips} testID="home-trades">
+          {profile.trades.map((tr) => (
+            <View key={tr.id} style={styles.chip}>
+              <AppText variant="small" color="textMuted" numberOfLines={1}>
+                {tr.name}
+              </AppText>
+            </View>
+          ))}
+        </View>
+      ) : null}
+
+      {/* Online card with a 48 dp switch and an offline hint (UX-P09, UX-P17). */}
+      <View style={[styles.statusCard, session.online ? styles.statusOn : null]} testID="home-status">
+        <View style={styles.flex}>
+          <AppText variant="h3" color={session.online ? 'primary' : 'text'}>
+            {t(session.online ? 'home.statusOnline' : 'home.statusOffline')}
+          </AppText>
+          <AppText variant="small" color="textMuted">
+            {t(session.online ? 'home.statusOnlineHint' : 'home.statusOfflineHint')}
+          </AppText>
+        </View>
+        <Pressable
+          onPress={() => void session.setOnline(!session.online)}
+          disabled={session.busy}
+          style={styles.switchHit}
+          accessibilityRole="switch"
+          accessibilityState={{ checked: session.online, busy: session.busy }}
+          testID="online-toggle"
+        >
+          <View style={[styles.track, session.online ? styles.trackOn : null]}>
+            <View style={[styles.knob, session.online ? styles.knobOn : null]} />
+          </View>
+          <AppText variant="caption" color={session.online ? 'primary' : 'textMuted'} style={styles.switchLabel}>
+            {session.busy ? '…' : session.online ? t('home.online') : t('home.offline')}
+          </AppText>
+        </Pressable>
+      </View>
+
       <View style={styles.mapBox}>
         <TfMapView
           style={styles.map}
@@ -134,19 +173,6 @@ function ApprovedHome({ profile, session }: { profile: ProProfile; session: Onli
           <AppText variant="small" color="textInverse" style={styles.pillName} numberOfLines={1} testID="home-identity">
             {title}
           </AppText>
-          <Pressable
-            onPress={() => void session.setOnline(!session.online)}
-            disabled={session.busy}
-            style={[styles.toggle, session.online ? styles.toggleOn : styles.toggleOff]}
-            accessibilityRole="switch"
-            accessibilityState={{ checked: session.online, busy: session.busy }}
-            testID="online-toggle"
-          >
-            <View style={[styles.dot, { backgroundColor: session.online ? colors.textInverse : colors.textInverseMuted }]} />
-            <AppText variant="caption" color="textInverse" style={styles.toggleText}>
-              {session.busy ? '…' : session.online ? t('home.online') : t('home.offline')}
-            </AppText>
-          </Pressable>
         </View>
       </View>
 
@@ -229,7 +255,7 @@ function ApprovedHome({ profile, session }: { profile: ProProfile; session: Onli
 function Stat({ value, label, accent, testID }: { value: string; label: string; accent?: boolean; testID?: string }) {
   return (
     <View style={styles.stat} testID={testID}>
-      <AppText variant="h3" color={accent ? 'accent' : 'text'}>
+      <AppText variant="h2" color={accent ? 'accent' : 'text'}>
         {value}
       </AppText>
       <AppText variant="caption" color="textMuted">
@@ -280,9 +306,30 @@ function ActiveJobCard() {
 }
 
 const styles = StyleSheet.create({
-  hero: { backgroundColor: colors.dark, paddingHorizontal: spacing.lg, paddingTop: spacing.xl, paddingBottom: spacing.md },
-  body: { padding: spacing.lg },
-  mapBox: { height: 300, borderRadius: radii.lg, overflow: 'hidden', ...shadows.card },
+  hero: { paddingHorizontal: spacing.lg, paddingTop: spacing.xl, gap: spacing.sm },
+  body: { padding: spacing.lg, paddingTop: spacing.sm },
+  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginBottom: spacing.md },
+  chip: { backgroundColor: colors.surfaceMuted, borderRadius: radii.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.xs },
+  statusCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.surface,
+    borderRadius: radii.lg,
+    borderWidth: 1.5,
+    borderColor: colors.border,
+    paddingLeft: spacing.lg,
+    paddingRight: spacing.sm,
+    paddingVertical: spacing.sm,
+    marginBottom: spacing.md,
+  },
+  statusOn: { backgroundColor: colors.primarySoft, borderColor: colors.primary },
+  switchHit: { minWidth: 64, minHeight: 48, alignItems: 'center', justifyContent: 'center', marginLeft: spacing.sm },
+  track: { width: 52, height: 30, borderRadius: 15, backgroundColor: colors.border, padding: 3, justifyContent: 'center' },
+  trackOn: { backgroundColor: colors.primary },
+  knob: { width: 24, height: 24, borderRadius: 12, backgroundColor: colors.surface, ...shadows.card },
+  knobOn: { alignSelf: 'flex-end' },
+  switchLabel: { marginTop: 2 },
+  mapBox: { height: 260, borderRadius: radii.lg, overflow: 'hidden', ...shadows.card },
   map: { flex: 1 },
   pill: {
     position: 'absolute',
@@ -291,22 +338,16 @@ const styles = StyleSheet.create({
     right: spacing.md,
     backgroundColor: colors.dark,
     borderRadius: radii.pill,
-    paddingLeft: spacing.lg,
-    paddingRight: spacing.xs,
-    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  pillName: { flex: 1, marginRight: spacing.sm },
-  toggle: { flexDirection: 'row', alignItems: 'center', borderRadius: radii.pill, paddingHorizontal: spacing.md, paddingVertical: spacing.sm },
-  toggleOn: { backgroundColor: colors.primary },
-  toggleOff: { backgroundColor: colors.darkSoft },
-  toggleText: { fontWeight: '700', marginLeft: spacing.xs },
-  dot: { width: 8, height: 8, borderRadius: 4 },
+  pillName: { flex: 1 },
   block: { marginTop: spacing.md },
   companyLine: { marginTop: spacing.sm },
   stats: { flexDirection: 'row', marginTop: spacing.md, gap: spacing.sm },
-  stat: { flex: 1, backgroundColor: colors.background, borderRadius: radii.md, paddingVertical: spacing.md, alignItems: 'center' },
+  stat: { flex: 1, backgroundColor: colors.surfaceMuted, borderRadius: radii.md, paddingVertical: spacing.md, alignItems: 'center' },
   flex: { flex: 1 },
   activeRow: { flexDirection: 'row', alignItems: 'center' },
   activeText: { flex: 1, marginHorizontal: spacing.sm },

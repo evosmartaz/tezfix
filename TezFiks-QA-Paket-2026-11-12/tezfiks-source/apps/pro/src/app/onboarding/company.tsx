@@ -96,7 +96,7 @@ export default function CompanyOnboarding() {
       footer={<Button title={t('onboarding.continueToKyc')} onPress={() => void submit()} loading={saving} testID="company-submit" />}
     >
       <ScrollView ref={scrollRef} style={styles.flex} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Header title={t('onboarding.companyTitle')} subtitle={t('onboarding.companyFormSubtitle')} onBack={() => router.back()} />
+        <Header large title={t('onboarding.companyTitle')} subtitle={t('onboarding.companyFormSubtitle')} onBack={() => router.back()} />
         <AppText variant="h3" style={styles.section}>
           {t('onboarding.managerSection')}
         </AppText>

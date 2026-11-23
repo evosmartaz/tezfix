@@ -63,7 +63,7 @@ describe('manager mode home (board 04)', () => {
     await waitFor(() => expect(screen.getByTestId(`company-offer-${UUID(4001)}`)).toBeTruthy());
     expect(screen.getByText('Yeni sifariş #2851')).toBeTruthy();
     expect(screen.getByTestId(`company-offer-area-${UUID(4001)}`).props.children).toBe('Xətai r., M.Hadi küç. 12');
-    expect(screen.getByText('Qəbulda şirkət balansından 10 AZN tutulacaq')).toBeTruthy();
+    expect(screen.getByText('Qəbulda şirkət balansından 10 ₼ rezerv edilir')).toBeTruthy(); // UX-P04/P15
     expect(screen.getByText('Ustanı seçin')).toBeTruthy();
     expect(screen.queryByText(/\+994/)).toBeNull();
     // Boşdur / Sifarişdədir with rating and distance; the busy worker cannot be picked
@@ -109,7 +109,7 @@ describe('manager mode home (board 04)', () => {
     installPro({ me: MANAGER_ME, profile: null, managedCompanies: MANAGED, routes: managerRoutes(state) });
     await renderRouter(APP_DIR, { initialUrl: '/' });
     await waitFor(() => expect(screen.getByTestId(`company-offer-${UUID(4001)}`)).toBeTruthy());
-    expect(screen.getByText('Qəbulda şirkət balansından hər usta üçün 10 AZN tutulacaq')).toBeTruthy();
+    expect(screen.getByText('Qəbulda şirkət balansından hər usta üçün 10 ₼ rezerv edilir')).toBeTruthy(); // UX-P04/P15
     expect(screen.getByText('Ustaları seçin (2/2)')).toBeTruthy();
   });
 

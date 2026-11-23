@@ -53,8 +53,9 @@ export function openCompanyOffers(state: CompanyOfferState, serverNowMs: number)
 }
 
 /** "Ustanı seçin": a worker can be sent when free ("Boşdur") and has the trade. Busy ("Sifarişdədir") rows are disabled. */
-export function isSelectableWorker(w: Pick<OfferCandidateWorker, 'busy' | 'hasTrade'>): boolean {
-  return !w.busy && w.hasTrade;
+/** Free, online and with the trade; an offline worker is shown as "Oflayn" and cannot be picked (UX-P03, spec 6 eligibility). */
+export function isSelectableWorker(w: Pick<OfferCandidateWorker, 'busy' | 'hasTrade' | 'online'>): boolean {
+  return !w.busy && w.hasTrade && w.online;
 }
 
 /**
@@ -76,7 +77,11 @@ export function sortCandidates(workers: readonly OfferCandidateWorker[]): OfferC
  * Toggles a worker in the selection. At most `max` (= the offer's open slots) workers; a single-slot offer swaps the
  * selection; unavailable workers are ignored.
  */
-export function toggleWorker(selected: readonly string[], worker: Pick<OfferCandidateWorker, 'handymanId' | 'busy' | 'hasTrade'>, max: number): string[] {
+export function toggleWorker(
+  selected: readonly string[],
+  worker: Pick<OfferCandidateWorker, 'handymanId' | 'busy' | 'hasTrade' | 'online'>,
+  max: number,
+): string[] {
   if (selected.includes(worker.handymanId)) return selected.filter((id) => id !== worker.handymanId);
   if (!isSelectableWorker(worker) || max <= 0) return [...selected];
   if (max === 1) return [worker.handymanId];

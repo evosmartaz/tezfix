@@ -641,11 +641,11 @@ export function instantServices(items: readonly Category[]): Category[] {
 export type HandymanMapState = 'bot' | 'busy' | 'online' | 'offline';
 
 export const MAP_COLORS: Record<HandymanMapState | 'request' | 'searching', string> = {
-  online: '#00A971',
+  online: '#2F5BFF',
   busy: '#F59E0B',
   bot: '#7C3AED',
   offline: '#94A3B8',
-  request: '#E5484D',
+  request: '#C83746',
   searching: '#F59E0B',
 };
 

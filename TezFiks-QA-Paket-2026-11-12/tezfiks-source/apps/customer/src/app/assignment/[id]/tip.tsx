@@ -4,7 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { Ionicons } from '@expo/vector-icons';
 import { api, formatMoney } from '@tezfiks/shared';
-import { AppText, Avatar, Banner, Button, ErrorState, Header, LoadingState, Screen, colors, spacing, useApi, useT, useToast } from '@tezfiks/mobile';
+import { AppText, Avatar, Banner, Button, Card, ErrorState, Header, LoadingState, Screen, colors, spacing, useApi, useT, useToast } from '@tezfiks/mobile';
 import { AmountPicker, type AmountValue } from '../../../components/AmountPicker';
 import { qk, useAssignment } from '../../../data/queries';
 import { useCheckout } from '../../../hooks/useCheckout';
@@ -30,7 +30,8 @@ export default function TipRoute() {
     return () => clearTimeout(timer);
   }, [checkRound]);
   const q = useAssignment(id, { pollMs: (x) => settlePollMs(x?.status, expired) });
-  const [value, setValue] = useState<AmountValue>({ preset: TIP_PRESETS[1], custom: '' });
+  // UX-C17: no amount is preselected; the customer opts in.
+  const [value, setValue] = useState<AmountValue>({ preset: null, custom: '' });
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const a = q.data;
@@ -113,9 +114,17 @@ export default function TipRoute() {
         </>
       ) : (
         <>
-          <AmountPicker presets={TIP_PRESETS} value={value} onChange={setValue} label={t('tip.custom')} error={error} testID="tip-amount" />
+          <Card style={styles.block}>
+            <AmountPicker presets={TIP_PRESETS} value={value} onChange={setValue} label={t('tip.custom')} error={error} testID="tip-amount" />
+            {/* UX-C18: what was paid for the work, the tip and the sum. */}
+            <View style={styles.divider} />
+            {a.price ? <Line label={t('tip.workFee')} value={formatMoney(a.price.total, locale)} testID="tip-work" /> : null}
+            <Line label={t('tip.tipLine')} value={amount ? formatMoney(amount, locale) : '—'} testID="tip-line" />
+            {a.price ? (
+              <Line label={t('tip.total')} value={formatMoney(a.price.total + (amount ?? 0), locale)} strong testID="tip-total" />
+            ) : null}
+          </Card>
           <Button
-            variant="accent"
             title={amount ? t('tip.send', { amount: formatMoney(amount, locale) }) : t('tracking.tip')}
             onPress={() => void send()}
             loading={busy || checkout.running}
@@ -129,8 +138,24 @@ export default function TipRoute() {
   );
 }
 
+function Line({ label, value, strong, testID }: { label: string; value: string; strong?: boolean; testID: string }) {
+  return (
+    <View style={styles.row} testID={testID}>
+      <AppText variant={strong ? 'bodyStrong' : 'body'} color={strong ? 'text' : 'textMuted'}>
+        {label}
+      </AppText>
+      <AppText variant="bodyStrong" color={strong ? 'primary' : 'text'}>
+        {value}
+      </AppText>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   hero: { alignItems: 'center', marginBottom: spacing.lg },
   line: { marginVertical: spacing.sm },
   gap: { height: spacing.sm },
+  block: { marginBottom: spacing.lg },
+  divider: { height: 1, backgroundColor: colors.border, marginVertical: spacing.sm },
+  row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: spacing.xs },
 });

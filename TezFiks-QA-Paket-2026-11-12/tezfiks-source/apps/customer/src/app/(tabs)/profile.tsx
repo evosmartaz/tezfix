@@ -134,7 +134,7 @@ export default function CustomerProfile() {
       <View style={styles.logout}>
         <Button variant="outline" title={t('common:actions.logout')} loading={loggingOut} onPress={() => void logout()} testID="logout" />
         <View style={styles.gap} />
-        <Button variant="ghost" title={t('profile.deleteAccount')} onPress={() => { setConfirmText(''); setDeleteOpen(true); }} testID="profile-delete" />
+        <Button variant="dangerOutline" title={t('profile.deleteAccount')} onPress={() => { setConfirmText(''); setDeleteOpen(true); }} testID="profile-delete" />
       </View>
 
       <BottomSheet visible={deleteOpen} onClose={() => setDeleteOpen(false)} title={t('profile.deleteTitle')} testID="profile-delete-sheet">

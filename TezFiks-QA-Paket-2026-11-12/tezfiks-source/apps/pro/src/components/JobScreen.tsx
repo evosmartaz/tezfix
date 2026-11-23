@@ -68,17 +68,54 @@ export function JobScreen({ id, companyId }: { id: string | undefined; companyId
   const job = data.job;
   useJobRouteTracking(job, data.role);
 
+  if (job) return <LoadedJob job={job} data={data} />;
   return (
     <Screen scroll testID="job-screen" onRefresh={() => void data.refetch()} refreshing={data.isRefetching}>
-      <Header title={job ? t('job.title', { number: job.requestNumber }) : t('job.titleShort')} onBack={back} />
+      <Header title={t('job.titleShort')} onBack={back} />
       {data.isLoading ? <LoadingState /> : null}
       {data.isError ? <ErrorState error={data.error} message={errorMessage(t, data.error)} onRetry={() => void data.refetch()} /> : null}
-      {job ? (data.role === 'worker' ? <WorkerJob job={job} data={data} /> : <FullJob job={job} data={data} />) : null}
     </Screen>
   );
 }
 
 type Data = ReturnType<typeof useJob>;
+type Actions = ReturnType<typeof useJobActions>;
+
+/** Steps that are one button: they sit in the pinned footer so the next action is always in reach (UX-P02). */
+const FOOTER_STEPS: readonly JobStep[] = ['enRoute', 'arrived', 'enterPrice'];
+
+function LoadedJob({ job, data }: { job: ProAssignment; data: Data }) {
+  const { t } = useT();
+  const actions = useJobActions(job, data);
+  const step = nextStep(job, data.role, data.finalPriceEntry);
+  const pinned = FOOTER_STEPS.includes(step);
+  const cancellable = job.status === 'ACCEPTED' || job.status === 'EN_ROUTE';
+  const showNavigate = data.role === 'solo' && cancellable;
+  const footer =
+    pinned || showNavigate ? (
+      <View>
+        {showNavigate ? (
+          <Button variant="dark" title={t('job.navigate')} onPress={() => void openNavigation(job.address.lat, job.address.lng)} testID="job-navigate" />
+        ) : null}
+        {pinned ? (
+          <View style={showNavigate ? styles.footerGap : null}>
+            <StepArea job={job} data={data} step={step} actions={actions} />
+          </View>
+        ) : null}
+      </View>
+    ) : undefined;
+
+  return (
+    <Screen scroll testID="job-screen" onRefresh={() => void data.refetch()} refreshing={data.isRefetching} footer={footer}>
+      <Header title={t('job.title', { number: job.requestNumber })} onBack={back} />
+      {data.role === 'worker' ? (
+        <WorkerJob job={job} data={data} actions={actions} step={step} pinned={pinned} />
+      ) : (
+        <FullJob job={job} data={data} actions={actions} step={step} pinned={pinned} />
+      )}
+    </Screen>
+  );
+}
 
 function useJobActions(job: ProAssignment, data: Data) {
   const { t } = useT();
@@ -237,11 +274,9 @@ function chatHref(job: Pick<ProAssignment, 'id'>, companyId: string | null) {
 }
 
 /** Solo handyman and manager view (FULL). */
-function FullJob({ job, data }: { job: ProAssignment; data: Data }) {
+function FullJob({ job, data, actions, step, pinned }: { job: ProAssignment; data: Data; actions: Actions; step: JobStep; pinned: boolean }) {
   const { t } = useT();
-  const actions = useJobActions(job, data);
   const visibility = jobVisibility(job, data.role);
-  const step = nextStep(job, data.role, data.finalPriceEntry);
   const cancellable = job.status === 'ACCEPTED' || job.status === 'EN_ROUTE';
   const now = useTick(cancellable);
   const eta = etaMinutes(job.etaSec);
@@ -275,11 +310,10 @@ function FullJob({ job, data }: { job: ProAssignment; data: Data }) {
         {visibility.description ? <DescriptionBlock job={job} /> : null}
       </Card>
       <MoneyBlock job={job} visibility={visibility} />
-      <View style={styles.block}>
-        <StepArea job={job} data={data} step={step} actions={actions} />
-      </View>
-      {cancellable && data.role !== 'manager' ? (
-        <Button variant="dark" title={t('job.navigate')} onPress={() => void openNavigation(job.address.lat, job.address.lng)} style={styles.block} testID="job-navigate" />
+      {!pinned ? (
+        <View style={styles.block}>
+          <StepArea job={job} data={data} step={step} actions={actions} />
+        </View>
       ) : null}
       {cancellable ? <NavButtons job={job} title={t('job.title', { number: job.requestNumber })} /> : null}
       {data.role === 'manager' && job.status === 'ACCEPTED' ? (
@@ -371,11 +405,9 @@ function ReassignSheet({
 }
 
 /** Company worker (board 04): only the job location, navigation and the worker's own steps. */
-function WorkerJob({ job, data }: { job: ProAssignment; data: Data }) {
+function WorkerJob({ job, data, actions, step, pinned }: { job: ProAssignment; data: Data; actions: Actions; step: JobStep; pinned: boolean }) {
   const { t } = useT();
-  const actions = useJobActions(job, data);
   const visibility = jobVisibility(job, 'worker');
-  const step = nextStep(job, 'worker', data.finalPriceEntry);
   const region = { latitude: job.address.lat, longitude: job.address.lng, latitudeDelta: 0.02, longitudeDelta: 0.02 };
   return (
     <View testID="job-limited">
@@ -407,9 +439,11 @@ function WorkerJob({ job, data }: { job: ProAssignment; data: Data }) {
         </AppText>
         <NavButtons job={job} title={t('job.title', { number: job.requestNumber })} />
       </Card>
-      <View style={styles.block}>
-        <StepArea job={job} data={data} step={step} actions={actions} />
-      </View>
+      {!pinned ? (
+        <View style={styles.block}>
+          <StepArea job={job} data={data} step={step} actions={actions} />
+        </View>
+      ) : null}
       <JobTimeline job={job} />
       <CustomerCard job={job} visibility={visibility} limited />
     </View>
@@ -418,6 +452,7 @@ function WorkerJob({ job, data }: { job: ProAssignment; data: Data }) {
 
 const styles = StyleSheet.create({
   block: { marginTop: spacing.md },
+  footerGap: { marginTop: spacing.sm },
   line: { marginTop: spacing.sm },
   row: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
   sheetAction: { flex: 1, marginHorizontal: spacing.xs },

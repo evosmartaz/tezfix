@@ -75,7 +75,7 @@ export function ProfileScreen({ onDone, onBack }: ProfileScreenProps) {
       testID="profile-screen"
       footer={<Button title={t('common:actions.continue')} onPress={() => void save()} loading={saving} testID="profile-save" />}
     >
-      <Header onBack={onBack} title={t('auth.profileTitle')} subtitle={t('auth.profileSubtitle')} />
+      <Header large onBack={onBack} title={t('auth.profileTitle')} subtitle={t('auth.profileSubtitle')} />
       <Pressable onPress={() => void pickPhoto()} style={styles.photo} accessibilityRole="button" testID="profile-photo">
         <Avatar uri={photo?.uri ?? me?.photo?.url} firstName={firstName} lastName={lastName} size={88} />
         <View style={styles.photoText}>

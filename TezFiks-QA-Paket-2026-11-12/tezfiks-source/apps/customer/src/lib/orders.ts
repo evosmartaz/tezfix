@@ -144,3 +144,31 @@ export function reachKmForRing(ring: number): number {
   const i = Math.min(Math.max(0, Math.floor(ring)), RING_REACH_KM.length - 1);
   return RING_REACH_KM[i];
 }
+
+export interface CancellationSummary {
+  cancelledAt: string;
+  /** Whole minutes between the (latest) acceptance and the cancellation; null when no handyman had accepted. */
+  minutesAfterAccept: number | null;
+  /** "late" when the customer cancelled a handyman after the free-cancel window (a paid cancellation). */
+  kind: 'free' | 'late';
+}
+
+/**
+ * What the cancelled-order screen shows (UX-C04: one status, plus a separate free/late line). Derived from the request
+ * and its assignments only; the charged amount itself is in the wallet history.
+ */
+export function cancellationSummary(
+  r: Pick<RequestDetail, 'status' | 'cancelledAt' | 'assignments'>,
+): CancellationSummary | null {
+  if (r.status !== 'CANCELLED' || !r.cancelledAt) return null;
+  const cancelledMs = Date.parse(r.cancelledAt);
+  const accepted = r.assignments.filter((a) => Number.isFinite(Date.parse(a.acceptedAt)) && Date.parse(a.acceptedAt) <= cancelledMs);
+  const latestAccept = accepted.reduce<number | null>((m, a) => Math.max(m ?? 0, Date.parse(a.acceptedAt)), null);
+  // Spec 6.x terminal states: CANCELLED_FREE = either side inside the window, CANCELLED_BY_CUSTOMER = late customer cancel.
+  const late = r.assignments.some((a) => a.status === 'CANCELLED_BY_CUSTOMER');
+  return {
+    cancelledAt: r.cancelledAt,
+    minutesAfterAccept: latestAccept === null ? null : Math.max(0, Math.floor((cancelledMs - latestAccept) / 60_000)),
+    kind: late ? 'late' : 'free',
+  };
+}

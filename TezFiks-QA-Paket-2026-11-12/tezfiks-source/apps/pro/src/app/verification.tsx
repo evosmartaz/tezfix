@@ -29,7 +29,22 @@ export default function VerificationStatusScreen() {
       testID="verification-screen"
       onRefresh={() => void status.refetch()}
       refreshing={status.isRefetching}
-      footer={<Button variant="outline" title={t('verification.toHome')} onPress={() => router.replace('/')} testID="verification-home" />}
+      footer={
+        <View>
+          {/* UX-P10: the pending handyman can ask for the latest status instead of pulling to refresh. */}
+          {status.data && status.data.status !== 'APPROVED' ? (
+            <Button
+              variant="secondary"
+              title={t('verification.refresh')}
+              onPress={() => void status.refetch()}
+              loading={status.isRefetching}
+              style={styles.footerGap}
+              testID="verification-refresh"
+            />
+          ) : null}
+          <Button variant="outline" title={t('verification.toHome')} onPress={() => router.replace('/')} testID="verification-home" />
+        </View>
+      }
     >
       <Header title={t('verification.title')} />
       {status.isLoading ? <LoadingState /> : null}
@@ -53,4 +68,4 @@ export default function VerificationStatusScreen() {
   );
 }
 
-const styles = StyleSheet.create({ gap: { marginTop: spacing.sm } });
+const styles = StyleSheet.create({ gap: { marginTop: spacing.sm }, footerGap: { marginBottom: spacing.sm } });

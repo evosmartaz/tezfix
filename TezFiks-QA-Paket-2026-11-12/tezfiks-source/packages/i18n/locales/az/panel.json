@@ -25,8 +25,8 @@
       "demo": "Demo"
     },
     "company": {
-      "dashboard": "Dashboard",
-      "dispatch": "Dispatch",
+      "dashboard": "İdarə paneli",
+      "dispatch": "Dispetçer",
       "orders": "Sifarişlər",
       "workers": "Ustalar",
       "balance": "Balans",
@@ -1062,9 +1062,9 @@
       "noTrade": "İxtisas uyğun deyil"
     },
     "dashboard": {
-      "title": "Dashboard",
-      "openDispatch": "Dispatch-ə keç",
-      "openDispatchWaiting": "Dispatch: {{count}} yeni sifariş",
+      "title": "İdarə paneli",
+      "openDispatch": "Dispetçerə keç",
+      "openDispatchWaiting": "Dispetçer: {{count}} yeni sifariş",
       "topUp": "+ Balansı artır",
       "statusBanner": {
         "DRAFT": "Şirkət hələ yoxlamaya göndərilməyib. Sənədləri TezFiks Usta tətbiqindən göndərin.",
@@ -1086,7 +1086,7 @@
       "earningsHint": "Həftəlik ödənişlə köçürülür"
     },
     "dispatch": {
-      "title": "Dispatch",
+      "title": "Dispetçer",
       "subtitle": "Gələn sifarişlər, aktiv işlər və ustaların canlı xəritəsi",
       "live": "Canlı",
       "polling": "Yenilənir (bağlantı yoxdur)",
@@ -1275,7 +1275,10 @@
         "remove": "Çıxar",
         "removeTitle": "{{name}} komandadan çıxarılsın?",
         "removeDescription": "Usta artıq şirkətin sifarişlərini almayacaq. Onu yenidən dəvət etmək olar.",
-        "removed": "Usta komandadan çıxarıldı"
+        "removed": "Usta komandadan çıxarıldı",
+        "promoteTitle": "{{name}} idarəedici edilsin?",
+        "promoteDescription": "İdarəedici şirkət balansına, ödənişlərə və sifariş qəbuluna giriş əldə edir. Dəyişiklik dərhal qüvvəyə minir.",
+        "promoteConfirm": "Bəli, idarəedici et"
       },
       "invites": {
         "title": "Dəvət linkləri",

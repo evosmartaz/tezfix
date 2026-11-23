@@ -57,7 +57,7 @@ export interface H3HexagonsProps {
 }
 
 /** H3 cells as polygons (searching animation rings, dispatch coverage). */
-export function H3Hexagons({ cells, fillColor = 'rgba(0, 169, 113, 0.18)', strokeColor = colors.primary, strokeWidth = 1 }: H3HexagonsProps) {
+export function H3Hexagons({ cells, fillColor = 'rgba(47, 91, 255, 0.18)', strokeColor = colors.primary, strokeWidth = 1 }: H3HexagonsProps) {
   return (
     <>
       {cells.map((cell) => (
@@ -97,7 +97,7 @@ export function MapPin({ coordinate, kind = 'target', title, rotation }: PinProp
 export { Marker, Polyline, Polygon };
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, overflow: 'hidden', backgroundColor: '#E8EEF2' },
+  wrap: { flex: 1, overflow: 'hidden', backgroundColor: '#E6EAF3' },
   attribution: { position: 'absolute', right: 6, bottom: 4, backgroundColor: 'rgba(255,255,255,0.75)', paddingHorizontal: 4, borderRadius: 4 },
   pin: { width: 22, height: 22, borderRadius: 11, borderWidth: 4, borderColor: '#FFFFFF' },
   pinDark: { backgroundColor: colors.dark },

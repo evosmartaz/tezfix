@@ -126,7 +126,7 @@ describe('incoming offer (board 03 B2)', () => {
     expect(screen.getByTestId('offer-distance').props.children).toBe('2,4 km • ~12 dəq');
     expect(screen.getByTestId('offer-customer').props.children).toBe('Nizami T. • ★ 4.8');
     expect(screen.getByText('TƏCİLİ')).toBeTruthy();
-    expect(screen.getByText('Sifarişi qəbul etdikdə balansınızdan 10 AZN platforma haqqı tutulacaq')).toBeTruthy();
+    expect(screen.getByText('Qəbul etdikdə balansınızdan 10 ₼ platforma haqqı rezerv edilir')).toBeTruthy(); // UX-P04/P15
     expect(screen.getByText(/Qəbul üçün (29|30) saniyə/)).toBeTruthy();
     expect(Vibration.vibrate).toHaveBeenCalledTimes(1);
     expect(Notifications.scheduleNotificationAsync).toHaveBeenCalledWith(

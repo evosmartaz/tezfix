@@ -168,8 +168,8 @@ const styles = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginBottom: spacing.xs },
   thumb: { width: SIZE, height: SIZE, borderRadius: radii.md, overflow: 'hidden', backgroundColor: colors.border },
   image: { width: '100%', height: '100%' },
-  overlay: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(11,27,43,0.45)', alignItems: 'center', justifyContent: 'center' },
-  remove: { position: 'absolute', top: 4, right: 4, backgroundColor: 'rgba(11,27,43,0.7)', borderRadius: 10, padding: 2 },
+  overlay: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(11,26,92,0.45)', alignItems: 'center', justifyContent: 'center' },
+  remove: { position: 'absolute', top: 4, right: 4, backgroundColor: 'rgba(11,26,92,0.7)', borderRadius: 10, padding: 2 },
   add: {
     backgroundColor: colors.primarySoft,
     borderWidth: 1,

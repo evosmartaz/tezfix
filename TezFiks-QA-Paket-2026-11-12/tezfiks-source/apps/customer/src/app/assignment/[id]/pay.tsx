@@ -186,7 +186,7 @@ export default function PayRoute() {
 
       {method === 'CARD' ? (
         <Card dark style={styles.block} testID="pay-guarantee">
-          <AppText variant="bodyStrong" color="primary">
+          <AppText variant="h3" color="mint">
             {t('pay.guaranteeTitle')}
           </AppText>
           <AppText variant="small" color="textInverseMuted">

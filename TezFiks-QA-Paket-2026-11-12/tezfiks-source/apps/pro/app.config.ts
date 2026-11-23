@@ -18,12 +18,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   orientation: 'portrait',
   userInterfaceStyle: 'light',
   icon: './assets/icon.png',
-  backgroundColor: '#F6F8FA',
+  backgroundColor: '#F5F7FC',
   platforms: ['android', 'ios'],
   android: {
     package: 'az.tezfiks.usta',
     versionCode: 2,
-    adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#0B1B2B' },
+    adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#0B1A5C' },
     softwareKeyboardLayoutMode: 'resize',
     config: { googleMaps: { apiKey: MAPS_KEY_OR_PLACEHOLDER } },
     permissions: ['android.permission.INTERNET', 'android.permission.ACCESS_NETWORK_STATE'],
@@ -44,7 +44,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ],
     ['expo-camera', { recordAudioAndroid: false, microphonePermission: false }],
     ['expo-image-picker', { microphonePermission: false }],
-    ['expo-notifications', { color: '#00A971', defaultChannel: 'default_v1' }],
+    ['expo-notifications', { color: '#2F5BFF', defaultChannel: 'default_v1' }],
     ['react-native-maps', { androidGoogleMapsApiKey: MAPS_KEY_OR_PLACEHOLDER }],
     [
       'expo-build-properties',
@@ -69,7 +69,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     '@tezfiks/mobile/plugins/with-navigation-queries',
     // BUG-003: release APKs are signed with the company release key (TEZFIKS_RELEASE_* env), never the debug key.
     '@tezfiks/mobile/plugins/with-release-signing',
-    ['expo-splash-screen', { backgroundColor: '#0B1B2B', image: './assets/splash-icon.png', imageWidth: 120 }],
+    ['expo-splash-screen', { backgroundColor: '#0B1A5C', image: './assets/splash-icon.png', imageWidth: 120 }],
   ],
   experiments: { typedRoutes: false },
   extra: {

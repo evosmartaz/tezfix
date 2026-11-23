@@ -54,7 +54,7 @@ describe('active job (board 03 B3) — solo handyman', () => {
     expect(screen.getByTestId('job-address').props.children).toBe('Atatürk pr. 45, Nərimanov');
     expect(screen.getByTestId('job-address-details').props.children).toBe('Giriş 2, Mərtəbə 5, Mənzil 12');
     expect(screen.getByTestId('job-description').props.children).toBe('Mətbəxdə kran damcılayır');
-    expect(screen.getByTestId('job-fee').props.children).toMatch(/^Platforma haqqı: 10\s₼ · bloklanıb$/);
+    expect(screen.getByTestId('job-fee').props.children).toMatch(/^Platforma haqqı: 10\s₼ · rezerv edilib$/); // UX-P04
     expect(screen.getByTestId('job-cancel-info').props.children).toMatch(/^Pulsuz ləğv: 0[34]:\d\d qalıb$/);
     expect(screen.getByTestId('job-nav')).toBeTruthy();
 

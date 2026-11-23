@@ -23,7 +23,11 @@
     "lastNameRequired": "Soyadınızı daxil edin",
     "photoUploadFailed": "Şəkil yüklənmədi. Sonra profildən yenidən cəhd edin",
     "galleryDenied": "Qalereyaya giriş icazəsi verilmədi",
-    "language": "Dil"
+    "language": "Dil",
+    "lead": "Onlayn olun, yaxınlıqdakı sifarişləri qəbul edin və qazancınızı özünüz idarə edin.",
+    "feature1": "Hər sifariş üçün sabit 10 ₼ platforma haqqı",
+    "feature2": "Qiyməti müştəri ilə yerində razılaşdırırsınız",
+    "feature3": "Fərdi usta və ya usta şirkəti kimi işləyin"
   },
   "tabs": {
     "home": "Əsas",
@@ -38,7 +42,7 @@
     "today": "Bu gün",
     "statJobs": "Sifariş",
     "statEarnings": "Qazanc",
-    "statFees": "Platforma haqqı",
+    "statFees": "Haqq",
     "lowBalanceTitle": "Cari balans: {{balance}}",
     "lowBalance": "Balans {{fee}}-dən az olduqda yeni sifariş qəbul edə bilməzsiniz",
     "topUp": "+ Balansı artır",
@@ -50,7 +54,11 @@
       "LOW_BALANCE": "Balansınız platforma haqqı üçün kifayət deyil: sifariş təklifləri gəlməyəcək",
       "NO_TRADES": "Profilinizdə ixtisas seçilməyib: sifariş təklifləri gəlməyəcək",
       "COMPANY_LOW_BALANCE": "Şirkətin balansı azdır: idarəedici balansı artırana qədər sifariş təyin olunmayacaq"
-    }
+    },
+    "statusOnline": "Siz onlaynsınız",
+    "statusOffline": "Siz oflaynsınız",
+    "statusOnlineHint": "Yeni sifarişlər sizə göndərilir",
+    "statusOfflineHint": "Sifariş almaq üçün onlayn olun"
   },
   "onboarding": {
     "joinTitle": "Usta kimi qoşulun",
@@ -176,7 +184,8 @@
     "draftBody": "Sifariş qəbul etmək üçün şəxsiyyət vəsiqəsi və selfi ilə yoxlamadan keçin",
     "start": "Yoxlamaya başla",
     "approved": "Təsdiqləndi! İndi onlayn ola bilərsiniz",
-    "toHome": "Əsas səhifəyə"
+    "toHome": "Əsas səhifəyə",
+    "refresh": "Statusu yenilə"
   },
   "offer": {
     "newTitle": "Yeni sifariş!",
@@ -193,7 +202,7 @@
     "scheduledAt": "Vaxt",
     "km": "{{km}} km",
     "eta": "~{{min}} dəq",
-    "feeWarning": "Sifarişi qəbul etdikdə balansınızdan {{fee}} AZN platforma haqqı tutulacaq",
+    "feeWarning": "Qəbul etdikdə balansınızdan {{fee}} ₼ platforma haqqı rezerv edilir",
     "accept": "✓ Qəbul et",
     "decline": "İmtina et",
     "accepted": "Sifariş qəbul edildi",
@@ -326,7 +335,7 @@
     "guaranteeUntil": "Zəmanət: {{date}} tarixinədək",
     "fee": "Platforma haqqı: {{amount}}",
     "feeState": {
-      "held": "bloklanıb",
+      "held": "rezerv edilib",
       "captured": "tutulub",
       "refunded": "qaytarılıb"
     },
@@ -438,7 +447,7 @@
   },
   "balance": {
     "current": "Cari balans",
-    "held": "Bloklanıb: {{amount}}",
+    "held": "Rezerv: {{amount}}",
     "topUp": "+ Balansı artır",
     "history": "Əməliyyat tarixçəsi",
     "empty": "Hələ əməliyyat yoxdur",
@@ -588,8 +597,8 @@
     "noOffers": "Hazırda yeni sifariş yoxdur",
     "offerTitle": "Yeni sifariş #{{number}}",
     "customerLine": "{{timing}} • Müştəri: {{name}}",
-    "feeNote": "Qəbulda şirkət balansından {{fee}} AZN tutulacaq",
-    "feeNotePerWorker": "Qəbulda şirkət balansından hər usta üçün {{fee}} AZN tutulacaq",
+    "feeNote": "Qəbulda şirkət balansından {{fee}} ₼ rezerv edilir",
+    "feeNotePerWorker": "Qəbulda şirkət balansından hər usta üçün {{fee}} ₼ rezerv edilir",
     "slots": "Lazım olan usta: {{open}}/{{total}}",
     "pickWorker": "Ustanı seçin",
     "pickWorkers": "Ustaları seçin ({{selected}}/{{max}})",
@@ -648,7 +657,8 @@
       "howTitle": "Necə işləyir",
       "howBody": "Hansı rejim seçilsə də, qiymət daxil edilmədən sifariş bağlanmır və məbləğ müştərinin tətbiqində təsdiq üçün göstərilir. Fərdi ustalarda isə qiyməti həmişə ustanın özü daxil edir.",
       "save": "Yadda saxla",
-      "saved": "Tənzimləmələr saxlanıldı"
+      "saved": "Tənzimləmələr saxlanıldı",
+      "unsaved": "Saxlanmamış dəyişikliklər var"
     },
     "job": {
       "enterPrice": "Yekun qiyməti daxil et",

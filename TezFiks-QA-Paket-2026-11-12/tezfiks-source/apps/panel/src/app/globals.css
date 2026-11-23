@@ -1,28 +1,27 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* Shared Figma v2 design tokens: 00 · Cover & Brend, 8:352. */
+/* TezFiks design tokens ("TezFiks — App UI (editable)" v2 brand board and the company panel v2 board). */
 @theme {
   --color-primary: #2f5bff;
-  --color-primary-strong: #2147d8;
+  --color-primary-strong: #2246d8;
   --color-primary-foreground: #ffffff;
+  --color-primary-soft: #edf1ff;
   --color-ink: #0b1a5c;
-  --color-ink-soft: #162b76;
+  --color-ink-soft: #1b2b70;
+  --color-mint: #d4f53c;
   --color-accent: #f59e0b;
   --color-accent-strong: #b45309;
   --color-danger: #c83746;
-  --color-info: #2563eb;
+  --color-info: #2f5bff;
   --color-background: #f5f7fc;
   --color-surface: #ffffff;
-  --color-foreground: #0b1a5c;
+  --color-foreground: #0f1729;
   --color-border: #dfe4ef;
-  --color-input: #dfe4ef;
-  --color-muted: #edf1ff;
+  --color-input: #d3d9e6;
+  --color-muted: #eef1f8;
   --color-muted-foreground: #5f6b7d;
   --color-ring: #2f5bff;
-  --color-primary-soft: #edf1ff;
-  --color-navy: #0b1a5c;
-  --color-lime: #d4f53c;
 
   --font-sans:
     'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

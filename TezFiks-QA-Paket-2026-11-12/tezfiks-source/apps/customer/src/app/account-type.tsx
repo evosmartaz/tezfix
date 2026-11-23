@@ -100,7 +100,7 @@ export default function AccountTypeRoute() {
         </View>
       }
     >
-      <Header title={t('onboarding.accountTypeTitle')} subtitle={t('onboarding.accountTypeSubtitle')} />
+      <Header large title={t('onboarding.accountTypeTitle')} subtitle={t('onboarding.accountTypeSubtitle')} />
       {typeCard('INDIVIDUAL', 'person-outline')}
       {typeCard('COMPANY', 'business-outline')}
       {form.type === 'COMPANY' ? (

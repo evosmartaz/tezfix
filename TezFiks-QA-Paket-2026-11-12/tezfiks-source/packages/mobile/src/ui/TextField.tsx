@@ -23,7 +23,7 @@ export const TextField = forwardRef<TextInputInstance, TextFieldProps>(function 
   return (
     <View style={styles.wrap}>
       {label ? (
-        <AppText variant="small" color={dark ? 'textInverseMuted' : 'textMuted'} style={styles.label}>
+        <AppText variant="bodyStrong" color={dark ? 'textInverseMuted' : 'text'} style={styles.label}>
           {label}
         </AppText>
       ) : null}
@@ -74,10 +74,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: radii.md,
-    minHeight: 48,
+    minHeight: 52,
     paddingHorizontal: spacing.md,
   },
-  multiline: { alignItems: 'flex-start', minHeight: 96, paddingVertical: spacing.sm },
+  multiline: { alignItems: 'flex-start', minHeight: 104, paddingVertical: spacing.sm },
   input: { flex: 1, fontFamily: fonts.regular, fontSize: 15, paddingVertical: spacing.sm },
   inputMultiline: { textAlignVertical: 'top' },
   below: { marginTop: spacing.xs },

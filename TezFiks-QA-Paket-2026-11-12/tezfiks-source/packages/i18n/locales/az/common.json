@@ -65,7 +65,8 @@
     "days_one": "{{count}} gün",
     "days_other": "{{count}} gün",
     "seconds_one": "{{count}} saniyə",
-    "seconds_other": "{{count}} saniyə"
+    "seconds_other": "{{count}} saniyə",
+    "starLabel": "{{value}} ulduz"
   },
   "time": {
     "justNow": "indi",

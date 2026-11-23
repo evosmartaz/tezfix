@@ -33,7 +33,7 @@ import {
 import { CategoryIcon } from '../../../components/CategoryIcon';
 import { qk, useRequest } from '../../../data/queries';
 import { addressDetails } from '../../../lib/address';
-import { assignmentStatusTone, requestStatusTone, showsSearchLink, slotStatusTone } from '../../../lib/orders';
+import { assignmentStatusTone, cancellationSummary, requestStatusTone, showsSearchLink, slotStatusTone } from '../../../lib/orders';
 import { requestErrorInfo } from '../../../lib/requestErrors';
 
 /** Orders detail: status, service, timing, address, description, photos, slots with their assignments, cancel. */
@@ -78,6 +78,12 @@ export default function RequestDetailRoute() {
 
   const details = addressDetails(r.address, t);
   const byId = new Map(r.assignments.map((a) => [a.id, a]));
+  const cancelled = cancellationSummary(r);
+  const cancelTimeText = cancelled
+    ? [formatDateTime(cancelled.cancelledAt), cancelled.minutesAfterAccept !== null ? t('detail.afterAccept', { min: cancelled.minutesAfterAccept }) : null]
+        .filter(Boolean)
+        .join(' · ')
+    : '';
 
   return (
     <Screen scroll edges={['top', 'bottom']} refreshing={req.isRefetching} onRefresh={() => void req.refetch()} testID="request-detail-screen">
@@ -96,6 +102,40 @@ export default function RequestDetailRoute() {
             {t('detail.openSearch')}
           </AppText>
         </Card>
+      ) : null}
+      {cancelled ? (
+        // UX-C04 / UX-C11: one cancelled state with a separate free/late line, then the next steps.
+        <View style={styles.block} testID="detail-cancel-summary">
+          <View style={styles.cancelHero}>
+            <View style={styles.cancelIcon}>
+              <Ionicons name="close" size={36} color={colors.danger} />
+            </View>
+            <AppText variant="h2" align="center">
+              {t('detail.cancelledTitle')}
+            </AppText>
+          </View>
+          <Card>
+            <InfoLine label={t('detail.cancelTime')} value={cancelTimeText} />
+            <InfoLine
+              label={t('detail.cancelKind')}
+              value={t(cancelled.kind === 'late' ? 'detail.kindLate' : 'detail.kindFree')}
+              danger={cancelled.kind === 'late'}
+              testID="detail-cancel-kind"
+            />
+            {cancelled.kind === 'late' ? (
+              <View style={styles.cancelNote}>
+                <Banner tone="danger" icon="alert-circle-outline" message={t('detail.lateNote')} testID="detail-cancel-late-note" />
+              </View>
+            ) : null}
+          </Card>
+          <Button
+            title={t('detail.findNew')}
+            onPress={() => router.push({ pathname: '/request/new', params: { repeatId: r.id } })}
+            style={styles.cancelAction}
+            testID="detail-find-new"
+          />
+          <Button variant="outline" title={t('detail.toHome')} onPress={() => router.dismissTo('/' as never)} style={styles.cancelGap} testID="detail-home" />
+        </View>
       ) : null}
       {r.timing === 'SCHEDULED' && r.status === 'SEARCHING' ? (
         <Banner tone="info" message={t('detail.scheduledWaiting')} testID="detail-scheduled" />
@@ -209,6 +249,19 @@ function CancelPreview({ r }: { r: RequestDetail }) {
   );
 }
 
+function InfoLine({ label, value, danger, testID }: { label: string; value: string; danger?: boolean; testID?: string }) {
+  return (
+    <View style={styles.infoLine} testID={testID}>
+      <AppText variant="body" color="textMuted">
+        {label}
+      </AppText>
+      <AppText variant="bodyStrong" color={danger ? 'danger' : 'text'} style={styles.infoValue}>
+        {value}
+      </AppText>
+    </View>
+  );
+}
+
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <View style={styles.section}>
@@ -268,4 +321,19 @@ const styles = StyleSheet.create({
   cancel: { marginTop: spacing.lg },
   gap: { height: spacing.sm },
   preview: { marginBottom: spacing.md },
+  cancelHero: { alignItems: 'center', marginVertical: spacing.lg },
+  cancelIcon: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: colors.dangerSoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.md,
+  },
+  infoLine: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingVertical: spacing.xs },
+  infoValue: { flexShrink: 1, textAlign: 'right', marginLeft: spacing.md },
+  cancelNote: { marginTop: spacing.sm },
+  cancelAction: { marginTop: spacing.lg },
+  cancelGap: { marginTop: spacing.sm },
 });

@@ -1280,7 +1280,10 @@
         "remove": "Remove",
         "removeTitle": "Remove {{name}} from the team?",
         "removeDescription": "The handyman will no longer get the company's orders. You can invite them again.",
-        "removed": "Handyman removed from the team"
+        "removed": "Handyman removed from the team",
+        "promoteTitle": "Make {{name}} a manager?",
+        "promoteDescription": "A manager gets access to the company balance, payments and order intake. The change takes effect immediately.",
+        "promoteConfirm": "Yes, make manager"
       },
       "invites": {
         "title": "Invite links",

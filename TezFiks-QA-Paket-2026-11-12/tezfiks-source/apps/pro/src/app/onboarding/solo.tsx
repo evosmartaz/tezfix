@@ -102,7 +102,7 @@ export default function SoloOnboarding() {
       footer={<Button title={t('onboarding.continueToKyc')} onPress={() => void submit()} loading={saving} disabled={uploading} testID="solo-submit" />}
     >
       <ScrollView ref={scrollRef} style={styles.flex} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Header title={t('onboarding.soloTitle')} subtitle={t('onboarding.soloFormSubtitle')} onBack={() => router.back()} />
+        <Header large title={t('onboarding.soloTitle')} subtitle={t('onboarding.soloFormSubtitle')} onBack={() => router.back()} />
         <View style={styles.photoRow}>
           <Pressable onPress={() => void pickPhoto()} accessibilityRole="button" accessibilityLabel={t('auth.addPhoto')} testID="solo-photo">
             <Avatar uri={photo?.url} firstName={firstName} lastName={lastName} size={72} />

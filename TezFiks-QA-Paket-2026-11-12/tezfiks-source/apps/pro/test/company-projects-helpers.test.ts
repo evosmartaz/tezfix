@@ -68,6 +68,10 @@ describe('"Ustanı seçin" worker picker rules', () => {
     expect(isSelectableWorker(noTrade)).toBe(false);
   });
 
+  it('offline workers ("Oflayn") are disabled too (UX-P03)', () => {
+    expect(isSelectableWorker(candidate(6, { online: false }))).toBe(false);
+  });
+
   it('selects at most the open slots; a single slot swaps', () => {
     expect(toggleWorker([], free1, 1)).toEqual([free1.handymanId]);
     expect(toggleWorker([free1.handymanId], free2, 1)).toEqual([free2.handymanId]);

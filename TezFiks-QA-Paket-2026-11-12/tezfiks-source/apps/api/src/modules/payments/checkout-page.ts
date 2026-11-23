@@ -10,14 +10,14 @@ export function escapeHtml(value: string): string {
 }
 
 const CSS = `
-:root{--brand:#00A971;--ink:#0B1B2B;--muted:#5B6B7B;--line:#DCE3EA;--bg:#F4F7F9;--danger:#D64545;--warn:#FFB020}
+:root{--brand:#2F5BFF;--ink:#0F1729;--muted:#5F6B7D;--line:#DFE4EF;--bg:#F5F7FC;--danger:#C83746;--warn:#FFB020}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
 .wrap{max-width:440px;margin:0 auto;padding:16px}
 .banner{background:var(--warn);color:var(--ink);font-weight:700;letter-spacing:.06em;text-align:center;border-radius:10px;padding:8px 12px;font-size:13px}
 .hint{color:var(--muted);font-size:13px;margin:8px 2px 16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 1px 2px rgba(11,27,43,.04)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 1px 2px rgba(11,26,92,.04)}
 .brand{font-weight:800;font-size:20px;color:var(--ink);margin:0 0 12px}
 .brand span{color:var(--brand)}
 .purpose{color:var(--muted);font-size:14px;margin:0}
@@ -47,7 +47,7 @@ function layout(locale: Locale, title: string, body: string): string {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#00A971">
+<meta name="theme-color" content="#2F5BFF">
 <title>${escapeHtml(title)}</title>
 <style>${CSS}</style>
 </head>

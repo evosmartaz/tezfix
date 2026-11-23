@@ -90,7 +90,7 @@ export function OtpScreen({ onBack, onSignedIn }: OtpScreenProps) {
 
   return (
     <Screen scroll testID="otp-screen">
-      <Header onBack={onBack} title={t('auth.otpTitle')} subtitle={t('auth.otpSubtitle', { phone: formatPhone(challenge.phone, 'international') })} />
+      <Header large onBack={onBack} title={t('auth.otpTitle')} subtitle={t('auth.otpSubtitle', { phone: formatPhone(challenge.phone, 'international') })} />
       {challenge.devCode ? <Banner tone="info" icon="bug-outline" message={t('auth.devCodeHint', { code: challenge.devCode })} testID="otp-dev-hint" /> : null}
       <OtpInput
         ref={inputRef}

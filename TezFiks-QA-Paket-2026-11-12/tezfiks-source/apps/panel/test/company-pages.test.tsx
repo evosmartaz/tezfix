@@ -142,7 +142,7 @@ describe('Dashboard', () => {
       [`GET ${base}/offers/current`]: okJson({ items: [offer()], serverNow: '2026-10-25T10:00:00.000Z' }),
     });
     renderPanel(await CompanyDashboardPage({ params: params() }));
-    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Dashboard');
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('İdarə paneli'); // UX-W05
     expect(text()).toContain(`230,00${NBSP}₼`);
     expect(text()).toContain(`Bloklanıb: 10,00${NBSP}₼`);
     expect(screen.getByText('7')).toBeTruthy();
@@ -150,7 +150,7 @@ describe('Dashboard', () => {
     expect(screen.getByText('2 / 4')).toBeTruthy();
     expect(text()).toContain(`420,00${NBSP}₼`);
     expect(text()).toContain(`70,00${NBSP}₼`);
-    expect(screen.getByText('Dispatch: 1 yeni sifariş')).toBeTruthy();
+    expect(screen.getByText('Dispetçer: 1 yeni sifariş')).toBeTruthy();
     // The bearer token stays on the server.
     const token = calls[0]!.headers.authorization!.slice(7);
     expect(document.body.innerHTML).not.toContain(token);

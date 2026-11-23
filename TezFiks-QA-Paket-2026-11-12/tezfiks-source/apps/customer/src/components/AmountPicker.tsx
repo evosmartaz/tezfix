@@ -35,7 +35,7 @@ export function AmountPicker({ presets, value, onChange, label, error, testID }:
               accessibilityState={{ selected }}
               testID={`${testID}-preset-${p}`}
             >
-              <AppText variant="bodyStrong" color={selected ? 'textInverse' : 'text'}>
+              <AppText variant="bodyStrong" color={selected ? 'primary' : 'text'}>
                 {formatMoney(p, locale, { compact: true })}
               </AppText>
             </Pressable>
@@ -56,14 +56,19 @@ export function AmountPicker({ presets, value, onChange, label, error, testID }:
 }
 
 const styles = StyleSheet.create({
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginBottom: spacing.md },
+  chips: { flexDirection: 'row', gap: spacing.sm, marginBottom: spacing.md },
+  // Equal boxes, 48 dp tall ("2 ₼ | 5 ₼ | 10 ₼"); the selected one is outlined in blue.
   chip: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-    borderRadius: radii.pill,
-    borderWidth: 1,
+    flexGrow: 1,
+    flexBasis: 0,
+    minHeight: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: spacing.sm,
+    borderRadius: radii.md,
+    borderWidth: 1.5,
     borderColor: colors.border,
     backgroundColor: colors.surface,
   },
-  chipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
+  chipOn: { backgroundColor: colors.primarySoft, borderColor: colors.primary },
 });
