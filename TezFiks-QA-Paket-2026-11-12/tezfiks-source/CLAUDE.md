@@ -5,7 +5,9 @@ solo handymen or company ("park") members accept, travel, fix, and get paid. And
 
 - **Spec (business rules are authoritative here):** `docs/superpowers/specs/2026-10-24-tezfiks-design.md`
 - **Build plan (waves, lanes, conventions):** `docs/superpowers/plans/2026-10-25-tezfiks-build-plan.md`
-- **Design boards:** `design/01..06-*.png` (brand: primary #00A971, dark #0B1B2B, accent #F59E0B, bg #F6F8FA, danger #E5484D, font Inter)
+- **Design boards:** `design/v2/01..06-*.png` are current (2026-11 "App UI" v2: one light theme; brand primary #2F5BFF, dark/navy #0B1A5C,
+  accent #F59E0B, lime-on-navy #D4F53C, bg #F5F7FC, danger #C83746, muted #5F6B7D, border #DFE4EF, font Inter). `design/01..06-*.png` are the
+  superseded v1 (green) boards. Mobile tokens: `packages/mobile/src/theme/tokens.ts`; panel tokens: `apps/panel/src/app/globals.css`.
 - **Shared contract (single source of truth for every endpoint and payload):** `packages/shared/src/contract/**`, socket events in `packages/shared/src/socket.ts`
 
 ## Core business rules (short form; spec wins on conflict)
